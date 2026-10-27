@@ -57,7 +57,7 @@ import { homeNamed, titleClient } from './home.js';
 import { introOf } from './gloss.js';
 import { motiveForm, motiveSaid, whyOrder } from './motives.js';
 import { hintWords, plainWhy } from './stars.js';
-import { poisonAfter, whenQuestion } from './when.js';
+import { poisonAfter, vesselOf, whenQuestion } from './when.js';
 import { hasHints, hintsUsed } from './hints.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy' | 'other' | 'cleared';
@@ -838,18 +838,28 @@ function storyLines(d: BoardDeal): string[] {
   const motive = personOf(c, p)?.motive;
   if (isMurder(c)) {
     out.push(`${name} did it. The reason was an old one: ${motive}.`);
-    out.push(
-      atOrigin !== undefined
-        ? `At ${oclock(atOrigin)} ${short} was at ${placeName(c, c.means.origin)}, and took ${c.means.originText.replace(/, there from .*$/, '').replace(/, open from .*$/, '').replace(new RegExp(` (?:at|from) ${placeName(c, c.means.origin).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), '')}.`
-        : `${cap(short)} took ${c.means.originText} while it sat there to be taken.`,
-    );
-    const moment = meansMoment(c.means.kind, v.short, c.means.name.replace(/^(a|an) /, ''), c.finds.find((f) => f.gives.means)?.text ?? '', pronOf(c, c.crime.victim).his, pronOf(c, c.crime.culprit).he === pronOf(c, c.crime.victim).he);
+    // (Round 9, item 6: the weapon as the scene card had it, and nothing it didn't say: "took the landlady’s
+    // late husband’s revolver" had a husband nobody had mentioned; the scene said the landlady shows it to
+    // any lodger behind with the rent.)
+    const scene = c.finds.find((f) => f.gives.means)?.text ?? '';
+    const took = c.means.originText
+      .replace(/, there from .*$/, '')
+      .replace(/, open from .*$/, '')
+      .replace(new RegExp(` (?:at|from) ${placeName(c, c.means.origin).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), '')
+      .replace(/^the ((?:[\w’ ]+?’s )+)(?=[a-z])/, (m, owners: string) => (scene.includes(owners.trim()) ? m : 'the '))
+      .replace(/^(the [\w ]+), from /, '$1 from ');
+    out.push(atOrigin !== undefined ? `At ${oclock(atOrigin)} ${short} was at ${placeName(c, c.means.origin)}, and took ${took}.` : `${cap(short)} took ${took} while it sat there to be taken.`);
+    const moment = meansMoment(c.means.kind, v.short, c.means.name.replace(/^(a|an) /, ''), vesselOf(c), pronOf(c, c.crime.victim).his, pronOf(c, c.crime.culprit).he === pronOf(c, c.crime.victim).he);
     // docs/59 note 9: a poisoning's hour is the hour the dose went in, said as the office and the report say it.
     const dose = poisonAfter(c);
     const vp = pronOf(c, c.crime.victim);
     out.push(`At ${oclock(c.crime.hour)} ${pr.he} went round to ${placeName(c, c.crime.scene)}, and ${v.short} let ${pr.him} in. ${dose ? `That was when ${vp.he} was poisoned: ${moment.replace(/, and [^,]+ never tasted it\.$/, '').replace(/^The\b/, 'the')}, and ${dose.replace(/^.*?, so /, '')}.` : moment}`);
     const after = c.board.hours.find((h) => h > c.crime.hour);
-    if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}, as if ${pr.he} had never left.`);
+    // (Round 9, item 9: "as if he had never left" only where he had been there before: "By ten o’clock he
+    // was at Moe’s, as if he had never left" of a man who'd never been at Moe's, Coddled and Poached 34.)
+    const before = c.board.hours.filter((h) => h < c.crime.hour).pop();
+    const back = before !== undefined && after !== undefined && row[before] === row[after];
+    if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}${back ? `, as if ${pr.he} had never left` : ''}.`);
   } else {
     out.push(`${name} took ${v.short}. ${cap(pastOf(motive ?? ''))}.`);
     if (atOrigin !== undefined) out.push(`${cap(short)} was at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)} and heard about ${c.means.originText.replace(/^[^;]*; /, '')}.`);
@@ -872,11 +882,11 @@ function holderShort(d: BoardDeal): string | null {
   return t ? (t.replace(/^with /, '').split(',')[0] ?? null) : null;
 }
 
-function meansMoment(kind: string, victim: string, means = 'it', scene = '', his = 'his', twoOfOneSex = false): string {
+function meansMoment(kind: string, victim: string, means = 'it', vessel = 'drink', his = 'his', twoOfOneSex = false): string {
   if (kind === 'gun') return `${cap(victim)} was shot across ${his} own table.`;
   if (kind === 'blade') return `When ${victim} turned ${his} back, that was the end of it.`;
   // The scene's own cup, said (Poached 5's #32: the cocoa was planted and never cashed; Hard-boiled 8's #26: "It").
-  const vessel = /\bcocoa\b/i.test(scene) ? 'cocoa' : /\brye\b/i.test(scene) ? 'rye' : 'drink';
+  // (Round 9, item 3: `vesselOf`, the one the office's supper line says too.)
   // (Right after "let her in", a dead woman's cocoa is the cocoa: "her" could be the one let in.)
   return `The ${means} went into ${twoOfOneSex ? 'the' : his} ${vessel}, and ${victim} never tasted it.`;
 }

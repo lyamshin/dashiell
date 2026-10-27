@@ -167,8 +167,8 @@ describe('docs/66: the round-6 testers’ joining text, a rule at a time', () =>
 
   it('newcomer: somebody an owning up named is met plainly, after the answer', () => {
     const answer = { text: '“Fine. At nine I was at the Palace with Ashby. Ask her.”', voice: 'answer' as const };
-    expect(rules(night(pg('confront', [answer, { text: 'Ashby, the woman Ruggiero had named, had come back in by then and was three rows back.', voice: 'thought' }])))).toContain('newcomer');
-    expect(rules(night(pg('confront', [answer, { text: 'Ashby was in by then, three rows back.', voice: 'thought' }])))).toEqual([]);
+    expect(rules(night(pg('confront', [answer, { text: 'Ashby, the woman Ruggiero had named, had come back in by then and was in the third row.', voice: 'thought' }])))).toContain('newcomer');
+    expect(rules(night(pg('confront', [answer, { text: 'Ashby was in by then, in the third row.', voice: 'thought' }])))).toEqual([]);
   });
 
   it('office: a conversation, not a menu, a form or somebody else’s rent', () => {
@@ -300,14 +300,18 @@ describe('docs/68: round 7’s wrong facts, a rule at a time', () => {
   it('deadline: the find says before the earliest hour, and who came after says it was too late (docs/72: where the sums are said)', () => {
     const find = m21.kase.finds.find((f) => f.gives.means)?.id as string;
     const t = (text: string) => ruled(m21, on(m21, at(m21, 'search', [{ text, voice: 'thought' }], { q: `search:${find}` })));
-    // docs/72: from Poached up the hour the means had to be had by is the player's sum; the find says the way in as a fact.
-    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).not.toContain('deadline');
+    // (Round 9, item 2: the find says the hour the means had to be had by at every tier again, once, a
+    // premise the grid applies; said of the dead man, never "the earliest it could have happened". Who came
+    // too late for it is still the player's from Poached up.)
+    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).toContain('deadline');
+    expect(t('Whoever stabbed Mulcahy had to fetch the carving knife from Kowalski’s before nine, the earliest he could have been stabbed.')).not.toContain('deadline');
+    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.')).toContain('deadline');
     expect(hingeIssues(m21, playBoardOracle(m21).run).filter((x) => x.rule === 'deadline')).toEqual([]);
     // Where the sums are said (the full dial writes Medium 21 with them), the rule holds as round 7 had it.
     setTexture('full');
     try {
       expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).toContain('deadline');
-      expect(t('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.')).not.toContain('deadline');
+      expect(t('Whoever stabbed Mulcahy had to fetch the carving knife from Kowalski’s before nine, the earliest he could have been stabbed.')).not.toContain('deadline');
       // Vitale, at Kowalski’s at nine, on Mrs. Kowalski’s page: with the hour she came, and without it.
       const real = playBoardOracle(m21).run;
       const i = real.log.findIndex((p) => (p.board?.units ?? []).some((u) => u.kind === 'fact' && (u.bones ?? []).some((b) => b.props.some((x) => x.k === 'ACCESS' && x.person === 'vitale' && !x.had))));

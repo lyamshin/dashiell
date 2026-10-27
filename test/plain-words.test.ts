@@ -7,7 +7,7 @@
  *
  * Round 6 (docs/66): and the surfaces after the night, where "put to it", "filed", "file itself", "no
  * line to hang it on" and "the true board" were left: the report's answers, the verdict whole (its
- * score, what it says plainly, its endings), the notebook's "How it adds up", the story, the curtain
+ * score, what it says plainly, its endings), the notebook's "Where things stand", the story, the curtain
  * whole, and every ending card in `night.json`. What people said, inside quotation marks, is theirs.
  *
  * docs/67: and the hints' chrome: the button and its count, the first page's note, what a hint says, the
@@ -313,7 +313,7 @@ describe('round 7, U1–U3: the report’s lists, the labels and the confront bo
     const events = o.commands.map((x) => ({ do: x }));
     const say = cli(d, events);
     const nb = say('notebook');
-    const told = numbered(nb.slice(nb.indexOf('What I was told:'), nb.indexOf('How it adds up:')));
+    const told = numbered(nb.slice(nb.indexOf('What I was told:'), nb.indexOf('Where things stand:')));
     expect(told.size).toBeGreaterThan(10);
     const lists = d.kase.people.filter((p) => p.role === 'suspect').map((p) => numbered(say('report', p.short).split('`report` shows')[0] as string));
     const seen = new Map<number, string>();

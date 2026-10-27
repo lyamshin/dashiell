@@ -57,8 +57,10 @@ export function walkBetween(c: BoardCase, from: PlaceId, to: PlaceId): Walk {
   // docs/48 §1: between two places of the neighbourhood, the bible's own minutes.
   const own = worldMinutes(c, from, to);
   const minutes = Math.max(5, Math.min(40, Math.round((own ?? raw) / 5) * 5));
-  const ew = Math.abs(dx) >= 2 ? (dx > 0 ? 'east' : 'west') : '';
-  const ns = Math.abs(dy) >= 2 ? (dy > 0 ? 'uptown' : 'downtown') : '';
+  // (Round 8, B8: a bearing says the way that matters: Mulberry Street to 12 Ludlow, nine blocks east and
+  // two up, is "east", not "uptown and east"; the lesser leg is said only where it’s a quarter of the other or more.)
+  const ew = Math.abs(dx) >= 2 && Math.abs(dx) * 4 >= Math.abs(dy) ? (dx > 0 ? 'east' : 'west') : '';
+  const ns = Math.abs(dy) >= 2 && Math.abs(dy) * 4 >= Math.abs(dx) ? (dy > 0 ? 'uptown' : 'downtown') : '';
   const dir = ns && ew ? `${ns} and ${ew}` : ns || ew || 'round the corner';
   const n = NUM[minutes / 5] ?? `${minutes}`;
   const said = minutes === 15 ? 'a quarter of an hour' : minutes === 30 ? 'half an hour' : `${n} minutes`;

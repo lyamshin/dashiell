@@ -186,7 +186,7 @@ export function levelIssues(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
   });
   // docs/72, rule `sum`: above Coddled, none of the five sums (the settled hour, the crime hour as a
   // frame, the partition, the means tie on people, the gap pointer) in the narration before the report,
-  // nor in the notebook's "How it adds up" as it stood after any page.
+  // nor in the notebook's "Where things stand" as it stood after any page.
   if (!sumsSaid(c)) for (const h of sumIssues(c, run, (i) => recapClauses(d, runAt(run, i)).map((x) => x.text))) out.push({ page: h.page, rule: 'sum', detail: `${h.kind}${h.where === 'notebook' ? ', the notebook' : ''}: “${h.text.slice(0, 120)}”` });
   return out;
 }

@@ -343,6 +343,10 @@ function compose(lead: string | undefined, card: string, tail: string | undefine
  * place, on one section's paragraphs, after they're laid out and before the rhythm and the
  * reference (so a card can be traded for another of its key, and its pronouns are the planner's).
  */
+/** Round 9: looking from the doorway, and getting down to it: one or the other on a page. */
+export const DOORWAY = /\bfrom the doorway\b|\bI only looked\b/i;
+export const KNEES = /\bmy knees\b|\bI knelt\b|\bkneeling\b|\bhands and knees\b|\bon all fours\b/i;
+
 export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
   const s = ctx.situ;
   if (!s) return;
@@ -417,6 +421,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       const leadNames = !!it.sit.lead && !!tokens.role && stripMarks(it.sit.lead).includes(stripMarks(tokens.role));
       // (Whether the page has my feet off the desk already.)
       const feetSaid = items.some((x) => x !== it && FEET.test(stripMarks(x.text)));
+      // (Whether the page has me on my knees, or only looking from the doorway.)
+      const kneesSaid = items.some((x) => x !== it && KNEES.test(stripMarks(x.text)));
+      const doorwaySaid = items.some((x) => x !== it && DOORWAY.test(stripMarks(x.text)));
       // (Whether the page's arrival walks in itself: "I went down to Moskowitz’s…".)
       const arrivalMoves = items.some((x) => x.slot === 'arrival' && ARRIVAL_MOVES.test(stripMarks(x.text).trim()));
       // (The simile frames the rest of the page says already.)
@@ -441,6 +448,8 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (leadNames && /\{role\}/i.test(c.text)) continue;
           // docs/59 item 4: my feet come off the desk once a page.
           if (feetSaid && FEET.test(c.text)) continue;
+          // (Round 9: one posture a page: never "I only looked, from the doorway" and then up off my knees.)
+          if ((DOORWAY.test(c.text) && kneesSaid) || (KNEES.test(c.text) && doorwaySaid)) continue;
           // docs/59 item 4: one arrival a visit: where the arrival walks in itself, the walk doesn't arrive too.
           if (slot === 'walk' && arrivalMoves && WALK_ARRIVES.test(c.text)) continue;
           // docs/59 item 7: no tic the night has said once, and no second simile frame on the page.

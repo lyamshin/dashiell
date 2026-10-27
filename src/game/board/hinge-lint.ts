@@ -152,7 +152,8 @@ import { sentencesOf } from './plan/sentences.js';
 import { lean } from './plan/dial.js';
 import { glossedIn } from './gloss.js';
 import { maskPlaces, narrationOf, roleOf } from './plan/measure.js';
-import { isPoison } from './when.js';
+import { isPoison, vesselOf } from './when.js';
+import placesDeck from '../../../content/board/places.json';
 import { UNWATCHED } from './tics.js';
 export { UNWATCHED };
 
@@ -220,9 +221,19 @@ export type HingeRule =
   | 'sum-drop'
   | 'witness'
   | 'restate'
-  | 'it-was';
+  | 'it-was'
+  | 'turn-says'
+  | 'vessel'
+  | 'story'
+  | 'lie-leak'
+  | 'topic'
+  | 'finder'
+  | 'picture'
+  | 'slips'
+  | 'return'
+  | 'walk-it';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop', 'it-was', 'witness', 'restate'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop', 'it-was', 'witness', 'restate', 'turn-says', 'vessel', 'story', 'lie-leak', 'topic', 'finder', 'picture', 'slips', 'return', 'walk-it'];
 
 export interface HingeIssue {
   page: number;
@@ -465,6 +476,9 @@ function telling(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
   const RE = /\bhad told me (?:who came in|who came and went|where the evening went)\b|\bI had heard from\b[^.]*\babout\b/;
   run.log.forEach((p, i) => {
+    // (Round 9, item 1: the notebook said aloud, "Go over what I have", says what's held as the notebook
+    // does, "Mrs. Pickering and Schilling had told me who came and went."; the turn doesn't say it at all.)
+    if (p.board?.job === 'recap') return;
     for (const b of p.blocks) {
       if (b.kind !== 'prose' || b.voice === 'answer') continue;
       const m = RE.exec(narr(strip(b.text)));
@@ -760,7 +774,7 @@ function alone(run: BoardRun): HingeIssue[] {
 function walks(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
   const seen = new Map<string, number>();
-  const FAR = /\b(a couple of blocks|a few blocks|several blocks|a good walk|a long walk|a fair walk|a good ten blocks|a handful of blocks|two blocks over|a long way on foot|a fair stretch on foot)\b/;
+  const FAR = /\b(a couple of blocks|a few blocks|several blocks|a good walk|a long walk|a fair walk|a good ten blocks|a handful of blocks|a short two blocks|two blocks(?: over)?|a long way on foot|a fair stretch on foot)\b/;
   run.log.forEach((p, i) => {
     const units = (p.board?.units ?? []).filter((u) => (u.kind === 'gap' && u.slot === 'walk') || u.beat === 'walk');
     for (const u of units) {
@@ -834,7 +848,9 @@ function staging(d: BoardDeal, run: BoardRun): HingeIssue[] {
 /** P12: the witness lines the testers stopped on. */
 function retired(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
-  const RE = /\bnobody left out because\b|\btake it untidy\b|\bhand off the rail\b|\bwhere I was at \w+ again in the morning\b/;
+  // (Round 9, item 4: "Cocoa is what you make for a friend." sent two testers after a friend, when the
+  // killer was an enemy he let in: the scene says only that he let them in.)
+  const RE = /\bnobody left out because\b|\btake it untidy\b|\bhand off the rail\b|\bwhere I was at \w+ again in the morning\b|\bwhat you make for a friend\b|\bdrinking with a friend\b/;
   run.log.forEach((p, i) => {
     for (const b of prose(p)) {
       const m = RE.exec(b.text);
@@ -1016,16 +1032,19 @@ function party(c: BoardCase, run: BoardRun): HingeIssue[] {
 function deadline(d: BoardDeal, run: BoardRun): HingeIssue[] {
   const c = d.kase;
   const out: HingeIssue[] = [];
-  // (docs/72: where the sums are said, Raw and Coddled. From Poached up the hour the means had to be had
-  // by, and who came too late for it, are the player's: the find says the way in as a fact.)
-  if (!sumsSaid(c)) return out;
+  // (docs/72: where the sums are said, Raw and Coddled. From Poached up who came too late for it is the
+  // player's. Round 9, item 2: the hour it had to be had by is the find's at every tier again, said once
+  // and of the dead man ("the earliest he could have been shot"): the grid's last column applies it.)
   const by = meansBy(c);
   const find = c.finds.find((f) => f.gives.means);
   run.log.forEach((p, i) => {
     if (by !== undefined && find && p.board?.job === 'search' && p.board.q === `search:${find.id}`) {
       const said = prose(p).filter((b) => b.voice === 'thought').map((b) => b.text).join(' ');
       if (!new RegExp(`\\bbefore ${hourWord(by)}\\b`).test(said)) out.push({ page: i, rule: 'deadline', detail: `the find doesn’t say it had to be had before ${hourWord(by)}` });
+      // (Round 8's P: "the earliest it could have happened", the "it" the means or the killing.)
+      if (/\bthe earliest it could have happened\b/.test(said)) out.push({ page: i, rule: 'deadline', detail: `“the earliest it could have happened”: say whose` });
     }
+    if (!sumsSaid(c)) return;
     const late = new Map<string, Hour | undefined>();
     for (const u of p.board?.units ?? []) {
       if (u.kind !== 'fact') continue;
@@ -1574,6 +1593,17 @@ function keeper(c: BoardCase, run: BoardRun): HingeIssue[] {
   run.log.forEach((p, i) => {
     const all = prose(p).map((b) => b.text).join(' ');
     for (const r of roles) if (new RegExp(`\\bat ${esc(r)}’s place\\b`, 'i').test(narr(all))) out.push({ page: i, rule: 'keeper', detail: `“at ${r}’s place”` });
+    // (Round 9, from the agreement side: on the keeper's own page, "She saw Broadnax at Mrs. Nagy’s at nine".)
+    if (p.board?.job === 'list') {
+      for (const k of keepers) {
+        const W = k.w?.short ?? '#';
+        const bare = W.replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, '');
+        const name = placeName(c, k.place?.id ?? '');
+        if (p.at !== k.place?.id || !name.includes(bare) || p.board.q !== `list:${k.w?.id}`) continue;
+        const m = new RegExp(`(?:^|[.!?]\\s+)(?:${esc(W)}|She|He) saw\\b[^.]*? at ${esc(name)}\\b`).exec(narr(all));
+        if (m) out.push({ page: i, rule: 'keeper', detail: `the keeper’s own place by name, on her page: “${m[0].trim().slice(0, 90)}”` });
+      }
+    }
     if (p.board?.job !== 'confront') return;
     for (const k of keepers) {
       const W = k.w?.short ?? '#';
@@ -1691,6 +1721,244 @@ export function nightIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
     const m = /\b(?:saw|had seen|says [^:]*? was with (?:him|her)) [^:]*? at (seven|eight|nine|ten|eleven|twelve): ask \S+(?: \S+)? where (?:he|she) was\b/.exec(step);
     if (m && !office.includes(HW.indexOf(m[1] as string) as Hour)) out.push({ page: -1, rule: 'hint', detail: `fastest solve: an hour that doesn't matter: “${step.slice(0, 120)}”` });
   }
+  out.push(...round9Night(d, run, env));
+  return out;
+}
+
+/* ------------------------------------------------------------------ *
+ * Round 9 (docs/74): the narration's slips from the round-9 blind playtest and round 8's leftovers.
+ * ------------------------------------------------------------------ */
+
+/** Item 1: what's held, said as a clause of its own ("I had the evening as Vogel told it", the notebook's "had each told me their evening"). */
+const HELD_SAID = /\btold me (?:his|her|their) evening\b|\bwho came and went\b|\bas \S+(?: \S+)?(?:, \S+(?: \S+)?)*(?: and \S+(?: \S+)?)? told (?:it|them)\b|\bseen come and go\b|\bcome and gone\b/;
+
+/**
+ * Item 1, **turn-says**: from Poached up the turn says the client's hours, where the means came from and
+ * the clash, once: never what's held ("I knew from Feeney and Mrs. Rafferty who had come and gone at each
+ * place, and I had the evening as Obermann told it."), and never a clash the page said above it, in the
+ * thought or to their face (Poached 37's "states his lie twice and then adds a recap").
+ */
+function turnSays(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  if (sumsSaid(c)) return out;
+  run.log.forEach((p, i) => {
+    if (!p.board?.turn) return;
+    const facts = (p.board.units ?? []).filter((u): u is Extract<typeof u, { kind: 'fact' }> => u.kind === 'fact');
+    const above = facts.filter((u) => u.voice !== 'recap');
+    for (const u of facts.filter((x) => x.voice === 'recap')) {
+      const t = strip(u.text);
+      if (HELD_SAID.test(t)) out.push({ page: i, rule: 'turn-says', detail: `what’s held, in the turn: “${t.slice(0, 110)}”` });
+      for (const x of (u.bones ?? []).flatMap((b) => b.props)) {
+        if (x.k !== 'COLLIDES') continue;
+        const put = run.puts.some((y) => y.page === i && y.person === x.person);
+        const thought = above.some((v) => (v.bones ?? []).some((b) => b.props.some((y) => y.k === 'COLLIDES' && y.person === x.person && y.hour === x.hour)));
+        if (put || thought) out.push({ page: i, rule: 'turn-says', detail: `the clash said twice on the page: “${t.slice(0, 110)}”` });
+      }
+    }
+  });
+  return out;
+}
+
+/** Item 7, **lie-leak**: a lie's sentence borrowing from the truth: the work it closed up at, or the true place by name. */
+function lieLeak(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  run.log.forEach((p, i) => {
+    const q = p.board?.q ?? '';
+    if (p.board?.job !== 'account' || !q.startsWith('account:')) return;
+    const who = q.slice(8);
+    for (const lie of c.lies.filter((l) => l.person === who)) {
+      if (lie.claim === lie.truth) continue;
+      const truth = placeName(c, lie.truth);
+      for (const u of p.board.units ?? []) {
+        if (u.kind !== 'fact' || u.voice !== 'answer') continue;
+        if (!(u.bones ?? []).some((b) => b.props.some((x) => x.k === 'CLAIM' && x.person === who && x.hour === lie.hour))) continue;
+        // (The line that tells the lied hour: a stretch of the evening at one place, a line of its own.)
+        const clause = strip(u.text);
+        if (/\b(?:closed up|came off shift|locked up)\b/.test(clause)) out.push({ page: i, rule: 'lie-leak', detail: `the lie closes up where the truth was: “${clause.slice(0, 100)}”` });
+        else if (clause.includes(truth)) out.push({ page: i, rule: 'lie-leak', detail: `the lie names where the truth was, ${truth}: “${clause.slice(0, 100)}”` });
+      }
+    }
+  });
+  return out;
+}
+
+/** Item 8 (round 8, B7), **topic**: the reason against the office: never "hadn’t mentioned it" of a reason the office said, nor "what she had said in the office" of one it didn't. */
+function topic(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const office = run.log[0]?.board?.job === 'office' ? (run.log[0]?.board?.units ?? []) : [];
+  if (!office.length) return out;
+  const said = new Set(office.flatMap((u) => (u.kind === 'fact' ? (u.bones ?? []).flatMap((b) => b.props.flatMap((x) => (x.k === 'MOTIVE' ? [x.person] : []))) : [])));
+  run.log.forEach((p, i) => {
+    if (p.board?.job !== 'motive') return;
+    for (const u of p.board.units ?? []) {
+      if (u.kind !== 'fact') continue;
+      for (const x of (u.bones ?? []).flatMap((b) => b.props)) {
+        if (x.k !== 'MOTIVE' || !x.said) continue;
+        if (x.said === 'not-office' && said.has(x.person)) out.push({ page: i, rule: 'topic', detail: `the office said it: “${strip(u.text).slice(0, 100)}”` });
+        if (x.said === 'office' && !said.has(x.person)) out.push({ page: i, rule: 'topic', detail: `the office never said it: “${strip(u.text).slice(0, 100)}”` });
+      }
+    }
+  });
+  return out;
+}
+
+/** Item 9 (round 8, B8): what keeps somebody past the board's last hour, in a list's clause. */
+const STAYED = /\bfor good\b|\bfor the rest of (?:the evening|the night|my shift)\b|\btill the end of the evening\b|\bremained until the end\b|\bstill here at the end\b|\bnever left\b|\bNever left\b|\bnever went home\b|\bNever budged\b|\band stayed(?! till)\b|\bStayed\.|\bstayed on\b/;
+/** …and in an evening of one's own. */
+const STAYED_OWN = /\brest of (?:the evening|the night|my night)\b|\btill the end of the evening\b|\bdidn’t budge\b|\bstayed put\b|\bremained\b[^.]*\bend\b|\bturned in\b|\bto bed\b|\bfor the rest of the night\b/;
+
+/**
+ * Item 9 (round 8, B8), **finder**: whoever found the body went round to him at half past eleven, so
+ * nothing keeps them past the last hour: not a keeper's "back at ten for good", not their own "and stayed
+ * the rest of the evening" or "turned in early".
+ */
+function finder(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const f = isMurder(c) ? c.crime.finder : undefined;
+  if (!f) return out;
+  const name = c.people.find((x) => x.id === f)?.short ?? '#';
+  run.log.forEach((p, i) => {
+    const q = p.board?.q ?? '';
+    for (const a of answers(p)) {
+      if (q === `account:${f}`) {
+        const m = STAYED_OWN.exec(a);
+        if (m) out.push({ page: i, rule: 'finder', detail: `${name}, who found him, “${m[0]}”` });
+      }
+      if (!q.startsWith('list:')) continue;
+      for (const s of sentencesOf(a)) if (new RegExp(`(?<![\\w’])${esc(name)}(?![\\w])`).test(s) && STAYED.test(s)) out.push({ page: i, rule: 'finder', detail: `${name}, who found him: “${s.trim().slice(0, 100)}”` });
+    }
+  });
+  return out;
+}
+
+/**
+ * Item 9 (round 8, B8), **picture**: a picture house is open when I'm in it, all night: never "continuous
+ * shows till midnight" at half past four, "the second show" or "a friend was in the show" there (the
+ * stage's), and its usher isn't at the back of the house and the front of it on one page.
+ */
+function picture(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const pics = c.places.filter((x) => x.kind === 'theatre' && !x.stage);
+  run.log.forEach((p, i) => {
+    const all = prose(p).map((b) => b.text).join(' ');
+    if (/\bcontinuous shows till midnight\b/.test(all)) out.push({ page: i, rule: 'picture', detail: '“continuous shows till midnight”' });
+    if (/\bback of the house\b/.test(all) && /\bfront of the house\b/.test(all)) out.push({ page: i, rule: 'picture', detail: 'the back of the house and the front of it' });
+    for (const a of answers(p)) {
+      for (const s of sentencesOf(a)) {
+        if (!pics.some((x) => s.includes(placeName(c, x.id)))) continue;
+        const m = /\bthe second show\b|\bin the show\b/.exec(s);
+        if (m) out.push({ page: i, rule: 'picture', detail: `“${m[0]}” at a picture house: “${s.trim().slice(0, 90)}”` });
+      }
+    }
+  });
+  return out;
+}
+
+/**
+ * Item 9 (round 8, B8, and round 9), **slips**: a card that says what the page can't have: "walls in a
+ * rooming house" in a flat; "I took the place in again" on a first visit; looking only from the doorway
+ * and then my knees; a landlady "paid to watch a room"; "three rows back" (behind the back row?).
+ */
+function slips(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const seen = new Set<string>();
+  run.log.forEach((p, i) => {
+    const first = p.board?.job === 'arrive' && !!p.at && !seen.has(p.at);
+    if (p.board?.job === 'arrive' && p.at) seen.add(p.at);
+    const narrs = prose(p).filter((b) => b.voice !== 'answer').map((b) => narr(b.text));
+    const all = narrs.join(' ');
+    const pl = p.at && p.at !== OFFICE ? c.places.find((x) => x.id === p.at) : undefined;
+    const hit = (d: string) => out.push({ page: i, rule: 'slips', detail: d });
+    if (pl && !(pl.key ?? '').startsWith('rooming') && /\b(?:rooming|boarding) house\b/.test(all)) hit(`“rooming house” at ${pl.short}`);
+    if (first && /\b(?:took|take|taking) (?:the place|the room) in again\b/.test(all)) hit('“in again” on a first visit');
+    if (/\bfrom the doorway\b|\bI only looked\b/.test(all) && /\bmy knees\b|\bI knelt\b|\bkneeling\b|\bhands and knees\b/.test(all)) hit('from the doorway, and then my knees');
+    const m = /\bpaid to watch a room\b|\bthree rows back\b/.exec(all);
+    if (m) hit(`“${m[0]}”`);
+  });
+  return out;
+}
+
+/** The board deck's props: what sets each up, and the lines that pay it off. */
+const PROPS = (placesDeck as { family: string; text: string; exports?: { prop?: { pay?: string[] } } }[]).filter((x) => x.family === 'prop' && x.exports?.prop?.pay?.length).map((x) => ({ text: x.text, pay: x.exports?.prop?.pay ?? [] }));
+
+/**
+ * Item 9 (round 9), **return**: a page refers back only to what a page before it said: no prop paid off
+ * where nothing on an earlier page here set it up ("The tin sign was still promising relief." on a first
+ * visit, Medium 37, whose set-up line had gone to the texture budget), and no "welcome" the first visit
+ * never gave.
+ */
+function returns(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  // (The page each prop was set up on, and where.)
+  const setUp = new Map<string, { place: string; page: number }>();
+  run.log.forEach((p, i) => {
+    if (!p.at || p.at === OFFICE) return;
+    const all = prose(p).filter((b) => b.voice !== 'answer').map((b) => b.text).join(' ');
+    // (The planner may run a set-up into the sentence before it: "…, and on the landing a rubber plant…".)
+    const low = all.toLowerCase();
+    if (/\bThe welcome was about what it had been\b/.test(all)) out.push({ page: i, rule: 'return', detail: '“The welcome was about what it had been the first time.”' });
+    for (const pr of PROPS) {
+      const pay = pr.pay.find((l) => low.includes(l.slice(0, 30).toLowerCase()));
+      const set = setUp.get(pr.text);
+      if (pay && !(set && set.place === p.at && set.page < i)) out.push({ page: i, rule: 'return', detail: `a pay-off with nothing set up on a page before: “${pay.slice(0, 80)}”` });
+    }
+    for (const pr of PROPS) if (!setUp.has(pr.text) && low.includes(pr.text.slice(0, 30).toLowerCase())) setUp.set(pr.text, { place: p.at, page: i });
+  });
+  return out;
+}
+
+/**
+ * Item 9 (round 8's P and round 9), **walk-it**: two walks running that open "It was…" (four in a row on
+ * Poached 34); a walk "from there" with nothing for "it" and "there" to be ("It was two blocks over east
+ * from there, with my collar up."); the way said twice ("two blocks over east").
+ */
+function walkIt(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  let lastItWas = false;
+  run.log.forEach((p, i) => {
+    const u = (p.board?.units ?? []).find((x) => x.beat === 'walk');
+    if (!u) return;
+    const t = strip(u.text).trim();
+    const itWas = /^It was\b/.test(t);
+    if (itWas && lastItWas) out.push({ page: i, rule: 'walk-it', detail: `“It was…” two walks running: “${t.slice(0, 80)}”` });
+    lastItWas = itWas;
+    if (/^It was\b[^.]*\bfrom there\b(?! to\b)/.test(t)) out.push({ page: i, rule: 'walk-it', detail: `“from there”: “${t.slice(0, 80)}”` });
+    if (/\btwo blocks over (?:east|west|uptown|downtown)\b/.test(t)) out.push({ page: i, rule: 'walk-it', detail: `the way twice: “${t.slice(0, 80)}”` });
+  });
+  return out;
+}
+
+/**
+ * Round 9: the night's own slips (`nightIssues`), read off the office, the notebook and the story.
+ * **vessel** (item 3): whatever carried the poison is one thing in the office, the notebook and the story
+ * as on the table. **gossip** (item 5): the notebook's pointer on the neighbors' word where the office's
+ * never said the neighbors. **story** (items 6 and 9): the story's weapon with what the scene never said
+ * ("the landlady’s late husband’s revolver"), and "as if he had never left" of a place he'd never been.
+ */
+function round9Night(d: BoardDeal, run: BoardRun, env: LintEnv): HingeIssue[] {
+  const c = d.kase;
+  const out: HingeIssue[] = [];
+  const office = prose(run.log[0] as Page).map((b) => b.text).join(' ');
+  const notebook = (env.officeLines ?? officeLines)(d);
+  const story = (env.storyOfBoard ?? storyOfBoard)(d).join(' ');
+  if (isPoison(c)) {
+    const v = vesselOf(c);
+    for (const [where, t] of [['office', office], ['notebook', notebook.join(' ')], ['story', story]] as const) {
+      if (/\bsupper\b[^.;]*\b(?:was|found [\w ]+) in it\b/.test(t)) out.push({ page: -1, rule: 'vessel', detail: `the ${where}: the supper, where the table had ${v}` });
+      for (const m of t.matchAll(/\b(?:in|into) (?:the|his|her) (cocoa|rye)\b/g)) if (m[1] !== v) out.push({ page: -1, rule: 'vessel', detail: `the ${where}: “${m[0]}”, where the table had ${v}` });
+    }
+  }
+  if (!/\bneighbors\b/.test(office)) for (const t of notebook) if (/\bneighbors(?:’ word)?\b/.test(t) && /\bpoints at\b/.test(t)) out.push({ page: -1, rule: 'gossip', detail: `the notebook has the neighbors, the office didn’t: “${t.slice(0, 100)}”` });
+  const scene = c.finds.find((f) => f.gives.means)?.text ?? '';
+  const took = /\btook the ((?:[\w’ ]+?’s )+)/.exec(story);
+  if (took && !scene.includes((took[1] as string).trim())) out.push({ page: -1, rule: 'story', detail: `the weapon, as the scene never had it: “${took[0]}”` });
+  const back = /\bBy (\w+) o’clock (?:he|she) was at ([^,]+), as if (?:he|she) had never left\b/.exec(story);
+  if (back) {
+    const row = c.board.rows[c.crime.culprit] ?? {};
+    const before = c.board.hours.filter((h) => h < c.crime.hour).pop();
+    const after = c.board.hours.find((h) => h > c.crime.hour);
+    if (before === undefined || after === undefined || row[before] !== row[after]) out.push({ page: -1, rule: 'story', detail: `“${back[0]}”, and he’d never been there` });
+  }
   return out;
 }
 
@@ -1753,6 +2021,14 @@ export function hingeIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
     ...itWas(run),
     ...witness(run),
     ...restate(run),
+    ...turnSays(c, run),
+    ...lieLeak(c, run),
+    ...topic(run),
+    ...finder(c, run),
+    ...picture(c, run),
+    ...slips(c, run),
+    ...returns(run),
+    ...walkIt(run),
     ...keeper(c, run),
     ...bareHour(run),
     ...twice(run),

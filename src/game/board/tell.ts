@@ -18,7 +18,7 @@ import type { Args } from './bones/voice.js';
 import { sayFirst } from './bones/say.js';
 import { plainComposite } from './bones/plain.js';
 import { entryOf, listProp, remarkProps } from './bones/extract.js';
-import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, pronOf, type BoardCase } from './model.js';
+import { andList, cap, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, type BoardCase } from './model.js';
 import { lean } from './plan/dial.js';
 import { markPronoun } from './plan/refer.js';
 import { shortOther, strangerSaid } from './bones/phrase.js';
@@ -104,6 +104,15 @@ function speakerRot(c: BoardCase, p: PersonId, rot: number): number {
  */
 const ALONE_TAG = [', on my own', ', by myself', ', alone'];
 
+/**
+ * Round 9, item 7: the lead a move's reason takes from work it leaves ("closed up at ten and …", the
+ * generator's `REASONS.closed`): said in a lie, it puts the liar where they really were at that hour.
+ */
+/** Round 9: a stage's reasons, said of a picture house ("went to the second show at", ", because a friend was in the show"). */
+export const PICTURE_SHOW = /\bwent to the second show at\b|, because a friend was in the show\b/;
+
+export const LIE_LEAD = /^(?:closed up|came off shift|locked up) at (?:seven|eight|nine|ten|eleven|twelve|midnight) and /;
+
 export type Manner = 'plain' | 'terse' | 'careful';
 
 /**
@@ -188,6 +197,16 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     const stem = short.replace(/^(?:the|Mrs\.|Mr\.|Miss|Dr\.) /, '').split(' ')[0] ?? short;
     const says = (t: string) => t.includes(short) || (stem.length >= 4 && t.includes(stem)) || /\bhome\b|\bmy room\b/.test(t);
     let reason0 = r.reason ? firstPerson(r.reason, female) : undefined;
+    // (Round 9, item 7: a lie borrows nothing from the truth. Its reason was drawn from where they really
+    // were before it, and "closing up" there at the lied hour puts them there: Medium 37's Sirkin, at the
+    // print shop at ten, "closed up at ten and turned in early, home at Mrs. Nagy’s". The lie keeps its going.)
+    if (reason0 && c.lies.some((l) => l.person === p && l.hour >= r.from && l.hour <= r.to)) reason0 = reason0.replace(LIE_LEAD, '');
+    // (Round 8, B8 and round 9: a picture house shows pictures, round and round all night: never "the second
+    // show" there, nor "a friend was in the show", the stage's reasons.)
+    const pic = c.places.find((x) => x.id === r.place);
+    if (reason0 && pic?.kind === 'theatre' && !pic.stage) reason0 = reason0.replace(PICTURE_SHOW, (m) => (m.startsWith(',') ? ', because a friend had said the picture was good' : 'went to the second feature at'));
+    // (Round 8, B8: and whoever found the body never went to bed on it: they were up at half past eleven.)
+    if (reason0 && r.to === last && isMurder(c) && c.crime.finder === p) reason0 = reason0.replace(/^(?:went home to bed|turned in early)\b/, 'went home');
     // docs/55 2: a reason names nobody the account doesn't have with them ("for coffee with Sokol" when
     // the notebook says alone, Medium 14's #3), and says no change of plan it never told ("after all").
     if (reason0) {
@@ -214,7 +233,9 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       const others = (comps[0]?.who ?? []).map(nm).filter((x) => !(reason ?? '').includes(x));
       if (cut && others.length) reason = `${reason.slice(0, cut.index)} with ${andList(others)}${reason.slice(cut.index)}`;
     }
-    const toEnd = r.to === last;
+    // (Round 8, B8 and round 9: whoever found the body went round to him later, so their evening ends on
+    // the last hour, never "and stayed the rest of the evening": a stretch to the end is told as a stretch.)
+    const toEnd = r.to === last && !(isMurder(c) && c.crime.finder === p);
     const long = r.to > r.from;
     // The composite: which stretch of the evening it is, and how it's told.
     const span = long ? (toEnd ? 'end' : 'span') : 'one';
@@ -223,7 +244,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     const timed = !!reason && i > 0 && reason.includes(`at ${hourWord(r.from)}`);
     // (docs/66, P6: "After that, at nine, I left the meeting early" said leaving twice: a reason that leaves takes the hour plainly.)
     const leaves = lean() && !!reason && /^left\b/.test(reason);
-    const flags = isParty ? ['party', 'first', span] : ['run', i === 0 ? 'first' : 'next', reason ? 'reason' : 'place', span, ...(timed ? ['timed'] : []), ...(leaves ? ['left'] : [])];
+    // (Round 9: `wide`, a stretch of three hours or more: "and was still there at ten" from eight leaves nine unsaid.)
+    const flags = isParty ? ['party', 'first', span] : ['run', i === 0 ? 'first' : 'next', reason ? 'reason' : 'place', span, ...(timed ? ['timed'] : []), ...(leaves ? ['left'] : []), ...(r.to - r.from >= 2 ? ['wide'] : [])];
     const args: Args = {
       from: { t: 'hour', h: r.from },
       to: { t: 'hour', h: r.to },
@@ -376,7 +398,8 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
       if (plainly || stayed(g.who[0] as PersonId, r)) add(['seen', n], { names, hours: { t: 'hours', hs: [...r] } }, props);
       else if (a === first && b === last) add(['all', n], { names }, props);
       else if (a === first) add(['left', n], { names, to: { t: 'hour', h: b } }, props);
-      else if (b === last) add(['came', n, ...(a === b ? ['last'] : [])], { names, from: { t: 'hour', h: a } }, props);
+      // (Round 9: in the body-finder's own evening, nobody stays "the rest of the evening" with them: they went out later.)
+      else if (b === last) add(['came', n, ...(a === b ? ['last'] : []), ...(isMurder(c) && c.crime.finder === p && b === c.board.hours[c.board.hours.length - 1] ? ['finder'] : [])], { names, from: { t: 'hour', h: a } }, props);
       else if (a === b) add(['mid', 'hour', n], { names, from: { t: 'hour', h: a }, next: { t: 'hour', h: hs[hs.indexOf(b) + 1] as number } }, props);
       else add(['mid', 'span', n], { names, from: { t: 'hour', h: a }, to: { t: 'hour', h: b } }, props);
     }
@@ -586,7 +609,12 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
   };
   // Clauses in the order the evening ran: by the hour each first came.
   groups.sort((a, b) => (a.hs[0] as number) - (b.hs[0] as number));
+  // (Round 8, B8 and round 9: the one who found the body went round to him at half past eleven, so a
+  // clause that keeps them here to the last hour says nothing past it: never "back at ten for good", "for
+  // the rest of the evening" or "and never left". The voicings that say it forbid `finder`.)
+  const finder = isMurder(c) ? c.crime.finder : undefined;
   groups.forEach((g) => {
+    const fnd = finder !== undefined && g.ks.includes(finder) ? ['finder'] : [];
     const names = andList(g.ks.map(name));
     const n = g.ks.length > 1 || /^(?:two|three|a couple)\b/i.test(names) ? 'many' : 'one';
     const doing = g.ks.length === 1 ? doingOf(g.ks[0] as string) : undefined;
@@ -599,7 +627,8 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     const r0 = runs[0] as Hour[];
     const r1 = runs[1];
     if (runs.length === 2 && r1 && r0[0] === first && r1[r1.length - 1] === last && !doing && !stays.some((x) => x.before || x.after)) {
-      add(['outback', n, ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : [])], { names, to: { t: 'hour', h: r0[r0.length - 1] as Hour }, back: { t: 'hour', h: r1[0] as Hour } }, g.hs.map((h) => LISTP(h, [...g.ks])));
+      const tillOut = fnd.length > 0 && (r1[0] as Hour) < last ? ['till'] : [];
+      add(['outback', n, ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : []), ...fnd, ...tillOut], { names, to: { t: 'hour', h: r0[r0.length - 1] as Hour }, back: { t: 'hour', h: r1[0] as Hour }, ...(tillOut.length ? { till: { t: 'hour', h: last } } : {}) }, g.hs.map((h) => LISTP(h, [...g.ks])));
       return;
     }
     runs.forEach((r, i) => {
@@ -608,7 +637,7 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       const props = r.map((h) => LISTP(h, [...g.ks]));
       // (docs/62, P2: a lodger in their own house was in, not "came by".)
       const lives = lean() && g.ks.length === 1 && personOf(c, g.ks[0] as string)?.home === l.place;
-      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : []), ...(lives ? ['lives'] : [])];
+      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : []), ...(lives ? ['lives'] : []), ...(b === last ? fnd : [])];
       // docs/60 item 5: lean, somebody back for a second stint is "he" or "she", not their name again
       // ("Glick was in at seven and left soon after. He came back at nine…").
       const again = lean() && i > 0 && g.ks.length === 1 && !(g.ks[0] as string).includes(':') ? `${pronOf(c, g.ks[0] as string).he}${markPronoun(c, g.ks[0] as string)}` : undefined;
@@ -619,7 +648,7 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       if (st.before || st.after) add(['seen', ...(a !== first && !st.before && a === b ? ['in'] : []), ...extra.filter((x) => x !== 'back' && x !== 'back-lean')], { ...base, hours: { t: 'hours', hs: [...r] } }, props);
       else if (a === first && b === last) add(['all', ...extra], base, props);
       else if (a === first) add(['left', a === b ? 'first' : 'after', ...extra], { ...base, to: { t: 'hour', h: b } }, props);
-      else if (b === last) add(['came', a === b ? 'last' : 'stay', ...extra], { ...base, from: { t: 'hour', h: a } }, props);
+      else if (b === last) add(['came', a === b ? 'last' : 'stay', ...extra, ...(fnd.length && a !== b ? ['till'] : [])], { ...base, from: { t: 'hour', h: a }, ...(fnd.length && a !== b ? { till: { t: 'hour', h: b } } : {}) }, props);
       else if (a === b) add(['mid', 'hour', ...extra], { ...base, from: { t: 'hour', h: a }, next: { t: 'hour', h: open[open.indexOf(b) + 1] as number } }, props);
       else add(['mid', 'span', ...extra], { ...base, from: { t: 'hour', h: a }, to: { t: 'hour', h: b } }, props);
     });

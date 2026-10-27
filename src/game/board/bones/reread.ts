@@ -283,13 +283,14 @@ const UNARGS: Record<string, Unargs> = {
   },
   'confirmed/list': (a, _comp, v) => {
     const watcher = personV(v.c, a.watcher as string);
-    return [{ k: 'CONFIRMS', person: personV(v.c, (a.them ?? a.person ?? a.name) as string), place: placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
+    // (Round 9: on the keeper's own page, the keeper's own place goes without saying: "She had Broadnax in at nine".)
+    return [{ k: 'CONFIRMS', person: personV(v.c, (a.them ?? a.person ?? a.name) as string), place: a.at === undefined ? (listOf(v.c, watcher)?.place as PlaceId) : placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
   },
   'confirmed/list-too': (a, _comp, v) => {
     const watcher = personV(v.c, a.watcher as string);
     const p = personV(v.c, a.name as string);
     if (personV(v.c, a.him as string) !== p) throw new Error('voiced: whom did the list have?');
-    return [{ k: 'CONFIRMS', person: p, place: placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
+    return [{ k: 'CONFIRMS', person: p, place: a.at === undefined ? (listOf(v.c, watcher)?.place as PlaceId) : placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
   },
   'confirmed/list-many': (a, _comp, v, lx) => {
     const watcher = personV(v.c, a.watcher as string);

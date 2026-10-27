@@ -110,9 +110,10 @@ describe('docs/72: the round-8 nights, from Poached up', () => {
     expect(rooming).not.toMatch(/where the laudanum was kept|every one of them had gone/);
     // The find: the way in as a fact of the search.
     expect(pageOf(run, `search:${d.kase.finds.find((f) => f.gives.means)?.id}`)).not.toContain('the earliest it could have happened');
-    // The turn: what's held, and nothing open.
+    // The turn: what's held, and nothing open. (Round 9, item 1: and the clash said once, in the thought.)
     const turn = turnOf(run);
-    expect(turn).toContain('Mrs. Pickering said otherwise.');
+    expect(turn).toContain('Kavanagh had told me he was home at the Delmonico rooms at ten, and Mrs. Pickering never saw him there.');
+    expect(turn).not.toContain('Mrs. Pickering said otherwise.');
     expect(turn).not.toMatch(/It happened at ten|I still didn’t know|according to Schilling|Schilling said so/);
     expect(sums(run, d)).toEqual([]);
   });
@@ -136,7 +137,10 @@ describe('docs/72: the round-8 nights, from Poached up', () => {
     const run = route(d, HB34);
     const all = run.log.map((p) => flat(pageBodyText(p))).join('\n');
     expect(all).not.toMatch(/by then Hargrove and Steinbach had left|I still had to ask|when it could have happened|nobody had backed it up/);
-    expect(turnOf(run)).toContain('Hargrove wouldn’t say where else she had been.');
+    // (Round 9, item 1: the refusal is the put's, on this page: the turn doesn't say it again.)
+    expect(turnOf(run)).toContain('“I’m not telling you where I was at ten,” she said, “and I’m not telling you why.”');
+    expect(turnOf(run)).not.toContain('Hargrove wouldn’t say where else she had been.');
+    expect(recapClauses(d, run).map((x) => x.text)).toContain('Faced with it, Hargrove wouldn’t say where she had been instead.');
     expect(notebookText(d, run)).not.toContain('I didn’t have');
     expect(sums(run, d)).toEqual([]);
   });
@@ -169,10 +173,11 @@ describe('docs/72: the turn and the notebook say what’s held as a person says 
   it('the notebook’s hold line says what the turn says, at Medium and at Hard-boiled, and the notebook is linted for engine words', () => {
     const m = route(dealBoard(33, 4, 'murder'), MEDIUM33);
     const nb = flat(notebookText(dealBoard(33, 4, 'murder'), m));
-    expect(nb).toContain('I had the evenings as Kavanagh, Ainsworth and Hauck told them, and I knew who Mrs. Pickering and Schilling had each seen come and go.');
-    expect(nb).not.toMatch(/\blists from\b|\bevenings? from\b/);
+    // (Round 9, item 1: "I had the evenings as … told them" read like a machine to two testers of three: as a person says it.)
+    expect(nb).toContain('Kavanagh, Ainsworth and Hauck had each told me their evening. Mrs. Pickering and Schilling had told me who came and went.');
+    expect(nb).not.toMatch(/\blists from\b|\bevenings? from\b|\btold them\b/);
     const hb = route(dealBoard(34, 5, 'murder'), HB34);
-    expect(flat(notebookText(dealBoard(34, 5, 'murder'), hb))).toContain('I had the evenings as Pickering, Steinbach and Hargrove told them, and I knew who Mrs. Kowalski, Lanza and Coffin had each seen come and go.');
+    expect(flat(notebookText(dealBoard(34, 5, 'murder'), hb))).toContain('Pickering, Steinbach and Hargrove had each told me their evening. Mrs. Kowalski, Lanza and Coffin had told me who came and went.');
     for (const [d, r] of [[dealBoard(33, 4, 'murder'), m], [dealBoard(34, 5, 'murder'), hb]] as [BoardDeal, BoardRun][]) expect(proseIssues(d, r).filter((x) => x.rule === 'jargon')).toEqual([]);
     // The words the notebook said before are engine words.
     expect(engineWords('I had evenings from Kavanagh, Ainsworth and Hauck, and lists from Mrs. Pickering and Schilling.').map((x) => x.name)).toEqual(expect.arrayContaining(['list', 'evening (as an account)']));

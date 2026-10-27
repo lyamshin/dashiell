@@ -57,7 +57,7 @@
   {"id": "bte-1208", "family": "list-ask", "tags": {}, "text": "I asked {name} who’d been in and out since the evening started, every hour of it."},
   {"id": "bte-1301", "family": "list-close", "tags": {}, "text": "I wrote it down in a column, one hour under the other, the way {he}’d said it."},
   {"id": "bte-1302", "family": "list-close", "tags": {}, "text": "{He} gave it to me the way a grocer reads back an order: every item, and nothing extra."},
-  {"id": "bte-1303", "family": "list-close", "tags": {}, "text": "I wrote it down. Somebody paid to watch a room doesn’t care who did what, only who came in. It makes for an honest witness, and a dull one.", "joke": true},
+  {"id": "bte-1303", "family": "list-close", "tags": {}, "text": "I wrote it down. Somebody who keeps a door doesn’t care who did what, only who came in. It makes for an honest witness, and a dull one.", "joke": true},
   {"id": "bte-1304", "family": "list-close", "tags": {}, "text": "I thanked {name}. {He} looked as if nobody had ever thanked {him} for remembering before.", "joke": true},
   {"id": "bte-1305", "family": "list-close", "tags": {}, "text": "I wrote it down. Names and hours, nothing else, but names and hours are what this job is made of."},
   {"id": "bte-1306", "family": "list-close", "tags": {}, "text": "I wrote it all down and read it back to {him}, and {he} nodded at every line."},

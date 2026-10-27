@@ -79,7 +79,7 @@
   {"id": "bpe-1010", "family": "watcher", "tags": {"job": "cashier"}, "text": "Every customer tonight had to stop at the register on the way out, and {name} doesn’t take money from a face {he} hasn’t looked at."},
   {"id": "bpe-1011", "family": "watcher", "tags": {"job": "cashier"}, "text": "A cashier sees everybody twice: once on the way in, and once at the register, when they’re sorry.", "joke": true},
   {"id": "bpe-1012", "family": "watcher", "tags": {"job": "cashier"}, "text": "{name} sits at the register, and sooner or later the whole room has to come to {him}."},
-  {"id": "bpe-1013", "family": "watcher", "tags": {"job": "usher"}, "text": "Nobody gets into a theater without going past the front of the house, and the front of the house was {name}."},
+  {"id": "bpe-1013", "family": "watcher", "tags": {"job": "usher"}, "text": "Nobody gets into a theater without going past the usher, and tonight the usher was {name}."},
   {"id": "bpe-1014", "family": "watcher", "tags": {"job": "usher"}, "text": "{name} sees every face that comes in from the street, if only for the second it takes to look at a ticket."},
   {"id": "bpe-1015", "family": "watcher", "tags": {"job": "usher"}, "text": "{name} spends the evening watching people arrive, which is the only part of the show the staff ever get to see.", "joke": true},
   {"id": "bpe-1016", "family": "watcher", "tags": {"job": "landlady"}, "text": "A landlady knows every lodger by the sound of their step on the stair, and who came in late by the sound of them trying not to make one.", "joke": true},

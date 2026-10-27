@@ -8,9 +8,9 @@ import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, meansBy } from './knowledge.js';
 import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, pronOf, type BoardDeal, type BoardRun } from './model.js';
-import { notebookWhen } from './when.js';
-import { finderGloss, peopleLine } from './gloss.js';
-import { recapClauses } from './pages.js';
+import { earliestOf, notebookWhen } from './when.js';
+import { finderGloss, nameInFull, peopleLine } from './gloss.js';
+import { gossipSaidAs, recapClauses } from './pages.js';
 import { notebookLines } from './report.js';
 
 const WIDTH = 76;
@@ -151,7 +151,13 @@ export function officeLines(d: BoardDeal): string[] {
     // Round 7, B8: the neighbors' word is only what the client couldn't know himself; what he was party
     // to ("asked Thorndike what Mimi was worth") is his own: "Thorndike points at Winslow: he asked
     // Thorndike what Mimi was worth, and the neighbors say he lost his job on Friday."
-    if (g.kind === 'pointer' && g.id === 'gossip') t = gossipOwn(c, t);
+    if (g.kind === 'pointer' && g.id === 'gossip') {
+      // (Round 9, item 5: what the office's pointer rested on, the notebook says. Where the office said the
+      // whole reason as the client's own ("He owed my fiancé four hundred dollars."), no neighbors: Poached
+      // 37's "Rosenbaum points at Vogel, on the neighbors’ word" had neighbors nowhere else.)
+      const as = gossipSaidAs(c, g).as;
+      t = as === 'motive' ? t.replace(/, on the neighbors’ word:/, ':').replace(/\. The neighbors say (.+)\.$/, (_m, r: string) => `: ${r}.`) : gossipOwn(c, t);
+    }
     // (Round 7, B5: the lodger the door was left unlocked for was out, not at the table.)
     if (g.kind === 'means' && g.id === 'latch-key') t = t.replace(/^(.+?) lodges there and has lost (her|his|their) key again,/, '$1 lodges there, was out, and has lost $2 key again,');
     if (!isMurder(c) && (g.kind === 'window' || g.kind === 'clock') && g.vars?.thing) t = t.replace(/^(?:He|She|It|They) (went|was taken|were taken|disappeared)\b/, `${cap(g.vars.thing)} $1`);
@@ -185,7 +191,7 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
     const who = personOf(c, p);
     if (!who || who.role === 'victim') continue;
     // (Round 6, U6: who they are, never where they sat tonight: `peopleLine`, the book's too.)
-    out.push(`  ${wrap(`${who.name}: ${peopleLine(c, p)}.`, 72).replace(/\n/g, '\n    ')}`);
+    out.push(`  ${wrap(`${nameInFull(c, p)}: ${peopleLine(c, p)}.`, 72).replace(/\n/g, '\n    ')}`);
   }
   out.push('');
   out.push('Places:');
@@ -207,11 +213,11 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   const motives = run.asked.filter((q) => q.startsWith('motive:')).map((q) => q.slice(7));
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);
   out.push('');
-  out.push('How it adds up:');
+  out.push('Where things stand:');
   // (Round 7, B6: where it adds up, a windowed murder's means had to be had before the earliest hour.)
   const by = meansBy(c);
   for (const cl of recapClauses(d, run)) {
-    const t = by !== undefined && cl.key === 'means' ? cl.text.replace(/, so whoever used it had been there first\.$/, `, so whoever used it had been there before ${hourWord(by)}, the earliest it could have happened.`) : cl.text;
+    const t = by !== undefined && cl.key === 'means' ? cl.text.replace(/, so whoever used it had been there first\.$/, `, so whoever used it had been there before ${hourWord(by)}, ${earliestOf(c, nameOf(c, c.crime.victim))}.`) : cl.text;
     out.push(`  ${wrap(t, 72).replace(/\n/g, '\n  ')}`);
   }
   out.push('');

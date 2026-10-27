@@ -21,7 +21,7 @@
  *
  * Read in the narration outside quotation marks, on every page before the report but the office (the
  * office says why the hours matter), leaving out the hand-off (the star said aloud), and in the notebook's
- * "How it adds up" as it stood after each page that asked something. Pure: it reads the night and
+ * "Where things stand" (round 9: was "How it adds up") as it stood after each page that asked something. Pure: it reads the night and
  * returns what it found.
  */
 
@@ -67,6 +67,16 @@ const PLACED = new RegExp(
   ].join('|'),
 );
 
+/** Round 9, item 2: the earliest hour, said of the dead man: "the earliest he could have been shot". */
+const EARLIEST = /\bthe earliest\b[^.;:]*\bcould have been\b/i;
+
+/**
+ * Round 9, item 2: the means rule, the one frame allowed from Poached up, once, on the find that says where
+ * the means came from: "Whoever shot Tillman had to fetch the revolver from Mrs. Nagy’s before nine, the
+ * earliest he could have been shot." A premise, not a sum: the grid's last column applies it.
+ */
+export const MEANS_RULE = new RegExp(`\\bhad to fetch\\b.*?\\bbefore ${H}, the earliest\\b.*?\\bcould have been (?:shot|stabbed|given it)\\b`);
+
 /** The sums one sentence of narration says, by kind. */
 export function sumsInSentence(c: BoardCase, s: string): SumKind[] {
   const out = new Set<SumKind>();
@@ -98,7 +108,7 @@ export function sumsInSentence(c: BoardCase, s: string): SumKind[] {
   // 2. The crime hour as a frame.
   const reasons = new Set<string>([whyHours(c, office)]);
   for (const h of c.board.hours) reasons.add(whyHours(c, [h]));
-  if ([...reasons].some((r) => s.includes(r)) || /\bit could have happened\b|\bthe hours? (?:that )?(?:mattered|counted)\b/i.test(s)) out.add('frame');
+  if ([...reasons].some((r) => s.includes(r)) || /\bit could have happened\b|\bthe hours? (?:that )?(?:mattered|counted)\b/i.test(s) || EARLIEST.test(s)) out.add('frame');
 
   // 3. The partition: who was there at the hour, and who had gone.
   if (
@@ -160,15 +170,23 @@ function pageNarration(p: Page): string[] {
 const ASKS = new Set(['account', 'list', 'search', 'motive', 'confront']);
 
 /**
- * The night's sums before the report: in each page's narration, and in the notebook's "How it adds up"
+ * The night's sums before the report: in each page's narration, and in the notebook's "Where things stand"
  * as it stood after each page that asked something (`notebook(i)`, its clauses).
  */
 export function sumIssues(c: BoardCase, run: Pick<BoardRun, 'log'>, notebook?: (i: number) => string[]): SumHit[] {
   const out: SumHit[] = [];
+  // (Round 9, item 2: the means rule, once a night, on the find where the means came from.)
+  const meansFind = c.finds.find((f) => f.gives.means);
+  let ruleSaid = false;
   run.log.forEach((p, i) => {
     const b = p.board;
     if (!b || b.job === 'office' || b.job === 'nothing') return;
-    for (const s of pageNarration(p)) for (const kind of sumsInSentence(c, s)) out.push({ page: i, kind, where: 'page', text: s });
+    const onFind = b.job === 'search' && !!meansFind && b.q === `search:${meansFind.id}`;
+    for (const s of pageNarration(p)) {
+      const rule = onFind && !ruleSaid && MEANS_RULE.test(s);
+      if (rule) ruleSaid = true;
+      for (const kind of sumsInSentence(c, s)) if (!(rule && kind === 'frame')) out.push({ page: i, kind, where: 'page', text: s });
+    }
     if (!notebook || !ASKS.has(b.job)) return;
     for (const cl of notebook(i)) for (const s of narrationSentences(cl)) for (const kind of sumsInSentence(c, s)) out.push({ page: i, kind, where: 'notebook', text: s });
   });

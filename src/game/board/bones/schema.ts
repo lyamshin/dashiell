@@ -135,7 +135,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('agree')) return [['spans'], ['src', 'whose']];
       if (has('rest')) return [['by', 'whose'], ['spans'], ['him', 'name', 'person']];
       if (has('many')) return [['watcher'], ['pairs']];
-      if (has('list')) return [['watcher'], ['them', 'name', 'him', 'person'], ['at'], ['hour']];
+      // (Round 9: on the keeper's own page, `own`, the keeper's own place goes without saying: the round trip reads it as the list's.)
+      if (has('list')) return [['watcher'], ['them', 'name', 'him', 'person'], ...(has('own') ? [] : [['at']]), ['hour']];
       return [];
     case 'CONFIRMED-WITH':
       return has('apart') ? [['confirmed'], ['placed']] : [['confirmed'], ['others']];
@@ -330,8 +331,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Somebody turned out to be in the room: {who} (their name, or "my witness" where the name would be said a third time) was {where} ("in the corner, out of the light"). first | back (back: had come back in). named (round 7, P3): an owning up named them, and {gloss} says who they are ("a seamstress", "the woman Dandridge had named").',
   },
   HOLD: {
-    args: { evenings: 'people', lists: 'people', people: 'people' },
-    doc: 'The notebook at Hard-boiled. hold: I had evenings from {evenings} and lists from {lists} (flags: evening | evenings, list | lists, and which there are). missing: I didn’t have {people}’s evenings yet.',
+    args: { evenings: 'people', lists: 'people', people: 'people', their: T },
+    doc: 'What’s held, from Poached up (the notebook, and the notebook said aloud). hold: {evenings} had each told me their evening ({their}: his or her, for one), and {lists} had told me who came and went (flags: evening | evenings, list | lists, and which there are). missing: I didn’t have {people}’s evenings yet.',
   },
   PAIR: {
     args: { a: T, b: T },
