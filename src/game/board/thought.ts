@@ -269,6 +269,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // in all evening; Medium 33's means sum left out Dandridge, placed at ten by an earlier list.)
   const whole = lean() && !!thenList && thenHs.length > 0;
   const goneAll = whole && thenList ? goneOfAll(thenList, thenHs) : [];
+  const thereAll = whole && thenList ? placedBy(thenList).filter((p) => thenHs.every((h) => (thenList.entries[h] ?? []).some((e) => 'person' in e && e.person === p))) : [];
   if (whole && !fact && thenList?.place === c.means.origin && (isMurder(c) || /^spare/.test(c.setup?.means ?? ''))) meansGone.splice(0, meansGone.length, ...goneAll.filter((g) => g.was.some((h) => c.means.available.includes(h))));
   // Whose claims this page's list backs, at which hours (rule 3).
   const listAgreed: { p: PersonId; h: Hour }[] = [];
@@ -394,6 +395,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       if ([...caught].some((k) => k.startsWith(`${sp}@`))) continue;
       // docs/59 item 3: somebody the consequence says had been there and gone is said there, once.
       if (gone.some((g) => g.p === sp)) continue;
+      // (docs/72, B3: and, where the consequence names everybody the list placed, whoever it says was still there
+      // or had gone: "She backed Whitfield up: at the Bijou at nine. So at nine, …, Corrigan and Whitfield were at
+      // the Bijou." said him twice over, a third time with the reason I came.)
+      if (whole && (thereAll.includes(sp) || goneAll.some((g) => g.p === sp))) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
     for (const y of agreed) covered.add(y.p);
