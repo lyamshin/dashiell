@@ -3,19 +3,17 @@
 /*
  * The picker under a person's topics: their claim, then the line that breaks
  * it. (From the M9 confront picker, which the board's picker grew out of.)
+ * book-look, item 5: a sheet of its own, raised, ruled at the edge; no side stripe.
  */
-
-.choice--confront {
-  border-style: double;
-}
 
 .confront-picker {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  margin: 0.25rem 0 0.5rem;
-  padding: 0.5rem;
-  border-left: 2px solid var(--ink-faint);
+  margin: 0.7rem 0 0.2rem;
+  padding: 0.75rem 0.8rem 0.6rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
 }
 
 .confront-picker .choice {
@@ -28,12 +26,14 @@
 }
 
 .picker-head {
-  margin: 0.5rem 0 0.15rem;
-  font-size: 0.72rem;
-  font-weight: normal;
-  letter-spacing: 0.12em;
+  margin: 0.5rem 0 0.2rem;
+  font-family: var(--deco);
+  font-size: max(12px, 0.64rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--nickel);
 }
 
 .picker-sec {
@@ -51,7 +51,7 @@
   margin: 0;
   padding: 0.3rem 0.5rem;
   border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
+  border-bottom: 1px solid var(--line);
   border-radius: 0;
   font-size: 0.92rem;
   line-height: 1.3;
@@ -102,9 +102,11 @@
  * one column for the means. It fits a 375 px phone with four hours and five
  * people: fixed layout, short place labels, no sideways scroll.
  *
- * The marks: plain italics for what somebody says of themselves, upright ink
- * for what somebody else says of them, a tick where the two agree, the accent
- * and a cross where they collide, and the faint pencil for the player's own.
+ * The marks: soft italics on a dotted underline for what somebody says of
+ * themselves (book-look, item 4: a second cue besides the italic), upright
+ * ink for what somebody else says of them, a tick where the two agree, the
+ * accent and a cross where they collide, and the faint pencil for the
+ * player's own.
  */
 
 .bgrid-wrap {
@@ -189,14 +191,33 @@
   overflow-wrap: anywhere;
 }
 
+/* The cell clips what pokes out of it, so its ring sits inside. */
 .bgrid-btn:focus-visible {
-  outline: 1px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .bgrid .is-says .bgrid-btn,
 .bgrid-key .is-says {
   font-style: italic;
   color: var(--ink-soft);
+}
+
+/* Their own word only: a dotted underline, as a claim nobody has backed. */
+.bgrid .is-says .bgrid-btn,
+.bgrid .is-collision .bgrid-btn,
+.bgrid .is-confirmed .bgrid-btn,
+.bgrid-key .is-says,
+.bgrid-key .is-collision,
+.bgrid-key .is-confirmed {
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Somebody else saw them there: upright, and no underline. Agreed (✓) is the claim backed: solid. */
+.bgrid .is-confirmed .bgrid-btn,
+.bgrid-key .is-confirmed {
+  text-decoration-style: solid;
 }
 
 .bgrid .is-seen .bgrid-btn,
@@ -264,8 +285,7 @@
 }
 
 .bgrid-line.collides {
-  border-left: 2px solid var(--accent);
-  padding-left: 0.4rem;
+  color: var(--accent);
 }
 
 .bgrid-pencil {
@@ -284,7 +304,7 @@
 .bgrid-pencil .chip {
   font-size: 0.7rem;
   padding: 0.1rem 0.45rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: 2px;
   background: transparent;
   color: var(--ink-soft);
@@ -323,11 +343,6 @@
   flex: 1 1 auto;
 }
 
-.choices--board .choice-group--ask {
-  margin-left: 0.8rem;
-  padding-left: 0.6rem;
-  border-left: 2px solid var(--rule);
-}
 
 .leaf p.prose--chapter {
   text-transform: none;
@@ -342,16 +357,42 @@
   padding: 0.2rem 0.1rem;
 }
 
+/*
+ * book-look, item 4: on a phone the grid's text is 12 px at the least (names were 10.9, the key 11.6)
+ * and a cell is a thumb's height, 44 px. The labels are short enough for four hours at 375.
+ */
 @media (max-width: 480px) {
   .bgrid {
-    font-size: 0.64rem;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .bgrid thead th {
+    font-size: 12px;
+    letter-spacing: 0.02em;
   }
   .bgrid .bgrid-name {
-    width: 21%;
+    width: 22%;
+    font-size: 12px;
   }
   .bgrid thead .bgrid-means,
   .bgrid td.bgrid-means {
-    width: 10%;
+    width: 11%;
+  }
+  .bgrid-btn {
+    min-height: 44px;
+    padding: 0.2rem 0.05rem;
+    letter-spacing: -0.01em;
+  }
+  .bgrid-key,
+  .bgrid-detail-head,
+  .bgrid-pencil-label,
+  .bgrid-line {
+    font-size: 12px;
+  }
+  .bgrid-pencil .chip {
+    font-size: 12px;
+    min-height: 44px;
+    padding: 0.1rem 0.6rem;
   }
 }
 
@@ -390,11 +431,14 @@
 
 .report .field--lines legend {
   padding: 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.66rem);
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 0.2rem;
+  color: var(--nickel);
+  margin-bottom: 0.25rem;
 }
 
 .report .line-hint {
@@ -408,17 +452,21 @@
   display: flex;
   flex-direction: column;
   max-width: 34rem;
-  border-top: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
+  border-top: 1px solid var(--line);
 }
 
+/* A line on the form: Garamond for the sentence, a form's box to mark it. */
 .report label.line-option {
   display: flex;
   align-items: baseline;
-  gap: 0.55rem;
+  gap: 0.7rem;
   margin: 0;
-  padding: 0.35rem 0.4rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
-  font-size: 0.88rem;
+  min-height: 44px;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 0.92rem;
   letter-spacing: 0;
   text-transform: none;
   color: var(--ink);
@@ -427,12 +475,25 @@
 }
 
 .report label.line-option:hover {
-  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
 }
 
 .report label.line-option input {
+  appearance: none;
+  -webkit-appearance: none;
   flex: none;
-  accent-color: var(--accent);
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  transform: translateY(0.15rem);
+  border: 1px solid var(--line);
+  background: var(--paper) center / 70% no-repeat;
+  cursor: pointer;
+}
+
+.report label.line-option input:checked {
+  border-color: var(--ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 1l8 8M9 1L1 9' stroke='%23ded7c9' stroke-width='1.6'/%3E%3C/svg%3E");
 }
 
 .report label.line-option--hunch {
@@ -440,17 +501,16 @@
   color: var(--ink-soft);
 }
 
-/* docs/47 A4: the lines that touch the named person's own story, first, under their heading. */
+/* docs/47 A4: the lines that touch the named person's own story, first, under their heading (no side stripe). */
 .report .line-group {
-  margin: 0.45rem 0 0.15rem;
-  font-size: 0.78rem;
-  font-variant: small-caps;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
-
-.report label.line-option--touches {
-  border-left: 2px solid var(--accent);
+  margin: 0.7rem 0 0.2rem;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.6rem);
+  line-height: 1.35;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nickel-dim);
 }
 
 @media (max-width: 600px) {
@@ -460,28 +520,14 @@
   }
 }
 
-/* On the verdict, the line sits under its answer: the label above, the line beneath. */
-.verdict-row--line {
-  grid-template-columns: 1fr 1.2rem;
-  font-size: 0.84rem;
-  padding-left: 0.8rem;
-  border-left: 2px solid var(--rule);
-  margin: 0.1rem 0 0.35rem;
-}
-
+/* On the verdict, a line asked under an answer sits under it, set in from the label column. */
 .verdict-row--line .label {
-  grid-column: 1 / -1;
-  color: var(--ink-faint);
+  color: var(--nickel-dim);
+  padding-left: 0.8rem;
 }
 
-.verdict-row--line .given {
-  text-align: left;
-}
-
-.verdict-row.half .mark,
-.verdict-row.half .given {
+.verdict-row.half .answer {
   color: var(--ink-soft);
-  font-style: italic;
 }
 
 .leaf p.score-plain {
@@ -496,13 +542,10 @@
  * docs/67: the Hint button sits with the free choices: "Hint", "Hint (2 left)", and greyed out at none
  * left. What it said goes under the row; the star it gives is the choice's own mark.
  */
-.choice--hint {
-  border-style: dotted;
-}
-
 .choice--hint:disabled {
-  opacity: 0.45;
-  border-style: dashed;
+  color: var(--ink-faint);
+  text-decoration-style: dashed;
+  cursor: default;
 }
 
 .choices p.hint-note,
@@ -524,18 +567,19 @@
   margin: 0.35rem 0 1rem;
 }
 
-/* The verdict's star: ★ in the accent for a star, in amber for a gold star. */
+/* The verdict's star, drawn: the accent for a star, amber for a gold star. */
 .leaf p.verdict-star {
   display: flex;
-  align-items: baseline;
-  gap: 0.6ch;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0 0 1rem;
   text-indent: 0;
 }
 
 .verdict-star .star-glyph {
-  font-size: 1.5rem;
-  line-height: 1;
+  flex: none;
+  width: 22px;
+  height: 22px;
   color: var(--accent);
 }
 
@@ -552,15 +596,799 @@
   color: var(--paper);
 }
 
-/* Words for a screen reader only. */
-.sr-only {
-  position: absolute;
-  width: 1px;
+/* ---------------------------------------- book-look, item 5: the forms */
+
+/*
+ * One form per kind of action (scratchpad direction.md §7). Anything that costs an action is a piece
+ * of paper with its own silhouette; the questions share the ruled sheet they're asked on; anything
+ * free is a pencilled underline. Every one is still a button with its whole label, a 44px target on a
+ * phone and the ink focus ring, which a `border-image` never clips.
+ */
+
+/* The setback, the 1916 skyline: the one ornament, between the page and its choices. */
+.setback {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: var(--measure);
+  margin: 1.5rem 0 1.3rem;
+  color: var(--nickel-dim);
+}
+
+.setback::before,
+.setback::after {
+  content: '';
+  flex: 1 1 auto;
   height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+  background: var(--rule);
+}
+
+.setback-mark {
+  flex: none;
+  display: block;
+  width: 60px;
+  height: 11px;
+}
+
+/* Talk to: the lobby directory. The names in the building's letters, the count where the room number goes. */
+.directory {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+}
+
+.choices .who-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+}
+
+.choices .who-choice {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: auto;
+  min-height: 46px;
+  padding: 0.6rem 0.85rem 0.5rem;
+  background: none;
   border: 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1rem;
+}
+
+.choices .who-choice:nth-child(odd) {
+  border-right: 1px solid var(--rule);
+}
+
+.choices .who-choice:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.choices .who-choice[aria-expanded='true'] {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--nickel-dim);
+}
+
+.choices .who-choice:focus-visible {
+  outline-offset: -3px;
+}
+
+.who-choice .namecell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.choices .who-choice .label {
+  flex: none;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.8rem);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.choices .who-choice .mins {
+  margin-left: 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.choices .who-choice .aside.why {
+  order: 0;
+  flex: none;
+  font-size: 0.82rem;
+}
+
+/* Ask X about: inside the same frame, the lines you'd say, ruled like an interview sheet. */
+.choices .ask {
+  margin: 0;
+  padding: 0.85rem 0.85rem 0.95rem;
+}
+
+.choices .ask .choice-heading {
+  margin-bottom: 0.2rem;
+}
+
+.choices .ask-list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+.choices .choice--ask {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.1rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.choices .choice--ask:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.choice .state {
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.6rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nickel-dim);
+  white-space: nowrap;
+}
+
+.choices .choice--ask .mins,
+.choices .choice--search .mins {
+  margin-left: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.choices .choice--ask .label,
+.choices .choice--search .label {
+  flex: 1 1 auto;
+}
+
+/* Confront: the summons, the only red control on the page. */
+.choices .choice--confront {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.7rem;
+  width: auto;
+  margin-top: 0.85rem;
+  min-height: 46px;
+  padding: 0.5rem 1rem 0.42rem;
+  background: none;
+  border: 3px double var(--accent);
+  color: var(--accent);
+}
+
+.choices .choice--confront .label {
+  flex: none;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.74rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.choices .choice--confront .mins {
+  margin-left: 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.choices .choice--confront:hover:not(:disabled),
+.choices .choice--confront[aria-expanded='true'] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Search: the property clerk's evidence tag, its corners canted, a hole for the string. */
+.choices .search-list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.choices .choice--search {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1rem;
+  width: 100%;
+  min-height: 46px;
+  padding: 0 0.4rem 0 1.5rem;
+  background: none;
+  border: 12px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10.5 .5H31.5V31.5H10.5L.5 21.5V10.5Z' fill='%231e1e22' stroke='%236e727b'/%3E%3C/svg%3E") 12 fill / 12px stretch;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.choices .choice--search:hover:not(:disabled) {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10.5 .5H31.5V31.5H10.5L.5 21.5V10.5Z' fill='%231e1e22' stroke='%23ded7c9'/%3E%3C/svg%3E");
+}
+
+.choices .choice--search::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.choices .choice--search .aside {
+  flex: 0 1 auto;
+  order: 0;
+  margin-left: auto;
+  font-size: 0.82rem;
+}
+
+/* Go to: a transfer for the el. The destination in the roll-sign's caps; the stub torn off at the dashes. */
+.choices .go-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.choices .choice--walk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.5rem;
+  align-items: stretch;
+  gap: 0;
+  width: auto;
+  min-height: 46px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+}
+
+.choice--walk .body {
+  display: block;
+  min-width: 0;
+  padding: 0.55rem 0.8rem 0.45rem;
+}
+
+.choices .choice--walk .label {
+  display: block;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.78rem);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.choices .choice--walk .aside {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.choices .choice--walk .stub {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border-left: 1px dashed var(--line);
+  color: var(--nickel);
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.58rem);
+  font-style: normal;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.choices .choice--walk .stub:empty::before {
+  content: '';
+  width: 18px;
+  height: 10px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 10'%3E%3Cpath d='M0 4h12V0l6 5-6 5V6H0z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 10'%3E%3Cpath d='M0 4h12V0l6 5-6 5V6H0z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* What's free: a pencilled underline, "free" beside it in the frame's caps. */
+.choices .free-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 1.6rem;
+}
+
+.choices .choice--free,
+.report .choice--free {
+  display: inline-flex;
+  align-items: baseline;
+  width: auto;
+  min-height: 44px;
+  padding: 0.4rem 0;
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.choice--free .label {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.choice--free:hover:not(:disabled) {
+  color: var(--ink);
+}
+
+.choice--free:hover:not(:disabled) .label {
+  text-decoration-color: var(--ink);
+}
+
+.choice--hint:disabled .label {
+  text-decoration-style: dashed;
+}
+
+.choices .choice--free .mins,
+.report .choice--free .mins {
+  margin-left: 0.45em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.6rem);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nickel-dim);
+}
+
+.choice-group--free {
+  margin-bottom: 0.4rem;
+}
+
+/* Close the case: the office door at the foot, behind a double rule; never a chip among chips. */
+.choice-group--close.file {
+  margin: 1.2rem 0 0.4rem;
+  padding-top: 1.1rem;
+  border-top: 3px double var(--rule);
+}
+
+.page--notebook .choice-group--close.file {
+  margin-top: 1.8rem;
+}
+
+.choice--file {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 50px;
+  padding: 0.75rem 1rem 0.65rem;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.choice--file .label {
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.76rem);
+  line-height: 1.3;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.choice--file .mins {
+  margin-left: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.page--notebook .choice--file {
+  font-size: 1rem;
+}
+
+.close-note {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-indent: 0;
+}
+
+.choices .note.action-key,
+.choices .note.hints-note {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+}
+
+/* The phone: one column for the directory and the transfers; every target a thumb's. */
+@media (max-width: 600px) {
+  .choices .who-list,
+  .choices .go-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .choices .who-choice:nth-child(odd) {
+    border-right: 0;
+  }
+  .choices .free-list {
+    flex-direction: row;
+  }
+}
+
+/* ------------------------------- book-look, items 1 and 5: the DA's charge */
+
+/*
+ * The report and the verdict are documents: a plaque with the stepped Deco frame (a nine-slice
+ * border-image, so a focus ring inside it is never clipped), the setback crest, the caption, and the
+ * name typed in the blank.
+ */
+.plaque {
+  position: relative;
+  border: 16px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M10.5 .5H37.5V5.5H42.5V10.5H47.5V37.5H42.5V42.5H37.5V47.5H10.5V42.5H5.5V37.5H.5V10.5H5.5V5.5H10.5Z' fill='%231e1e22' stroke='%23878c95'/%3E%3Cpath d='M14.5 4.5H33.5V9.5H38.5V14.5H43.5V33.5H38.5V38.5H33.5V43.5H14.5V38.5H9.5V33.5H4.5V14.5H9.5V9.5H14.5Z' fill='none' stroke='%233d3f45'/%3E%3C/svg%3E") 16 fill / 16px stretch;
+  padding: 0.5rem 0.8rem 0.8rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.plaque .crest {
+  display: block;
+  width: 58px;
+  height: 11px;
+  margin: 0 auto 0.75rem;
+  color: var(--nickel-dim);
+}
+
+.leaf .plaque p {
+  text-indent: 0;
+}
+
+.leaf .plaque .court {
+  margin: 0;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.7rem);
+  line-height: 1.5;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--nickel);
+}
+
+.leaf .plaque .against {
+  margin: 0.1rem 0 0.45rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.plaque .blank {
+  position: relative;
+  display: inline-block;
+  width: min(17rem, 100%);
+}
+
+.report .plaque .blank select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: none;
+  min-height: 44px;
+  padding: 0.2rem 1.8rem 0.25rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--typed);
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-align: center;
+  text-align-last: center;
+  cursor: pointer;
+}
+
+.plaque .blank::after {
+  content: '';
+  position: absolute;
+  right: 0.3rem;
+  top: 50%;
+  width: 10px;
+  height: 6px;
+  margin-top: -3px;
+  background: var(--nickel);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.leaf .plaque .meta {
+  margin: 0.85rem 0 0;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.6rem);
+  line-height: 1.6;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nickel-dim);
+}
+
+.plaque .meta span {
+  display: inline-block;
+  margin: 0 0.6em;
+  white-space: nowrap;
+}
+
+.leaf .plaque .typed-name {
+  margin: 0;
+  font-family: var(--typed);
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.report .report-rule {
+  margin: 1.1rem 0 0.4rem;
+}
+
+.report-back-row {
+  margin: 0 0 0.2rem;
+}
+
+.report .report-hint {
+  margin: 0 0 0.4rem;
+}
+
+.report .report-hint + .hint-note:empty + .field--lines,
+.report .report-hint + .field--lines {
+  margin-top: 0.9rem;
+}
+
+.report-submit[hidden] {
+  display: none;
+}
+
+/* The report's own button: the one solid button in the night. */
+.report .file-it {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 0.4rem;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: var(--paper);
+  font-size: max(12px, 0.78rem);
+  letter-spacing: 0.24em;
+}
+
+.report .file-it:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+
+/* Before it's closed: the charge said back, on the same plaque. */
+.file-confirm {
+  margin: 1.4rem 0 0;
+  text-align: left;
+}
+
+.file-confirm-title {
+  margin: 0.2rem 0 0.7rem;
+  font-family: var(--deco);
+  font-size: max(12px, 0.7rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--nickel);
+}
+
+.leaf .file-confirm p {
+  text-indent: 0;
+  margin: 0 0 0.55rem;
+}
+
+.leaf .file-confirm p.charge-lead {
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.leaf .file-confirm p.charge-line {
+  color: var(--ink-soft);
+}
+
+.leaf .file-confirm p.charge-final {
+  margin-top: 0.9rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.file-confirm .after {
+  margin-top: 1rem;
+}
+
+.file-confirm .after .file-it {
+  width: auto;
+  flex: 1 1 10rem;
+  margin: 0;
+}
+
+.file-confirm .after .plain-button {
+  flex: 0 1 8rem;
+}
+
+/* ----------------------------------------- book-look, item 5: the verdict */
+
+.verdict-plaque {
+  margin-top: 0.4rem;
+  padding-bottom: 1.9rem;
+}
+
+/* The stamp: rubber, not print; real text, a little rotated, a little of the ink not taking. */
+.leaf .plaque .stamp {
+  position: absolute;
+  right: -0.6rem;
+  bottom: -1.7rem;
+  margin: 0;
+  padding: 0.4rem 0.75rem 0.3rem;
+  border: 3px double var(--accent);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  color: var(--accent);
+  font-family: var(--deco);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(-6deg);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2.6 2.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2.6 2.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.stamp .stamp-word {
+  display: block;
+}
+
+.stamp .stamp-time {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: max(12px, 0.55rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+
+.verdict-page .score-plain.tally {
+  margin: 0 0 0.9rem;
+  color: var(--ink-soft);
+}
+
+.verdict-page .ending-buttons .plain-button {
+  min-height: 44px;
+}
+
+@media (max-width: 600px) {
+  .leaf .plaque .stamp {
+    right: 0.2rem;
+    bottom: -1.6rem;
+    font-size: 1.1rem;
+  }
+}
+
+/*
+ * The ceremony, once, as the verdict first shows (`.ceremony` on the spread). Everything is already
+ * there and the focus is already on "The verdict": this is motion on top, about 0.9 seconds. The clock
+ * strikes eight (each notch still left fills, a beat apart), the 8 lights, and the stamp comes down.
+ */
+.ceremony .dial--eight .notch--struck {
+  transform-origin: 50% 100%;
+  animation: strike 260ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 28ms);
+}
+
+.ceremony .dial--eight .dial-end--eight {
+  animation: lamp 200ms linear 420ms both;
+}
+
+.ceremony .verdict-plaque .stamp {
+  animation: thump 220ms var(--ease) 640ms both;
+}
+
+@keyframes strike {
+  from {
+    transform: scaleY(0.1);
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes lamp {
+  from {
+    background: transparent;
+    color: var(--amber);
+  }
+  to {
+    background: var(--amber);
+    color: var(--paper);
+  }
+}
+
+@keyframes thump {
+  from {
+    opacity: 0;
+    transform: rotate(-6deg) scale(1.22);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-6deg) scale(1);
+  }
+}
+
+@keyframes ink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: the meaning stays, the movement goes; the stamp's ink fades in, 160ms. */
+@media (prefers-reduced-motion: reduce) {
+  .ceremony .dial--eight .notch--struck,
+  .ceremony .dial--eight .dial-end--eight {
+    animation: none;
+  }
+  .ceremony .verdict-plaque .stamp {
+    animation: ink 160ms linear both;
+  }
+}
+
+/*
+ * book-look, item 2: the number keys pick the page's choices, as the CLI numbers them. The numbers
+ * show only while the keyboard is in the choices; a pointer never sees them.
+ */
+.key-num {
+  display: none;
+  margin-right: 0.55em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.choices:has(:focus-visible) .key-num {
+  display: inline-block;
 }

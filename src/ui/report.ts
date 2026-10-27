@@ -3,6 +3,7 @@
 import { pointsText, starWords, type Verdict } from '../game/board/report.js';
 import { TIER_NAMES, type TierIndex } from '../gen/board/types.js';
 import { el } from './dom.js';
+import { MARK_HALF, MARK_RIGHT, MARK_WRONG, STAMP_RIGHT, STAMP_WRONG, crest, starSvg } from './deco.js';
 
 /** What a filed report did for the player's record, for the closing page. */
 export interface TierNews {
@@ -27,6 +28,8 @@ export function tierNewsLines(news: TierNews): string[] {
  */
 export interface Endings {
   story: string[];
+  /** book-look, item 5: the night's actions against the fastest solve, said after the story. */
+  fastest?: string[];
   truthSheet: () => string;
 }
 
@@ -59,19 +62,41 @@ function disclosure(id: string, label: string, fill: (panel: HTMLElement) => voi
   return { button, panel };
 }
 
-export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: Endings, news?: TierNews): HTMLElement {
-  const wrap = el('div', { class: 'report' });
-  wrap.append(el('h2', { text: 'The verdict' }));
+/** book-look, item 5: the verdict's plaque: the caption the report went in under, and the case's line. */
+export interface VerdictFrame {
+  court: string;
+  against: string;
+  caseLine: string;
+}
 
-  const table = el('div', { class: 'verdict' });
+/**
+ * The verdict, as the DA's copy comes back (book-look, item 5): the plaque with the name you charged,
+ * typed, and the stamp across its corner ("Case closed" for the right name, "Dismissed" if not); then
+ * the ledger, your answers in carbon with a word for each (right, wrong, half), a wrong one struck
+ * through and corrected. Everything is there at once; `.ceremony` only animates it.
+ */
+export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: Endings, news?: TierNews, frame?: VerdictFrame): HTMLElement {
+  // book-look, item 2: the verdict is a region of its own; its heading (the running head's "The
+  // verdict", `#verdict-title`) takes the focus after closing.
+  const wrap = el('section', { class: 'report verdict-page', 'aria-labelledby': 'verdict-title' });
+  const who = verdict.fields[0];
+  if (frame && who) {
+    const plaque = el('div', { class: 'plaque verdict-plaque' });
+    plaque.append(crest(), el('p', { class: 'court', text: frame.court }), el('p', { class: 'against', text: frame.against }), el('p', { class: 'typed-name', text: who.answered ? who.given : 'Nobody' }));
+    plaque.append(el('p', { class: `stamp${who.correct ? '' : ' stamp--dismissed'}` }, el('span', { class: 'stamp-word', text: who.correct ? STAMP_RIGHT : STAMP_WRONG }), el('span', { class: 'stamp-time', text: '8:00 a.m.' })));
+    wrap.append(plaque);
+  } else wrap.append(el('h2', { id: 'verdict-title', tabindex: '-1', text: 'The verdict' }));
+
+  const table = el('div', { class: 'verdict ledger' });
   for (const f of verdict.fields) {
     // docs/46 §3: a line asked under an answer (what breaks their story) sits under it, set as a line.
-    const row = el('div', { class: `verdict-row${f.correct ? (f.half ? ' half' : '') : ' wrong'}${f.line ? ' verdict-row--line' : ''}` });
-    row.append(
-      el('span', { class: 'label' }, f.label),
-      el('span', { class: 'given' }, f.correct ? (f.half ? `${f.given} — right, but you couldn’t have known` : f.given) : `${f.given} — ${f.why ?? `it was ${f.truth}`}`),
-      el('span', { class: 'mark', text: f.correct ? (f.half ? '½' : '✓') : '✗' }),
-    );
+    const state = f.correct ? (f.half ? 'half' : 'right') : 'wrong';
+    const row = el('div', { class: `verdict-row verdict-row--${state}${state === 'wrong' ? ' wrong' : state === 'half' ? ' half' : ''}${f.line ? ' verdict-row--line' : ''}` });
+    const given = el('span', { class: 'given' }, el('span', { class: 'answer', text: f.given }));
+    const correction = !f.correct ? (f.why ?? `it was ${f.truth}`) : f.half ? 'right, but you couldn’t have known' : null;
+    if (correction) given.append(el('span', { class: 'correction', text: correction }));
+    // (The mark is a word, never ✓, ✗ or ½: the eye and a screen reader read the same thing.)
+    row.append(el('span', { class: 'label' }, f.label), given, el('span', { class: 'mark', text: state === 'right' ? MARK_RIGHT : state === 'half' ? MARK_HALF : MARK_WRONG }));
     table.append(row);
   }
   wrap.append(table);
@@ -82,7 +107,7 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
   // hints). The glyph is for the eye; the words beside it say it for a screen reader too.
   wrap.append(el('p', { class: 'score-plain tally', text: verdict.tally }));
   if (verdict.star) {
-    wrap.append(el('p', { class: `verdict-star verdict-star--${verdict.star}` }, el('span', { class: 'star-glyph', 'aria-hidden': 'true', text: '★' }), el('span', { class: 'star-words', text: starWords(verdict.star) })));
+    wrap.append(el('p', { class: `verdict-star verdict-star--${verdict.star}` }, starSvg(), el('span', { class: 'star-words', text: starWords(verdict.star) })));
   }
   for (const paragraph of verdict.closing) {
     const p = el('p');
@@ -112,6 +137,10 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
     panel.classList.add('ending-story');
     panel.append(el('h3', { text: 'What really happened' }));
     for (const paragraph of endings.story) panel.append(el('p', { text: paragraph }));
+    if (endings.fastest?.length) {
+      panel.append(el('h4', { class: 'ending-fastest-head', text: 'The fastest solve' }));
+      for (const paragraph of endings.fastest) panel.append(el('p', { class: 'ending-fastest', text: paragraph }));
+    }
   });
   const curtain = disclosure('ending-curtain', 'Look behind the curtain', (panel) => {
     panel.classList.add('ending-curtain');

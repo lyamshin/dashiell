@@ -8,27 +8,8 @@
  * which the compositor runs without the main thread.
  */
 
+/* The night's weather: the book has one palette (book-look, item 3). */
 :root {
-  --wx-rain: rgba(62, 72, 88, 0.3);
-  --wx-frost: rgba(236, 243, 250, 1);
-  --wx-frost-edge: rgba(120, 145, 170, 0.34);
-  --wx-fog: rgba(250, 250, 248, 0.7);
-  --wx-haze: rgba(250, 250, 248, 0.34);
-  --wx-steam: rgba(255, 255, 255, 0.95);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --wx-rain: rgba(190, 202, 220, 0.2);
-    --wx-frost: rgba(200, 218, 236, 0.3);
-    --wx-frost-edge: rgba(200, 218, 236, 0.08);
-    --wx-fog: rgba(170, 176, 188, 0.13);
-    --wx-haze: rgba(170, 176, 188, 0.07);
-    --wx-steam: rgba(205, 208, 214, 0.2);
-  }
-}
-
-:root[data-theme='dark'] {
   --wx-rain: rgba(190, 202, 220, 0.2);
   --wx-frost: rgba(200, 218, 236, 0.3);
   --wx-frost-edge: rgba(200, 218, 236, 0.08);
@@ -36,6 +17,7 @@
   --wx-haze: rgba(170, 176, 188, 0.07);
   --wx-steam: rgba(205, 208, 214, 0.2);
 }
+
 
 /*
  * The spread is the stacking context the layer lives at the bottom of, and

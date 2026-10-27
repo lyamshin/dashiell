@@ -35,9 +35,9 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { nameInFull, peopleLine } from '../game/board/gloss.js';
-import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BACK_TO_CASE, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankReport, blankRule, boardFields, canGoBack, chargeLines, breakOptionsShown, clearOptions, curtainOfBoard, fastestSolveLines, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
-import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
+import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
 import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
@@ -49,6 +49,7 @@ import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
 import { attachCard, hideCard, type CardSource } from './hover.js';
 import { renderVerdict, type TierNews } from './report.js';
+import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, setback } from './deco.js';
 import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
 import './board.css';
 
@@ -122,6 +123,21 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let choosing = false;
   const weather = createWeatherLayer({ enabled: loadWeatherOn(store) });
   let spread: HTMLElement | null = null;
+  /**
+   * book-look, item 2: where the focus goes after the next render. A new page puts it on the page's
+   * heading (its place, the `h1`), so a screen reader says where you are; the verdict on its own
+   * heading; a choice redrawn in place keeps it on the same control (`focusKey`).
+   */
+  let focusNext: { to: 'page' } | { to: 'verdict' } | { to: 'key'; key: string } | null = null;
+  /** The choices-below cue's watcher, from the last render. */
+  let cueWatch: IntersectionObserver | null = null;
+  /** book-look, item 5: the render right after closing the case plays the ceremony, once. */
+  let ceremony = false;
+  /**
+   * book-look, item 2: the page's numbered choices, as the CLI numbers them (`play-lib.ts` `pageItems`,
+   * and a person's topics once they're open): number keys 1–9 pick them.
+   */
+  let keyed: { n: number; person?: string; command?: string }[] = [];
 
   const params = (): URLSearchParams => new URLSearchParams(window.location.search);
   // docs/48: `?world=neighbourhood` casts the nights opened from here from the bible.
@@ -198,7 +214,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     openCell = null;
     hintSaid = null;
     justSpent = r.page.cost;
-    document.body.classList.remove('notebook-open');
+    notebookShown(false);
+    focusNext = { to: 'page' };
     render();
     root.querySelector('.page--prose')?.scrollTo?.({ top: 0 });
   }
@@ -231,7 +248,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const r = run as BoardRun;
     if (!hasHints(r.tier)) return [];
     const left = hintsLeft(r);
-    const b = el('button', { class: 'choice choice--hint hint-button', type: 'button', 'aria-describedby': 'hint-note' });
+    const b = el('button', { class: 'choice choice--free choice--hint hint-button', type: 'button', 'aria-describedby': 'hint-note' });
     b.append(el('span', { class: 'label', text: hintLabel(r) }), el('span', { class: 'mins', text: 'free' }));
     b.disabled = left <= 0;
     b.addEventListener('click', hint);
@@ -250,7 +267,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent), hints: verdict.hints });
     const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
+    notebookShown(false);
+    focusNext = { to: 'verdict' };
+    ceremony = true;
     render();
+    root.querySelector('.page--prose')?.scrollTo?.({ top: 0 });
   }
 
   function mark(person: string, hour: number, m: CellMark | null): void {
@@ -275,6 +296,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   /* ------------------------------------------------------------ drawing */
 
   function renderInPlace(): void {
+    const at = document.activeElement instanceof HTMLElement ? focusKey(document.activeElement) : null;
+    if (at && !focusNext) focusNext = { to: 'key', key: at };
     const prose = root.querySelector('.page--prose');
     const top = prose ? prose.scrollTop : 0;
     const nb = root.querySelector('.page--notebook .body');
@@ -286,8 +309,44 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (nb2) nb2.scrollTop = nbTop;
   }
 
+  /** book-look, item 2: a control's identity across a redraw, from the attributes it's drawn with. */
+  function focusKey(node: HTMLElement): string | null {
+    for (const a of ['data-focus', 'data-command', 'data-person', 'data-claim', 'data-cell', 'data-mark']) {
+      const v = node.getAttribute(a);
+      if (v !== null) return `[${a}="${CSS.escape(v)}"]`;
+    }
+    return null;
+  }
+
+  /** After a render: the focus where `focusNext` says, without scrolling the page under the reader. */
+  function placeFocus(): void {
+    const want = focusNext;
+    focusNext = null;
+    if (!want) return;
+    const heading = () => root.querySelector<HTMLElement>('.runhead .place');
+    let target: HTMLElement | null = null;
+    if (want.to === 'page') target = heading();
+    else if (want.to === 'verdict') target = root.querySelector<HTMLElement>('#verdict-title');
+    else {
+      const hit = root.querySelector<HTMLElement>(want.key);
+      target = hit && !(hit as HTMLButtonElement).disabled ? hit : heading();
+    }
+    target?.focus({ preventScroll: true });
+  }
+
+  /** book-look, items 2 and 4: the notebook's view on a phone, opened and shut, said to a screen reader. */
+  function notebookShown(on: boolean, focus = false): void {
+    document.body.classList.toggle('notebook-open', on);
+    for (const b of root.querySelectorAll('.nb-link')) b.setAttribute('aria-expanded', String(on));
+    if (!focus) return;
+    if (on) root.querySelector<HTMLElement>('#notebook-title')?.focus({ preventScroll: true });
+    else root.querySelector<HTMLElement>('.runhead .place')?.focus({ preventScroll: true });
+  }
+
   function render(): void {
     hideCard();
+    cueWatch?.disconnect();
+    cueWatch = null;
     if (screen.kind === 'title' || !d || !run) {
       clear(root);
       spread = null;
@@ -307,15 +366,54 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const node of [...root.childNodes]) if (node !== spread) node.remove();
     for (const node of [...spread.childNodes]) if (node !== weather.element) node.remove();
     spread.append(leftPage(), rightPage());
+    // (book-look, item 5: the clock strikes eight and the stamp lands, once, as the verdict first shows.)
+    spread.classList.toggle('ceremony', ceremony && screen.kind === 'verdict');
+    ceremony = false;
     weather.show(run.weather);
     weather.attach(spread);
+    watchChoices();
+    placeFocus();
+  }
+
+  /**
+   * book-look, item 4: a long page's quiet cue that the choices are below (Medium 12's first page puts
+   * them ~1,130 px down at 375). It shows while they're out of view and goes once they're in it; it's
+   * also a way straight to them for a keyboard or a screen reader.
+   */
+  function watchChoices(): void {
+    const page = root.querySelector<HTMLElement>('.page--prose');
+    const target = page?.querySelector<HTMLElement>('.choices, .report');
+    const cue = page?.querySelector<HTMLElement>('.cue-below');
+    if (!page || !cue) return;
+    if (!target || typeof IntersectionObserver !== 'function') {
+      cue.hidden = true;
+      return;
+    }
+    cueWatch = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) cue.hidden = e.isIntersecting || e.boundingClientRect.top < (e.rootBounds?.top ?? 0);
+      },
+      { root: page, threshold: 0, rootMargin: '0px 0px -56px 0px' },
+    );
+    cueWatch.observe(target);
   }
 
   function leftPage(): HTMLElement {
-    const page = el('section', { class: 'page page--prose' });
+    // book-look, item 2: the play screen's main landmark; its place is the page's h1.
+    const page = el('main', { class: 'page page--prose', id: 'page' });
     const r = run as BoardRun;
     const shown = Math.min(turned, r.log.length - 1);
     page.append(runningHead(shown));
+    // book-look, item 2: past the page's names to its choices (or the report) in one key, for a keyboard;
+    // hidden until it has the focus.
+    if (screen.kind === 'book' && shown === r.log.length - 1) {
+      const skip = el('button', { class: 'skip-link', type: 'button', 'data-focus': 'skip', text: r.reportOpen && !r.filed ? 'Skip to the report' : 'Skip to the choices' });
+      skip.addEventListener('click', () => {
+        const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose .report');
+        target?.querySelector<HTMLElement>('button:not(:disabled), select, input')?.focus();
+      });
+      page.append(skip);
+    }
     const leaf = el('div', { class: 'leaf' });
     if (screen.kind === 'teach') {
       const teach = el('div', { class: 'teach', role: 'region', 'aria-label': BOARD_TEACH_TITLE });
@@ -326,6 +424,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const go = el('button', { class: 'big-button teach-go', type: 'button', text: 'Start' });
       go.addEventListener('click', () => {
         screen = { kind: 'book' };
+        focusNext = { to: 'page' };
         render();
       });
       teach.append(el('div', { class: 'teach-buttons' }, go));
@@ -335,7 +434,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     if (screen.kind === 'verdict') {
       leaf.append(
-        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), truthSheet: () => curtainOfBoard(d as BoardDeal, r, r.filed) }, screen.news),
+        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), fastest: fastestSolveLines(d as BoardDeal, r, screen.verdict.outcome), truthSheet: () => curtainOfBoard(d as BoardDeal, r, r.filed) }, screen.news, caption()),
       );
       page.append(leaf);
       return page;
@@ -345,34 +444,73 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const p = r.log[shown];
       if (p) for (const n of pageNodes(p)) leaf.append(n);
       leaf.append(reportForm());
-      page.append(leaf, pager());
+      page.append(leaf, pager(), pageFoot('The report'));
       return page;
     }
     const p = r.log[shown];
     if (p) for (const n of pageNodes(p)) leaf.append(n);
     page.append(leaf);
-    if (newest) page.append(choicesPanel());
+    // (book-look, item 5: the setback, the one ornament, between the page and the choices.)
+    if (newest) page.append(setback(), choicesPanel());
     else page.append(el('p', { class: 'note turned-note', text: 'A page turned back to.' }));
-    page.append(pager());
+    page.append(pager(), pageFoot('What next'));
     return page;
   }
 
+  /**
+   * book-look, item 4: the foot of the page, held at the bottom of the window: the cue that the
+   * choices are below, and on a phone the notebook, where a thumb reaches it.
+   */
+  function pageFoot(what: string): HTMLElement {
+    const foot = el('div', { class: 'page-foot' });
+    const cue = el('button', { class: 'cue-below', type: 'button', 'data-focus': 'cue' });
+    cue.append(el('span', { text: what }), el('span', { class: 'cue-arrow', 'aria-hidden': 'true', text: '↓' }));
+    cue.hidden = true;
+    cue.addEventListener('click', () => {
+      const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose .report');
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target?.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
+      target?.querySelector<HTMLElement>('button:not(:disabled), select, input')?.focus({ preventScroll: true });
+    });
+    const nb = el('button', { class: 'nb-link nb-foot', type: 'button', 'aria-controls': 'notebook', 'aria-expanded': String(document.body.classList.contains('notebook-open')), text: 'Notebook' });
+    nb.addEventListener('click', () => notebookShown(true, true));
+    foot.append(cue, nb);
+    return foot;
+  }
+
+  /**
+   * The running head: the place (the page's h1), the clock, and the dial of actions from 12 to 8.
+   * book-look, item 5: once the case is closed the clock strikes eight: the head says "The verdict",
+   * 8:00 a.m., every notch still left is struck and the 8 lights (`.ceremony` plays it, once).
+   */
   function runningHead(i: number): HTMLElement {
     const r = run as BoardRun;
     const budget = budgetCalls(d as BoardDeal);
-    const used = usedByPage(r.log, i);
+    const closed = screen.kind === 'verdict';
+    const used = closed ? budget : usedByPage(r.log, i);
     const strip = clockStrip(used, budget, deadlineWords((d as BoardDeal).kase));
-    const head = el('header', { class: 'runhead runhead--clock' });
-    const nbLink = el('button', { class: 'nb-link', type: 'button', text: 'Notebook' });
-    nbLink.addEventListener('click', () => document.body.classList.add('notebook-open'));
-    head.append(el('div', { class: 'runhead-line' }, el('span', { class: 'place', text: r.log[i]?.head ?? '' }), nbLink, el('span', { class: 'time', text: strip.time })));
-    const notches = el('div', { class: 'notches', role: 'img', 'aria-label': `${used} of ${budget} actions used`, 'data-spent': String(used) });
+    const head = el('header', { class: `runhead runhead--clock${closed ? ' runhead--closed' : ''}` });
+    const place = closed ? 'The verdict' : (r.log[i]?.head ?? '');
+    head.append(el('div', { class: 'runhead-line' }, el('h1', { class: 'place', ...(closed ? { id: 'verdict-title' } : {}), tabindex: '-1', text: place }), clockNode(strip.time)));
+    const dial = el('div', { class: `dial${closed ? ' dial--eight' : ''}${budget > 18 ? ' dial--long' : ''}`, role: 'img', 'aria-label': closed ? 'Eight o’clock. The case is closed.' : `${used} of ${budget} actions used`, 'data-spent': String(used) });
+    const notches = el('span', { class: 'notches', 'aria-hidden': 'true' });
     strip.notches.forEach((kind, j) => {
-      const fresh = i === r.log.length - 1 && justSpent > 0 && kind === 'spent' && j >= used - justSpent;
-      notches.append(el('span', { class: `notch notch--${kind}${fresh ? ' notch--fresh' : ''}` }));
+      const fresh = !closed && i === r.log.length - 1 && justSpent > 0 && kind === 'spent' && j >= used - justSpent;
+      const struck = closed && j >= r.used;
+      const n = el('span', { class: `notch notch--${kind}${fresh ? ' notch--fresh' : ''}${struck ? ' notch--struck' : ''}` });
+      if (struck) n.style.setProperty('--i', String(j - r.used));
+      notches.append(n);
     });
-    head.append(notches, el('div', { class: 'calls-left', text: strip.left }));
+    dial.append(el('span', { class: 'dial-end', 'aria-hidden': 'true', text: '12' }), notches, el('span', { class: 'dial-end dial-end--eight', 'aria-hidden': 'true', text: '8' }));
+    head.append(dial, el('div', { class: 'calls-left', text: closed ? 'Eight o’clock. The case is closed.' : strip.left }));
     return head;
+  }
+
+  /** book-look, item 5: the DA's caption for the report and the verdict, by the case's kind. */
+  function caption(): { court: string; against: string; caseLine: string } {
+    const c = (d as BoardDeal).kase;
+    const client = deadlineWords(c)?.replace(/ wants an answer at eight$/, '');
+    return { court: client ? reportTo(client) : COURT, against: client ? CONCERNING : AGAINST, caseLine: `Case № ${c.seed} · ${tierName(c.tier)}` };
   }
 
   /** A page's blocks as paper, every name in it carrying its card (with `?plain=1`, its plain page). */
@@ -413,7 +551,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       if (at > last) frag.append(document.createTextNode(text.slice(last, at)));
       const n = nouns.find((x) => x.word === m[0]);
       if (n) {
-        const span = el('span', { class: `noun noun--${n.kind}`, tabindex: '0', text: m[0] });
+        // book-look, item 2: a name is a control (its card opens on focus, and on Enter), and says so.
+        const span = el('span', { class: `noun noun--${n.kind}`, tabindex: '0', role: 'button', text: m[0] });
         attachCard(span, n.card);
         frag.append(span);
       } else frag.append(document.createTextNode(m[0]));
@@ -438,32 +577,55 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   /* ----------------------------------------------------------- choices */
 
-  function button(ch: OfferedChoice, onClick: () => void, extra = ''): HTMLButtonElement {
+  /**
+   * book-look, item 5: every kind of action has its own form (scratchpad direction.md §7). A question
+   * is a line on the interview sheet, a search an evidence tag, a walk a transfer for the el with its
+   * stub, confronting the red summons, and what's free a pencilled underline. Each is still a button
+   * with its whole label; its `aria-label` says the star, the cost and what's done.
+   */
+  type Kind = 'ask' | 'search' | 'walk' | 'free' | 'confront';
+
+  function button(ch: OfferedChoice, onClick: () => void, kind: Kind): HTMLButtonElement {
     const b = el('button', {
-      class: `choice${ch.lead ? ' choice--lead' : ''}${ch.done ? ' choice--done' : ''}${extra}`,
+      class: ['choice', `choice--${kind}`, ch.lead ? 'choice--lead' : '', ch.done ? 'choice--done' : ''].filter(Boolean).join(' '),
       type: 'button',
       'data-command': ch.command,
       'aria-label': [ch.label, ch.lead && ch.why ? `starred: ${ch.why}` : '', ch.done ? 'already done' : '', costText(ch), ch.note ?? ''].filter(Boolean).join(', '),
     });
-    if (ch.lead) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
-    const label = el('span', { class: 'label', text: ch.label });
-    if (ch.done) label.append(el('span', { class: 'check', 'aria-hidden': 'true', text: ' ✓' }));
-    b.append(label);
-    if (ch.note) b.append(el('span', { class: 'aside', text: ch.note }));
-    if (ch.lead && ch.why) b.append(el('span', { class: 'aside why', text: ch.why }));
-    b.append(el('span', { class: 'mins', text: ch.command.startsWith('picker') && pickerOpen ? 'close' : costText(ch) }));
+    const label = el('span', { class: 'label' });
+    if (ch.lead) label.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
+    label.append(ch.label);
+    const cost = ch.command.startsWith('picker') && pickerOpen ? 'close' : costText(ch);
+    const aside = ch.note ? el('span', { class: 'aside', text: ch.note }) : null;
+    const why = ch.lead && ch.why ? el('span', { class: 'aside why', text: ch.why }) : null;
+    if (kind === 'walk') {
+      // The destination as the car's roll-sign, the note under it; the stub torn off at the dashes.
+      const body = el('span', { class: 'body' }, label, aside, why);
+      b.append(body, el('span', { class: 'mins stub', 'aria-hidden': 'true', text: cost }));
+    } else {
+      b.append(label);
+      // (book-look, item 5: done says so in a word, never a ✓ glyph; the aria-label says "already done".)
+      if (ch.done) b.append(el('span', { class: 'state', 'aria-hidden': 'true', text: ch.command.startsWith('search ') ? 'searched' : 'asked' }));
+      if (cost) b.append(el('span', { class: 'mins', text: cost }));
+      if (aside) b.append(aside);
+      if (why) b.append(why);
+    }
     b.addEventListener('click', onClick);
     return b;
   }
 
   function choicesPanel(): HTMLElement {
     const groups = boardChoices(d as BoardDeal, run as BoardRun);
+    const kase = (d as BoardDeal).kase;
     const panel = el('nav', { class: 'choices choices--board', 'aria-label': 'What next' });
     const asks = groups.filter((g) => g.kind === 'ask');
     if (asks.length > 0) {
       const section = el('section', { class: 'choice-group choice-group--people' });
       // Round 5, U1, in docs/64's words: "Talk to", the CLI's heading; the key says what's free.
-      section.append(el('h3', { class: 'choice-heading', text: TALK_HEADING }));
+      section.append(el('h2', { class: 'choice-heading', text: TALK_HEADING }));
+      // book-look, item 5: the lobby directory: the names in the building's letters, the count where
+      // the room number goes, and the open name's questions inside the same frame.
+      const directory = el('div', { class: 'directory' });
       const row = el('div', { class: 'choice-list who-list', role: 'group', 'aria-label': 'Who to talk to' });
       for (const g of asks) {
         const id = g.personId as string;
@@ -474,12 +636,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           type: 'button',
           'data-person': id,
           'aria-expanded': on ? 'true' : 'false',
-          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'questions open' : questionsText(g, (d as BoardDeal).kase), 'free to pick'].filter(Boolean).join(', '),
+          'aria-label': [nameOf(kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'questions open' : questionsText(g, kase), 'free to pick'].filter(Boolean).join(', '),
         });
-        if (star) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
-        b.append(el('span', { class: 'label', text: nameOf((d as BoardDeal).kase, id) }));
-        if (star?.why) b.append(el('span', { class: 'aside why', text: star.why }));
-        b.append(el('span', { class: 'mins', text: on ? 'close' : questionsText(g, (d as BoardDeal).kase) }));
+        const label = el('span', { class: 'label' });
+        if (star) label.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
+        label.append(nameOf(kase, id));
+        b.append(el('span', { class: 'namecell' }, label, star?.why ? el('span', { class: 'aside why', text: star.why }) : null), el('span', { class: 'mins', text: on ? 'close' : questionsText(g, kase) }));
         b.addEventListener('click', () => {
           selected = on ? null : id;
           pickerOpen = false;
@@ -489,35 +651,50 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         });
         row.append(b);
       }
-      section.append(row);
-      panel.append(section);
+      directory.append(row);
       const g = asks.find((x) => x.personId === selected);
-      if (g) panel.append(topicsSection(g));
+      if (g) directory.append(topicsSection(g));
+      section.append(directory);
+      panel.append(section);
     }
     for (const g of groups) {
       if (g.kind === 'ask') continue;
+      if (g.kind === 'free') {
+        // What costs nothing: a pencilled underline, "free" beside it. (book-look, item 1: "Close the case"
+        // isn't one of them; it has its own place at the foot.)
+        const free = el('div', { class: 'choice-group choice-group--free' });
+        const list = el('div', { class: 'choice-list free-list' });
+        for (const ch of g.choices) if (ch.command !== 'file') list.append(button(ch, () => command(ch.command), 'free'));
+        // docs/67: the Hint button sits with the free choices, and what it said under them.
+        const [hb, hnote] = hintNodes();
+        if (hb) list.append(hb);
+        free.append(list);
+        if (hnote) free.append(hnote);
+        if (list.childElementCount > 0 || hnote) panel.append(free);
+        continue;
+      }
       const section = el('section', { class: `choice-group choice-group--${g.kind}` });
-      if (g.heading) section.append(el('h3', { class: 'choice-heading', text: g.heading }));
-      const list = el('div', { class: 'choice-list' });
-      for (const ch of g.choices) list.append(button(ch, () => (ch.command === 'file' ? command('file') : command(ch.command))));
+      if (g.heading) section.append(el('h2', { class: 'choice-heading', text: g.heading }));
+      const kind: Kind = g.kind === 'search' ? 'search' : 'walk';
+      const list = el('div', { class: `choice-list${kind === 'walk' ? ' go-list' : ' search-list'}` });
+      for (const ch of g.choices) list.append(button(ch, () => command(ch.command), kind));
+      if (moreGo) for (const ch of g.more ?? []) list.append(button(ch, () => command(ch.command), kind));
+      section.append(list);
       if ((g.more ?? []).length > 0) {
-        const t = el('button', { class: 'choice choice--more', type: 'button', 'aria-expanded': moreGo ? 'true' : 'false' });
+        const t = el('button', { class: 'choice choice--free choice--more', type: 'button', 'data-focus': 'more', 'aria-expanded': moreGo ? 'true' : 'false' });
         t.append(el('span', { class: 'label', text: moreGo ? 'Fewer places' : `Other places (${(g.more ?? []).length})` }), el('span', { class: 'mins', text: 'free' }));
         t.addEventListener('click', () => {
           moreGo = !moreGo;
           justSpent = 0;
           renderInPlace();
         });
-        list.append(t);
-        if (moreGo) for (const ch of g.more ?? []) list.append(button(ch, () => command(ch.command)));
+        section.append(el('div', { class: 'choice-list free-list' }, t));
       }
-      // docs/67: the Hint button sits with the free choices, and what it said under them.
-      const [hb, hnote] = g.kind === 'free' ? hintNodes() : [];
-      if (hb) list.append(hb);
-      section.append(list);
-      if (hnote) section.append(hnote);
       panel.append(section);
     }
+    // book-look, item 1: "Close the case" apart from everything that costs, at the foot, its own weight.
+    if (groups.some((g) => g.choices.some((c) => c.command === 'file'))) panel.append(closeSection());
+    numberChoices(panel, groups);
     // docs/64: the key, on the first page, as the CLI says it; docs/67: and tonight's hints (Hard-boiled: its mark line).
     if ((run as BoardRun).log.length === 1) panel.append(el('p', { class: 'note action-key', text: ACTION_KEY }));
     const hints = hintsNote(d as BoardDeal, run as BoardRun);
@@ -525,26 +702,102 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return panel;
   }
 
+  /**
+   * book-look, item 2: number the page's choices as the CLI does (people, then searches, walks, the
+   * places folded under "Other places", the free row and "Close the case"; with a person's topics open,
+   * those topics), and mark each drawn one with its number, shown while the keyboard is in the choices.
+   */
+  function numberChoices(panel: HTMLElement, groups: OfferedGroup[]): void {
+    keyed = [];
+    const open = groups.find((g) => g.kind === 'ask' && g.personId === selected);
+    if (open) open.choices.forEach((c, i) => keyed.push({ n: i + 1, command: c.command }));
+    else {
+      let n = 1;
+      for (const g of groups) {
+        if (g.kind === 'ask') keyed.push({ n: n++, person: g.personId as string });
+        else for (const c of [...g.choices, ...(g.more ?? [])]) keyed.push({ n: n++, command: c.command });
+      }
+    }
+    for (const k of keyed) {
+      if (k.n > 9) continue;
+      const sel = k.person ? `[data-person="${CSS.escape(k.person)}"]` : `[data-command="${CSS.escape(k.command ?? '')}"]`;
+      const b = panel.querySelector<HTMLElement>(sel);
+      if (!b) continue;
+      b.setAttribute('aria-keyshortcuts', String(k.n));
+      const where = b.querySelector('.label') ?? b;
+      where.prepend(el('span', { class: 'key-num', 'aria-hidden': 'true', text: String(k.n) }));
+    }
+  }
+
+  /** book-look, item 2: a number key picks that choice, never inside a field, and never with a modifier. */
+  function numberKey(e: KeyboardEvent): void {
+    if (screen.kind !== 'book' || !run || run.reportOpen || run.filed || turned !== run.log.length - 1) return;
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || !/^[1-9]$/.test(e.key)) return;
+    const at = e.target as HTMLElement | null;
+    if (at && (at.closest('input, select, textarea, [contenteditable=""], [contenteditable="true"]') || at.isContentEditable)) return;
+    if (pickerOpen) return;
+    const k = keyed.find((x) => x.n === Number(e.key));
+    if (!k) return;
+    e.preventDefault();
+    if (k.person) {
+      selected = selected === k.person ? null : k.person;
+      pickerOpen = false;
+      pickerClaim = null;
+      justSpent = 0;
+      focusNext = { to: 'key', key: `[data-person="${CSS.escape(k.person)}"]` };
+      renderInPlace();
+      return;
+    }
+    const cmd = k.command ?? '';
+    if (cmd.startsWith('picker ')) {
+      pickerOpen = true;
+      pickerClaim = null;
+      justSpent = 0;
+      focusNext = { to: 'key', key: `[data-command="${CSS.escape(cmd)}"]` };
+      renderInPlace();
+      return;
+    }
+    command(cmd);
+  }
+
+  /**
+   * book-look, items 1 and 5: "Close the case", the office door at the foot of the choices (and of the
+   * notebook): a full-width bar behind a double rule, "ends the night" beside it, and under it what
+   * pressing it does: it opens the report first, which goes back in the drawer until you close it.
+   */
+  function closeSection(where: 'page' | 'notebook' = 'page'): HTMLElement {
+    const id = `close-note-${where}`;
+    const section = el('section', { class: 'choice-group choice-group--close file', 'aria-labelledby': `close-heading-${where}` });
+    section.append(el('h2', { class: 'choice-heading sr-only', id: `close-heading-${where}`, text: CLOSE_HEADING }));
+    const b = el('button', { class: 'choice choice--file', type: 'button', 'data-command': 'file', 'aria-label': `Close the case, ${CLOSE_TAG}`, 'aria-describedby': id });
+    b.append(el('span', { class: 'label', text: 'Close the case' }), el('span', { class: 'mins', text: CLOSE_TAG }));
+    b.addEventListener('click', () => command('file'));
+    section.append(b, el('p', { class: 'close-note', id, text: CLOSE_NOTE }));
+    return section;
+  }
+
+  /** The open name's questions, ruled like an interview sheet, and the summons to confront them. */
   function topicsSection(g: OfferedGroup): HTMLElement {
     const id = g.personId as string;
-    const section = el('section', { class: 'choice-group choice-group--ask' });
+    const section = el('section', { class: 'choice-group choice-group--ask ask' });
     section.append(el('h3', { class: 'choice-heading', text: `Ask ${nameOf((d as BoardDeal).kase, id)} about` }));
-    const list = el('div', { class: 'choice-list' });
+    const list = el('div', { class: 'choice-list ask-list' });
+    let confront: HTMLButtonElement | null = null;
     for (const ch of g.choices) {
       if (ch.command.startsWith('picker ')) {
-        list.append(
-          button(ch, () => {
-            pickerOpen = !pickerOpen;
-            pickerClaim = null;
-            justSpent = 0;
-            renderInPlace();
-          }, ' choice--confront'),
-        );
+        confront = button(ch, () => {
+          pickerOpen = !pickerOpen;
+          pickerClaim = null;
+          justSpent = 0;
+          renderInPlace();
+        }, 'confront');
+        confront.setAttribute('aria-expanded', String(pickerOpen));
         continue;
       }
-      list.append(button(ch, () => command(ch.command)));
+      list.append(button(ch, () => command(ch.command), 'ask'));
     }
     section.append(list);
+    if (confront) section.append(confront);
     if (pickerOpen) {
       const pk = pickerFor(d as BoardDeal, run as BoardRun, id);
       if (pk) section.append(pickerNode(pk));
@@ -609,18 +862,20 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function pager(): HTMLElement {
     const r = run as BoardRun;
     const hint = el('div', { class: 'pager' });
-    const back = el('button', { type: 'button', text: '‹ back' });
+    const back = el('button', { type: 'button', 'data-focus': 'pager-back', 'aria-label': 'Back a page', text: '‹ back' });
     back.disabled = turned <= 0;
     back.addEventListener('click', () => {
       turned = Math.max(0, turned - 1);
       justSpent = 0;
+      focusNext = { to: 'key', key: '[data-focus="pager-back"]' };
       render();
     });
-    const forward = el('button', { type: 'button', text: 'forward ›' });
+    const forward = el('button', { type: 'button', 'data-focus': 'pager-forward', 'aria-label': 'Forward a page', text: 'forward ›' });
     forward.disabled = turned >= r.log.length - 1;
     forward.addEventListener('click', () => {
       turned = Math.min(r.log.length - 1, turned + 1);
       justSpent = 0;
+      focusNext = { to: 'key', key: '[data-focus="pager-forward"]' };
       render();
     });
     const wx = el('button', { class: 'wx-toggle', type: 'button', 'aria-pressed': String(weather.enabled), text: weather.enabled ? 'weather on' : 'weather off' });
@@ -630,7 +885,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       weather.setEnabled(on);
       wx.textContent = on ? 'weather on' : 'weather off';
     });
-    hint.append(back, el('span', { text: `page ${turned + 1} of ${r.log.length}` }), forward, wx);
+    hint.append(back, el('span', { class: 'pager-at', text: `page ${turned + 1} of ${r.log.length}` }), forward, wx);
     return hint;
   }
 
@@ -639,11 +894,25 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function reportForm(): HTMLElement {
     const r = run as BoardRun;
     const form = el('form', { class: 'report' });
+    // book-look, item 5: the report is a typed charge to the DA. The plaque's caption says who it's for
+    // ("The People of the State of New York against …", or a small case's "Report to …"), and the blank
+    // under it is the "Who" field, a real select with its own label.
+    const cap = caption();
+    const plaque = el('div', { class: 'plaque report-plaque' });
+    plaque.append(crest(), el('p', { class: 'court', text: cap.court }), el('p', { class: 'against', text: cap.against }));
     form.append(
-      el('h2', { text: 'Close the case' }),
+      el('h2', { class: 'sr-only', text: 'Close the case' }),
+      plaque,
       // Round 5, U6: what a blank goes in as, once, the CLI's words.
-      el('p', { class: 'note', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
+      el('p', { class: 'note report-rule', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
     );
+    // book-look, item 1: taken out by choice, the report goes back in the drawer, free; never once the clock is out.
+    if (canGoBack(d as BoardDeal, r)) {
+      const back = el('button', { class: 'choice choice--free report-back', type: 'button', 'data-command': 'back' });
+      back.append(el('span', { class: 'label', text: BACK_TO_CASE }), el('span', { class: 'mins', text: 'free' }));
+      back.addEventListener('click', () => command('back'));
+      form.append(el('div', { class: 'report-back-row' }, back));
+    }
     // docs/67: here a hint says what's still missing, or that the report can be filled from what you have.
     const [hb, hnote] = hintNodes();
     if (hb && hnote) form.append(el('div', { class: 'choice-list report-hint' }, hb), hnote);
@@ -685,11 +954,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       return fill;
     };
     for (const f of boardFields(dd, r)) {
-      const s = el('select', { name: f.key });
+      const s = el('select', { name: f.key, id: `rf-${f.key}` });
       s.append(el('option', { value: '' }, 'I don’t know'));
       for (const o of f.options) s.append(el('option', { value: o.value }, o.label));
       selects.set(f.key, s);
-      form.append(el('div', { class: 'field' }, el('label', { text: f.label }), s));
+      // (book-look, item 2: the label names its select. Item 5: "Who" is the plaque's typed blank.)
+      if (f.key === 'who') {
+        plaque.append(el('div', { class: 'blank' }, el('label', { class: 'sr-only', for: `rf-${f.key}`, text: f.label }), s), el('p', { class: 'meta' }, el('span', { text: DETECTIVES_REPORT }), ' ', el('span', { text: cap.caseLine })));
+      } else form.append(el('div', { class: 'field' }, el('label', { for: `rf-${f.key}`, text: f.label }), s));
       if (f.key === 'who') {
         const who = () => s.value || null;
         const refill = lineField(
@@ -719,23 +991,71 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       }
       if (f.key === 'where') lineField('whereBy', whereByLabel(dd), () => whereByOptions(dd, r), () => 'What people let slip, what you found, and what they said when you confronted them.');
     }
-    form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'Close the case' })));
+    const submit = el('div', { class: 'after report-submit' }, el('button', { class: 'open-case close-button file-it', type: 'submit', text: 'Close the case' }));
+    form.append(submit);
+    const answers = (): BoardReport => {
+      const a: Partial<Record<FieldKey, string | null>> = {};
+      for (const [k, s] of selects) a[k] = s.value || null;
+      for (const [k, v] of lines) a[k] = v();
+      return reportFrom(dd, a);
+    };
+    // book-look, item 1: the charge said back in plain words, then "Close it" or "Not yet". Changing
+    // an answer while it's up takes it down, so what's closed is always what was read.
+    let confirm: HTMLElement | null = null;
+    const notYet = (focus: boolean) => {
+      confirm?.remove();
+      confirm = null;
+      submit.hidden = false;
+      if (focus) submit.querySelector<HTMLElement>('button')?.focus();
+    };
+    form.addEventListener('change', () => notYet(false));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const answers: Partial<Record<FieldKey, string | null>> = {};
-      for (const [k, s] of selects) answers[k] = s.value || null;
-      for (const [k, v] of lines) answers[k] = v();
-      file(reportFrom(dd, answers));
+      const report = answers();
+      notYet(false);
+      confirm = confirmNode(report, () => file(report), () => notYet(true));
+      submit.hidden = true;
+      submit.after(confirm);
+      confirm.querySelector<HTMLElement>('.file-confirm-title')?.focus();
     });
     return form;
+  }
+
+  /**
+   * book-look, item 1: before the case is closed, the charge said back (`chargeLines`, the CLI's
+   * words too), and a blank report said as blank. "Close it" closes it; "Not yet" goes back to the form.
+   */
+  function confirmNode(report: BoardReport, yes: () => void, no: () => void): HTMLElement {
+    const box = el('section', { class: `file-confirm plaque${blankReport(report) ? ' file-confirm--blank' : ''}`, 'aria-labelledby': 'file-confirm-title' });
+    box.append(el('h3', { class: 'file-confirm-title', id: 'file-confirm-title', tabindex: '-1', text: blankReport(report) ? 'A blank report' : 'The charge' }));
+    const lines = chargeLines(d as BoardDeal, run as BoardRun, report);
+    for (const [i, l] of lines.entries()) box.append(el('p', { class: i === 0 ? 'charge-lead' : 'charge-line', text: l }));
+    box.append(el('p', { class: 'charge-final', text: 'Once it’s closed, it stays closed.' }));
+    const yesB = el('button', { class: 'open-case close-button file-it', type: 'button', 'data-confirm': 'file', text: 'Close it' });
+    yesB.addEventListener('click', yes);
+    const noB = el('button', { class: 'plain-button', type: 'button', 'data-confirm': 'not-yet', text: 'Not yet' });
+    noB.addEventListener('click', no);
+    box.append(el('div', { class: 'after' }, yesB, noB));
+    return box;
   }
 
   /* ------------------------------------------------------- the notebook */
 
   function rightPage(): HTMLElement {
-    const page = el('aside', { class: 'page page--notebook', 'aria-label': 'Notebook' });
+    const page = el('aside', { class: 'page page--notebook', id: 'notebook', 'aria-labelledby': 'notebook-title' });
     const c = (d as BoardDeal).kase;
-    page.append(el('header', { class: 'runhead' }, el('span', { text: 'Notebook' }), el('span', { text: `case ${c.seed} · ${tierName(c.tier)}` })));
+    // book-look, item 4: on a phone the notebook hides the page, so it carries the clock too.
+    const r0 = run as BoardRun;
+    const strip = clockStrip(r0.used, budgetCalls(d as BoardDeal), deadlineWords(c));
+    page.append(
+      el(
+        'header',
+        { class: 'runhead runhead--notebook' },
+        el('h2', { class: 'nb-title', id: 'notebook-title', tabindex: '-1', text: 'Notebook' }),
+        el('span', { class: 'nb-case', text: `Case № ${c.seed} · ${tierName(c.tier)}` }),
+        el('span', { class: 'nb-clock', text: screen.kind === 'verdict' ? 'Eight o’clock. The case is closed.' : `${clockParts(strip.time).figures} ${clockParts(strip.time).ampm} · ${strip.left.replace(/\. .*$/, '.')}` }),
+      ),
+    );
     const body = el('div', { class: 'body', tabindex: '-1' });
     body.append(el('h2', { text: 'Where they were' }), gridNode(boardGrid(c, run as BoardRun)));
     const r = run as BoardRun;
@@ -782,14 +1102,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${why}.` }));
     body.append(people);
-    if (!r.reportOpen) {
-      const f = el('button', { class: 'plain-button', type: 'button', text: 'Close the case' });
-      f.addEventListener('click', () => command('file'));
-      body.append(f);
-    }
+    if (!r.reportOpen) body.append(closeSection('notebook'));
     page.append(body);
     const back = el('button', { class: 'plain-button nb-back', type: 'button', text: 'Back to the page' });
-    back.addEventListener('click', () => document.body.classList.remove('notebook-open'));
+    back.addEventListener('click', () => notebookShown(false, true));
     page.append(back);
     return page;
   }
@@ -821,7 +1137,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const k = `${r.id}@${h}`;
         const cls = ['bgrid-cell', cell.collision ? 'is-collision' : cell.confirmed ? 'is-confirmed' : cell.seen ? 'is-seen' : cell.says ? 'is-says' : cell.pencil ? 'is-pencil' : 'is-empty', g.crimeHour === h ? 'is-crime' : ''].join(' ');
         const td = el('td', { class: cls });
-        const b = el('button', { type: 'button', class: 'bgrid-btn', 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(cell)}`, text: cellText(g, cell).replace(/["[\]]/g, '').replace(/→.*$/, '') });
+        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(cell)}`, text: cellText(g, cell).replace(/["[\]]/g, '').replace(/→.*$/, '') });
         b.addEventListener('click', () => {
           openCell = openCell === k ? null : k;
           renderInPlace();
@@ -843,13 +1159,17 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const pencil = el('div', { class: 'bgrid-pencil', role: 'group', 'aria-label': 'Mark a guess' });
         pencil.append(el('span', { class: 'bgrid-pencil-label', text: 'Your guess:' }));
         for (const [pid] of knownPlaces(c, run as BoardRun)) {
-          const pb = el('button', { type: 'button', class: `chip${cell.pencil?.at === pid ? ' on' : ''}`, text: g.codes[pid] ?? placeName(c, pid) });
+          const pb = el('button', { type: 'button', class: `chip${cell.pencil?.at === pid ? ' on' : ''}`, 'data-mark': `${openCell}:${pid}`, 'aria-pressed': String(cell.pencil?.at === pid), text: g.codes[pid] ?? placeName(c, pid) });
           pb.addEventListener('click', () => mark(r.id, h, cell.pencil?.at === pid ? null : { at: pid }));
           pencil.append(pb);
         }
         if (cell.pencil) {
-          const rub = el('button', { type: 'button', class: 'chip', text: 'clear' });
-          rub.addEventListener('click', () => mark(r.id, h, null));
+          const rub = el('button', { type: 'button', class: 'chip', 'data-mark': `${openCell}:clear`, text: 'clear' });
+          rub.addEventListener('click', () => {
+            // (book-look, item 2: the chip goes with the guess; the focus goes back to its cell.)
+            focusNext = { to: 'key', key: `[data-cell="${CSS.escape(openCell ?? '')}"]` };
+            mark(r.id, h, null);
+          });
           pencil.append(rub);
         }
         detail.append(pencil);
@@ -862,8 +1182,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // rest only when the grid shows it, as the CLI's `gridKey` does.
     const cells = g.rows.flatMap((x) => g.hours.map((h) => x.cells[h] as BoardCell));
     const key = el('p', { class: 'bgrid-key' });
-    // (clarity-5b, item 7: the sample is a label from tonight's grid, the scene's, never "Odessa" on a night with none.)
-    const lab = g.codes[c.crime.scene] ?? 'X';
+    // (clarity-5b, item 7: never "Odessa" on a night with none. book-look, item 4: and never the scene's own
+    // name either ("Petrosino’s✗ where they clash" read as a fact): a neutral sample, as the CLI's "X".)
+    const lab = KEY_SAMPLE;
     key.append(el('span', { class: 'k is-says', text: lab }), ' they say so · ', el('span', { class: 'k is-seen', text: lab }), ' somebody saw them there · ', el('span', { class: 'k is-collision', text: `${lab}✗` }), ' where they clash');
     // (Round 6, U3: who "both" are, said: they, and somebody who saw them.)
     if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: `${lab}✓` }), ' they say so, and somebody saw them there');
@@ -885,6 +1206,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (why) wrap.append(el('p', { class: 'bgrid-key bgrid-why', text: why }));
     return wrap;
   }
+
+  /** book-look, item 4: the grid key's neutral sample label (the CLI's key says "X"). */
+  const KEY_SAMPLE = 'Place';
 
   /** docs/56: the grid's last column in words a player has, not the builders' "means". */
   function meansWords(label: string): string {
@@ -940,7 +1264,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const prior = loadSaved(store);
     const inProgress = prior && !prior.filed ? prior : null;
 
-    wrap.append(el('h1', { text: 'DASHIELL' }), el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }));
+    // (book-look, item 5: the setback crest over the name, in the frame's letters.)
+    wrap.append(crest(), el('h1', { text: 'DASHIELL' }), el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }));
 
     const startTonight = (): void => openCase(freshSeed(), tonight, undefined, storedName(), true, world, true);
     const actions = el('div', { class: 'title-actions' });
@@ -1095,6 +1420,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     dialog.append(body);
     return dialog;
   }
+
+  document.addEventListener('keydown', numberKey);
 
   // On the title page, Enter opens the case even when nothing has the focus (a click on the paper
   // drops it): the first button, "Open tonight's case" or "Back to the case".

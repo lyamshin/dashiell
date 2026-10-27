@@ -61,6 +61,16 @@ export const ACTION_KEY = 'Everything you do takes one action unless it says fre
  */
 export const TALK_HEADING = 'Talk to';
 
+/**
+ * book-look, item 1: "Close the case" stands apart from the actions, under its own heading, in the
+ * book and the CLI. It says what closing the case means, not "free": it ends the night. And what the
+ * button itself does: it opens the report first, which can be put away again while there are actions
+ * left (the engine's `back`), so pressing it never ends the night by itself.
+ */
+export const CLOSE_HEADING = 'The report';
+export const CLOSE_TAG = 'ends the night';
+export const CLOSE_NOTE = 'It opens the report first. That costs nothing, and you can come back until you close it.';
+
 /** docs/64: the turn's divider, where the page used to print "The turn". */
 export const TURN_DIVIDER = 'Where things stood';
 

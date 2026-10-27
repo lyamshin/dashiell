@@ -128,6 +128,17 @@ export function attachCard(target: HTMLElement, source: CardSource): void {
   target.addEventListener('blur', () => {
     if (!pinned && anchor === target) hideCard();
   });
+  // book-look, item 2: a name is a button to a keyboard too: Enter or Space keeps its card up, or puts it away.
+  target.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    if (pinned && anchor === target) {
+      hideCard();
+      return;
+    }
+    showCard(target, source);
+    pinned = true;
+  });
   target.addEventListener('click', () => {
     if (lastPointer === 'mouse') return;
     if (pinned && anchor === target) {

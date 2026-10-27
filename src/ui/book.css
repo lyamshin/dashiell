@@ -1,48 +1,52 @@
 /*
- * A bound book. Cream paper, dark ink, one serif, one accent.
+ * A bound book, read at night: a Deco frame around a noir page (book-look,
+ * item 5; scratchpad direction.md). The page you read is dark paper, warm ink
+ * and one serif, with no texture: the rain on the glass is the only weather.
+ * Around it the frame is late-1920s New York: the running head and its dial,
+ * the heads, the forms the choices take, the report and the verdict, in the
+ * city's nickel, the law's red and the clock's amber. Deco frames the column,
+ * heads it and closes it, and never enters it. There is one palette (item 3).
  *
- * The restraint is the design: no textures, no shadows, no ornament beyond the
- * rule under the running head. The only colour on the page is the dark red on
- * a noun you can click.
+ * Contrast, WCAG, on --paper (#17171a) and on --paper-raised (#1e1e22): ink
+ * 12.5 / 11.6, ink-soft 6.6 / 6.1, ink-faint 5.1 / 4.7, nickel 7.5 / 7.0,
+ * nickel-dim 5.3 / 4.9, accent 6.1 / 5.7, amber 8.0 / 7.4, carbon 8.5 / 7.9;
+ * a control's edge (--line) 3.7 / 3.5. The hairline (--rule, 1.7) only
+ * separates, and never bounds a control on its own.
  */
 
 :root {
-  --paper: #f4efe3;
-  --paper-edge: #e6dfd0;
-  --ink: #241f1a;
-  --ink-soft: #5d554a;
-  --ink-faint: #8b8275;
-  --rule: #cdc3b0;
-  --accent: #8c2f22;
-  --accent-soft: #b8635400;
-  --amber: #c98a1b;
+  --paper: #17171a;
+  --paper-edge: #101012;
+  /* Sheets on the page: the directory, the plaques, the picker, the hover card. */
+  --paper-raised: #1e1e22;
+  --ink: #ded7c9;
+  --ink-soft: #a49c8e;
+  --ink-faint: #8f887c;
+  /* Decorative hairlines only. */
+  --rule: #3d3f45;
+  /* Every edge that marks a control: a choice, a field, a button, an empty notch (3:1 and over). */
+  --line: #6e727b;
+  /* The Deco metal: printed heads, frame strokes; and its dimmer ornament. */
+  --nickel: #a3a8b1;
+  --nickel-dim: #878c95;
+  /* Stamp red, the law's hand: the nouns, Confront, the stamp, a wrong answer. */
+  --accent: #df7b67;
+  --accent-soft: rgba(223, 123, 103, 0.16);
+  /* Time only: the next notch, the 8, a gold star. */
+  --amber: #d9a441;
+  /* Typed carbon: the verdict's copy of your answers, the curtain. */
+  --carbon: #aeb0d6;
+  /* The keyboard's ring: the ink, outside the edge, never the star's red or hover's border. */
+  --focus: #ded7c9;
+  --serif: 'EB Garamond', Garamond, 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  /* Josefin Sans: caps only, never below 12px, for what's printed in the frame. */
+  --deco: 'Josefin Sans', Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+  /* Courier Prime: only for what was typed (the report's blank, the ledger, the curtain). */
+  --typed: 'Courier Prime', 'Courier New', Courier, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --measure: 34rem;
   --gutter: 16px;
   color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper: #17171a;
-    --paper-edge: #101012;
-    --ink: #ded7c9;
-    --ink-soft: #a49c8e;
-    --ink-faint: #756e63;
-    --rule: #3a3833;
-    --accent: #d08573;
-    --amber: #d9a441;
-  }
-}
-
-:root[data-theme='dark'] {
-  --paper: #17171a;
-  --paper-edge: #101012;
-  --ink: #ded7c9;
-  --ink-soft: #a49c8e;
-  --ink-faint: #756e63;
-  --rule: #3a3833;
-  --accent: #d08573;
-  --amber: #d9a441;
 }
 
 * {
@@ -55,7 +59,7 @@ body {
   padding: 0;
   background: var(--paper-edge);
   color: var(--ink);
-  font-family: 'EB Garamond', Garamond, 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  font-family: var(--serif);
   font-size: 19px;
   line-height: 1.55;
   overflow-x: hidden;
@@ -68,9 +72,43 @@ body {
   }
 }
 
-button {
+button,
+select,
+input {
   font: inherit;
   color: inherit;
+}
+
+/*
+ * book-look, item 2: one focus ring for every control a keyboard reaches: 2px of ink, held off the
+ * control's edge, so it never reads as the star's accent border or hover's.
+ */
+:where(button, select, input, a[href], [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* A heading that takes the focus after a page turns is announced, not ringed: it isn't a control. */
+:where(h1, h2, h3)[tabindex='-1']:focus {
+  outline: none;
+}
+
+::selection {
+  background: rgba(223, 123, 103, 0.35);
+  color: var(--ink);
+}
+
+/* Words for a screen reader only. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---------------------------------------------------------------- layout */
@@ -135,12 +173,15 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.68rem);
+  line-height: 1.3;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 0.5rem;
+  color: var(--nickel);
+  border-bottom: 3px double var(--rule);
+  padding-bottom: 0.55rem;
   margin-bottom: 1.4rem;
 }
 
@@ -214,7 +255,12 @@ button {
 .noun:focus-visible {
   background: var(--accent-soft);
   text-decoration-thickness: 2px;
-  outline: none;
+  color: var(--accent);
+}
+
+.noun:focus-visible {
+  outline-offset: 1px;
+  border-radius: 1px;
 }
 
 /* ------------------------------------------------------- M6: the clock */
@@ -231,11 +277,15 @@ button {
   top: 0;
   z-index: 4;
   background: var(--paper);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1rem;
   text-transform: none;
   letter-spacing: 0;
-  margin-bottom: 1rem;
-  padding-top: 1.4rem;
-  padding-bottom: 0.55rem;
+  color: var(--ink);
+  margin-bottom: 1.3rem;
+  padding-top: 1.3rem;
+  padding-bottom: 0.65rem;
 }
 
 .runhead-line {
@@ -246,32 +296,74 @@ button {
 }
 
 .runhead-line .place {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  margin: 0;
+  min-width: 0;
+  font-family: var(--deco);
+  font-size: max(12px, 0.72rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--nickel);
 }
 
+/* The clock in the elevator dial's light figures; "a.m." small and lowercase, as the period set it. */
 .runhead-line .time {
-  font-size: 1.6rem;
-  line-height: 1.1;
+  margin-left: auto;
+  font-family: var(--deco);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
   color: var(--ink);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums lining-nums;
   white-space: nowrap;
+}
+
+.time .ampm {
+  margin-left: 0.35em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+
+/* The dial: the night's actions as tall fluting from 12 to the amber 8, where the DA waits. */
+.dial {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+}
+
+.dial-end {
+  flex: none;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--nickel-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.dial-end--eight {
+  color: var(--amber);
+  padding: 0.18em 0.32em 0.1em;
 }
 
 .notches {
   display: flex;
-  gap: 3px;
-  margin-top: 0.45rem;
+  gap: 4px;
+  min-width: 0;
 }
 
 .notch {
-  flex: 1 1 0;
-  max-width: 1.4rem;
-  height: 7px;
-  border: 1px solid var(--rule);
-  border-radius: 1px;
+  flex: 0 1 0.42rem;
+  width: 0.42rem;
+  height: 15px;
+  border: 1px solid var(--line);
   background: transparent;
 }
 
@@ -286,18 +378,18 @@ button {
 }
 
 .notch--fresh {
-  animation: notch-fill 520ms ease-out;
-  transform-origin: left center;
+  animation: notch-fill 360ms var(--ease);
+  transform-origin: 50% 100%;
 }
 
 @keyframes notch-fill {
   from {
     background: var(--amber);
-    transform: scaleX(0.15);
+    transform: scaleY(0.15);
   }
   to {
     background: var(--ink-soft);
-    transform: scaleX(1);
+    transform: scaleY(1);
   }
 }
 
@@ -308,22 +400,56 @@ button {
 }
 
 .calls-left {
-  margin-top: 0.3rem;
-  font-size: 0.74rem;
-  color: var(--ink-faint);
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
   font-style: italic;
+}
+
+/* The verdict's head: eight o'clock, every notch spent, the 8 lit, the lamp at the DA's office. */
+.dial--eight .notch--struck {
+  background: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+.dial--eight .dial-end--eight {
+  color: var(--paper);
+  background: var(--amber);
 }
 
 /* ------------------------------------------ the turn: a chapter heading */
 
 /* docs/43: the turn, set like a book's chapter heading. */
 .leaf p.prose--chapter {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
   text-indent: 0;
   text-align: center;
-  font-variant: small-caps;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  margin: 1.1rem 0 1rem;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.68rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nickel);
+  margin: 1.4rem 0 1.1rem;
+}
+
+.leaf p.prose--chapter::before,
+.leaf p.prose--chapter::after {
+  content: '';
+  flex: 1 1 auto;
+  max-width: 2rem;
+  height: 1px;
+  background: var(--rule);
+}
+
+.leaf p.prose--chapter::before {
+  margin-left: auto;
+}
+
+.leaf p.prose--chapter::after {
+  margin-right: auto;
 }
 
 .leaf p.prose--chapter + p {
@@ -338,23 +464,23 @@ button {
  */
 .choices {
   flex: 0 0 auto;
-  margin-top: 0.9rem;
-  border-top: 1px solid var(--rule);
-  padding: 0.7rem 0.4rem 0.2rem 0;
+  padding: 0 0 0.2rem;
   max-width: var(--measure);
 }
 
 .choice-group {
-  margin: 0 0 0.7rem;
+  margin: 0 0 1.25rem;
 }
 
 .choice-heading {
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-family: var(--deco);
+  font-size: max(12px, 0.68rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 0 0 0.35rem;
+  color: var(--nickel);
+  margin: 0 0 0.55rem;
 }
 
 .choice-list {
@@ -370,19 +496,18 @@ button {
   min-height: 1.9rem;
   padding: 0.2rem 0.6rem;
   background: transparent;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
+  border: 1px solid var(--line);
   color: var(--ink);
   font-size: 0.82rem;
   line-height: 1.3;
   cursor: pointer;
   text-align: left;
+  transition: border-color 120ms linear, background-color 120ms linear;
 }
 
-.choice:hover:not(:disabled),
-.choice:focus-visible {
-  border-color: var(--accent);
-  outline: none;
+/* Hover turns the edge to ink; focus is the ink ring outside it; the star is the red * and its why. */
+.choice:hover:not(:disabled) {
+  border-color: var(--ink);
 }
 
 .choice:disabled {
@@ -392,10 +517,7 @@ button {
 .choice .mark {
   color: var(--accent);
   font-weight: 700;
-}
-
-.choice--lead {
-  border-color: var(--accent);
+  margin-right: 0.15em;
 }
 
 .choice .mins {
@@ -422,34 +544,14 @@ button {
   font-style: normal;
 }
 
-/* docs/40 §3: the person chosen, whose topics are open under the row. */
-.who-choice--on {
-  border-color: var(--ink);
-  background: var(--paper-edge);
-}
-
-.choice-group--people + .choice-group--ask {
-  margin-left: 0.8rem;
-  padding-left: 0.6rem;
-  border-left: 2px solid var(--rule);
-}
-
 .choice--done .label {
   color: var(--ink-soft);
 }
 
-.choice--done .check {
-  color: var(--ink-faint);
-}
-
-.choice--more {
-  border-style: dashed;
-}
-
 .pager {
   flex: 0 0 auto;
-  margin: 0.4rem 0 0;
-  font-size: 0.72rem;
+  margin: 1.2rem 0 0;
+  font-size: 0.8rem;
   color: var(--ink-faint);
   display: flex;
   flex-wrap: wrap;
@@ -470,8 +572,12 @@ button {
 
 .pager button:disabled {
   text-decoration: none;
-  opacity: 0.4;
+  opacity: 0.55;
   cursor: default;
+}
+
+.pager-at {
+  font-variant-numeric: tabular-nums;
 }
 
 .turned-note {
@@ -498,7 +604,20 @@ button {
     margin-left: auto;
   }
   .runhead-line .time {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+  }
+  /* book-look, item 4: the pager's three targets were 29, 44 and 52 by 19 px. */
+  .pager {
+    align-items: center;
+    gap: 0 0.4rem;
+  }
+  .pager button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 0.6rem;
+  }
+  .pager button:first-child {
+    margin-left: -0.6rem;
   }
 }
 
@@ -512,9 +631,9 @@ button {
   position: fixed;
   z-index: 20;
   max-width: min(20rem, calc(100vw - 16px));
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   padding: 0.55rem 0.75rem;
   font-size: 0.8rem;
   line-height: 1.4;
@@ -523,8 +642,13 @@ button {
 }
 
 .hover-card .hc-title {
-  font-size: 0.92rem;
-  margin-bottom: 0.15rem;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.68rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nickel);
+  margin-bottom: 0.25rem;
 }
 
 .hover-card .hc-line {
@@ -534,11 +658,13 @@ button {
 /* -------------------------------------------------------------- notebook */
 
 .page--notebook h2 {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-family: var(--deco);
+  font-size: max(12px, 0.66rem);
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  font-weight: 400;
+  color: var(--nickel);
+  font-weight: 600;
   margin: 1.6rem 0 0.5rem;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.3rem;
@@ -583,9 +709,28 @@ button {
 
 /* ---------------------------------------------------- the notebook's tab */
 
+/*
+ * book-look, item 4: on a phone the notebook opens from the foot of the page, where a thumb is, not
+ * the top right corner; and it carries the clock, since it hides the page that shows it.
+ */
 .nb-back,
-.nb-link {
+.nb-foot,
+.nb-clock {
   display: none;
+}
+
+.runhead--notebook {
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.page--notebook .runhead .nb-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 @media (max-width: 899px) {
@@ -604,18 +749,94 @@ button {
     margin-top: 0.8rem;
     min-height: 44px;
   }
-  .nb-link {
-    display: inline;
-    background: none;
-    border: 0;
-    padding: 0.4rem 0 0.4rem 0.8rem;
+  .nb-foot {
+    display: inline-flex;
+  }
+  .nb-clock {
+    display: block;
+    flex: 1 1 100%;
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+}
+
+/*
+ * book-look, item 4: the foot of the page, held at the bottom of the window as the page scrolls: a
+ * quiet cue while the choices are still below, and on a phone the notebook. On a wide screen, with
+ * nothing below and the notebook beside it, it takes no room.
+ */
+.page-foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: var(--measure);
+  margin-top: auto;
+  pointer-events: none;
+}
+
+.page-foot > * {
+  pointer-events: auto;
+}
+
+.cue-below,
+.nb-foot {
+  align-items: center;
+  gap: 0.6ch;
+  min-height: 44px;
+  padding: 0.1rem 0.9rem 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.64rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cue-below {
+  display: inline-flex;
+  margin-bottom: 0.6rem;
+}
+
+.cue-below[hidden] {
+  display: none;
+}
+
+.cue-below:hover,
+.nb-foot:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.cue-arrow {
+  letter-spacing: 0;
+  color: var(--amber);
+}
+
+@media (max-width: 899px) {
+  .page-foot {
+    margin: auto calc(-1 * var(--gutter)) 0;
+    padding: 0.5rem var(--gutter) max(0.5rem, env(safe-area-inset-bottom));
+    max-width: none;
+    background: linear-gradient(to bottom, transparent, var(--paper) 0.6rem);
+  }
+  .cue-below {
+    margin-bottom: 0;
+  }
+  .nb-foot {
     margin-left: auto;
-    font: inherit;
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    cursor: pointer;
+  }
+  .page--prose {
+    padding-bottom: 0;
   }
 }
 
@@ -646,11 +867,21 @@ button {
 }
 
 .title-page h1 {
-  font-size: clamp(2.4rem, 12vw, 4rem);
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  margin: 0 0 0.4rem;
-  text-indent: 0.32em;
+  font-family: var(--deco);
+  font-size: clamp(2.2rem, 11vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.4em;
+  margin: 0 0 0.6rem;
+  text-indent: 0.4em;
+}
+
+.title-page .crest {
+  display: block;
+  width: 64px;
+  height: 12px;
+  margin: 0 auto 1.4rem;
+  color: var(--nickel-dim);
 }
 
 .title-page .sub {
@@ -680,9 +911,11 @@ button {
   color: var(--paper);
   padding: 0.8rem 1.4rem;
   cursor: pointer;
-  letter-spacing: 0.14em;
+  font-family: var(--deco);
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: 0.86rem;
+  font-size: max(12px, 0.74rem);
 }
 
 .big-button:hover {
@@ -693,7 +926,7 @@ button {
 .big-button--second {
   background: none;
   color: var(--ink);
-  border-color: var(--rule);
+  border-color: var(--line);
 }
 
 .big-button--second:hover {
@@ -707,16 +940,17 @@ button {
 .link-button:focus-visible,
 .pick:focus-visible,
 .picker-form input:focus-visible {
-  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 .action-note {
-  margin: 0.45rem 0 0;
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
+  margin: 0.55rem 0 0;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--nickel-dim);
 }
 
 .quiet-button {
@@ -770,10 +1004,12 @@ button {
 .pick-label {
   display: block;
   margin: 0 0 0.4rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.64rem);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--nickel);
   line-height: 1.5;
 }
 
@@ -791,7 +1027,7 @@ button {
   min-width: 0;
   padding: 0.35rem 0.4rem;
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   color: var(--ink);
   cursor: pointer;
   font-size: 0.9rem;
@@ -829,16 +1065,19 @@ button {
   min-height: 44px;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   color: var(--ink);
   font: inherit;
   font-size: 1.15rem;
   padding: 0.25rem 0;
-  outline: none;
 }
 
 .picker-form input:focus {
   border-bottom-color: var(--accent);
+}
+
+.picker-form input:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .picker-form .big-button {
@@ -870,7 +1109,7 @@ button {
   max-height: 85dvh;
   margin: auto auto 0;
   padding: 0;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   border-bottom: 0;
   background: var(--paper);
   color: var(--ink);
@@ -933,20 +1172,23 @@ button {
 
 .open-case,
 .plain-button {
+  min-height: 44px;
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   color: var(--ink);
-  padding: 0.6rem 1.6rem;
+  padding: 0.55rem 1.3rem 0.45rem;
   cursor: pointer;
-  letter-spacing: 0.1em;
+  font-family: var(--deco);
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-size: 0.74rem;
+  font-size: max(12px, 0.66rem);
+  transition: border-color 120ms linear, background-color 120ms linear;
 }
 
 .open-case:hover,
 .plain-button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--ink);
 }
 
 .tier-rule {
@@ -984,64 +1226,101 @@ button {
   max-width: var(--measure);
 }
 
-.report h2 {
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 0 0 0.3rem;
-}
-
 .report .field {
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.3rem;
 }
 
 .report label {
   display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.66rem);
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 0.2rem;
+  color: var(--nickel);
+  margin-bottom: 0.25rem;
 }
 
 .report select {
   width: 100%;
   max-width: 26rem;
+  min-height: 44px;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   color: var(--ink);
   font: inherit;
   padding: 0.3rem 0;
-  outline: none;
 }
 
 .report select:focus {
   border-bottom-color: var(--accent);
 }
 
+.report select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.report select option {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/*
+ * book-look, item 5: the ledger, the DA's carbon of your report. The question in the frame's caps,
+ * your answer typed in carbon, and a word in a ruled box: right, wrong or half. A wrong answer is
+ * struck through in the DA's red pencil and corrected beneath in the book's italic.
+ */
 .verdict {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 0.8rem 0;
-  margin: 0 0 1.2rem;
-  font-size: 0.9rem;
+  margin: 2.6rem 0 1.1rem;
+  border-top: 3px double var(--rule);
+  border-bottom: 3px double var(--rule);
 }
 
 .verdict-row {
   display: grid;
-  grid-template-columns: minmax(6rem, auto) 1fr 1.2rem;
-  gap: 0.6rem 1rem;
-  padding: 0.12rem 0;
+  grid-template-columns: 8.6rem minmax(0, 1fr) auto;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.verdict-row:last-child {
+  border-bottom: 0;
+}
+
+.verdict-row .label {
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  line-height: 1.35;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nickel);
 }
 
 .verdict-row .given {
-  text-align: right;
+  font-family: var(--typed);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--carbon);
 }
 
-.verdict-row .mark {
-  text-align: right;
+.verdict-row .correction {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.verdict-row.wrong .answer {
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
 }
 
 /* One weight and an italic is the whole type palette, so the sentence that
@@ -1053,17 +1332,34 @@ button {
 }
 
 .verdict-row .mark {
-  color: var(--ink-faint);
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.58rem);
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.45rem 0.15rem;
+  border: 1px solid currentColor;
+  color: var(--ink-soft);
+  white-space: nowrap;
 }
 
-.verdict-row.wrong .mark,
-.verdict-row.wrong .given {
+.verdict-row.wrong .mark {
   color: var(--accent);
 }
 
+@media (max-width: 600px) {
+  .verdict-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .verdict-row .label {
+    grid-column: 1 / -1;
+  }
+}
+
 .score {
-  font-size: 1.3rem;
-  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.4rem;
 }
 
 .after {
@@ -1109,13 +1405,25 @@ button {
   margin-top: 1.4rem;
 }
 
-.ending-story h3 {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
+.ending-story h3,
+.ending-story h4 {
+  font-family: var(--deco);
+  font-size: max(12px, 0.68rem);
+  line-height: 1.3;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-weight: 400;
-  color: var(--ink-faint);
+  font-weight: 600;
+  color: var(--nickel);
   margin: 0 0 1rem;
+}
+
+.ending-story h4 {
+  margin-top: 1.8rem;
+}
+
+.leaf .ending-story p.ending-fastest {
+  text-indent: 0;
+  color: var(--ink-soft);
 }
 
 .ending-story p {
@@ -1128,13 +1436,16 @@ button {
 }
 
 .ending-curtain pre {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.72rem;
+  font-family: var(--typed);
+  font-size: 0.74rem;
   line-height: 1.5;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   max-width: 100%;
-  color: var(--ink-soft);
+  color: var(--carbon);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: 1rem;
   margin: 0;
 }
 
@@ -1158,4 +1469,28 @@ button {
 .teach-buttons {
   margin-top: 1.5rem;
   max-width: 16rem;
+}
+
+/* book-look, item 2: the skip past a page's names to its choices, shown only when a keyboard reaches it. */
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: 0.4rem;
+  z-index: 6;
+  min-height: 44px;
+  padding: 0.1rem 1rem 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.64rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
 }
