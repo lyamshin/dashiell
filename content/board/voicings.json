@@ -1284,7 +1284,7 @@
   {"id": "reaction/second-once-2", "shape": "REACTION", "requires": ["second", "once"], "template": "{Person}’s second story was {place}."},
   {"id": "reaction/second-once-3", "shape": "REACTION", "requires": ["second", "once"], "template": "When I pushed, {person} changed {person:their} answer: {place}."},
   {"id": "reaction/second-clash", "shape": "REACTION", "requires": ["second", "once", "clash"], "template": "Pressed, {person} changed the answer to {place}, and {watcher} hadn’t seen {person:them} there either."},
-  {"id": "reaction/second-clash-2", "shape": "REACTION", "requires": ["second", "once", "clash"], "template": "{Person}’s second story was {place}, and {watcher} hadn’t seen {person:them} there either."},
+  {"id": "reaction/second-clash-2", "shape": "REACTION", "requires": ["second", "once", "clash"], "template": "{Person} came back with {place} the second time, and {watcher} hadn’t seen {person:them} there either."},
   {"id": "reaction/second-clash-3", "shape": "REACTION", "requires": ["second", "once", "clash"], "template": "When I pushed, {person} changed {person:their} answer to {place}, and that didn’t agree with what {watcher} saw either."},
   {"id": "reaction/second-again", "shape": "REACTION", "requires": ["second", "again"], "template": "Pressed, {person} changed the answer to {place}, and when {place} didn’t check out either, {person:they} wouldn’t say any more."},
   {"id": "reaction/second-again-2", "shape": "REACTION", "requires": ["second", "again"], "template": "{Person} came back with {place}, and when {place} didn’t check out either, {person:they} stopped talking."},
