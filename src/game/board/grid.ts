@@ -238,7 +238,9 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
     crimeHour: window.length === 1 ? (window[0] as Hour) : null,
     window,
     codes,
-    meansLabel: meansKnew(c),
+    // (Case 2312, the owner's ruling: never the weapon's name, "carving knife?" from midnight answered
+    // the report's How.)
+    meansLabel: isMurder(c) ? 'could have got the weapon' : meansKnew(c),
   };
 }
 
@@ -291,8 +293,8 @@ export function shownPlaces(g: BoardGrid, arrows = true): Set<PlaceId> {
 }
 
 /**
- * docs/64: the last column, asked as a question with the night's own means: "Could they get the
- * laudanum?", "Could they get the spare key?", "Did they know where the key was?".
+ * docs/64: the last column, asked as a question: "Could they get the weapon?", and a small case's
+ * own means, "Could they get the spare key?", "Did they know where the key was?".
  */
 export function meansAsked(label: string): string {
   const got = /^could have got (.+)$/.exec(label);

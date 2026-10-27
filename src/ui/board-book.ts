@@ -808,7 +808,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const maybe = g.crimeHour === null && g.window.includes(h);
       head.append(el('th', { scope: 'col', class: `bgrid-hour${crime ? ' bgrid-hour--crime' : ''}${maybe ? ' bgrid-hour--maybe' : ''}`, title: crime ? 'when it happened' : maybe ? 'it may have happened then' : '', text: `${h}` }));
     }
-    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansAsked(meansWords(g.meansLabel)), text: meansHead(g.meansLabel) }));
+    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansAsked(meansWords(g.meansLabel)) }, el('span', { text: meansHead(g.meansLabel) })));
     table.append(el('thead', {}, head));
     const tbody = el('tbody');
     for (const r of g.rows) {
@@ -882,7 +882,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return label.replace(/\bknew the way in\b/, 'knew how to get in');
   }
 
-  /** docs/64: the column's head, the night's means: "laudanum?", "spare key?", "key?" (the key below asks it whole). */
+  /** docs/64: the column's head: "weapon?", a small case's "spare key?", "key?" (the key below asks it whole). */
   function meansHead(label: string): string {
     const what = /^could have got (?:the |a |an )?(.+)$/.exec(label)?.[1] ?? /\b(key|window|lock|door)\b/.exec(label)?.[1] ?? 'how';
     return `${what}?`;

@@ -45,5 +45,6 @@ export const BOARD_RULES: readonly string[] = [
   'The Hint button stars a choice worth taking now and says why. A perfect report earns a star; a perfect one with no hints, a gold star.',
   'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
   // (Round 7, B9: asked, never told: "When two people lied, it also asks who else lied" said there was one.)
-  'Close the case when you’re ready: who, when, how, why, and what proves it. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them.',
+  // (Case 2312, the owner's ruling: the report asks "When did it happen?", so a poisoning's when is said here.)
+  'Close the case when you’re ready: who, when, how, why, and what proves it. For a poisoning, when is the hour the poison was given, not the hour of death. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them.',
 ];

@@ -2511,7 +2511,10 @@ export function writeMotive(w: Writer, p: PersonId): void {
   // The thought: the reason against what the office said, and against the hours that matter.
   const aside = c.givens.lines?.find((g) => g.kind === 'aside');
   const inAside = !!aside && Object.entries(aside.vars).some(([k, v]) => /^p\d+$/.test(k) && v === person.short);
-  const pointerSaid = c.givens.pointer === p && /motive|gossip/.test(c.setup?.pointer ?? '');
+  // (Case 2312: every pointer line but "behaviour" says the reason (content.ts's MURDER_POINTERS and
+  // SMALL_POINTERS), a letter in the desk and a threat in the street as much as gossip. `setup.pointer`
+  // is the motive's own kind for a plain "points at", so it can't say which line the office used.)
+  const pointerSaid = c.givens.pointer === p && !!c.givens.lines?.some((g) => g.kind === 'pointer' && g.id !== 'behaviour');
   // docs/59 item 3: not "that was their reason" (they've just said it), but whose word it backs: the office's, or nobody's.
   const sentences: (Said | Gloss)[] = [];
   const refs: string[] = [];

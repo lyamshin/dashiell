@@ -309,8 +309,8 @@ export function hoursThatMattered(d: BoardDeal): Hour[] {
 /**
  * What "What breaks their story?" offers for whoever is named: the lines held
  * that name them or fall at the hours that mattered (the office's window),
- * never their own, in the order they came. With nobody named, only the lines
- * at those hours.
+ * never their own but a story they changed when it was put to them, in the
+ * order they came. With nobody named, only the lines at those hours.
  */
 export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, who: PersonId | null): LineOption[] {
   const c = d.kase;
@@ -323,8 +323,12 @@ export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   // group's heading says exactly this (`lineGroupHeads`), so every line under it fits it.
   const theirs = new Set<string>(own ? Object.values(own.claims).flatMap((x) => (x?.place ? [x.place] : [])) : []);
   const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))));
+  // (Case 2312, the owner's ruling: a story changed when it was put to them, "now says…" or
+  // "admits…", says the first was false, so it's offered under their name. Left off, the line picked
+  // before the name went when the name was picked, and the report filed "A hunch".)
+  const changed = (l: Line): boolean => l.kind === 'second' || l.kind === 'admit';
   return linesHeld(c, run)
-    .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
+    .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who || changed(l)))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
     .map((l) => ({ value: l.id, label: lineShown(c, run, l), ...(touches(l) ? { touches: true } : {}) }));
 }
@@ -436,7 +440,8 @@ function remarkOf(d: BoardDeal, lineId: string): { gives?: { whereNow?: boolean 
 /**
  * The lines held that break the culprit's story: at the hour of one of their
  * lies, a line the break rests on (the collision the grid shows), a line that
- * lands when it's put to them, or the list that breaks a second story.
+ * lands when it's put to them, or the list that breaks a second story; and,
+ * last, the second story itself.
  */
 export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): Line[] {
   const c = d.kase;
@@ -455,6 +460,11 @@ export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
     if (k?.secondLie?.place && run.asked.includes(`confront:${p}@${h}`)) {
       for (const l of lines) if (l.kind === 'list' && l.hour === h && l.place === k.secondLie.place && !l.about.includes(p)) add(l);
     }
+  }
+  // (Case 2312, the owner's ruling: a story changed when it was put to them proves the first was a
+  // lie. Last, so the line the night turns on, somebody else's word, stays the first.)
+  for (const lie of c.lies.filter((l) => l.person === p)) {
+    for (const l of lines) if (l.kind === 'second' && l.speaker === p && l.hour === lie.hour) add(l);
   }
   return out;
 }
