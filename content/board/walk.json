@@ -41,7 +41,7 @@
   {"id": "bwk-075", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I set off {way}. It was {far}."},
   {"id": "bwk-076", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I had {far} ahead of me."},
   {"id": "bwk-077", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I went on foot. It was {far}."},
-  {"id": "bwk-078", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I covered it, {far}."},
+  {"id": "bwk-078", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I set out on foot. It was {far}."},
   {"id": "bwk-081", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}."},
   {"id": "bwk-082", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and I took it at a good clip."},
   {"id": "bwk-083", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I walked it with my collar up. It was {far}."},
