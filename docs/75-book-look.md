@@ -117,3 +117,18 @@ Measured once, at the end (`scratchpad/look/gates.sh`, outputs in `scratchpad/lo
 - **The confront picker's ready pairs** keep the old ruled-row form inside the new sheet; the direction gave them no form of their own.
 - **The critique's minor list** isn't in this build: the prose seams (Petrosino's place; Feldman the ticket seller vs usher), the desktop notebook repeating page 1, the profile's gold star beside "Tonight: Raw", "How it plays" vs "How this works".
 - **PRODUCT.md and DESIGN.md** aren't written (the brief); `impeccable document` after this merges would record the Deco frame as the system the next builds inherit (the direction's own recommendation).
+
+## The colour pass: the lobby lacquer (2026-10-28)
+
+The designer worried the book lacked colour. impeccable's `colorize` audit:
+- **The palette was nearly all warm grey on near-black.** Colour appeared only in three places: the stamp red, amber (the clock) and carbon violet (typed answers).
+- **The red was spent on decoration.** Every name in the prose was red and underlined, a dozen a page, so the colour meant to say "a lie, the law" said nothing.
+- **The actions carried no colour,** so nothing marked where you act.
+
+Three directions were shown on the Kit Kat page: verdigris, sodium lamp and lobby lacquer. The designer chose **lobby lacquer**:
+- **The panel:** the choices sit on a deep green lacquered panel, like an elevator lobby's (`--lacquer` #0f2420, `--lacquer-raised` #12291f, edges `--lacquer-line` #4f9282). It runs edge to edge of the page's gutter, and the reading page above it stays the night.
+- **Jade** (#8fd1bd) colours the panel's heads, the directory's room numbers, the hint star, the walk route's ends and the running head's place.
+- **The names in the prose** are the page's ink with a nickel underline, never red.
+- **Red stays the law's:** a lie (✗), Confront, the stamp, a wrong answer.
+
+Every text token on the lacquer reads at 4.5:1 and every control edge at 3:1. The panel lifts `--ink-faint` to #9a9387 (5.1 / 5.1) and `test/book-look.test.ts` holds it. The evidence tag's drawn frame takes the lacquer's own colours. Nothing scrolls sideways at 375 px.

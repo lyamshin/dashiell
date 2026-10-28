@@ -238,6 +238,30 @@ describe('book-look, items 2 to 4: the chrome, held in the source', () => {
     expect(ratio(tok('ink-faint'), tok('paper'))).toBeLessThan(ratio(tok('ink-soft'), tok('paper')));
   });
 
+  it('the lobby lacquer: the choices panel reads at 4.5:1 for text and 3:1 for edges, and the names are ink, not the law’s red', () => {
+    const root = /:root \{([\s\S]*?)\n\}/.exec(src('src/ui/book.css'))?.[1] ?? '';
+    const tok = (name: string) => new RegExp(`--${name}: (#[0-9a-f]{6});`).exec(root)?.[1] as string;
+    const lum = (hex: string) => {
+      const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)) as [number, number, number];
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const ratio = (a: string, b: string) => {
+      const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p) as [number, number];
+      return (x + 0.05) / (y + 0.05);
+    };
+    const panel = /nav\.choices--board \{([\s\S]*?)\n\}/.exec(src('src/ui/board.css'))?.[1] ?? '';
+    const faint = /--ink-faint: (#[0-9a-f]{6});/.exec(panel)?.[1] as string;
+    expect(panel).toMatch(/--paper: var\(--lacquer\);/);
+    for (const bg of ['lacquer', 'lacquer-raised']) {
+      for (const t of ['ink', 'ink-soft', 'nickel', 'nickel-dim', 'jade', 'accent']) expect(ratio(tok(t), tok(bg)), `${t} on ${bg}`).toBeGreaterThanOrEqual(4.5);
+      expect(ratio(faint, tok(bg)), `the panel's ink-faint on ${bg}`).toBeGreaterThanOrEqual(4.5);
+      expect(ratio(tok('lacquer-line'), tok(bg)), `lacquer-line on ${bg}`).toBeGreaterThanOrEqual(3);
+    }
+    const noun = /\n\.noun \{([\s\S]*?)\n\}/.exec(src('src/ui/book.css'))?.[1] ?? '';
+    expect(noun).toMatch(/color: var\(--ink\);/);
+    expect(noun).not.toMatch(/--accent/);
+  });
+
   it('item 4: on a phone the grid is 12px at the least, a cell a thumb’s height, and the key’s sample neutral', () => {
     const phone = /@media \(max-width: 480px\) \{\s+\.bgrid \{[\s\S]*?\n\}/.exec(src('src/ui/board.css'))?.[0] ?? '';
     expect(phone).toMatch(/\.bgrid \{\s+font-size: 12px;/);
