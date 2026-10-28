@@ -12,6 +12,11 @@
  * nickel-dim 5.3 / 4.9, accent 6.1 / 5.7, amber 8.0 / 7.4, carbon 8.5 / 7.9;
  * a control's edge (--line) 3.7 / 3.5. The hairline (--rule, 1.7) only
  * separates, and never bounds a control on its own.
+ *
+ * The lobby lacquer (the colour pass): the choices, where you act, sit on a deep green lacquered
+ * panel, as an elevator lobby's; the reading page stays the night. On --lacquer (#0f2420) and
+ * --lacquer-raised (#12291f): ink 11.3 / 10.8, ink-soft 6.0 / 5.7, the panel's ink-faint 5.2 / 4.9,
+ * nickel 6.8 / 6.5, jade 9.3 / 8.8, accent 5.5 / 5.3; a control's edge (--lacquer-line) 4.5 / 4.2.
  */
 
 :root {
@@ -29,11 +34,20 @@
   /* The Deco metal: printed heads, frame strokes; and its dimmer ornament. */
   --nickel: #a3a8b1;
   --nickel-dim: #878c95;
-  /* Stamp red, the law's hand: the nouns, Confront, the stamp, a wrong answer. */
+  /* Stamp red, the law's hand: a lie (✗), Confront, the stamp, a wrong answer. Never decoration. */
   --accent: #df7b67;
   --accent-soft: rgba(223, 123, 103, 0.16);
   /* Time only: the next notch, the 8, a gold star. */
   --amber: #d9a441;
+  /* The lobby lacquer, where you act: its panel, its raised sheets, its edges and hairlines. */
+  --lacquer: #0f2420;
+  --lacquer-raised: #12291f;
+  --lacquer-edge: #0b1b18;
+  --lacquer-line: #4f9282;
+  --lacquer-rule: #244a40;
+  --lacquer-ring: #2c5a50;
+  /* Jade, the lacquer's own colour on the page: the panel's heads, the room numbers, the star, the place. */
+  --jade: #8fd1bd;
   /* Typed carbon: the verdict's copy of your answers, the curtain. */
   --carbon: #aeb0d6;
   /* The keyboard's ring: the ink, outside the edge, never the star's red or hover's border. */
@@ -235,14 +249,19 @@ input {
   text-indent: 0;
 }
 
-/* --------------------------------------------------------- the one colour */
+/* ------------------------------------------------ the names: ink, not red */
 
+/*
+ * The names in the prose: the page's ink, underlined, a card under them. (The colour pass: they were
+ * the stamp red, a dozen a page, and the red that should say "a lie" said nothing.)
+ */
 .noun {
   background: none;
   border: 0;
   padding: 0;
   margin: 0;
-  color: var(--accent);
+  color: var(--ink);
+  text-decoration-color: var(--nickel-dim);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
@@ -253,9 +272,10 @@ input {
 
 .noun:hover,
 .noun:focus-visible {
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  text-decoration-color: var(--ink);
   text-decoration-thickness: 2px;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .noun:focus-visible {
@@ -304,7 +324,7 @@ input {
   line-height: 1.3;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--nickel);
+  color: var(--jade);
 }
 
 /* The clock in the elevator dial's light figures; "a.m." small and lowercase, as the period set it. */

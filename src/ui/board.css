@@ -637,6 +637,49 @@
 }
 
 /*
+ * The lobby lacquer (the colour pass): the choices, where you act, on a deep green lacquered panel, as
+ * an elevator lobby's, edge to edge of the page's gutter; the reading page above it stays the night.
+ * Inside it the sheet, edge and hairline tokens are the lacquer's, so the directory, the tags, the
+ * transfers, the summons and the bar at the foot all sit on it; the heads, the room numbers and the
+ * star take its jade. Red stays the law's: Confront, and nothing else here.
+ */
+nav.choices--board {
+  --paper: var(--lacquer);
+  --paper-raised: var(--lacquer-raised);
+  --paper-edge: var(--lacquer-edge);
+  --line: var(--lacquer-line);
+  --rule: var(--lacquer-rule);
+  --ink-faint: #9a9387;
+  margin-inline: calc(-1 * min(1.2rem, var(--gutter)));
+  padding: 1.1rem min(1.2rem, var(--gutter)) 1.3rem;
+  background: var(--lacquer);
+  box-shadow: 0 0 0 1px var(--lacquer-ring);
+}
+
+nav.choices--board .choice-heading,
+nav.choices--board .who-choice .num,
+nav.choices--board .choice .mark {
+  color: var(--jade);
+}
+
+nav.choices--board .choice--walk .route .there {
+  fill: var(--jade);
+}
+
+nav.choices--board .choice--walk .route .here {
+  stroke: var(--jade);
+}
+
+/* The evidence tag's frame is drawn, so it takes the lacquer's sheet and edge in its own colours. */
+nav.choices--board .choice--search {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10.5 .5H31.5V31.5H10.5L.5 21.5V10.5Z' fill='%2312291f' stroke='%234f9282'/%3E%3C/svg%3E");
+}
+
+nav.choices--board .choice--search:hover:not(:disabled) {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10.5 .5H31.5V31.5H10.5L.5 21.5V10.5Z' fill='%2312291f' stroke='%23ded7c9'/%3E%3C/svg%3E");
+}
+
+/*
  * Talk to: the lobby directory. The names in the building's letters, a dotted leader running to the
  * count, and the count's number set like a room number (chosen from impeccable's live variants).
  */
