@@ -436,6 +436,77 @@ export function blankRule(d: BoardDeal, spent: boolean): string {
   return `${spent ? 'No actions left. ' : ''}Closing the case is final. Leave anything blank if you’re not sure.`;
 }
 
+/**
+ * book-look, item 1: the report taken out by choice can be put away again, free, while there are
+ * actions left (the engine's `back`). Once the clock has run out it stays out. The book's button and
+ * the CLI's `do back` say it in these words.
+ */
+export const BACK_TO_CASE = 'Back to the case';
+
+/** Whether the report on the desk can still be put away: taken out by choice, not by the clock. */
+export function canGoBack(d: BoardDeal, run: Pick<BoardRun, 'reportOpen' | 'filed' | 'used'>): boolean {
+  return run.reportOpen && !run.filed && run.used < budgetCalls(d);
+}
+
+/** book-look, item 1: a report with every answer "I don't know", said before it's closed. */
+export const BLANK_REPORT = 'Every answer is “I don’t know”. Closing the case now charges nobody.';
+
+/** Whether a report names nothing at all: every answer "I don't know" (a proof alone is still a hunch). */
+export function blankReport(r: BoardReport): boolean {
+  return [r.who, r.when, r.how, r.why, r.where, r.other].every((v) => v === null || v === undefined);
+}
+
+/**
+ * book-look, item 1: the charge, said back before the case is closed, the same in the book's
+ * confirm and the CLI's `close`: "You’re charging Minnie Hurwitz: at ten o’clock, with a revolver.",
+ * the reason, what proves they lied, whether anyone else lied, and what's left blank. Plain words
+ * (docs/53's addendum: chrome is plain modern English).
+ */
+export function chargeLines(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, r: BoardReport): string[] {
+  const c = d.kase;
+  if (blankReport(r)) return [BLANK_REPORT];
+  const fields = boardFields(d, run);
+  const labelOf = (k: FieldKey, v: string | null | undefined) => (v ? (fields.find((f) => f.key === k)?.options.find((o) => o.value === v)?.label ?? v) : null);
+  const lower = (s: string) => s.replace(/^[A-Z](?![A-Z.])/, (x) => x.toLowerCase());
+  const it = c.type === 'lost-pet' ? pronOf(c, c.crime.victim).he : 'it';
+  const out: string[] = [];
+  const parts: string[] = [];
+  if (r.when !== null && r.when !== undefined) parts.push(isMurder(c) ? `at ${oclock(r.when as Hour)}` : `${it} went at ${oclock(r.when as Hour)}`);
+  if (isMurder(c) && r.how) parts.push(`with ${r.how}`);
+  const where = labelOf('where', r.where);
+  if (!isMurder(c) && where) parts.push(`${it}’s ${lower(where)}${/^with /i.test(where) ? ' now' : ''}`);
+  const facts = parts.length === 0 ? '' : isMurder(c) ? parts.join(', ') : andList(parts);
+  const who = r.who ? (personOf(c, r.who)?.name ?? nameOf(c, r.who)) : null;
+  out.push(who ? `You’re charging ${who}${facts ? `: ${facts}` : ''}.` : `You’re not naming anybody${facts ? `, but you say ${facts}` : ''}.`);
+  if (r.why) {
+    // The reason as the verdict says it: a murder's "Petrosino testified against her brother", a small case's own line.
+    const said = isMurder(c) && personOf(c, r.why) ? titleClient(c, motiveSaid(c, r.why)) : (labelOf('why', r.why) ?? r.why);
+    const end = /[.”]$/.test(said) ? '' : '.';
+    out.push(r.why === r.who || !r.who ? `The reason: ${said}${end}` : `The reason you give is ${nameOf(c, r.why)}’s: ${said}${end}`);
+  }
+  if (r.who) {
+    const pr = pronOf(c, r.who);
+    out.push(`What proves ${pr.he} lied: ${r.breaks ? lineLabel(d, run, r.breaks, breakOptionsShown(d, run, r.who)) : 'a hunch.'}`);
+  }
+  if (!isMurder(c) && where) out.push(`What shows where ${it} is: ${r.whereBy ? lineLabel(d, run, r.whereBy, whereByOptions(d, run)) : 'a hunch.'}`);
+  if (asksOther(d) && r.other) {
+    if (r.other === NOBODY) out.push('Nobody else lied.');
+    else {
+      const pr = pronOf(c, r.other);
+      out.push(`${nameOf(c, r.other)} lied too. What clears ${pr.him}: ${r.cleared ? lineLabel(d, run, r.cleared, clearOptions(d, run, r.other)) : 'a hunch.'}`);
+    }
+  }
+  // What's left as "I don't know", by the form's own questions.
+  const left: string[] = [];
+  if (!r.who) left.push('who');
+  if (asksOther(d) && !r.other) left.push('whether anyone else lied');
+  if (r.when === null || r.when === undefined) left.push('when');
+  if (isMurder(c) ? !r.how : !r.where) left.push(isMurder(c) ? 'how' : `where ${it} is now`);
+  if (!r.why) left.push('why');
+  if (left.length) out.push(`You don’t know ${andList(left)}.`);
+  return out.map((l) => titleClient(c, l));
+}
+
 /** A small case's crack, held: the culprit said where it went when it was put to them, in the page's words. */
 function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'log'>>): LineOption | null {
   const c = d.kase;
@@ -722,16 +793,8 @@ function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight 
   if (end) out.push(end);
   const home = whereRight && (outcome === 'solved' || outcome === 'lucky' || outcome === 'thin') ? homecoming(d) : null;
   if (home) out.push(home);
-  const par = parCalls(d);
-  if (outcome === 'solved') {
-    // Round 5, U7: over par, it says which calls the short way didn't need, and why, so the call a
-    // page offered ("I could face Bellucci with it now") isn't docked without saying so.
-    const spare = run.used > par ? spareCalls(d, run) : [];
-    const why = spare.slice(0, 3).map((q) => spareSaid(d, run, q));
-    const rest = run.used - par - why.length;
-    const tail = why.length === 0 ? '' : ` ${why.join(' ')}${rest > 0 ? ' The rest was the long way round.' : ''}`;
-    out.push(run.used <= par ? `It took me ${run.used} actions. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} actions. A better detective would have done it in ${par}.${tail}`);
-  }
+  // (book-look, item 5: how many actions it took, and what the fastest solve skips, moved out of the
+  // verdict's close to "What really happened": `fastestSolveLines`.)
   // The office's prop, paid off, unless the report page already paid it off with this line.
   const fresh = (run.prop?.pay ?? []).filter((l) => !run.spent.includes(`pay:${l.slice(0, 40)}`));
   if (fresh.length) out.push(hand.rng.pick(fresh));
@@ -782,7 +845,33 @@ export function spareCalls(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'used'>):
   return out;
 }
 
-/** One spare action, said in the closing's voice: what it was, and why it wasn't needed (docs/64: no unit). */
+/**
+ * book-look, item 5: how many actions the night took against the fastest solve, said under "What
+ * really happened" (the book's panel, the CLI's `story`), no longer as the verdict's last word. Round 5,
+ * U7's rule holds: over the fastest solve, it says what that solve skips, so an action a page offered
+ * isn't docked without a word. Two more: a night as fast as it can be done isn't scolded ("a better
+ * detective"), and a confrontation that landed is never called needless: what it got is said with it.
+ */
+export function fastestSolveLines(d: BoardDeal, run: BoardRun, outcome: Outcome): string[] {
+  const par = parCalls(d);
+  const took = `It took me ${run.used} ${run.used === 1 ? 'action' : 'actions'}`;
+  if (outcome !== 'solved') return [`${took}. The fastest solve takes ${par}.`];
+  if (run.used <= par) return [`${took}, and the fastest solve takes ${par}. It can’t be done in fewer.`];
+  const spare = spareCalls(d, run).slice(0, 3);
+  // The questions and searches it skips in one sentence ("It doesn’t ask Quill where she was tonight, or
+  // search the floor."); a confrontation in its own, with what it got.
+  const asks = spare.filter((q) => !q.startsWith('confront:')).map((q) => spareSaid(d, run, q).replace(/^It doesn’t /, '').replace(/\.$/, ''));
+  const said = [...(asks.length ? [`It doesn’t ${asks.length > 1 ? `${asks.slice(0, -1).join(', ')}, or ${asks[asks.length - 1]}` : asks[0]}.`] : []), ...spare.filter((q) => q.startsWith('confront:')).map((q) => spareSaid(d, run, q))];
+  const rest = run.used - par - spare.length;
+  const tail = rest <= 0 ? [] : spare.length ? ['The rest was the long way round.'] : ['I went the long way round.'];
+  return [[`${took}; the fastest solve takes ${par}.`, ...said, ...tail].join(' ')];
+}
+
+/**
+ * One action the fastest solve skips, said plainly (docs/64: no unit; docs/53: no engine words). A
+ * question or a search: "It doesn’t ask Lanza where she was tonight." A confrontation that landed:
+ * that the fastest solve doesn't confront them, and what confronting them got.
+ */
 function spareSaid(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, q: string): string {
   const c = d.kase;
   const [kind, rest] = q.split(/:(.*)/s) as [string, string];
@@ -790,28 +879,26 @@ function spareSaid(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial
     const [p, h] = rest.split('@') as [string, string];
     const k = confrontationOf(c, p, Number(h));
     const pr = pronOf(c, p);
-    const lead = `I didn’t need to confront ${nameOf(c, p)}`;
-    if (k?.response === 'refuse') return `${lead}: ${pr.he} wouldn’t say, and I had enough to close the case without it.`;
+    const lead = `It doesn’t confront ${nameOf(c, p)}`;
     // A crack's where-it-went, already said by somebody who saw the handover. Round 6, P11: say what
-    // they saw, which is what showed it ("Alfano had already told me where the watch went": she saw a
-    // coat, not the watch).
+    // they saw, which is what showed it (she saw a coat, not the watch).
     const by = k?.response === 'crack' ? heldWhereBy(d, run).find((o) => !o.value.startsWith('crack:')) : undefined;
     const who = by ? /^remark:(?:list|account):(.+)#\d+$/.exec(by.value)?.[1] : undefined;
     if (who) {
       const holder = holderShort(d);
       const coat = /\bunder a coat\b/.test(by?.label ?? '');
       const hour = hourWord((c.crime.hour + 1) as Hour);
-      return coat && holder
-        ? `${lead}: the coat ${nameOf(c, who)} saw go straight to ${holder} at ${hour} told me where ${victimOf(c).short} went.`
-        : `${lead}: what ${nameOf(c, who)} saw at ${hour} told me where ${victimOf(c).short} went.`;
+      const saw = coat && holder ? `the coat ${nameOf(c, who)} saw go straight to ${holder} at ${hour}` : `what ${nameOf(c, who)} saw at ${hour}`;
+      return `${lead}: ${saw} shows where ${victimOf(c).short} went. Confronting ${pr.him} got ${pr.him} to say it.`;
     }
-    return `${lead}: I had enough to close the case without it.`;
+    if (k?.response === 'refuse') return `${lead}. Confronting ${pr.him} caught ${pr.him} in the lie, even if ${pr.he} wouldn’t say more.`;
+    return `${lead}. Confronting ${pr.him} caught ${pr.him} in the lie.`;
   }
-  if (kind === 'list') return `I didn’t need to ask ${nameOf(c, rest)} who was in tonight.`;
-  if (kind === 'account') return `I didn’t need to ask ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight.`;
-  if (kind === 'motive') return `I didn’t need to ask ${nameOf(c, rest)} about ${victimOf(c).short}.`;
+  if (kind === 'list') return `It doesn’t ask ${nameOf(c, rest)} who was in tonight.`;
+  if (kind === 'account') return `It doesn’t ask ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight.`;
+  if (kind === 'motive') return `It doesn’t ask ${nameOf(c, rest)} about ${victimOf(c).short}.`;
   const f = c.finds.find((x) => x.id === rest);
-  return `I didn’t need to search ${f ? f.what.replace(/^[A-Z]/, (x) => x.toLowerCase()) : 'there'}.`;
+  return `It doesn’t search ${f ? f.what.replace(/^[A-Z]/, (x) => x.toLowerCase()) : 'there'}.`;
 }
 
 /* ------------------------------------------------------------------ *

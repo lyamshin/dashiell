@@ -133,11 +133,15 @@ describe('docs/71: Raw 23, a hint on every page', () => {
 });
 
 describe('docs/71, item 7: the book’s grid key', () => {
-  it('its sample label is tonight’s (the scene’s), never "Odessa", and its places are the cells’ own', () => {
+  // (book-look, item 4: the sample is neutral, never the scene's own name either: "Petrosino’s✗ where
+  // they clash" read as a fact about tonight. The CLI's key says "X"; the book's says "Place".)
+  it('its sample label is neutral, never "Odessa" or the scene’s, and its places are the cells’ own', () => {
     const src = readFileSync(new URL('../src/ui/board-book.ts', import.meta.url), 'utf8');
     const key = src.slice(src.indexOf("const key = el('p', { class: 'bgrid-key' })"), src.indexOf('Tap a cell for what was said'));
     expect(key).not.toMatch(/text: '[^']*Odessa/);
-    expect(key).toContain('g.codes[c.crime.scene]');
+    expect(key).not.toContain('c.crime.scene');
+    expect(key).toContain('const lab = KEY_SAMPLE;');
+    expect(src).toContain("const KEY_SAMPLE = 'Place';");
     expect(src).toContain('placesKey(c, run as BoardRun, g.codes, shownPlaces(g, false))');
     expect(placeCodes(dealBoard(17, 2, 'murder').kase)).toMatchObject({ scene: 'Quill’s' });
   });

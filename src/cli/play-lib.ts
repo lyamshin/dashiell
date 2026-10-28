@@ -39,6 +39,7 @@ import { setTexture } from '../game/board/plan/texture.js';
 
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, pronOf, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
+  BACK_TO_CASE,
   BREAKS_LABEL,
   CLEARED_LABEL,
   HUNCH,
@@ -46,14 +47,19 @@ import {
   OTHER_LABEL,
   whereByLabel,
   asksOther,
+  BLANK_REPORT,
+  blankReport,
   blankRule,
   boardFields,
+  canGoBack,
+  chargeLines,
   clearOptions,
   hoursWords,
   breakOptionsShown,
   lineGroupHeads,
   lineNumbers,
   curtainOfBoard,
+  fastestSolveLines,
   reportFrom,
   scoreBoard,
   starWords,
@@ -63,7 +69,7 @@ import {
   type LineOption,
 } from '../game/board/report.js';
 import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
-import { ACTION_KEY, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, wrap } from '../game/board/text.js';
+import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, wrap } from '../game/board/text.js';
 import { hintsLine, hintsNote, hintsUsed, takeHint } from '../game/board/hints.js';
 import { starCommand } from '../game/board/stars.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
@@ -226,7 +232,14 @@ function pageChoicesText(night: Night): string {
   const out: string[] = ['WHAT NEXT'];
   let last = '';
   for (const it of items) {
-    const kind = it.group.kind;
+    // book-look, item 1: "Close the case" stands apart under its own heading, after the actions, and
+    // says what it does rather than "free" (it opens the report, which can be put away again).
+    const kind = it.choice.command === 'file' ? 'close' : it.group.kind;
+    if (kind === 'close') {
+      out.push('', `${CLOSE_HEADING}:`, itemLine(it.n, { ...it.choice, note: CLOSE_TAG }, ''), wrap(CLOSE_NOTE, WIDTH, '          '));
+      last = kind;
+      continue;
+    }
     if (kind !== last) {
       out.push('');
       out.push(kind === 'ask' ? `${TALK_HEADING}:` : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
@@ -358,11 +371,16 @@ function closeLines(night: Night, path: string): string[] {
   ];
 }
 
+/** book-look, item 1: the CLI's way back from the report, the book's "Back to the case". */
+const BACK_LINE = 'Not ready? `do back` puts the report away and goes back to the case. It costs nothing.';
+
 function reportText(night: Night, path: string, who: string | null = null): string {
   // Round 6, U5: `report <Name>` shows that person's list and how to use it, not the whole form again.
   if (who) return personReportText(night, path, who);
   // Round 5, U6: what a blank goes in as, once, in one sentence, the book's words.
   const out = ['CLOSE THE CASE', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
+  // book-look, item 1: a report taken out by choice goes back in the drawer, free.
+  if (canGoBack(night.d, night.run)) out.push(wrap(BACK_LINE), '');
   // docs/67: a hint here says what's still missing, or that the report can be filled from what you have.
   const left = hintsLine(night.run);
   if (left) out.push(wrap(left), '');
@@ -643,8 +661,15 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
   let night = load(io, path);
   if (raw === undefined) fail('do what? A choice’s number, or its words.');
   if (night.run.filed) fail('The case is closed; the night is over. `look` shows the verdict again.');
-  if (night.run.reportOpen) fail('The case is being closed: `report` shows the form, `close` closes it.');
   const v = fold(raw as string);
+  if (night.run.reportOpen) {
+    // book-look, item 1: back to the case, while there are actions left.
+    if (canGoBack(night.d, night.run) && (v === 'back' || v === fold(BACK_TO_CASE))) {
+      night = commit(io, path, night, [{ do: 'back' }], { person: null, picker: null, claim: null });
+      return lookText(night, path);
+    }
+    fail(canGoBack(night.d, night.run) ? 'The case is being closed: `report` shows the form, `close` closes it, and `do back` goes back to the case.' : 'The case is being closed: `report` shows the form, `close` closes it.');
+  }
   const s = night.save;
   // The picker.
   if (s.picker) {
@@ -765,6 +790,7 @@ function helpText(): string {
     '  hint (stars a good next step and says why; unlimited at Raw, three at Coddled, one at Poached, none after)',
     '  mark "<Name> <hour> at|not|clear [place]" (mark a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
+    '       (choosing "Close the case" opens the report; `do back` puts it away again, free, while you have actions left)',
     '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
     '       (a lost thing: where=…; evidence=… instead of how=…; proof=hunch for a hunch;',
     '        other and cleared from Poached up: whether anyone else lied (other=nobody if not), and what clears them:',
@@ -840,8 +866,13 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
       case 'file': {
         let night = load(io, path);
         if (night.run.filed) fail('The case is closed already.');
-        const report = parseReport(night, arg ?? '');
+        // book-look, item 1: a blank report says so before it's closed; `close "blank"` closes it anyway.
+        const blank = fold(arg ?? '') === 'blank';
+        const report = blank ? reportFrom(night.d, {}) : parseReport(night, arg ?? '');
+        if (!blank && blankReport(report)) fail(`${BLANK_REPORT} To close it anyway: \`close "blank"\`.`);
         if (!night.run.reportOpen) night = commit(io, path, night, [{ do: 'file' }]);
+        // (The charge said back, as the book's confirm says it, before the verdict.)
+        const charge = chargeLines(night.d, night.run, report).map((l) => wrap(l)).join('\n');
         night = commit(io, path, night, [{ file: report }]);
         // docs/55 6: the profile remembers what this night dealt.
         if (night.save.profile) {
@@ -855,13 +886,16 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
           const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent), hints: v.hints }).profile;
           io.write(night.save.profile, JSON.stringify(next));
         }
-        return { out: verdictText(night), code: 0 };
+        return { out: `${charge}\n\n${DOUBLE}\n\n${verdictText(night)}`, code: 0 };
       }
       case 'story':
       case 'curtain': {
         const night = load(io, path);
         if (!night.run.filed) fail('Not until the case is closed.');
-        return { out: command === 'story' ? storyOfBoard(night.d).map((p) => wrap(p)).join('\n\n') : curtainOfBoard(night.d, night.run, night.run.filed), code: 0 };
+        if (command === 'curtain') return { out: curtainOfBoard(night.d, night.run, night.run.filed), code: 0 };
+        // (book-look, item 5: and after the story, the night's actions against the fastest solve, as the book says it.)
+        const v = scoreBoard(night.d, night.run, night.run.filed as BoardReport);
+        return { out: [...storyOfBoard(night.d).map((p) => wrap(p)), 'THE FASTEST SOLVE', ...fastestSolveLines(night.d, night.run, v.outcome).map((p) => wrap(p))].join('\n\n'), code: 0 };
       }
       case 'help':
         return { out: helpText(), code: 0 };

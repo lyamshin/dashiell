@@ -10,7 +10,11 @@
  * - `put <person> <hour> <line> [again]`: a confrontation, a call, landed or not;
  * - `recap`: go over what I have, free;
  * - `hint`: docs/67, star a good next step (or say the report is ready), free, on a tier that has hints;
- * - `file`: take out the report form, free.
+ * - `file`: take out the report form, free;
+ * - `back`: book-look, item 1: put the report away and go back to the case, free, while there are
+ *   actions left. The report page comes out of the night as if it had never been written, so the
+ *   log, its numbering and the cards dealt are what they were before `file`. Once the clock has run
+ *   out the report stays out: it's final.
  *
  * The clock (`clock.ts`): the night's calls spread across midnight to eight.
  */
@@ -104,12 +108,31 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   }
 
   if (verb === 'file') {
+    // (book-look, item 1: a report taken out by choice is out once; the clock's own still writes as before.)
+    if (run.reportOpen && !isOver(run.used, budgetCalls(d))) return fail('The report is out already.');
     next.reportOpen = true;
     const w = writer(d, run, next, n);
     writeReport(w);
     return { run: finish(w, next, { job: 'nothing', cost: 0 }), page: next.log[n] as Page };
   }
-  if (run.reportOpen) return fail('The case is being closed: close it.');
+
+  // book-look, item 1: back to the case. The report page (and any the clock didn't force) comes off
+  // the log, and the cards it dealt go back, so the night reads as it did before `file`.
+  if (verb === 'back') {
+    if (!run.reportOpen) return fail('The report isn’t out.');
+    if (isOver(run.used, budgetCalls(d))) return fail('No actions left: the case has to be closed now.');
+    const last = run.log[n - 1];
+    if (n < 2 || last?.board?.job !== 'nothing') return fail('The report isn’t out.');
+    const back: BoardRun = {
+      ...next,
+      reportOpen: false,
+      log: run.log.slice(0, n - 1),
+      spent: run.spent.slice(0, run.spent.length - last.cardsUsed.length),
+    };
+    if (run.turn === n - 1) delete back.turn;
+    return { run: back, page: back.log[n - 2] as Page };
+  }
+  if (run.reportOpen) return fail(isOver(run.used, budgetCalls(d)) ? 'The case is being closed: close it.' : 'The case is being closed: close it, or go back to the case.');
 
   if (verb === 'recap') {
     if (run.at === OFFICE) return fail('Not in the office.');

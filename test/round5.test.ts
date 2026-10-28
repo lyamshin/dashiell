@@ -10,7 +10,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { accountOf, bearsOn, lineShown, linesHeld } from '../src/game/board/knowledge.js';
 import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun, type Hour } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { blankRule, boardFields, breakOptionsShown, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
+import { blankRule, boardFields, breakOptionsShown, fastestSolveLines, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
 import { TALK_HEADING, notebookText, questionsText } from '../src/game/board/text.js';
 import { hintsNote } from '../src/game/board/hints.js';
 import { FACE_MARK } from '../src/game/board/grid.js';
@@ -186,23 +186,31 @@ describe('round 5, U7: the verdict says which call was spare, and the score does
     return { d, run: r, v: scoreBoard(d, r, truthReport(d, r)) };
   };
 
-  it('the testers’ one spare call each was a put, and the closing says so', () => {
+  // (book-look, item 5: said under "What really happened" now, `fastestSolveLines`, never in the
+  // verdict's close; and a confrontation that landed is never called needless: what it got is said.)
+  it('the testers’ one spare call each was a put, and the fastest solve says so', () => {
     const raw = filedAs(RAW11);
     expect(raw.v.outcome).toBe('solved');
     // (Round 6, P11: what showed it, the coat, not "Alfano had already told me".)
-    expect(raw.v.closing.join(' ')).toContain('It took me 8 actions. A better detective would have done it in 7. I didn’t need to confront Bellucci: the coat Alfano saw go straight to Pardo at eleven told me where the watch went.');
-    for (const [n, who, he] of [[POACHED5, 'Reinhardt', 'she'], [MEDIUM14, 'Thorndike', 'he'], [HB8, 'Grasso', 'she']] as const) {
+    expect(fastestSolveLines(raw.d, raw.run, raw.v.outcome).join(' ')).toBe('It took me 8 actions; the fastest solve takes 7. It doesn’t confront Bellucci: the coat Alfano saw go straight to Pardo at eleven shows where the watch went. Confronting him got him to say it.');
+    expect(raw.v.closing.join(' ')).not.toMatch(/It took me|better detective|didn’t need/);
+    for (const [n, who, him, he] of [[POACHED5, 'Reinhardt', 'her', 'she'], [MEDIUM14, 'Thorndike', 'him', 'he'], [HB8, 'Grasso', 'her', 'she']] as const) {
       const { d, run, v } = filedAs(n);
       expect(spareCalls(d, run)).toHaveLength(1);
-      expect(v.closing.join(' ')).toContain(`I didn’t need to confront ${who}: ${he} wouldn’t say, and I had enough to close the case without it.`);
+      expect(fastestSolveLines(d, run, v.outcome).join(' ')).toContain(`It doesn’t confront ${who}. Confronting ${him} caught ${him} in the lie, even if ${he} wouldn’t say more.`);
+      expect(v.closing.join(' ')).not.toMatch(/It took me|didn’t need/);
       expect(v.points).toBe(v.asked);
     }
   });
 
-  it('at par there is nothing spare, and never more than the calls over par', () => {
+  it('at par there is nothing spare, and never more than the calls over par; a night at par isn’t scolded', () => {
     for (const { d, run } of NIGHTS) {
       expect(spareCalls(d, run), d.kase.id).toEqual([]);
-      expect(scoreBoard(d, run, truthReport(d, run)).closing.join(' ')).not.toContain('I didn’t need');
+      const v = scoreBoard(d, run, truthReport(d, run));
+      expect(v.closing.join(' ')).not.toContain('I didn’t need');
+      const fast = fastestSolveLines(d, run, v.outcome).join(' ');
+      if (v.outcome === 'solved') expect(fast, d.kase.id).toMatch(/^It took me \d+ actions?, and the fastest solve takes \d+\. It can’t be done in fewer\.$/);
+      expect(fast).not.toMatch(/better detective|didn’t need|needless/);
     }
   });
 });
