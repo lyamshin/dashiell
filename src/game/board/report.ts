@@ -51,6 +51,7 @@ import {
   type BoardRun,
   type Hour,
   type PersonId,
+  type PlaceId,
 } from './model.js';
 import { withCaps } from './pages.js';
 import { homeNamed, titleClient } from './home.js';
@@ -1036,11 +1037,6 @@ function breakerOf(d: BoardDeal): string {
  * Behind the curtain: the true board, the path and the lies.
  * ------------------------------------------------------------------ */
 
-/**
- * The curtain. Given the night and what was filed, it also sets the true
- * breaking line beside the player's (docs/46 §3), and for a lost thing the
- * line that put it where it is.
- */
 /** docs/53, addendum: a step's reason as a person says it: "Shapiro saw Tramonti at …", "(Mrs. Krantz said so)", "confront Grasso" (docs/64). */
 function pathWhy(why: string, client: string): string {
   return plainWhy(why, client)
@@ -1058,29 +1054,155 @@ function pathLabel(label: string): string {
  * said he was home at ten", "Alfano said she was at the chop house at ten", never "said the chop house".
  */
 function saidWas(c: BoardDeal['kase'], p: PersonId, place: string, h: Hour): string {
-  const home = personOf(c, p)?.home === place;
-  const where = home ? (homeNamed(c, p) ? 'home' : `home at ${placeName(c, place)}`) : `at ${placeName(c, place)}`;
-  return `${nameOf(c, p)} said ${pronOf(c, p).he} was ${where} at ${hourWord(h)}`;
+  const s = saidParts(c, p, place, h);
+  return `${s.lead}${s.where}${s.tail}`;
 }
 
+/**
+ * curtain (docs/76): `saidWas` in its three parts, so the web view can strike the claim: "Tillman said
+ * she was " + "home" + " at ten".
+ */
+function saidParts(c: BoardDeal['kase'], p: PersonId, place: string, h: Hour): CurtainSaid {
+  const home = personOf(c, p)?.home === place;
+  const where = home ? (homeNamed(c, p) ? 'home' : `home at ${placeName(c, place)}`) : `at ${placeName(c, place)}`;
+  return { lead: `${nameOf(c, p)} said ${pronOf(c, p).he} was `, where, tail: ` at ${hourWord(h)}` };
+}
+
+/** curtain (docs/76): how a pick on the report came out, as the verdict's ledger marks it. */
+export type CurtainMark = 'right' | 'wrong' | 'half';
+
+/** What somebody said, in parts: `${lead}${where}${tail}` is the clause ("Tillman said she was home at ten"). */
+export interface CurtainSaid {
+  lead: string;
+  where: string;
+  tail: string;
+}
+
+/**
+ * One of the report's questions set against the truth: how the lie came out, who else lied (or that
+ * nobody did), where it went. `head` is in sentence case; the text sets it in capitals.
+ */
+export interface CurtainSection {
+  key: 'lie' | 'nobody' | 'other' | 'where';
+  head: string;
+  /** What was said, or what was so: "Tillman said she was home at ten." */
+  said: string | null;
+  /** The line that settled it, under its label ("What gave it away", "What cleared him", "What said so"). */
+  proof: { label: string; text: string } | null;
+  /** What the report picked, beside it, and how that came out. Only with a run and a filed report. */
+  picked: { text: string; mark: CurtainMark } | null;
+}
+
+/** A cell of the true board: where they really were, and, where they lied about that hour, what they said. */
+export interface CurtainCell {
+  hour: Hour;
+  place: PlaceId;
+  name: string;
+  claim?: PlaceId;
+}
+
+export interface CurtainRow {
+  id: PersonId;
+  name: string;
+  /** Who did it, or the dead man (a murder's victim has a row; a lost thing's doesn't). */
+  mark: 'culprit' | 'victim' | null;
+  company: boolean;
+  cells: CurtainCell[];
+}
+
+/** One lie: who, the hour, what they said and where they were, why, and what came of confronting them. */
+export interface CurtainLie {
+  person: PersonId;
+  hour: Hour;
+  claim: PlaceId;
+  truth: PlaceId;
+  said: CurtainSaid;
+  /** "she was at Grasso’s place" */
+  was: string;
+  /** "to hide the crime", "to cover for a friend", "to keep a secret: …" */
+  why: string;
+  /** "When you confronted her, she told another story." */
+  confronted: string;
+}
+
+/** A step of the fastest solve, as the curtain says it: its number ("1", or "+" for the motive), the action, why. */
+export interface CurtainStep {
+  n: string;
+  q: string;
+  label: string;
+  why: string;
+}
+
+/** The curtain as a sheet: the report against the truth, the true board, the lies, the fastest solve. */
+export interface CurtainSheet {
+  sections: CurtainSection[];
+  board: { head: string; hours: Hour[]; rows: CurtainRow[]; dead: string | null };
+  lies: { head: string; items: CurtainLie[] };
+  fastest: { head: string; par: number; kinds: string; steps: CurtainStep[] };
+}
+
+/** The curtain as the CLI prints it: the sheet, said as text (`curtain`, the read tool, the lints). */
 export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, filed?: BoardReport): string {
-  const c = d.kase;
+  return curtainText(curtainSheet(d, run, filed));
+}
+
+const MARK_GLYPH: Record<CurtainMark, string> = { right: '✓', wrong: '✗', half: '½' };
+
+/** The sheet as text: the words and the layout the CLI's curtain has always had. */
+export function curtainText(sheet: CurtainSheet): string {
   const out: string[] = [];
+  sheet.sections.forEach((s, i) => {
+    if (i > 0) out.push('');
+    out.push(s.head.toUpperCase());
+    if (s.said) out.push(s.said);
+    if (s.proof) out.push(`  ${s.proof.label}: ${s.proof.text}`);
+    if (s.picked) out.push(`  ${'You picked:'.padEnd(s.proof ? s.proof.label.length + 1 : 0)} ${s.picked.text}  ${MARK_GLYPH[s.picked.mark]}`);
+  });
+  out.push('');
+  const { hours, rows } = sheet.board;
+  const w0 = Math.max(...rows.map((r) => r.name.length)) + 3;
+  const cw = Math.max(12, ...rows.flatMap((r) => r.cells.map((x) => x.name.length + 2)));
+  out.push(sheet.board.head.toUpperCase());
+  out.push(`${''.padEnd(w0)}${hours.map((h) => `${hourWord(h)}`.padEnd(cw)).join('')}`);
+  for (const r of rows) {
+    const mark = r.mark === 'culprit' ? ' *' : r.mark === 'victim' ? ' †' : '';
+    out.push(`${(r.name + mark).padEnd(w0)}${r.cells.map((x) => x.name.padEnd(cw)).join('')}`);
+  }
+  out.push(`(* who did it${sheet.board.dead ? `, † ${sheet.board.dead}` : ''})`);
+  out.push('');
+  out.push(sheet.lies.head.toUpperCase());
+  for (const l of sheet.lies.items) out.push(`- ${l.said.lead}${l.said.where}${l.said.tail}; ${l.was}, ${l.why}. ${l.confronted}`);
+  out.push('');
+  // docs/55 7: par, the number the verdict says, and what it's made of; docs/64: "the fastest solve", in actions.
+  out.push(`${sheet.fastest.head.toUpperCase()}: ${sheet.fastest.par} actions (${sheet.fastest.kinds})`);
+  for (const s of sheet.fastest.steps) out.push(s.n === '+' ? `+. ${s.label}` : `${s.n}. ${s.label} ${s.why}`);
+  return out.join('\n');
+}
+
+/**
+ * The curtain's sheet. Given the night and what was filed, it also sets the true breaking line beside
+ * the player's (docs/46 §3), and for a lost thing the line that put it where it is.
+ */
+export function curtainSheet(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, filed?: BoardReport): CurtainSheet {
+  const c = d.kase;
+  const sections: CurtainSection[] = [];
   const culprit = c.crime.culprit;
   const lie = c.lies.find((l) => l.person === culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person === culprit);
-  out.push('HOW THE LIE CAME OUT');
-  if (lie) out.push(`${saidWas(c, culprit, lie.claim, lie.hour)}.`);
-  // (Round 7, B3: a face that gave it away says whose it was: the curtain is where the truth is told.)
-  const gave = (run ? heldBreakers(d, run)[0] : undefined) ?? heldBreakers(d, pathRun(d))[0];
-  out.push(`  What gave it away: ${trueBreakerText(d, run)}${gave ? faceOwned(d, gave) : ''}`);
-  if (filed && run) {
-    const shown = (id: string) => {
-      const l = linesHeld(c, run).find((x) => x.id === id);
-      return l ? lineShown(c, run, l) : id;
-    };
-    const mine = filed.breaks ? shown(filed.breaks) : `${HUNCH.toLowerCase()}.`;
-    const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
-    out.push(`  You picked:        ${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}${ok ? '  ✓' : '  ✗'}`);
+  const mark = (ok: boolean): CurtainMark => (ok ? 'right' : 'wrong');
+  {
+    // (Round 7, B3: a face that gave it away says whose it was: the curtain is where the truth is told.)
+    const gave = (run ? heldBreakers(d, run)[0] : undefined) ?? heldBreakers(d, pathRun(d))[0];
+    let picked: CurtainSection['picked'] = null;
+    if (filed && run) {
+      const shown = (id: string) => {
+        const l = linesHeld(c, run).find((x) => x.id === id);
+        return l ? lineShown(c, run, l) : id;
+      };
+      const mine = filed.breaks ? shown(filed.breaks) : `${HUNCH.toLowerCase()}.`;
+      const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
+      picked = { text: `${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}`, mark: mark(ok) };
+    }
+    sections.push({ key: 'lie', head: 'How the lie came out', said: lie ? `${saidWas(c, culprit, lie.claim, lie.hour)}.` : null, proof: { label: 'What gave it away', text: `${trueBreakerText(d, run)}${gave ? faceOwned(d, gave) : ''}` }, picked });
   }
   // docs/61: the other broken story, and what cleared them, beside what was filed.
   const other = otherLie(d);
@@ -1088,57 +1210,56 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   // Decided 2026-10-25, docs/69 §1.5: in a heading that doesn't say somebody did, and "Nobody else"
   // without everybody checked is half, as the verdict has it.)
   if (!other && asksOther(d)) {
-    out.push('');
-    out.push('DID ANYONE ELSE LIE?');
-    out.push('Nobody else lied.');
+    let picked: CurtainSection['picked'] = null;
     if (filed && run) {
-      const mine = filed.other && filed.other !== NOBODY ? `${nameOf(c, filed.other)}.  ✗` : filed.other === NOBODY ? (nobodyElseProved(d, run) ? 'nobody else.  ✓' : 'nobody else, but you hadn’t checked everyone.  ½') : 'nobody.  ✗';
-      out.push(`  You picked: ${mine}`);
+      picked =
+        filed.other && filed.other !== NOBODY
+          ? { text: `${nameOf(c, filed.other)}.`, mark: 'wrong' }
+          : filed.other === NOBODY
+            ? nobodyElseProved(d, run)
+              ? { text: 'nobody else.', mark: 'right' }
+              : { text: 'nobody else, but you hadn’t checked everyone.', mark: 'half' }
+            : { text: 'nobody.', mark: 'wrong' };
     }
+    sections.push({ key: 'nobody', head: 'Did anyone else lie?', said: 'Nobody else lied.', proof: null, picked });
   }
   if (other) {
     const p = other.person;
-    out.push('');
-    out.push('WHO ELSE LIED, AND WHAT CLEARED THEM');
-    out.push(`${saidWas(c, p, other.claim, other.hour)}.`);
-    const lead = `  What cleared ${pronOf(c, p).him}:`;
     const cleared = (run ? heldClearers(d, run)[0] : undefined) ?? heldClearers(d, pathRun(d))[0];
-    out.push(`${lead} ${trueClearerText(d, run)}${cleared ? faceOwned(d, cleared) : ''}`);
+    let picked: CurtainSection['picked'] = null;
     if (filed && run) {
       const named = filed.other && filed.other !== NOBODY ? nameOf(c, filed.other) : null;
       const held = filed.cleared ? linesHeld(c, run).find((l) => l.id === filed.cleared) : undefined;
       const line = filed.cleared ? (held ? lineShown(c, run, held) : filed.cleared) : `${HUNCH.toLowerCase()}.`;
       const mine = named ? `${named}, on ${line}` : filed.other === NOBODY ? 'nobody else.' : 'nobody.';
       const ok = filed.other === p && !!filed.cleared && heldClearers(d, run).some((l) => l.id === filed.cleared);
-      out.push(`${'  You picked:'.padEnd(lead.length)} ${mine}${ok ? '  ✓' : '  ✗'}`);
+      picked = { text: mine, mark: mark(ok) };
     }
+    sections.push({ key: 'other', head: 'Who else lied, and what cleared them', said: `${saidWas(c, p, other.claim, other.hour)}.`, proof: { label: `What cleared ${pronOf(c, p).him}`, text: `${trueClearerText(d, run)}${cleared ? faceOwned(d, cleared) : ''}` }, picked });
   }
   if (!isMurder(c)) {
-    out.push('');
-    out.push('WHERE IT WENT');
-    out.push(`${cap(victimOf(c).short)} ended up ${c.crime.whereNow?.text ?? 'where it ended up'}.`);
-    out.push(`  What said so: ${trueWhereByText(d, run)}`);
+    let picked: CurtainSection['picked'] = null;
     if (filed && run) {
       const mine = filed.whereBy ? (whereByOptions(d, run).find((o) => o.value === filed.whereBy)?.label ?? filed.whereBy) : `${HUNCH.toLowerCase()}.`;
       const ok = !!filed.whereBy && heldWhereBy(d, run).some((o) => o.value === filed.whereBy);
-      out.push(`  You picked:   ${mine}${ok ? '  ✓' : '  ✗'}`);
+      picked = { text: mine, mark: mark(ok) };
     }
+    sections.push({ key: 'where', head: 'Where it went', said: `${cap(victimOf(c).short)} ended up ${c.crime.whereNow?.text ?? 'where it ended up'}.`, proof: { label: 'What said so', text: trueWhereByText(d, run) }, picked });
   }
-  out.push('');
   const hours = c.board.hours;
-  const rows = [...suspectsOf(c), ...c.people.filter((p) => p.role === 'company').map((p) => p.id), ...(isMurder(c) ? [c.crime.victim] : [])];
-  const w0 = Math.max(...rows.map((id) => nameOf(c, id).length)) + 3;
-  const cw = Math.max(12, ...rows.flatMap((id) => hours.map((h) => placeName(c, c.board.rows[id]?.[h] ?? '').length + 2)));
-  out.push('WHERE THEY REALLY WERE');
-  out.push(`${''.padEnd(w0)}${hours.map((h) => `${hourWord(h)}`.padEnd(cw)).join('')}`);
-  for (const id of rows) {
-    const mark = id === c.crime.culprit ? ' *' : id === c.crime.victim ? ' †' : '';
-    out.push(`${(nameOf(c, id) + mark).padEnd(w0)}${hours.map((h) => placeName(c, c.board.rows[id]?.[h] ?? '').padEnd(cw)).join('')}`);
-  }
-  out.push('(* who did it' + (isMurder(c) ? `, † the dead ${victimOf(c).female ? 'woman' : 'man'})` : ')'));
-  out.push('');
-  out.push('THE LIES');
-  for (const l of c.lies) {
+  const ids = [...suspectsOf(c), ...c.people.filter((p) => p.role === 'company').map((p) => p.id), ...(isMurder(c) ? [c.crime.victim] : [])];
+  const rows: CurtainRow[] = ids.map((id) => ({
+    id,
+    name: nameOf(c, id),
+    mark: id === c.crime.culprit ? 'culprit' : id === c.crime.victim ? 'victim' : null,
+    company: personOf(c, id)?.role === 'company',
+    cells: hours.map((h) => {
+      const place = c.board.rows[id]?.[h] ?? '';
+      const l = c.lies.find((x) => x.person === id && x.hour === h);
+      return { hour: h, place, name: placeName(c, place), ...(l ? { claim: l.claim } : {}) };
+    }),
+  }));
+  const lies: CurtainLie[] = c.lies.map((l) => {
     const k = c.confrontations.find((x) => x.person === l.person && x.hour === l.hour);
     const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : secretWhy(personOf(c, l.person)?.secret);
     const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'told another story' : k?.response === 'crack' ? 'cracked' : 'refused to say';
@@ -1147,17 +1268,14 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     // didn't land, and read "You never confronted her".)
     const pr = pronOf(c, l.person);
     const tried = !!run && run.puts.some((x) => x.person === l.person);
-    const put =
+    const confronted =
       !run || run.asked.includes(`confront:${l.person}@${l.hour}`)
         ? `When you confronted ${pr.him}, ${pr.he} ${would}.`
         : tried
           ? `You confronted ${pr.him}, but nothing you put to ${pr.him} broke what ${pr.he} said about ${hourWord(l.hour)}, so ${pr.he} stood by it; with something that did, ${pr.he} would have ${wouldHave(k?.response)}.`
           : `You never confronted ${pr.him}; if you had, ${pr.he} would have ${wouldHave(k?.response)}.`;
-    out.push(`- ${saidWas(c, l.person, l.claim, l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
-  }
-  out.push('');
-  // docs/55 7: par, the number the verdict says, and what it's made of; docs/64: "the fastest solve", in actions.
-  out.push(`THE FASTEST SOLVE: ${parCalls(d)} actions (${fastestKinds(d)})`);
+    return { person: l.person, hour: l.hour, claim: l.claim, truth: l.truth, said: saidParts(c, l.person, l.claim, l.hour), was: `${pr.he} was at ${placeName(c, l.truth)}`, why, confronted };
+  });
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
   // (docs/66, docs/65's routed item: a suspect's evening is asked for what matters about them, as the star says
   // it now, "Alfano was at the meeting, and nobody had said where she was at ten", never the first hour the
@@ -1169,9 +1287,14 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     const star = hintWords(c, { asked: d.analysis.path.slice(0, i).map((x) => x.q) }, s.q);
     return star ? `${pathWhy(star.replace(' — ', ': ').replace(/^nobody\b/, 'Nobody'), nameOf(c, c.client))}.` : pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
   };
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${stepWhy(s, i)}`));
-  if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
-  return out.join('\n');
+  const steps: CurtainStep[] = d.analysis.path.map((s, i) => ({ n: String(i + 1), q: s.q, label: `${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'}`, why: stepWhy(s, i) }));
+  if (d.analysis.motive) steps.push({ n: '+', q: d.analysis.motive, label: `${questionById(c, d.analysis.motive)?.label ?? ''}.`, why: '' });
+  return {
+    sections,
+    board: { head: 'Where they really were', hours: [...hours], rows, dead: isMurder(c) ? `the dead ${victimOf(c).female ? 'woman' : 'man'}` : null },
+    lies: { head: 'The lies', items: lies },
+    fastest: { head: 'The fastest solve', par: parCalls(d), kinds: fastestKinds(d), steps },
+  };
 }
 
 /**
