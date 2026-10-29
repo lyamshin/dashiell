@@ -1912,6 +1912,12 @@ nav.choices--board .choice--search:hover:not(:disabled) {
   border-bottom: 3px double var(--rule);
 }
 
+/* A pick here is a sentence, not the verdict's word or two: typed smaller, so it keeps a measure. */
+.curtain-ledger .answer {
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
 .curtain-ledger .proof {
   grid-column: 2 / -1;
   font-size: 0.95rem;
