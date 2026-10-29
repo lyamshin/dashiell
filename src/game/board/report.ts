@@ -681,10 +681,12 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   // What breaks their story: one of the lines held that breaks the culprit's. A hunch or the wrong line halves who.
   const breaksOk = !!report.breaks && heldBreakers(d, run).some((l) => l.id === report.breaks);
   if (who.correct && !breaksOk) who.half = true;
-  const fields: FieldResult[] = [
-    who,
-    { key: 'breaks', label: BREAKS_LABEL, given: lineLabel(d, run, report.breaks, breakOptions(d, run, report.who)), truth: trueBreakerText(d, run), correct: who.correct && breaksOk, answered: true, line: true },
-  ];
+  const breaksRow: FieldResult = { key: 'breaks', label: BREAKS_LABEL, given: lineLabel(d, run, report.breaks, breakOptions(d, run, report.who)), truth: trueBreakerText(d, run), correct: who.correct && breaksOk, answered: true, line: true };
+  // A line that breaks the culprit's story, filed against somebody else, says whose story it breaks: "what
+  // proved it:" and the very line picked, under the line struck through, read as a bug (2026-10-29).
+  const culprit = d.kase.crime.culprit;
+  if (!who.correct && breaksOk && report.who && report.who !== culprit) breaksRow.why = `that breaks ${nameOf(d.kase, culprit)}’s story, not ${nameOf(d.kase, report.who)}’s`;
+  const fields: FieldResult[] = [who, breaksRow];
   const other = otherLie(d);
   for (const f of scored.slice(1)) {
     fields.push(f);
@@ -694,13 +696,17 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
       // docs/61: who else lied, and the line that clears them. Its point needs both; a hunch, the
       // wrong line or the wrong name costs it.
       const named = f.correct;
-      const ok = named && !!report.cleared && heldClearers(d, run).some((l) => l.id === report.cleared);
+      const lineOk = !!report.cleared && heldClearers(d, run).some((l) => l.id === report.cleared);
+      const ok = named && lineOk;
       f.label = OTHER_LABEL;
       if (named && !ok) {
         f.correct = false;
         f.why = `the right name, but not what cleared ${pronOf(d.kase, other.person).him}`;
       }
-      fields.push({ key: 'cleared', label: CLEARED_LABEL, given: lineLabel(d, run, report.cleared, clearOptions(d, run, report.other)), truth: trueClearerText(d, run), correct: ok, answered: true, line: true });
+      const clearedRow: FieldResult = { key: 'cleared', label: CLEARED_LABEL, given: lineLabel(d, run, report.cleared, clearOptions(d, run, report.other)), truth: trueClearerText(d, run), correct: ok, answered: true, line: true };
+      // (2026-10-29: the line that clears the other liar, filed for somebody else, says whom it clears.)
+      if (!named && lineOk && report.other && report.other !== NOBODY) clearedRow.why = `that clears ${nameOf(d.kase, other.person)}, not ${nameOf(d.kase, report.other)}`;
+      fields.push(clearedRow);
       continue;
     }
     // Decided 2026-10-25 (docs/69 §1.5): "Nobody else", right, but not on what's held: half.
@@ -709,7 +715,12 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     // Where it is now: which line put it there. A hunch or the wrong line halves where.
     const ok = !!report.whereBy && heldWhereBy(d, run).some((o) => o.value === report.whereBy);
     if (f.correct && !ok) f.half = true;
-    fields.push({ key: 'whereBy', label: whereByLabel(d), given: lineLabel(d, run, report.whereBy, whereByOptions(d, run)), truth: trueWhereByText(d, run), correct: f.correct && ok, answered: true, line: true });
+    // 2026-10-29: what proves where it is asks about the lost thing, whatever was answered, so the
+    // line that puts it there is right on its own; a wrong place is the place's point, and says the
+    // line said otherwise. (It was marked wrong, and "corrected" with the very line picked.) And never
+    // "it was With Benny": the option's capital is for the form.
+    if (!f.correct) f.why = `it was ${f.truth.charAt(0).toLowerCase()}${f.truth.slice(1)}${ok ? ', as the line you picked says' : ''}`;
+    fields.push({ key: 'whereBy', label: whereByLabel(d), given: lineLabel(d, run, report.whereBy, whereByOptions(d, run)), truth: trueWhereByText(d, run), correct: ok, answered: true, line: true });
   }
   const points = scored.reduce((n, f) => n + (f.correct ? (f.half ? 0.5 : 1) : 0), 0);
   const asked = scored.length;
