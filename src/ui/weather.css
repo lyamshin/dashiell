@@ -10,7 +10,7 @@
 
 /* The night's weather, and the sign outside. Not the book's colours: red is the law's, amber the
  * clock's, jade and the lacquer the choices', carbon violet what was typed. The sign is argon blue,
- * the 1920s' blue tube; the lab's rose is there to compare. */
+ * the 1920s' blue tube (the designer's pick, 2026-10-29). */
 :root {
   --wx-rain: rgba(190, 202, 220, 0.2);
   --wx-drop: rgba(206, 218, 234, 0.6);
@@ -20,11 +20,6 @@
   --wx-steam: rgba(205, 208, 214, 0.2);
   --wx-neon: #4d8bff;
   --wx-neon-core: #e1ebff;
-}
-
-.weather[data-hue='rose'] {
-  --wx-neon: #ff5fb4;
-  --wx-neon-core: #ffe3f1;
 }
 
 /*
@@ -129,15 +124,6 @@
   opacity: 0.4;
 }
 
-.weather[data-neon='light'] .wx-edge {
-  width: 9px;
-  opacity: 0.6;
-}
-
-.weather[data-neon='wet'] .wx-edge {
-  opacity: 0.22;
-}
-
 .wx-sign {
   position: absolute;
   inset: 0;
@@ -172,11 +158,7 @@
   opacity: 0.8;
 }
 
-.weather[data-neon='wet'] .wx-sign {
-  opacity: 0.4;
-}
-
-/* The wet-glass take: the sign as smears of its colour in the glass. */
+/* A rain night: the sign as smears of its colour in the wet glass. */
 .wx-reflect {
   position: absolute;
   left: 0;
@@ -204,13 +186,9 @@
   -webkit-mask-repeat: repeat;
   mask-size: 90px 300px;
   -webkit-mask-size: 90px 300px;
-  opacity: 0.5;
+  opacity: 0.85;
   animation: wx-rivulet 6.5s linear infinite;
   animation-delay: var(--wx-age, 0s);
-}
-
-.weather[data-neon='wet'] .wx-rivulet {
-  opacity: 0.9;
 }
 
 @keyframes wx-rivulet {
@@ -232,10 +210,7 @@
   left: -32vh;
   right: -32vh;
   transform: rotate(13deg);
-}
-
-/* Beyond the glass, when drops run on it too: further off. */
-.weather[data-rain='both'] .wx-rain {
+  /* Beyond the glass, with the drops running on it: further off. */
   opacity: 0.6;
 }
 
@@ -437,9 +412,9 @@
   }
 }
 
-/* ----------------------------------------------------------------- frost */
+/* ------------------------------------------------------------------ rime */
 
-/* Each stage of the frost is a mask the size of its margin, fading in when its turn comes. */
+/* Each stage of the rime is a mask the size of its margin, fading in when its turn comes. */
 .wx-stage,
 .wx-glint {
   position: absolute;
@@ -580,8 +555,8 @@
 
 /* ------------------------------------------------- still, for reduced motion */
 
-/* The frost formed, the fog still, the sign steady; no rain, no steam. (`data-motion` is the lab's
- * still switch too.) */
+/* The rime formed, the fog still, the sign steady; no rain, no steam. `data-motion="false"` is the
+ * pager's "weather still" too, and the system's setting, should it change mid-case. */
 @media (prefers-reduced-motion: reduce) {
   .weather *,
   .weather *::before,
@@ -603,6 +578,7 @@
 
 /* ------------------------------------------------------------ the switch */
 
+/* weather on, weather still, weather off: quiet, at the pager's right. */
 .pager .wx-toggle {
   margin-left: auto;
   text-decoration: none;

@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import type { KeyValueStore } from '../../src/game/board/profile.js';
 import {
   FLICKER,
-  FROSTS,
   FROST_GROW,
   NO_EFFECTS,
   STAGES,
@@ -11,14 +10,16 @@ import {
   WASH,
   WEATHER_KEY,
   effectsFor,
-  frostFor,
   frostMask,
-  loadWeatherOn,
+  loadWeatherMode,
   marginZones,
   neonReach,
+  nextMode,
   pageColumn,
+  rimeFrost,
   rimeGlints,
-  saveWeatherOn,
+  saveWeatherMode,
+  shownMode,
   signFor,
   stageDelay,
   stripMask,
@@ -46,7 +47,7 @@ const blocked: KeyValueStore = {
   },
 };
 
-const ON = { enabled: true, reducedMotion: false };
+const ON = { mode: 'on', reducedMotion: false } as const;
 const NIGHTS = ['clear', 'rain', 'fog', 'cold'] as const;
 
 describe('weather: the night to the screen', () => {
@@ -56,12 +57,6 @@ describe('weather: the night to the screen', () => {
     expect(effectsFor('fog', ON)).toMatchObject({ weather: 'fog', rain: false, drops: false, frost: false, fog: true, neon: true });
     // A clear night's main effect is the sign, crisp.
     expect(effectsFor('clear', ON)).toMatchObject({ weather: 'clear', rain: false, drops: false, frost: false, fog: false, neon: true });
-  });
-
-  it('the rain is streaks beyond the glass, drops running down it, or both', () => {
-    expect(effectsFor('rain', { ...ON, rain: 'streaks' })).toMatchObject({ rain: true, drops: false });
-    expect(effectsFor('rain', { ...ON, rain: 'runs' })).toMatchObject({ rain: false, drops: true });
-    expect(effectsFor('rain', { ...ON, rain: 'both' })).toMatchObject({ rain: true, drops: true });
   });
 
   it('the sign flickers every 20 to 60 seconds, on every night', () => {
@@ -84,13 +79,24 @@ describe('weather: the night to the screen', () => {
 
   it('switched off shows nothing, whatever the night, the sign included', () => {
     for (const w of NIGHTS) {
-      expect(effectsFor(w, { enabled: false, reducedMotion: false })).toEqual(NO_EFFECTS);
-      expect(effectsFor(w, { enabled: false, reducedMotion: false }).neon).toBe(false);
+      for (const reducedMotion of [false, true]) expect(effectsFor(w, { mode: 'off', reducedMotion })).toEqual(NO_EFFECTS);
+      expect(effectsFor(w, { mode: 'off', reducedMotion: false }).neon).toBe(false);
     }
   });
 
-  it('reduced motion keeps the still things (frost, fog, a steady sign) and drops the moving ones', () => {
-    const still = { enabled: true, reducedMotion: true };
+  it('"weather still" is exactly the reduced-motion version, on every night and every screen', () => {
+    for (const w of NIGHTS) {
+      for (const narrow of [false, true]) {
+        const still = effectsFor(w, { mode: 'still', reducedMotion: false, narrow });
+        expect(still).toEqual(effectsFor(w, { mode: 'on', reducedMotion: true, narrow }));
+        expect(still).toEqual(effectsFor(w, { mode: 'still', reducedMotion: true, narrow }));
+        expect(still.motion).toBe(false);
+      }
+    }
+  });
+
+  it('reduced motion keeps the still things (rime, fog, a steady sign) and drops the moving ones', () => {
+    const still = { mode: 'on', reducedMotion: true } as const;
     expect(effectsFor('rain', still)).toMatchObject({ rain: false, drops: false, steam: null, flicker: null, neon: true, motion: false });
     expect(effectsFor('cold', still)).toMatchObject({ frost: true, steam: null, flicker: null, neon: true, motion: false });
     expect(effectsFor('fog', still)).toMatchObject({ fog: true, steam: null, flicker: null, neon: true, motion: false });
@@ -105,20 +111,44 @@ describe('weather: the night to the screen', () => {
   });
 });
 
-describe('weather: the off switch', () => {
-  it('is on until turned off, and remembers', () => {
+describe('weather: the switch, on, still and off', () => {
+  it('is on until changed, and remembers on, still and off under the same key', () => {
     const store = memoryStore();
-    expect(loadWeatherOn(store)).toBe(true);
-    saveWeatherOn(store, false);
-    expect(store.data.get(WEATHER_KEY)).toBe('off');
-    expect(loadWeatherOn(store)).toBe(false);
-    saveWeatherOn(store, true);
-    expect(loadWeatherOn(store)).toBe(true);
+    expect(loadWeatherMode(store)).toBe('on');
+    for (const m of ['still', 'off', 'on'] as const) {
+      saveWeatherMode(store, m);
+      expect(store.data.get(WEATHER_KEY)).toBe(m);
+      expect(loadWeatherMode(store)).toBe(m);
+    }
+  });
+
+  it('reads anything it does not know as on (the old "on" and "off" still mean what they meant)', () => {
+    const store = memoryStore();
+    for (const [v, m] of [['off', 'off'], ['on', 'on'], ['still', 'still'], ['', 'on'], ['STILL', 'on'], ['true', 'on']] as const) {
+      store.data.set(WEATHER_KEY, v);
+      expect(loadWeatherMode(store), v).toBe(m);
+    }
   });
 
   it('survives a blocked store: reads as on, saving does not throw', () => {
-    expect(loadWeatherOn(blocked)).toBe(true);
-    expect(() => saveWeatherOn(blocked, false)).not.toThrow();
+    expect(loadWeatherMode(blocked)).toBe('on');
+    expect(() => saveWeatherMode(blocked, 'still')).not.toThrow();
+  });
+
+  it('cycles on, still, off, on', () => {
+    expect(nextMode('on', false)).toBe('still');
+    expect(nextMode('still', false)).toBe('off');
+    expect(nextMode('off', false)).toBe('on');
+    for (const m of ['on', 'still', 'off'] as const) expect(shownMode(m, false)).toBe(m);
+  });
+
+  it('under the system’s reduced motion it shows still for on, and goes between still and off', () => {
+    expect(shownMode('on', true)).toBe('still');
+    expect(shownMode('still', true)).toBe('still');
+    expect(shownMode('off', true)).toBe('off');
+    expect(nextMode('on', true)).toBe('off');
+    expect(nextMode('still', true)).toBe('off');
+    expect(nextMode('off', true)).toBe('still');
   });
 });
 
@@ -194,35 +224,33 @@ describe('weather: the frost grows in from the edges, then is still', () => {
     expect(FROST_GROW).toBeLessThanOrEqual(15);
   });
 
-  it('every frost has a piece in every stage, inside the window, and draws the same every time', () => {
-    for (const look of FROSTS) {
-      const pieces = frostFor(look, 1512, 982);
+  it('the rime has a piece in every stage, inside the window, and draws the same every time', () => {
+    for (const [vw, vh] of [[1280, 800], [1512, 982], [1920, 1080], [375, 812]] as const) {
+      const pieces = rimeFrost(vw, vh);
       const stages = new Set(pieces.map((p) => p.stage));
-      for (let s = 0; s < STAGES; s++) expect(stages.has(s), `${look} stage ${s}`).toBe(true);
+      for (let s = 0; s < STAGES; s++) expect(stages.has(s), `${vw} stage ${s}`).toBe(true);
       for (const p of pieces) {
-        expect(p.x0, look).toBeGreaterThan(-200);
-        expect(p.x1, look).toBeLessThan(1512 + 200);
+        expect(p.x0).toBeGreaterThan(-200);
+        expect(p.x1).toBeLessThan(vw + 200);
       }
-      expect(frostFor(look, 1512, 982)).toEqual(pieces);
+      expect(rimeFrost(vw, vh)).toEqual(pieces);
     }
   });
 
   it('it begins at the window’s edges: the first stage touches them', () => {
-    for (const look of FROSTS) {
-      const first = frostFor(look, 1920, 1080).filter((p) => p.stage === 0);
-      expect(first.length, look).toBeGreaterThan(0);
-      expect(first.some((p) => p.x0 <= 1), look).toBe(true);
-      expect(first.some((p) => p.x1 >= 1919), look).toBe(true);
-    }
+    const first = rimeFrost(1920, 1080).filter((p) => p.stage === 0);
+    expect(first.length).toBeGreaterThan(0);
+    expect(first.some((p) => p.x0 <= 1)).toBe(true);
+    expect(first.some((p) => p.x1 >= 1919)).toBe(true);
   });
 
   it('a margin’s mask is the margin’s own size, and holds only what falls in it', () => {
-    const pieces = frostFor('fern', 1920, 1080);
+    const pieces = rimeFrost(1920, 1080);
     const left = frostMask(pieces, [0, 250], 1080, () => true) ?? '';
     expect(left).toContain("viewBox='0 0 250 1080'");
     const gutter = frostMask(pieces, [972, 1039], 1080, () => true) ?? '';
     expect(gutter).toContain("viewBox='972 0 67 1080'");
-    // The left margin's ferns are not in the gutter's mask.
+    // The left edge's rime is not in the gutter's mask, nor the top and bottom edges' beyond it.
     expect(gutter.length).toBeLessThan(left.length);
     expect(frostMask(pieces, [972, 1039], 1080, () => false)).toBeNull();
   });

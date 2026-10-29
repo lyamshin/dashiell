@@ -52,7 +52,7 @@ import { renderVerdict, type TierNews } from './report.js';
 import { cellLabel, cellWords } from './cells.js';
 import { curtainNode } from './curtain.js';
 import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, routeSvg, setback } from './deco.js';
-import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
+import { SHOWN_EVENT, createWeatherLayer, loadWeatherMode, nextMode, saveWeatherMode } from './weather.js';
 import './board.css';
 
 /** What the browser keeps of a board night: the deal and every command, replayed on load. */
@@ -123,7 +123,20 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let openCell: string | null = null;
   /** The title page's picker is unfolded ("Choose a case"). */
   let choosing = false;
-  const weather = createWeatherLayer({ enabled: loadWeatherOn(store) });
+  const weather = createWeatherLayer({ mode: loadWeatherMode(store) });
+  /**
+   * docs/27: the pager's switch says what the weather is doing: on, still, off. It cycles on, still,
+   * off; under the system's reduced motion there is no on, and it goes between still and off.
+   */
+  const sayWeather = (b: HTMLElement): void => {
+    const shown = weather.shown;
+    const next = nextMode(weather.mode, weather.reducedBySystem);
+    b.replaceChildren(`weather ${shown}`, el('span', { class: 'sr-only', text: `. Weather effects: ${shown}. Press for ${next}.` }));
+  };
+  // The system's setting can change under an open page.
+  weather.element.addEventListener(SHOWN_EVENT, () => {
+    for (const b of root.querySelectorAll<HTMLElement>('.wx-toggle')) sayWeather(b);
+  });
   let spread: HTMLElement | null = null;
   /**
    * book-look, item 2: where the focus goes after the next render. A new page puts it on the page's
@@ -156,18 +169,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   setTexture(params().get('texture'));
   // docs/52 §3: `?plain=1` shows each page's plain page: every fact it says, and no voice.
   const PLAIN = params().get('plain') === '1';
-  // docs/27: `?wxlab=1` on the dev server opens the weather lab, to choose the frost and the sign by watching.
-  if (import.meta.env.DEV && params().get('wxlab') === '1') void import('./weather-lab.js').then((m) => m.mountWeatherLab(weather));
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
     const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
     const q1a = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
     const q1 = TEXTURE.mode === 'full' ? `${q1a ? `${q1a}&` : '?'}texture=full` : q1a;
-    const q2 = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
-    // (The weather lab's own settings ride along: `wxlab`, `wx`, `wxfrost` and the rest.)
-    const lab = [...params()].filter(([k]) => k.startsWith('wx')).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
-    const q = lab ? `${q2 ? `${q2}&` : '?'}${lab}` : q2;
+    const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
@@ -910,12 +918,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       focusNext = { to: 'key', key: '[data-focus="pager-forward"]' };
       render();
     });
-    const wx = el('button', { class: 'wx-toggle', type: 'button', 'aria-pressed': String(weather.enabled), text: weather.enabled ? 'weather on' : 'weather off' });
+    const wx = el('button', { class: 'wx-toggle', type: 'button' });
+    sayWeather(wx);
     wx.addEventListener('click', () => {
-      const on = !weather.enabled;
-      saveWeatherOn(store, on);
-      weather.setEnabled(on);
-      wx.textContent = on ? 'weather on' : 'weather off';
+      const m = nextMode(weather.mode, weather.reducedBySystem);
+      saveWeatherMode(store, m);
+      weather.setMode(m);
+      sayWeather(wx);
     });
     hint.append(back, el('span', { class: 'pager-at', text: `page ${turned + 1} of ${r.log.length}` }), forward, wx);
     return hint;
