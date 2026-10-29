@@ -331,6 +331,64 @@
   margin: 0.2rem 0 0.4rem;
 }
 
+/*
+ * 2026-10-29: the notes under the grid fold away, each a short list under a quiet line: "How to read
+ * the grid", "Why some are “no”". The chevron is drawn, turning down when open.
+ */
+.bgrid-notes {
+  margin: 0.15rem 0 0.2rem;
+}
+
+.bgrid-notes summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 32px;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  list-style: none;
+}
+
+.bgrid-notes summary::-webkit-details-marker {
+  display: none;
+}
+
+.bgrid-notes summary::before {
+  content: '';
+  width: 0.36rem;
+  height: 0.36rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 160ms ease-out;
+}
+
+.bgrid-notes[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.bgrid-notes summary:hover {
+  color: var(--ink);
+}
+
+.bgrid-notes ul {
+  list-style: none;
+  margin: 0 0 0.4rem;
+  padding: 0 0 0 0.85rem;
+  border-left: 1px solid var(--rule);
+}
+
+.bgrid-notes li .bgrid-key {
+  margin: 0.15rem 0 0.3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgrid-notes summary::before {
+    transition: none;
+  }
+}
+
 .nb-stands {
   margin: 0 0 0.6rem;
   padding-left: 1.1rem;
@@ -405,6 +463,10 @@
   .bgrid-detail-head,
   .bgrid-pencil-label,
   .bgrid-line {
+    font-size: 12px;
+  }
+  .bgrid-notes summary {
+    min-height: 44px;
     font-size: 12px;
   }
   .bgrid-pencil .chip {

@@ -14,7 +14,7 @@
 import { NIGHT_MINUTES, clockStrip, minutesAfter, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, faceMarkDue, meansAsked, meansReasons, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, faceMarkDue, meansAsked, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -75,6 +75,8 @@ interface BoardSaved {
 type Screen = { kind: 'title' } | { kind: 'teach' } | { kind: 'book' } | { kind: 'verdict'; verdict: Verdict; news?: TierNews };
 
 const NAME_KEY = 'dashiell:detective';
+/** 2026-10-29: which of the grid's notes the reader keeps open (a per-reader convenience). */
+const GRID_NOTES_KEY = 'dashiell:grid-notes';
 
 /** A night the board can deal: a whole seed, a tier, and a case type the tier builds (or none). */
 function dealable(seed: unknown, tier: unknown, type: unknown): boolean {
@@ -122,6 +124,15 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let hintSaid: string | null = null;
   /** The grid cell whose lines are open, as `person@hour`. */
   let openCell: string | null = null;
+  /** 2026-10-29: the grid's notes, folded unless the reader opened them; remembered in the store. */
+  const notesOpen: Record<'key' | 'why', boolean> = (() => {
+    try {
+      const v = JSON.parse(store.getItem(GRID_NOTES_KEY) ?? '{}') as Partial<Record<'key' | 'why', unknown>>;
+      return { key: v.key === true, why: v.why === true };
+    } catch {
+      return { key: false, why: false };
+    }
+  })();
   /** The title page's picker is unfolded ("Choose a case"). */
   let choosing = false;
   const weather = createWeatherLayer({ mode: loadWeatherMode(store) });
@@ -1176,20 +1187,34 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: `${lab}✓` }), ' they say so, and somebody saw them there');
     if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: `~${lab}` }), ' your own guess');
     key.append('. Tap a cell for what was said.');
-    // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess".)
-    // (Round 7, U4: once a night, on the page of the first coat or hat, as the CLI says it.)
-    if (faceMarkDue(c, run as BoardRun)) key.append(` ${FACE_MARK}`);
-    wrap.append(key);
     // (Round 7, U2: the places only where a label isn't the place's own name, as the CLI says them.)
     const places = placesKey(c, run as BoardRun, g.codes, shownPlaces(g, false));
     // (Round 9, item 1: from Poached up the marked hours are the client's, never narrowed: "The marked hour
     // is when it happened." on HB 39's first look gave the hour away.)
     const marked = g.crimeHour !== null ? 'The marked hour is when it happened.' : g.givenBy ? `The marked ${g.window.length > 1 ? 'hours are the ones' : 'hour is the one'} ${g.givenBy} gave.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : '';
-    wrap.append(el('p', { class: 'bgrid-key', text: `${marked} The last column: ${meansAsked(meansWords(g.meansLabel))}${places ? ` ${places}` : ''}`.trim() }));
+    // 2026-10-29: the notes fold away under the grid (the designer: "the various notes below the grid should
+    // probably hide under collapsable lists"), each a short list, open or shut as the reader left them.
+    const notes = (which: 'key' | 'why', summary: string, items: (string | HTMLElement)[]): HTMLElement => {
+      const d = el('details', { class: 'bgrid-notes' }, el('summary', { text: summary }), el('ul', {}, ...items.map((x) => el('li', {}, x))));
+      (d as HTMLDetailsElement).open = notesOpen[which];
+      d.addEventListener('toggle', () => {
+        notesOpen[which] = (d as HTMLDetailsElement).open;
+        try {
+          store.setItem(GRID_NOTES_KEY, JSON.stringify(notesOpen));
+        } catch {
+          /* a blocked store forgets; the notes still fold */
+        }
+      });
+      return d;
+    };
+    wrap.append(notes('key', 'How to read the grid', [key, ...[marked, `The last column: ${meansAsked(meansWords(g.meansLabel))}`, places ?? ''].filter(Boolean).map((t) => el('p', { class: 'bgrid-key', text: t }))]));
     // (Round 9, item 2: why a "no", in the grid itself; the cell's title was hover-only, and "Broadnax: no"
     // from the first look read as a leak.)
-    const why = meansReasons(g);
-    if (why) wrap.append(el('p', { class: 'bgrid-key bgrid-why', text: why }));
+    const why = g.rows.filter((r) => r.means === 'no' && r.meansWhy).map((r) => r.meansWhy as string);
+    if (why.length) wrap.append(notes('why', 'Why some are “no”', why.map((t) => el('p', { class: 'bgrid-key bgrid-why', text: t }))));
+    // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess". Round 7,
+    // U4: once a night, on the page of the first coat or hat. It stays out of the fold: it's needed then.)
+    if (faceMarkDue(c, run as BoardRun)) wrap.append(el('p', { class: 'bgrid-key bgrid-face', text: FACE_MARK }));
     return wrap;
   }
 
