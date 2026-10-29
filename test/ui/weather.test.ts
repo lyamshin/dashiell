@@ -2,6 +2,16 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { KeyValueStore } from '../../src/game/board/profile.js';
 import {
+  BUILDINGS,
+  BY_PLACE,
+  DAWN_FROM,
+  FIRST_LIGHT,
+  SIGNS_OFF,
+  buildingOf,
+  hourOf,
+  isWarm,
+  lightLevel,
+  viewFor,
   FLICKER,
   FROST_GROW,
   NO_EFFECTS,
@@ -313,11 +323,113 @@ describe('weather: its colours are none of the book’s meanings', () => {
     for (const n of neons) for (const m of meanings) expect(dE(n, m), `${n} vs ${m}`).toBeGreaterThan(30);
   });
 
+  it('the lamp, the gas mantle, the cold bulb, the marquee’s bulbs and the headlamps are pale: low in chroma, far from every meaning', () => {
+    const root = /:root \{([\s\S]*?)\n\}/.exec(src('src/ui/book.css'))?.[1] ?? '';
+    const tok = (name: string): string => new RegExp(`--${name}: (#[0-9a-f]{6});`).exec(root)?.[1] as string;
+    const meanings = ['accent', 'amber', 'jade', 'lacquer-line', 'carbon'].map(tok);
+    const css = src('src/ui/weather.css');
+    for (const name of ['lamp', 'gas', 'cold', 'bulb', 'car']) {
+      const hex = new RegExp(`--wx-${name}: (#[0-9a-f]{6});`).exec(css)?.[1] as string;
+      expect(hex, name).toBeDefined();
+      const [, a, b] = lab(hex);
+      expect(Math.hypot(a, b), `${name} chroma`).toBeLessThanOrEqual(18);
+      for (const m of meanings) expect(dE(hex, m), `${name} vs ${m}`).toBeGreaterThanOrEqual(27);
+    }
+    // The warm lamp and the marquee's bulbs are nowhere near the clock's amber.
+    for (const name of ['lamp', 'bulb']) expect(dE(new RegExp(`--wx-${name}: (#[0-9a-f]{6});`).exec(css)?.[1] as string, tok('amber')), name).toBeGreaterThan(40);
+  });
+
   it('the layer is under the page and never takes a click; reduced motion stills all of it', () => {
     const css = src('src/ui/weather.css');
     const layer = /\n\.weather \{([^}]*)\}/.exec(css)?.[1] ?? '';
     expect(layer).toMatch(/z-index: -1;/);
     expect(layer).toMatch(/pointer-events: none;/);
     expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\) \{\s+\.weather \*,[\s\S]*?animation: none !important;/);
+  });
+});
+
+describe('the view outside: what the building is and what the clock says, never the case', () => {
+  it('a place is its building: its kind, a rooming house, a home, and never its part in the case', () => {
+    expect(buildingOf(undefined, true)).toBe('office');
+    expect(buildingOf({ kind: 'bar', key: 'venue:2' }, false)).toBe('bar');
+    expect(buildingOf({ kind: 'home', key: 'rooming:1' }, false)).toBe('rooming');
+    expect(buildingOf({ kind: 'home', key: 'flat' }, false)).toBe('home');
+    // The night's unwatched place, the scene, a watched workplace: what they are, not what they are for.
+    expect(buildingOf({ kind: 'club', key: 'unwatched:0' }, false)).toBe('club');
+    expect(buildingOf({ kind: 'home', key: 'unwatched:3' }, false)).toBe('home');
+    expect(buildingOf({ kind: 'work', key: 'shift:1' }, false)).toBe('work');
+    expect(buildingOf({ kind: 'restaurant', key: 'unwatched:1' }, false)).toBe('restaurant');
+    expect(buildingOf(undefined, false)).toBe('home');
+  });
+
+  it('every building keeps the balance: a cool light one side, a warm one the other, the fill dimmer than the key', () => {
+    for (const b of BUILDINGS) {
+      const v = BY_PLACE[b];
+      expect(v.left, b).not.toBeNull();
+      expect(v.right, b).not.toBeNull();
+      const [l, r] = [v.left, v.right] as [NonNullable<typeof v.left>, NonNullable<typeof v.right>];
+      expect(isWarm(l) !== isWarm(r), `${b}: one cool, one warm`).toBe(true);
+      for (const w of NIGHTS) expect(lightLevel(r, w), `${b} on a ${w} night`).toBeLessThan(lightLevel(l, w));
+    }
+    // The office's key is the HOTEL sign; a speakeasy lights no sign.
+    expect(BY_PLACE.office.left).toMatchObject({ kind: 'neon', word: 'HOTEL' });
+    for (const b of ['bar', 'club'] as const) expect(BY_PLACE[b].left?.kind).not.toBe('neon');
+  });
+
+  it('the view is the building’s, run on through the night by the clock', () => {
+    // The building's own lights, at night.
+    expect(viewFor({ building: 'bar', minutes: 30 })).toEqual({ ...BY_PLACE.bar, dawn: 0 });
+    expect(viewFor({ building: 'theatre', minutes: 30 })).toEqual({ ...BY_PLACE.theatre, dawn: 0 });
+    // Fewer cars late; at half past seven the lights are out and the margins grey.
+    expect(viewFor({ building: 'bar', minutes: 200 }).cars).toBeLessThan(BY_PLACE.bar.cars);
+    const late = viewFor({ building: 'bar', minutes: 450 });
+    expect(late).toMatchObject({ left: null, right: null });
+    expect(late.dawn).toBeGreaterThan(0.5);
+    // No scene (the title page): the office's window, at night.
+    expect(viewFor({ building: null, minutes: null })).toEqual({ ...BY_PLACE.office, dawn: 0 });
+    // Electric street lamps; the flat or home keeps its gas lamp, as that place's own.
+    for (const b of BUILDINGS) {
+      for (const l of [BY_PLACE[b].left, BY_PLACE[b].right]) {
+        if (l?.kind === 'lamp') expect(l.tone, b).toBe(b === 'home' ? 'gas' : 'lamp');
+      }
+    }
+    expect(BY_PLACE.home.left).toMatchObject({ kind: 'lamp', tone: 'gas' });
+  });
+
+  it('a theatre’s key is its marquee of warm bulbs, against a cool glow', () => {
+    expect(BY_PLACE.theatre.left).toMatchObject({ kind: 'marquee', tone: 'lamp' });
+    expect(BY_PLACE.theatre.right).toMatchObject({ kind: 'glow', tone: 'neon' });
+  });
+
+  it('dawn is the one big change: the greying begins before six, the lamps go out at first light, the signs soon after', () => {
+    expect(DAWN_FROM).toBeGreaterThanOrEqual(330);
+    expect(FIRST_LIGHT).toBeLessThan(SIGNS_OFF);
+    expect(hourOf(DAWN_FROM).dawn).toBe(0);
+    expect(hourOf(480).dawn).toBe(1);
+    expect(hourOf(FIRST_LIGHT - 5)).toMatchObject({ lampOn: true, keyOn: true });
+    expect(hourOf(FIRST_LIGHT)).toMatchObject({ lampOn: false, keyOn: true });
+    expect(hourOf(SIGNS_OFF)).toMatchObject({ lampOn: false, keyOn: false });
+    // Cars thin after one.
+    expect(hourOf(30).cars).toBe(1);
+    expect(hourOf(180).cars).toBeLessThan(0.4);
+  });
+
+  it('through the night the outside only moves one way: the grey never lifts, a light out never comes back', () => {
+    for (const b of BUILDINGS) {
+      let dawn = 0;
+      let left = true;
+      let right = true;
+      for (let m = 0; m <= 480; m += 5) {
+        const v = viewFor({ building: b, minutes: m });
+        expect(v.dawn, `${b} ${m}`).toBeGreaterThanOrEqual(dawn);
+        if (!left) expect(v.left, `${b} ${m}`).toBeNull();
+        if (!right) expect(v.right, `${b} ${m}`).toBeNull();
+        dawn = v.dawn;
+        left = v.left !== null;
+        right = v.right !== null;
+      }
+      // By eight, nothing is lit: only the grey of the morning.
+      expect(viewFor({ building: b, minutes: 480 })).toMatchObject({ left: null, right: null, dawn: 1 });
+    }
   });
 });

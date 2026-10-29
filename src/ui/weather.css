@@ -20,6 +20,19 @@
   --wx-steam: rgba(205, 208, 214, 0.2);
   --wx-neon: #4d8bff;
   --wx-neon-core: #e1ebff;
+  /* The warm fill to the sign's cool key: an electric street lamp, a lit window, a marquee's bulbs.
+   * Pale and low in saturation, nowhere near the clock's amber. No sodium orange: that's the 1930s. */
+  --wx-lamp: #f3e5c8;
+  /* A gas mantle's faint greenish white (gas lingered on residential streets). */
+  --wx-gas: #f6f7e6;
+  /* A cold bare bulb over a door. */
+  --wx-cold: #f4f6fa;
+  /* A marquee bulb's hot filament (its halo is the lamp's warm white). */
+  --wx-bulb: #fff2dc;
+  /* Headlamps going by. */
+  --wx-car: #f6efe2;
+  /* The sky greying toward eight. */
+  --wx-dawn: #a7abb1;
 }
 
 /*
@@ -75,6 +88,12 @@
   contain: strict;
 }
 
+/* The strips of one view outside; a new view (a walk, the hour) crossfades a new set in over the old. */
+.wx-set {
+  position: absolute;
+  inset: 0;
+}
+
 /* A window-sized view inside the strip, so every margin shares one window. */
 .wx-view {
   position: absolute;
@@ -84,11 +103,41 @@
 
 /* ------------------------------------------------------------------ the sign */
 
-/* The sign's light: it hums, a slow breath of brightness. The flicker is the script's, on .wx-flick. */
+/* The sign's light: it hums, a slow breath of brightness. The flicker is the script's, on .wx-flick.
+ * The other lights (.wx-light) are steady; a gas mantle shimmers, faintly. */
 .wx-lit,
-.wx-flick {
+.wx-flick,
+.wx-light,
+.wx-steady {
   position: absolute;
   inset: 0;
+}
+
+.wx-gas {
+  animation: wx-gas 3.7s steps(1, end) infinite;
+  animation-delay: var(--wx-age, 0s);
+}
+
+@keyframes wx-gas {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.94;
+  }
+  31% {
+    opacity: 0.99;
+  }
+  47% {
+    opacity: 0.92;
+  }
+  63% {
+    opacity: 0.97;
+  }
+  81% {
+    opacity: 0.95;
+  }
 }
 
 .wx-lit {
@@ -105,10 +154,9 @@
   }
 }
 
-/* Its light on the glass, from the window's left edge (the script sets its reach and opacity). */
+/* A light on the glass, from its edge of the window (the script sets its reach and opacity). */
 .wx-wash {
   position: absolute;
-  left: 0;
   top: 0;
   bottom: 0;
 }
@@ -122,6 +170,116 @@
   mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
   opacity: 0.4;
+}
+
+.wx-edge--right {
+  left: auto;
+  right: 0;
+  background: linear-gradient(to left, color-mix(in srgb, var(--wx-neon-core) 55%, transparent), transparent);
+}
+
+/* The sources at the edge: a bare bulb, a lamp's globe, lit windows across the way, a marquee. */
+.wx-bulb,
+.wx-globe,
+.wx-windows,
+.wx-marquee,
+.wx-cabs {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.wx-cabs {
+  left: 0;
+  right: 0;
+  opacity: 0.55;
+}
+
+/* The marquee's bulbs, in three phases round the frame: one bulb in three lit, the lit ones stepping
+ * along, a third of a second a step. Still, they are all lit, steady. */
+.wx-chase {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  animation: wx-chase 1.05s steps(1, end) infinite;
+}
+
+.wx-chase--1 {
+  animation-delay: -0.35s;
+}
+
+.wx-chase--2 {
+  animation-delay: -0.7s;
+}
+
+/* Lit a shade longer than a third, so the steps overlap and the frame is never dark between them. */
+@keyframes wx-chase {
+  0% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.16;
+  }
+  100% {
+    opacity: 0.16;
+  }
+}
+
+.wx-bulbs {
+  position: absolute;
+  inset: 0;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+.wx-bulbs--halo {
+  background: var(--wx-lamp);
+}
+
+.wx-bulbs--core {
+  background: var(--wx-bulb);
+}
+
+.wx-windows {
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+/* In fog, a lamp's cone down to the street. */
+.wx-cone {
+  position: absolute;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+/* Toward eight, the sky greys: lightest at the top. */
+.wx-dawn {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--wx-dawn), color-mix(in srgb, var(--wx-dawn) 55%, transparent) 55%, color-mix(in srgb, var(--wx-dawn) 30%, transparent));
+}
+
+/* A car going by: its lamps' light through the blinds' slats, a soft bar sweeping across. */
+.wx-blinds {
+  position: absolute;
+  inset: 0;
+}
+
+.wx-car {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent, var(--wx-car) 30%, var(--wx-car) 70%, transparent);
+  opacity: 0;
+}
+
+/* The El going by: a train's lit windows. */
+.wx-el {
+  position: absolute;
+  background: repeating-linear-gradient(to right, var(--wx-lamp) 0 16px, transparent 16px 24px, var(--wx-lamp) 24px 40px, transparent 40px 48px, var(--wx-lamp) 48px 64px, transparent 64px 90px);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  opacity: 0;
 }
 
 .wx-sign {
@@ -140,14 +298,15 @@
   -webkit-mask-size: 100% 100%;
 }
 
+/* --k: the sign's strength (a small ROOMS is dimmer than the HOTEL). */
 .wx-tube--glow {
   background: var(--wx-neon);
-  opacity: 0.85;
+  opacity: calc(0.85 * var(--k, 1));
 }
 
 .wx-tube--core {
   background: var(--wx-neon-core);
-  opacity: 0.9;
+  opacity: calc(0.9 * var(--k, 1));
 }
 
 .weather[data-weather='fog'] .wx-sign {
@@ -161,17 +320,15 @@
 /* A rain night: the sign as smears of its colour in the wet glass. */
 .wx-reflect {
   position: absolute;
-  left: 0;
   top: 0;
   bottom: 0;
   width: 160px;
   opacity: 0.55;
 }
 
-/* Rain: the sign's colour running down the glass in slow rivulets. */
+/* Rain: a light's colour running down the glass in slow rivulets. */
 .wx-rivulets {
   position: absolute;
-  left: 0;
   overflow: hidden;
 }
 
@@ -189,6 +346,23 @@
   opacity: 0.85;
   animation: wx-rivulet 6.5s linear infinite;
   animation-delay: var(--wx-age, 0s);
+}
+
+.wx-rivulet--soft {
+  mask-size: 80px 340px;
+  -webkit-mask-size: 80px 340px;
+  top: -340px;
+  animation: wx-rivulet-b 8.5s linear infinite;
+  animation-delay: var(--wx-age, 0s);
+}
+
+@keyframes wx-rivulet-b {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 340px, 0);
+  }
 }
 
 @keyframes wx-rivulet {
