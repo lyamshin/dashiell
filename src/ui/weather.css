@@ -1,35 +1,41 @@
 /*
- * The weather on the glass (docs/27, src/ui/weather.ts).
+ * The weather on the window (docs/27, src/ui/weather.ts).
  *
- * The layer spans the window but sits at z-index -1 inside the spread,
- * which is its own stacking context: on the paper, under every word and
- * every button, and it never takes a click. The script cuts it into one
- * strip per margin. Everything that moves moves on transform or opacity,
- * which the compositor runs without the main thread.
+ * The layer spans the window but sits at z-index -1 inside the spread, which is its own stacking
+ * context: on the paper, under every word, every panel, every button and every focus ring, and it
+ * never takes a click. The script cuts it into one strip per margin, so it is only ever on the glass
+ * around the book, never across a column. Everything that moves moves on transform or opacity, which
+ * the compositor runs without the main thread.
  */
 
-/* The night's weather: the book has one palette (book-look, item 3). */
+/* The night's weather, and the sign outside. Not the book's colours: red is the law's, amber the
+ * clock's, jade and the lacquer the choices', carbon violet what was typed. The sign is argon blue,
+ * the 1920s' blue tube; the lab's rose is there to compare. */
 :root {
   --wx-rain: rgba(190, 202, 220, 0.2);
-  --wx-frost: rgba(200, 218, 236, 0.3);
-  --wx-frost-edge: rgba(200, 218, 236, 0.08);
+  --wx-drop: rgba(206, 218, 234, 0.6);
+  --wx-frost: rgba(228, 239, 255, 0.74);
   --wx-fog: rgba(170, 176, 188, 0.13);
   --wx-haze: rgba(170, 176, 188, 0.07);
   --wx-steam: rgba(205, 208, 214, 0.2);
+  --wx-neon: #4d8bff;
+  --wx-neon-core: #e1ebff;
 }
 
+.weather[data-hue='rose'] {
+  --wx-neon: #ff5fb4;
+  --wx-neon-core: #ffe3f1;
+}
 
 /*
- * The spread is the stacking context the layer lives at the bottom of, and
- * its containing block. The layer is as wide as the window, centred on the
- * spread, so on a wide screen it reaches the margins outside the book too;
- * the spread still clips top and bottom, and only lets the layer out sideways
- * where `overflow: clip` can say so (without it, the layer stays on the book).
+ * The spread is the stacking context the layer lives at the bottom of, and its containing block.
+ * The layer is as wide as the window, centred on the spread, so on a wide screen it reaches the
+ * margins outside the book too; the spread still clips top and bottom, and only lets the layer out
+ * sideways where `overflow: clip` can say so (without it, the layer stays on the book).
  *
- * Not `position: fixed`: a fixed layer is composited over the whole window,
- * and the text above it would be lifted into a layer of its own and
- * rasterized a shade differently. An absolute layer cut into margin strips
- * overlaps no text at all, and every word renders exactly as it did.
+ * Not `position: fixed`: a fixed layer is composited over the whole window, and the text above it
+ * would be lifted into a layer of its own and rasterized a shade differently. An absolute layer cut
+ * into margin strips overlaps no text at all.
  */
 .spread {
   isolation: isolate;
@@ -49,27 +55,8 @@
   bottom: 0;
   left: calc(50% - 50vw);
   width: 100vw;
-  /* Over the text since 2026-09-24 (designer: "let weather go over the text,
-   * assuming that it's mostly transparent anyway"). It still never takes a
-   * click. */
-  z-index: 5;
+  z-index: -1;
   pointer-events: none;
-}
-
-/* One strip per margin, clipped to it; the script sets left, width and mask. */
-.wx-strip {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-  contain: strict;
-}
-
-/* A window-sized view inside the strip, so every margin shares one weather. */
-.wx-view {
-  position: absolute;
-  top: 0;
-  bottom: 0;
 }
 
 .weather[hidden] {
@@ -84,6 +71,157 @@
   animation-play-state: paused;
 }
 
+/* One strip per margin, clipped to it; the script sets left, width and the feathering mask. */
+.wx-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* A window-sized view inside the strip, so every margin shares one window. */
+.wx-view {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+/* ------------------------------------------------------------------ the sign */
+
+/* The sign's light: it hums, a slow breath of brightness. The flicker is the script's, on .wx-flick. */
+.wx-lit,
+.wx-flick {
+  position: absolute;
+  inset: 0;
+}
+
+.wx-lit {
+  animation: wx-hum 4.6s ease-in-out infinite alternate;
+  animation-delay: var(--wx-age, 0s);
+}
+
+@keyframes wx-hum {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+/* Its light on the glass, from the window's left edge (the script sets its reach and opacity). */
+.wx-wash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/* The window's edge, where the tube's light catches the frame. */
+.wx-edge {
+  position: absolute;
+  left: 0;
+  width: 5px;
+  background: linear-gradient(to right, color-mix(in srgb, var(--wx-neon-core) 55%, transparent), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  opacity: 0.4;
+}
+
+.weather[data-neon='light'] .wx-edge {
+  width: 9px;
+  opacity: 0.6;
+}
+
+.weather[data-neon='wet'] .wx-edge {
+  opacity: 0.22;
+}
+
+.wx-sign {
+  position: absolute;
+  inset: 0;
+}
+
+.wx-letter {
+  position: absolute;
+}
+
+.wx-tube {
+  position: absolute;
+  inset: 0;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+.wx-tube--glow {
+  background: var(--wx-neon);
+  opacity: 0.85;
+}
+
+.wx-tube--core {
+  background: var(--wx-neon-core);
+  opacity: 0.9;
+}
+
+.weather[data-weather='fog'] .wx-sign {
+  opacity: 0.85;
+}
+
+.weather[data-weather='cold'] .wx-sign {
+  opacity: 0.8;
+}
+
+.weather[data-neon='wet'] .wx-sign {
+  opacity: 0.4;
+}
+
+/* The wet-glass take: the sign as smears of its colour in the glass. */
+.wx-reflect {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 160px;
+  opacity: 0.55;
+}
+
+/* Rain: the sign's colour running down the glass in slow rivulets. */
+.wx-rivulets {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+}
+
+.wx-rivulet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -300px;
+  bottom: 0;
+  background: var(--wx-neon);
+  mask-repeat: repeat;
+  -webkit-mask-repeat: repeat;
+  mask-size: 90px 300px;
+  -webkit-mask-size: 90px 300px;
+  opacity: 0.5;
+  animation: wx-rivulet 6.5s linear infinite;
+  animation-delay: var(--wx-age, 0s);
+}
+
+.weather[data-neon='wet'] .wx-rivulet {
+  opacity: 0.9;
+}
+
+@keyframes wx-rivulet {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 300px, 0);
+  }
+}
+
 /* ------------------------------------------------------------------ rain */
 
 .wx-rain {
@@ -94,6 +232,11 @@
   left: -32vh;
   right: -32vh;
   transform: rotate(13deg);
+}
+
+/* Beyond the glass, when drops run on it too: further off. */
+.weather[data-rain='both'] .wx-rain {
+  opacity: 0.6;
 }
 
 .wx-sheet {
@@ -143,69 +286,227 @@
   }
 }
 
-/* ----------------------------------------------------------------- frost */
-
-.wx-corner {
+/* On the glass: drops beaded, a second set slowly forming and running off, a few running down. */
+.wx-drops {
   position: absolute;
-  width: clamp(140px, 34vmin, 330px);
-  height: clamp(140px, 34vmin, 330px);
-  animation: wx-form 11s cubic-bezier(0.2, 0.55, 0.3, 1) both;
-  /* A strip cut again (a resize) picks up where the frost had got to. */
+  inset: 0;
+}
+
+.wx-beads {
+  position: absolute;
+  inset: 0;
+  background: var(--wx-drop);
+  mask-repeat: repeat;
+  -webkit-mask-repeat: repeat;
+  mask-size: 220px 300px;
+  -webkit-mask-size: 220px 300px;
+  opacity: 0.75;
+}
+
+.wx-beads--b {
+  mask-size: 190px 340px;
+  -webkit-mask-size: 190px 340px;
+  mask-position: 70px 40px;
+  -webkit-mask-position: 70px 40px;
+  animation: wx-bead 23s ease-in-out infinite alternate;
   animation-delay: var(--wx-age, 0s);
 }
 
-.wx-corner--tl {
-  top: 0;
-  left: 0;
-  transform-origin: 0 0;
-}
-.wx-corner--tr {
-  top: 0;
-  right: 0;
-  transform-origin: 100% 0;
-  animation-delay: calc(var(--wx-age, 0s) + 0.8s);
-}
-.wx-corner--bl {
-  bottom: 0;
-  left: 0;
-  transform-origin: 0 100%;
-  animation-delay: calc(var(--wx-age, 0s) + 0.4s);
-}
-.wx-corner--br {
-  bottom: 0;
-  right: 0;
-  transform-origin: 100% 100%;
-  animation-delay: calc(var(--wx-age, 0s) + 1.2s);
+@keyframes wx-bead {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
 }
 
-.wx-rime {
+.wx-run {
+  --run: var(--wx-drop);
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 0 0, var(--wx-frost-edge), transparent 70%),
-    var(--wx-frost);
+  width: 0;
+  animation-name: wx-run-a;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.wx-run--b {
+  animation-name: wx-run-b;
+}
+
+.wx-run--c {
+  animation-name: wx-run-c;
+}
+
+.wx-run-head {
+  position: absolute;
+  left: -2.5px;
+  top: -4px;
+  width: 5px;
+  height: 7px;
+  border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
+  background: radial-gradient(circle at 40% 34%, rgba(240, 246, 255, 0.95), var(--run) 45%, transparent 78%);
+}
+
+.wx-run-trail {
+  position: absolute;
+  left: -0.75px;
+  bottom: 2px;
+  width: 1.5px;
+  height: var(--trail, 80px);
+  border-radius: 1px;
+  background: linear-gradient(to top, var(--run), transparent);
+  opacity: 0.5;
+}
+
+/* A drop on glass runs in fits: it gathers, slides, catches, slides on. */
+@keyframes wx-run-a {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  8% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate3d(0, 9vh, 0);
+  }
+  30% {
+    transform: translate3d(1px, 10vh, 0);
+  }
+  46% {
+    transform: translate3d(1px, 34vh, 0);
+  }
+  56% {
+    transform: translate3d(0, 35vh, 0);
+  }
+  78% {
+    transform: translate3d(-1px, 72vh, 0);
+  }
+  100% {
+    transform: translate3d(-1px, 118vh, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes wx-run-b {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  34% {
+    transform: translate3d(-1px, 22vh, 0);
+  }
+  48% {
+    transform: translate3d(-1px, 23vh, 0);
+  }
+  100% {
+    transform: translate3d(1px, 118vh, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes wx-run-c {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  24% {
+    transform: translate3d(1px, 16vh, 0);
+  }
+  40% {
+    transform: translate3d(1px, 17vh, 0);
+  }
+  52% {
+    transform: translate3d(0, 40vh, 0);
+  }
+  68% {
+    transform: translate3d(0, 41vh, 0);
+  }
+  100% {
+    transform: translate3d(-1px, 118vh, 0);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------------------------- frost */
+
+/* Each stage of the frost is a mask the size of its margin, fading in when its turn comes. */
+.wx-stage,
+.wx-glint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--wx-frost);
   mask-size: 100% 100%;
   -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
-.wx-corner--tr .wx-rime {
-  transform: scaleX(-1);
-}
-.wx-corner--bl .wx-rime {
-  transform: scaleY(-1);
-}
-.wx-corner--br .wx-rime {
-  transform: scale(-1, -1);
+.wx-stage {
+  animation: wx-form 2.2s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+  animation-delay: calc(var(--wx-age, 0s) + var(--d, 0s));
 }
 
 @keyframes wx-form {
   from {
     opacity: 0;
-    transform: scale(0.45);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+  }
+}
+
+/* Near the sign the crystals take its light (and lose it when it flickers out). */
+.wx-frost-lit > .wx-flick {
+  opacity: 0.8;
+}
+
+/* The rime's glints: each sheet catches the light on its own slow clock, once the rime has formed. */
+.wx-glint {
+  background: #fff;
+  opacity: 0.35;
+  animation: wx-glint 6.3s ease-in-out infinite backwards;
+}
+
+.wx-glint--0 {
+  animation-delay: calc(var(--wx-age, 0s) + 4s);
+}
+.wx-glint--1 {
+  animation-duration: 8.7s;
+  animation-delay: calc(var(--wx-age, 0s) + 6.5s);
+}
+.wx-glint--2 {
+  animation-duration: 11.3s;
+  animation-delay: calc(var(--wx-age, 0s) + 5.2s);
+}
+.wx-glint--3 {
+  animation-duration: 13.9s;
+  animation-delay: calc(var(--wx-age, 0s) + 9s);
+}
+.wx-glint--4 {
+  animation-duration: 9.8s;
+  animation-delay: calc(var(--wx-age, 0s) + 11.5s);
+}
+
+@keyframes wx-glint {
+  0%,
+  44%,
+  62%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
@@ -215,6 +516,16 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, var(--wx-fog), var(--wx-haze) 55%, var(--wx-haze));
+}
+
+/* It pools low. */
+.wx-pool {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: linear-gradient(to top, var(--wx-fog), transparent);
 }
 
 .wx-fog-a,
@@ -269,6 +580,8 @@
 
 /* ------------------------------------------------- still, for reduced motion */
 
+/* The frost formed, the fog still, the sign steady; no rain, no steam. (`data-motion` is the lab's
+ * still switch too.) */
 @media (prefers-reduced-motion: reduce) {
   .weather *,
   .weather *::before,
@@ -276,9 +589,16 @@
     animation: none !important;
   }
   .wx-rain,
+  .wx-drops,
   .wx-wisp {
     display: none;
   }
+}
+
+.weather[data-motion='false'] *,
+.weather[data-motion='false'] *::before,
+.weather[data-motion='false'] *::after {
+  animation: none !important;
 }
 
 /* ------------------------------------------------------------ the switch */
