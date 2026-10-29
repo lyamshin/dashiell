@@ -11,13 +11,14 @@
  * The URL says which night: `?seed=4&t=2[&type=lost-pet]`.
  */
 
-import { clockStrip, usedByPage } from '../game/board/clock.js';
+import { NIGHT_MINUTES, clockStrip, minutesAfter, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { FACE_MARK, boardGrid, faceMarkDue, meansAsked, meansReasons, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
+  OFFICE,
   budgetCalls,
   castOf,
   dealBoard,
@@ -26,6 +27,7 @@ import {
   nameOf,
   personOf,
   placeName,
+  placeOf,
   tierName,
   type BoardDeal,
   type BoardReport,
@@ -52,7 +54,7 @@ import { renderVerdict, type TierNews } from './report.js';
 import { cellLabel, cellWords } from './cells.js';
 import { curtainNode } from './curtain.js';
 import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, routeSvg, setback } from './deco.js';
-import { SHOWN_EVENT, createWeatherLayer, loadWeatherMode, nextMode, saveWeatherMode } from './weather.js';
+import { SHOWN_EVENT, buildingOf, createWeatherLayer, loadWeatherMode, nextMode, saveWeatherMode } from './weather.js';
 import './board.css';
 
 /** What the browser keeps of a board night: the deal and every command, replayed on load. */
@@ -169,13 +171,18 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   setTexture(params().get('texture'));
   // docs/52 §3: `?plain=1` shows each page's plain page: every fact it says, and no voice.
   const PLAIN = params().get('plain') === '1';
+  // docs/27: `?wxlab=1` on the dev server opens the lights lab (out before merge).
+  if (import.meta.env.DEV && params().get('wxlab') === '1') void import('./weather-lab.js').then((m) => m.mountWeatherLab(weather));
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
     const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
     const q1a = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
     const q1 = TEXTURE.mode === 'full' ? `${q1a ? `${q1a}&` : '?'}texture=full` : q1a;
-    const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
+    const q2 = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
+    // (The lights lab's own settings ride along: `wxlab`, `wxview` and the rest.)
+    const lab = [...params()].filter(([k]) => k.startsWith('wx')).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+    const q = lab ? `${q2 ? `${q2}&` : '?'}${lab}` : q2;
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
@@ -373,6 +380,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const sheet = titlePage();
       root.append(sheet);
       // The title page has its own rain, quietly, unless the weather is switched off.
+      weather.scene({ building: null, minutes: null, page: -1 });
       weather.show('rain');
       weather.attach(sheet);
       if (!sheet.querySelector('dialog[open]')) sheet.querySelector<HTMLElement>(choosing ? '#case-picker [role="radio"][tabindex="0"]' : '[data-primary]')?.focus({ preventScroll: true });
@@ -389,6 +397,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // (book-look, item 5: the clock strikes eight and the stamp lands, once, as the verdict first shows.)
     spread.classList.toggle('ceremony', ceremony && screen.kind === 'verdict');
     ceremony = false;
+    // docs/27: the view outside follows the building the reader is in and the clock (the night's, not
+    // a turned-back page's), and nothing else about the case: it must never read as a clue.
+    weather.scene({
+      building: buildingOf(placeOf(d.kase, run.at), run.at === OFFICE),
+      minutes: screen.kind === 'verdict' ? NIGHT_MINUTES : minutesAfter(run.used, budgetCalls(d)),
+      page: run.log.length * 1000 + turned,
+    });
     weather.show(run.weather);
     weather.attach(spread);
     watchChoices();

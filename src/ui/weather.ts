@@ -489,15 +489,23 @@ export function frostMask(pieces: readonly FrostPiece[], zone: Span, vh: number,
   );
 }
 
+
 /* ------------------------------------------------------------- the sign */
 
-/** The sign's letters, as single neon tubes in a 30 by 40 box. */
+/** The signs' letters, as single neon tubes in a 30 by 40 box. */
 const GLYPHS: Record<string, string> = {
   H: 'M5 4V36M25 4V36M5 20H25',
   O: 'M15 4C8 4 5 10 5 20S8 36 15 36S25 30 25 20S22 4 15 4Z',
   T: 'M4 4H26M15 4V36',
   E: 'M25 4H5V36H25M5 20H21',
   L: 'M5 4V36H25',
+  C: 'M25 9C23 6 19 4 15 4C9 4 5 10 5 20S9 36 15 36C19 36 23 34 25 31',
+  P: 'M5 36V4H16C22 4 25 7 25 12S22 20 16 20H5',
+  S: 'M24 8C22 5 19 4 15 4C9 4 6 7 6 11C6 16 10 18 15 20C21 22 25 24 25 29C25 33 21 36 15 36C11 36 7 35 5 32',
+  U: 'M5 4V27C5 32 9 36 15 36S25 32 25 27V4',
+  Y: 'M4 4L15 20L26 4M15 20V36',
+  R: 'M5 36V4H16C22 4 25 7 25 12S22 20 16 20H5M15 20L25 36',
+  M: 'M4 36V4L15 22L26 4V36',
 };
 export const SIGN_WORD = 'HOTEL';
 /** Room around a letter's box for its glow to spread into, in the letter's own units. */
@@ -535,24 +543,27 @@ export function tubeMask(ch: string, part: 'core' | 'glow', blur: TubeBlur): str
   );
 }
 
-/** Where the sign hangs, in window pixels: just past the left edge, its letters stacked downward. */
+/** Where a sign hangs, in window pixels: just past the window's edge, its letters stacked downward. */
 export interface Sign {
-  /** The letter boxes' left edge (negative: most of each letter is beyond the window's edge). */
+  /** The letter boxes' near edge (negative: most of each letter is beyond the window's edge). */
   x: number;
   top: number;
   /** A letter's height; a letter is three quarters as wide. */
   h: number;
   gap: number;
-  /** Top to bottom of the five letters. */
+  /** Top to bottom of the letters. */
   bottom: number;
   middle: number;
 }
 
-export function signFor(vh: number): Sign {
-  const h = Math.round(clamp(vh * 0.05, 30, 46));
+/** A word's sign: a long word (CHOP SUEY, its space a slot) is set smaller and starts higher. */
+export function signFor(vh: number, word = SIGN_WORD): Sign {
+  const slots = [...word].length;
+  const long = slots > 6;
+  const h = Math.round(clamp(vh * 0.05, 30, 46) * (long ? 0.8 : 1));
   const gap = Math.round(h * 0.3);
-  const top = Math.round(vh * 0.19);
-  const bottom = top + SIGN_WORD.length * h + (SIGN_WORD.length - 1) * gap;
+  const top = Math.round(vh * (long ? 0.13 : 0.19));
+  const bottom = top + slots * h + (slots - 1) * gap;
   return { x: -Math.round(h * 0.42), top, h, gap, bottom, middle: (top + bottom) / 2 };
 }
 
@@ -564,15 +575,176 @@ export const WASH: Record<Weather, { rx: number; ry: number; o: number }> = {
   cold: { rx: 200, ry: 0.4, o: 0.24 },
 };
 
+/** A lamp's or a bulb's light on the glass: softer and dimmer than the sign's, the fill to its key. */
+export const LAMP_WASH: Record<Weather, { rx: number; ry: number; o: number }> = {
+  clear: { rx: 170, ry: 0.3, o: 0.17 },
+  rain: { rx: 130, ry: 0.46, o: 0.15 },
+  fog: { rx: 330, ry: 0.56, o: 0.2 },
+  cold: { rx: 160, ry: 0.32, o: 0.14 },
+};
+
 /** How far into the window the sign's light can reach on a night: a margin past this has none. */
 export function neonReach(weather: Weather): number {
   return WASH[weather].rx * 1.25;
+}
+
+/* ------------------------------------------------------------- the view outside */
+
+/**
+ * What a building is, as the book describes it (`Place.kind`, and a rooming house by its name), for
+ * the view from its window. Never what it is in the case: not the scene, not the night's unwatched
+ * place, not who keeps watch there. The view must never read as a clue.
+ */
+export type Building = 'office' | 'bar' | 'club' | 'restaurant' | 'theatre' | 'work' | 'transit' | 'rooming' | 'home';
+export const BUILDINGS: readonly Building[] = ['office', 'bar', 'club', 'restaurant', 'theatre', 'work', 'transit', 'rooming', 'home'];
+
+/** A place's building: its kind (a bar, a theatre…), a rooming house, or a home. */
+export function buildingOf(place: { kind: string; key?: string } | undefined, office: boolean): Building {
+  if (office) return 'office';
+  if (!place) return 'home';
+  if ((place.key ?? '').startsWith('rooming')) return 'rooming';
+  const k = place.kind;
+  return k === 'bar' || k === 'club' || k === 'restaurant' || k === 'theatre' || k === 'work' || k === 'transit' ? k : 'home';
+}
+
+/** The lights' tones: the sign's argon, a cold bare bulb, a warm electric lamp, a gas mantle's greenish white. */
+export type Tone = 'neon' | 'cold' | 'lamp' | 'gas';
+const TONE_VAR: Record<Tone, string> = { neon: '--wx-neon', cold: '--wx-cold', lamp: '--wx-lamp', gas: '--wx-gas' };
+
+export interface Light {
+  /**
+   * `neon` a sign's tubes; `glow` a sign out of frame, its light only; `bulb` a bare bulb over a door;
+   * `marquee` a theatre's blade of chasing bulbs; `lamp` a street lamp; `window` lit windows across
+   * the way.
+   */
+  kind: 'neon' | 'glow' | 'bulb' | 'marquee' | 'lamp' | 'window';
+  tone: Tone;
+  /** A neon sign's word. */
+  word?: string;
+  /** 1 for an ordinary light of its kind; less for a dim one. */
+  strength: number;
+}
+
+/** The lights outside the window: the weather is the night's, the view is the place's and the hour's. */
+export interface View {
+  /** The key, past the window's left edge: cool (a theatre's is its warm marquee, against a cool glow). */
+  left: Light | null;
+  /** The fill, past the right edge: warm, and dimmer than the key. */
+  right: Light | null;
+  /** A cab rank: parked cabs' lamps, low at the right. */
+  cabs: boolean;
+  /** The El: 0 none, 1 nearby, 2 at the station. */
+  el: number;
+  /** How often a car passes; 1 for an ordinary street. */
+  cars: number;
+  /** The margins greying toward morning: 0 at night, 1 at eight. */
+  dawn: number;
+}
+
+/** The lab's question (docs/27): A one window all night; B by place; C by the hour; D both. */
+export type Variation = 'A' | 'B' | 'C' | 'D';
+export const VARIATIONS: readonly Variation[] = ['A', 'B', 'C', 'D'];
+
+const HOTEL: Light = { kind: 'neon', tone: 'neon', word: 'HOTEL', strength: 1 };
+const LAMP: Light = { kind: 'lamp', tone: 'lamp', strength: 1 };
+const COLD_BULB: Light = { kind: 'bulb', tone: 'cold', strength: 1 };
+const LAMP_FILL: Light = { kind: 'lamp', tone: 'lamp', strength: 0.8 };
+const WINDOWS: Light = { kind: 'window', tone: 'lamp', strength: 0.85 };
+
+/** How bright a light is on the glass on a night: its wash's strength (lit windows are half that). */
+export function lightLevel(light: Light, weather: Weather): number {
+  const neonish = light.kind === 'neon' || light.kind === 'glow';
+  const base = (neonish ? WASH : LAMP_WASH)[weather].o;
+  return base * light.strength * (light.kind === 'window' ? 0.5 : 1);
+}
+
+/** The cool lights and the warm: argon, a cold bulb and gas's greenish white are cool; a lamp is warm. */
+export const isWarm = (l: Light): boolean => l.tone === 'lamp';
+
+/**
+ * Each building's outside, period-true (1920s New York, Prohibition), and each with its balance: a
+ * cool key at one edge, a warm and dimmer fill at the other.
+ */
+export const BY_PLACE: Record<Building, Omit<View, 'dawn'>> = {
+  // The HOTEL across the street, an electric lamp on the corner.
+  office: { left: HOTEL, right: LAMP, cabs: false, el: 0, cars: 1 },
+  // A speakeasy lights no sign: a cold bare bulb over the door, a lamp across, cabs waiting.
+  bar: { left: COLD_BULB, right: LAMP_FILL, cabs: true, el: 0, cars: 1.6 },
+  club: { left: COLD_BULB, right: LAMP_FILL, cabs: true, el: 0, cars: 1.8 },
+  // An all-night chop suey joint (Hopper painted one in 1929).
+  restaurant: { left: { kind: 'neon', tone: 'neon', word: 'CHOP SUEY', strength: 0.9 }, right: LAMP, cabs: false, el: 0, cars: 1.2 },
+  // The marquee's warm chasing bulbs, and the cool spill of the next theatre's sign.
+  theatre: { left: { kind: 'marquee', tone: 'lamp', strength: 1 }, right: { kind: 'glow', tone: 'neon', strength: 0.4 }, cabs: true, el: 0, cars: 1.6 },
+  // A cold bulb over a loading door, a dim lamp, the El nearby.
+  work: { left: { kind: 'bulb', tone: 'cold', strength: 0.75 }, right: { kind: 'lamp', tone: 'lamp', strength: 0.6 }, cabs: false, el: 1, cars: 0.7 },
+  // The El station's cold globe, a lamp under the tracks, the trains.
+  transit: { left: { kind: 'bulb', tone: 'cold', strength: 0.9 }, right: { kind: 'lamp', tone: 'lamp', strength: 0.75 }, cabs: false, el: 2, cars: 0.8 },
+  // A small ROOMS sign; across the way, lodgers' lit windows.
+  rooming: { left: { kind: 'neon', tone: 'neon', word: 'ROOMS', strength: 0.7 }, right: WINDOWS, cabs: false, el: 0, cars: 0.5 },
+  // A gas lamp's greenish white (gas lingered on residential streets), and a lit window across the way.
+  home: { left: { kind: 'lamp', tone: 'gas', strength: 0.9 }, right: WINDOWS, cabs: false, el: 0, cars: 0.4 },
+};
+
+/** The night's clock outside: minutes past midnight. The DA comes at eight. */
+const EIGHT = 480;
+/** Greying begins (5:45): a New York winter's sunrise is about seven. */
+export const DAWN_FROM = 345;
+/** First light (6:45): the street lamps go out. */
+export const FIRST_LIGHT = 405;
+/** Seven: the signs go off soon after. */
+export const SIGNS_OFF = 420;
+
+/** What the hour does outside. Dawn is the one big change; the rest stays quiet. */
+export function hourOf(minutes: number): { cars: number; lampOn: boolean; keyOn: boolean; dawn: number } {
+  const m = clamp(minutes, 0, EIGHT);
+  // Busy till one; thin by half past two; a little traffic again toward morning.
+  const cars = m < 60 ? 1 : m < 150 ? 1 - ((m - 60) / 90) * 0.65 : m < 330 ? 0.35 : Math.min(0.6, 0.35 + ((m - 330) / 120) * 0.25);
+  const t = clamp((m - DAWN_FROM) / (EIGHT - DAWN_FROM), 0, 1);
+  return { cars, lampOn: m < FIRST_LIGHT, keyOn: m < SIGNS_OFF, dawn: Math.round(t * t * (3 - 2 * t) * 100) / 100 };
+}
+
+/** The book's side of it: the building the reader is in and the clock, or null for none (the title page). */
+export interface Scene {
+  building: Building | null;
+  minutes: number | null;
+}
+
+/** The view outside, for a variation, a scene, and the lamp the lab is trying (electric or gas). */
+export function viewFor(variation: Variation, scene: Scene, lamp: 'electric' | 'gas' = 'electric'): View {
+  const byPlace = variation === 'B' || variation === 'D';
+  const byHour = variation === 'C' || variation === 'D';
+  const base = BY_PLACE[byPlace ? (scene.building ?? 'office') : 'office'];
+  const gas = (l: Light | null): Light | null => (l && lamp === 'gas' && l.kind === 'lamp' && l.tone === 'lamp' ? { ...l, tone: 'gas' } : l);
+  let view: View = { ...base, left: gas(base.left), right: gas(base.right), dawn: 0 };
+  if (byHour && scene.minutes !== null) {
+    const h = hourOf(scene.minutes);
+    const lit = (l: Light | null): Light | null => {
+      if (!l) return l;
+      // The lamps go out at first light; the signs, the bulbs and the lit windows soon after.
+      if (l.kind === 'lamp') return h.lampOn ? l : null;
+      return h.keyOn ? l : null;
+    };
+    view = { ...view, left: lit(view.left), right: lit(view.right), cars: view.cars * h.cars, dawn: h.dawn };
+  }
+  return view;
 }
 
 /* ------------------------------------------------------------- the layer */
 
 /** The event the layer sends when what the switch should show changes under it (the system's setting). */
 export const SHOWN_EVENT = 'wx-shown';
+
+/** The lab's settings (dev only, `?wxlab=1`; out before merge). */
+export interface LabSettings {
+  variation: Variation;
+  /** Preview a building, or null for the book's. */
+  building: Building | null;
+  /** Preview an hour (minutes past midnight), or null for the book's. */
+  minutes: number | null;
+  lamp: 'electric' | 'gas';
+  /** Show this weather whatever the night rolled, or null for the roll. */
+  weather: Weather | null;
+}
 
 export interface WeatherLayer {
   /** The layer itself, for the book to put inside the spread. */
@@ -581,6 +753,11 @@ export interface WeatherLayer {
   attach(parent: HTMLElement): void;
   /** The night showing, or null for none. */
   show(weather: Weather | null): void;
+  /**
+   * Where the reader is and what the clock says, and which page is up: the view outside follows the
+   * building and the hour, and nothing passes in the street for a few seconds after a new page.
+   */
+  scene(scene: Scene & { page: number }): void;
   /** The reader's switch. */
   setMode(mode: WeatherMode): void;
   readonly mode: WeatherMode;
@@ -592,13 +769,25 @@ export interface WeatherLayer {
   relayout(): void;
   /** What is showing now. */
   effects(): Effects;
+  /** The view outside now. */
+  view(): View;
+  /** The book's scene (the lab shows it). */
+  readonly bookScene: Scene;
+  /** The night's own weather (the lab's "roll"). */
+  readonly night: Weather | null;
+  /** The lab: its settings. */
+  readonly lab: LabSettings;
+  setLab(settings: Partial<LabSettings>): void;
+  /** The lab: a car now, a train now, the sign's flicker now. */
+  trigger(kind: 'car' | 'el' | 'flicker'): void;
 }
 
 const TILES = {
   far: () => rainTile(180, 420, 24, 11, [12, 22], 0.8),
   near: () => rainTile(260, 560, 15, 29, [26, 46], 1.1),
-  // The sign's light running down the glass in the wet: long, slow rivulets.
+  // A light running down the glass in the wet: long, slow rivulets.
   rivulets: () => rainTile(90, 300, 7, 53, [50, 130], 1.4),
+  rivuletsB: () => rainTile(80, 340, 6, 71, [40, 110], 1.2),
   beads: () => beadTile(220, 300, 30, 61),
   beadsB: () => beadTile(190, 340, 24, 67),
 };
@@ -618,15 +807,34 @@ function mask(node: HTMLElement, image: string): void {
   style(node, { 'mask-image': image, '-webkit-mask-image': image });
 }
 
-/** The sign's colour at a strength, for a gradient. */
-const neon = (pct: number): string => `color-mix(in srgb, var(--wx-neon) ${pct}%, transparent)`;
+/** A light's colour at a strength, for a gradient. */
+const tone = (t: Tone, pct: number): string => `color-mix(in srgb, var(${TONE_VAR[t]}) ${r1(pct)}%, transparent)`;
+
+type Side = 'left' | 'right';
+
+/** Where a side's light is centred, down the window. */
+function lightY(light: Light, vh: number): number {
+  if (light.kind === 'neon') return signFor(vh, light.word).middle;
+  const at = { glow: 0.38, bulb: 0.6, marquee: 0.34, lamp: 0.3, window: 0.42 }[light.kind];
+  return Math.round(vh * at);
+}
+
+/** How far into the window a side's light reaches on a night. */
+function lightReach(light: Light, w: Weather): number {
+  return light.kind === 'neon' ? neonReach(w) : LAMP_WASH[w].rx * 1.25;
+}
+
+/** Blinds: the slats a passing car's light comes through. */
+const SLATS = 'repeating-linear-gradient(176deg, rgba(0,0,0,.95) 0px, rgba(0,0,0,.95) 9px, rgba(0,0,0,.1) 11px, rgba(0,0,0,.1) 16px, rgba(0,0,0,.95) 18px)';
+const SLATS_FOG = 'repeating-linear-gradient(176deg, rgba(0,0,0,.95) 0px, rgba(0,0,0,.95) 10px, rgba(0,0,0,.45) 13px, rgba(0,0,0,.45) 16px, rgba(0,0,0,.95) 19px)';
 
 /**
  * The layer is not one sheet over the window but one strip per margin, each clipped to its margin.
  * A sheet over the window would overlap the text, and the browser would lift the text over it into a
  * layer of its own and rasterize it differently; strips that never overlap a column leave every word
- * as it was. Inside each strip a window-sized view keeps the fog, the rime and the sign's light in
- * one coordinate system, so the margins read as one window.
+ * as it was. Inside each strip a window-sized view keeps the fog, the rime and the lights in one
+ * coordinate system, so the margins read as one window. The strips live in a set; a new view outside
+ * (a walk, the hour) builds a new set and crossfades it in over the old one.
  */
 export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
   const layer = div('weather');
@@ -635,47 +843,113 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
   layer.hidden = true;
   let weather: Weather | null = null;
   let mode = opts.mode;
+  let book: Scene = { building: null, minutes: null };
+  let page = -1;
+  let lab: LabSettings = { variation: 'D', building: null, minutes: null, lamp: 'electric', weather: null };
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   let current: Effects = NO_EFFECTS;
   let effectsKey = '';
+  let view: View = viewFor('A', book);
+  let viewKey = '';
   /** When this night's weather began, so a re-cut carries on where it was. */
   let since = 0;
+  /** No light event (a car, a train, a flicker, a wisp) before this: a new page has just come up. */
+  let quietUntil = 0;
   let zones: Span[] = [];
   let zonesKey = '';
-  let timer: number | undefined;
-  let flickerTimer: number | undefined;
+  let set: HTMLElement | null = null;
+  const timers: Record<'steam' | 'flicker' | 'car' | 'el', number | undefined> = { steam: undefined, flicker: undefined, car: undefined, el: undefined };
   const textures: Partial<Record<keyof typeof TILES, string>> = {};
   const tile = (k: keyof typeof TILES): string => (textures[k] ||= TILES[k]());
   let frostCache: { key: string; pieces: FrostPiece[]; glints: FrostPiece[] } | null = null;
 
   const reducedBySystem = (): boolean => reduce?.matches ?? false;
   const narrow = (): boolean => window.innerWidth < 600;
-  const effects = (): Effects => effectsFor(weather, { mode, reducedMotion: reducedBySystem(), narrow: narrow() });
+  const shownWeather = (): Weather | null => (weather === null ? null : (lab.weather ?? weather));
+  const effects = (): Effects => effectsFor(shownWeather(), { mode, reducedMotion: reducedBySystem(), narrow: narrow() });
+  const scene = (): Scene => ({ building: lab.building ?? book.building, minutes: lab.minutes ?? book.minutes });
+  const computeView = (): View => viewFor(lab.variation, scene(), lab.lamp);
+  /** What of the view is drawn (how often cars pass is the timers', not the drawing's). */
+  const drawnKey = (v: View): string => JSON.stringify([v.left, v.right, v.cabs, v.dawn]);
 
-  /* ---- steam */
+  /* ---- the timers: wisps, flickers, cars, trains; never in the quiet after a page */
 
-  function stopSteam(): void {
-    if (timer !== undefined) window.clearTimeout(timer);
-    timer = undefined;
+  function stop(k: keyof typeof timers): void {
+    if (timers[k] !== undefined) window.clearTimeout(timers[k]);
+    timers[k] = undefined;
   }
 
-  function scheduleSteam(first: boolean): void {
-    stopSteam();
-    const steam = current.steam;
-    if (!steam || document.hidden || !layer.isConnected) return;
-    const gap = steam.minGap + Math.random() * (steam.maxGap - steam.minGap);
-    // The first wisp comes sooner than the gap, so a short night still sees one.
-    const wait = (first ? 2.5 + Math.random() * Math.min(gap, 12) : gap) * 1000;
-    timer = window.setTimeout(() => {
-      wisp(steam);
-      scheduleSteam(false);
+  function stopAll(): void {
+    for (const k of Object.keys(timers) as (keyof typeof timers)[]) stop(k);
+  }
+
+  /** Run `fn` in `wait` ms, or once the quiet after a page is over. */
+  function later(k: keyof typeof timers, wait: number, fn: () => void): void {
+    stop(k);
+    if (document.hidden || !layer.isConnected) return;
+    timers[k] = window.setTimeout(() => {
+      timers[k] = undefined;
+      const hush = quietUntil - performance.now();
+      if (hush > 0) later(k, hush + 1000 + Math.random() * 3000, fn);
+      else fn();
     }, wait);
   }
 
+  function scheduleSteam(first: boolean): void {
+    const steam = current.steam;
+    if (!steam) return stop('steam');
+    const gap = steam.minGap + Math.random() * (steam.maxGap - steam.minGap);
+    // The first wisp comes sooner than the gap, so a short night still sees one.
+    later('steam', (first ? 2.5 + Math.random() * Math.min(gap, 12) : gap) * 1000, () => {
+      wisp(steam);
+      scheduleSteam(false);
+    });
+  }
+
+  function scheduleFlicker(first: boolean): void {
+    const f = current.flicker;
+    if (!f || !hasNeon()) return stop('flicker');
+    // The first comes sooner, so a short visit still sees the sign stutter once.
+    later('flicker', (first ? 6 + Math.random() * 10 : f.minGap + Math.random() * (f.maxGap - f.minGap)) * 1000, () => {
+      flicker();
+      scheduleFlicker(false);
+    });
+  }
+
+  /** Cars: every 16 to 45 s on an ordinary street, more often at a club, seldom late at night. */
+  function scheduleCar(first: boolean): void {
+    if (!current.motion || narrow() || view.cars <= 0) return stop('car');
+    const gap = (16 + Math.random() * 29) / view.cars;
+    later('car', (first ? Math.min(gap, 4 + Math.random() * 8) : gap) * 1000, () => {
+      car();
+      scheduleCar(false);
+    });
+  }
+
+  /** The El: a train every one to two minutes nearby, more often at the station. */
+  function scheduleEl(first: boolean): void {
+    if (!current.motion || narrow() || view.el <= 0) return stop('el');
+    const gap = (55 + Math.random() * 60) / view.el;
+    later('el', (first ? 8 + Math.random() * 12 : gap) * 1000, () => {
+      train();
+      scheduleEl(false);
+    });
+  }
+
+  function scheduleAll(first: boolean): void {
+    scheduleSteam(first);
+    scheduleFlicker(first);
+    scheduleCar(first);
+    scheduleEl(first);
+  }
+
+  const strips = (): HTMLElement[] => (set ? [...set.querySelectorAll<HTMLElement>(':scope > .wx-strip')] : []);
+  const views = (): HTMLElement[] => strips().map((s) => s.querySelector<HTMLElement>(':scope > .wx-view')).filter((v): v is HTMLElement => v !== null);
+
   /** One wisp: two or three soft puffs rising and spreading, a few seconds. */
   function wisp(steam: Steam): void {
-    const strips = [...layer.querySelectorAll<HTMLElement>('.wx-strip')];
-    if (strips.length === 0 || strips.length !== zones.length) return;
+    const all = strips();
+    if (all.length === 0 || all.length !== zones.length) return;
     // A margin, chosen by its width, and a place inside it.
     const total = zones.reduce((n, [a, b]) => n + (b - a), 0);
     let pick = Math.random() * total;
@@ -686,7 +960,7 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
       at = i;
       if (pick <= 0) break;
     }
-    const strip = strips[at] as HTMLElement;
+    const strip = all[at] as HTMLElement;
     const zw = (zones[at] as Span)[1] - (zones[at] as Span)[0];
     const w = Math.max(56, Math.min(130, zw * 1.1));
     const x = zw * (0.3 + Math.random() * 0.4) - w / 2;
@@ -719,24 +993,7 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     }
   }
 
-  /* ---- the sign's flicker */
-
-  function stopFlicker(): void {
-    if (flickerTimer !== undefined) window.clearTimeout(flickerTimer);
-    flickerTimer = undefined;
-  }
-
-  function scheduleFlicker(first: boolean): void {
-    stopFlicker();
-    const f = current.flicker;
-    if (!f || !current.neon || document.hidden || !layer.isConnected) return;
-    // The first comes sooner, so a short visit still sees the sign stutter once.
-    const wait = (first ? 6 + Math.random() * 10 : f.minGap + Math.random() * (f.maxGap - f.minGap)) * 1000;
-    flickerTimer = window.setTimeout(() => {
-      flicker();
-      scheduleFlicker(false);
-    }, wait);
-  }
+  const hasNeon = (): boolean => view.left?.kind === 'neon' || view.right?.kind === 'neon';
 
   /**
    * A flicker: a buzz (the tube stutters for half a second), one letter out for a beat, or the whole
@@ -744,13 +1001,14 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
    */
   function flicker(): void {
     if (!current.flicker) return;
-    const groups = [...layer.querySelectorAll<HTMLElement>('.wx-flick')];
+    const groups = [...(set?.querySelectorAll<HTMLElement>('.wx-flick') ?? [])];
     if (groups.length === 0) return;
-    const letters = [...layer.querySelectorAll<HTMLElement>('.wx-letter')];
+    const letters = [...(set?.querySelectorAll<HTMLElement>('.wx-letter') ?? [])];
     const r = Math.random();
     const kind = r < 0.45 ? 'buzz' : r < 0.8 && letters.length > 0 ? 'letter' : 'drop';
     if (kind === 'letter') {
-      const i = String(Math.floor(Math.random() * SIGN_WORD.length));
+      const ids = [...new Set(letters.map((l) => l.dataset['i']))];
+      const i = ids[Math.floor(Math.random() * ids.length)];
       const out = 900 + Math.random() * 1400;
       for (const el of letters) {
         if (el.dataset['i'] !== i) continue;
@@ -798,20 +1056,79 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     for (const g of groups) g.animate(frames, { duration, easing: 'linear' });
   }
 
+  /**
+   * A car going by in the street below: its headlamps' light, a soft bar slatted by the blinds, sweeps
+   * across the whole window in one direction in a couple of seconds, through every margin in turn.
+   */
+  function car(): void {
+    const w = current.weather;
+    if (!w || !current.motion) return;
+    const vw = window.innerWidth;
+    const W = Math.round(clamp(vw * 0.14, 140, 300) * (w === 'fog' ? 1.5 : 1));
+    const dir = Math.random() < 0.5 ? 1 : -1;
+    const duration = 2200 + Math.random() * 900;
+    const peak = w === 'fog' ? 0.16 : w === 'rain' ? 0.1 : 0.13;
+    for (const v of views()) {
+      const blinds = div('wx-blinds');
+      mask(blinds, w === 'fog' ? SLATS_FOG : SLATS);
+      const bar = div('wx-car');
+      style(bar, { width: `${W}px`, left: dir > 0 ? `${-W}px` : `${vw}px` });
+      blinds.append(bar);
+      v.append(blinds);
+      const anim = bar.animate(
+        [
+          { transform: 'translate3d(0, 0, 0) skewX(-9deg)', opacity: 0 },
+          { opacity: peak, offset: 0.16 },
+          { opacity: peak, offset: 0.82 },
+          { transform: `translate3d(${dir * (vw + W)}px, 0, 0) skewX(-9deg)`, opacity: 0 },
+        ],
+        { duration, easing: 'cubic-bezier(.45,.05,.55,.95)', fill: 'both' },
+      );
+      const done = (): void => blinds.remove();
+      anim.finished.then(done, done);
+    }
+  }
+
+  /** The El going by: a train's lit windows slide across the top of the window. */
+  function train(): void {
+    if (!current.weather || !current.motion) return;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const L = Math.round(vw * 0.9);
+    const dir = Math.random() < 0.5 ? 1 : -1;
+    const duration = 4200 + Math.random() * 1200;
+    for (const v of views()) {
+      const t = div('wx-el');
+      style(t, { width: `${L}px`, left: dir > 0 ? `${-L}px` : `${vw}px`, top: `${Math.round(vh * 0.06)}px`, height: `${Math.round(clamp(vh * 0.045, 22, 44))}px` });
+      v.append(t);
+      const anim = t.animate(
+        [
+          { transform: 'translate3d(0, 0, 0)', opacity: 0 },
+          { opacity: 0.16, offset: 0.08 },
+          { opacity: 0.16, offset: 0.92 },
+          { transform: `translate3d(${dir * (vw + L)}px, 0, 0)`, opacity: 0 },
+        ],
+        { duration, easing: 'linear', fill: 'both' },
+      );
+      const done = (): void => t.remove();
+      anim.finished.then(done, done);
+    }
+  }
+
   /* ---- measuring */
 
   /** Measure the pages' text; the margins are what it leaves. */
   function measure(): { zones: Span[]; width: number } {
     const width = document.documentElement.clientWidth || window.innerWidth;
     const columns: Span[] = [];
-    for (const page of document.querySelectorAll<HTMLElement>('.spread .page, .title-sheet .title-page')) {
-      const r = page.getBoundingClientRect();
+    for (const pg of document.querySelectorAll<HTMLElement>('.spread .page, .title-sheet .title-page')) {
+      const r = pg.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) continue;
-      const cs = getComputedStyle(page);
-      const left = r.left + page.clientLeft + parseFloat(cs.paddingLeft);
-      const right = r.left + page.clientLeft + page.clientWidth - parseFloat(cs.paddingRight);
+      const cs = getComputedStyle(pg);
+      const left = r.left + pg.clientLeft + parseFloat(cs.paddingLeft);
+      const right = r.left + pg.clientLeft + pg.clientWidth - parseFloat(cs.paddingRight);
       const children: ChildBox[] = [];
-      for (const child of page.children) {
+      for (const child of pg.children) {
         const c = child.getBoundingClientRect();
         const pos = getComputedStyle(child).position;
         children.push({ left: c.left, right: c.right, out: c.width === 0 || c.height === 0 || pos === 'absolute' || pos === 'fixed' });
@@ -822,19 +1139,23 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     return { zones: marginZones(columns, width).filter(([a, b]) => b - a >= 6), width };
   }
 
-  /* ---- building */
+  /* ---- building: the lights */
 
-  /** The sign itself, beyond the glass: five letters of tube, each a glow and a core. */
-  function signEl(sign: Sign, w: Weather): HTMLElement {
+  /** A neon sign's letters, just past its edge: each a glow and a core. */
+  function signEl(light: Light, side: Side, w: Weather, vw: number, vh: number): HTMLElement {
     const s = div('wx-sign');
+    const sign = signFor(vh, light.word);
     const k = sign.h / 40;
     const P = GLOW_ROOM * k;
     const blur = TUBE_BLUR[w];
-    [...SIGN_WORD].forEach((ch, i) => {
+    style(s, { '--k': r2(light.strength) });
+    [...(light.word ?? SIGN_WORD)].forEach((ch, i) => {
+      if (ch === ' ') return;
       const letter = div('wx-letter');
       letter.dataset['i'] = String(i);
+      const x = side === 'left' ? sign.x : vw - sign.x - 30 * k;
       style(letter, {
-        left: `${r1(sign.x - P)}px`,
+        left: `${r1(x - P)}px`,
         top: `${r1(sign.top + i * (sign.h + sign.gap) - P)}px`,
         width: `${r1((30 + 2 * GLOW_ROOM) * k)}px`,
         height: `${r1((40 + 2 * GLOW_ROOM) * k)}px`,
@@ -849,59 +1170,190 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     return s;
   }
 
-  /** The sign's light beyond the glass: the wash, the edge, the letters (in the first margin only). Hums; flickers. */
-  function litOut(w: Weather, sign: Sign, vh: number, a: number): HTMLElement {
-    const lit = div('wx-lit');
-    const flick = div('wx-flick');
-    lit.append(flick);
+  /** A light's wash on the glass, from its edge. */
+  function washEl(light: Light, side: Side, w: Weather, vw: number, vh: number): HTMLElement {
+    const neonish = light.kind === 'neon' || light.kind === 'glow';
+    const { rx, ry, o } = neonish ? WASH[w] : LAMP_WASH[w];
+    const width = Math.round(rx * 1.3);
+    const y = lightY(light, vh);
     const wash = div('wx-wash');
-    const { rx, ry, o } = WASH[w];
+    const cx = side === 'left' ? -Math.round(rx * 0.06) : width + Math.round(rx * 0.06);
     style(wash, {
-      width: `${Math.round(rx * 1.3)}px`,
-      opacity: r2(o),
-      background: `radial-gradient(${rx}px ${Math.round(ry * vh)}px at ${-Math.round(rx * 0.06)}px ${Math.round(sign.middle)}px, ${neon(100)}, ${neon(46)} 26%, ${neon(14)} 58%, transparent)`,
+      width: `${width}px`,
+      left: side === 'left' ? '0px' : `${vw - width}px`,
+      opacity: r2(o * light.strength * (light.kind === 'window' ? 0.5 : 1)),
+      background: `radial-gradient(${rx}px ${Math.round(ry * vh)}px at ${cx}px ${y}px, ${tone(light.tone, 100)}, ${tone(light.tone, 46)} 26%, ${tone(light.tone, 14)} 58%, transparent)`,
     });
-    flick.append(wash);
-    // The edge and the tubes are at the window's edge: only a margin that starts there shows them.
-    if (a < 1) {
-      const edge = div('wx-edge');
-      style(edge, { top: `${Math.round(sign.top - sign.h * 1.5)}px`, height: `${Math.round(sign.bottom - sign.top + sign.h * 3)}px` });
-      flick.append(edge, signEl(sign, w));
+    return wash;
+  }
+
+  /** The source itself at the edge: a bulb, a lamp's globe, a marquee's bulbs, lit windows. */
+  function sourceEl(light: Light, side: Side, w: Weather, vw: number, vh: number): HTMLElement | null {
+    const y = lightY(light, vh);
+    const box = (cls: string, width: number): HTMLElement => {
+      const el = div(cls);
+      style(el, { width: `${width}px`, left: side === 'left' ? '0px' : `${vw - width}px` });
+      return el;
+    };
+    const at = (x: number, width: number): number => (side === 'left' ? x : width - x);
+    const soft = w === 'fog' ? 1.6 : w === 'cold' ? 1.25 : 1;
+    if (light.kind === 'bulb') {
+      // A bare bulb over a door, just past the edge: a hard little core, a halo.
+      const el = box('wx-bulb', 90);
+      const x = at(3, 90);
+      style(el, {
+        opacity: r2(light.strength),
+        background: [
+          `radial-gradient(${r1(6 * soft)}px ${r1(6 * soft)}px at ${x}px ${y}px, ${tone(light.tone, 95)}, ${tone(light.tone, 50)} 55%, transparent)`,
+          `radial-gradient(${r1(34 * soft)}px ${r1(30 * soft)}px at ${x}px ${y}px, color-mix(in srgb, var(--wx-cold) 60%, var(--wx-neon)) 0%, transparent 100%)`,
+        ].join(', '),
+      });
+      return el;
     }
-    return lit;
+    if (light.kind === 'lamp') {
+      // A lamp on its post across the street: its globe, cropped by the edge.
+      const el = box('wx-globe', 110);
+      const x = at(5, 110);
+      style(el, {
+        opacity: r2(light.strength),
+        background: [
+          `radial-gradient(${r1(13 * soft)}px ${r1(15 * soft)}px at ${x}px ${y}px, ${tone(light.tone, 52)}, ${tone(light.tone, 22)} 60%, transparent)`,
+          `radial-gradient(${r1(58 * soft)}px ${r1(62 * soft)}px at ${x}px ${y}px, ${tone(light.tone, 18)}, transparent)`,
+        ].join(', '),
+      });
+      return el;
+    }
+    if (light.kind === 'window') {
+      // Two lit windows across the way, shades half drawn, near the edge.
+      const el = box('wx-windows', 70);
+      const rects = [
+        [14, 0.2, 22, 30],
+        [18, 0.6, 20, 28],
+      ] as const;
+      const svg = rects
+        .map(([x, fy, rw, rh]) => {
+          const left = side === 'left' ? x : 70 - x - rw;
+          const top = Math.round(vh * fy);
+          return `<rect x="${left}" y="${top}" width="${rw}" height="${rh}" fill-opacity=".55"/><rect x="${left}" y="${top + rh * 0.42}" width="${rw}" height="${r1(rh * 0.58)}"/><path d="M${left + rw / 2} ${top}V${top + rh}M${left} ${top + rh * 0.42}H${left + rw}" stroke="#000" stroke-width="1.4"/>`;
+        })
+        .join('');
+      mask(
+        el,
+        svgUrl(
+          `<svg xmlns="${SVG}" width="70" height="${vh}" viewBox="0 0 70 ${vh}"><defs><filter id="w"><feGaussianBlur stdDeviation="${w === 'fog' ? 2.4 : w === 'rain' ? 1.4 : 0.7}"/></filter></defs><g fill="#fff" filter="url(#w)">${svg}</g></svg>`,
+        ),
+      );
+      style(el, { background: tone(light.tone, 100), opacity: r2(0.3 * light.strength) });
+      return el;
+    }
+    if (light.kind === 'marquee') {
+      // A theatre's blade of bulbs, two columns cropped by the edge, chasing (three sheets, a third
+      // of a beat apart).
+      const wrap = box('wx-marquee', 40);
+      const top = Math.round(vh * 0.12);
+      const bottom = Math.round(vh * 0.58);
+      for (let k = 0; k < 3; k++) {
+        const sheet = div(`wx-chase wx-chase--${k}`);
+        let dots = '';
+        let i = 0;
+        for (let yy = top; yy <= bottom; yy += 13, i++) {
+          if (i % 3 !== k) continue;
+          for (const x of [3, 14]) dots += `<circle cx="${at(x, 40)}" cy="${yy}" r="2.3"/>`;
+        }
+        mask(sheet, svgUrl(`<svg xmlns="${SVG}" width="40" height="${vh}" viewBox="0 0 40 ${vh}"><defs><filter id="b"><feGaussianBlur stdDeviation="${r1(0.9 * soft)}"/></filter></defs><g fill="#fff" filter="url(#b)">${dots}</g></svg>`));
+        style(sheet, { background: tone(light.tone, 100) });
+        wrap.append(sheet);
+      }
+      style(wrap, { opacity: r2(0.75 * light.strength) });
+      return wrap;
+    }
+    return null;
+  }
+
+  /** In fog, a lamp's or a bulb's cone of light, down from it to the street. */
+  function coneEl(light: Light, side: Side, vw: number, vh: number): HTMLElement {
+    const y = lightY(light, vh);
+    const width = 260;
+    const el = div('wx-cone');
+    style(el, { width: `${width}px`, left: side === 'left' ? '0px' : `${vw - width}px`, top: `${y}px`, height: `${vh - y}px`, background: tone(light.tone, 100), opacity: r2(0.13 * light.strength) });
+    const h = vh - y;
+    const x0 = side === 'left' ? 4 : width - 4;
+    const x1 = side === 'left' ? 230 : width - 230;
+    mask(el, svgUrl(`<svg xmlns="${SVG}" width="${width}" height="${h}" viewBox="0 0 ${width} ${h}" preserveAspectRatio="none"><defs><filter id="c"><feGaussianBlur stdDeviation="16"/></filter><linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity=".35"/></linearGradient></defs><path d="M${x0} 0L${x1} ${h}L${side === 'left' ? -40 : width + 40} ${h}Z" fill="url(#f)" filter="url(#c)"/></svg>`));
+    return el;
   }
 
   /**
-   * A rain night: the sign's light in the wet glass itself, over everything beyond it. Smears of its
-   * colour in the glass, longest below the sign, and its colour running down in rivulets. (It rides
-   * in the drops near it too: `drops`.)
+   * A side's light beyond the glass: its wash, the edge it catches, the source. A neon sign hums and
+   * flickers (`.wx-lit` > `.wx-flick`); a gas lamp shimmers faintly; a marquee chases; the rest are
+   * steady.
    */
-  function litWet(sign: Sign, vh: number): HTMLElement {
-    const reflect = div('wx-reflect');
-    const y = sign.middle;
-    const h = (sign.bottom - sign.top) * 0.55 * 1.9;
-    const smear = (x: number, rw: number, rh: number, dy: number, pct: number): string =>
-      `radial-gradient(${r1(rw)}px ${r1(rh)}px at ${r1(x)}px ${r1(y + dy)}px, ${neon(pct)}, ${neon(pct * 0.35)} 45%, transparent)`;
-    style(reflect, {
-      background: [smear(10, 9, h, h * 0.12, 70), smear(30, 6, h * 0.8, h * 0.3, 55), smear(52, 10, h * 0.65, h * 0.05, 34), smear(78, 7, h * 0.5, h * 0.4, 24)].join(', '),
-    });
-    const riv = div('wx-rivulets');
-    style(riv, { width: '300px', top: `${Math.round(sign.top - sign.h)}px`, height: `${Math.round(vh - sign.top + sign.h)}px` });
-    mask(riv, 'linear-gradient(to right, #000, rgba(0,0,0,.55) 35%, transparent)');
-    const sheet = div('wx-rivulet');
-    mask(sheet, tile('rivulets'));
-    riv.append(sheet);
-    const lit = div('wx-lit wx-lit--on');
-    const flick = div('wx-flick');
-    flick.append(reflect, riv);
-    lit.append(flick);
-    return lit;
+  function outEl(light: Light, side: Side, w: Weather, vw: number, vh: number, edge: boolean): HTMLElement {
+    const neonish = light.kind === 'neon' || light.kind === 'glow';
+    const group = div(neonish ? 'wx-lit' : `wx-light${light.tone === 'gas' ? ' wx-gas' : ''}`);
+    const inner = div(neonish ? 'wx-flick' : 'wx-steady');
+    group.append(inner);
+    inner.append(washEl(light, side, w, vw, vh));
+    if (w === 'fog' && (light.kind === 'lamp' || light.kind === 'bulb')) inner.append(coneEl(light, side, vw, vh));
+    if (edge) {
+      if (neonish) {
+        const e = div(`wx-edge wx-edge--${side}`);
+        const y = lightY(light, vh);
+        const span = light.kind === 'neon' ? signFor(vh, light.word) : null;
+        const top = span ? span.top - span.h * 1.5 : y - vh * 0.2;
+        const bottom = span ? span.bottom + span.h * 1.5 : y + vh * 0.2;
+        style(e, { top: `${Math.round(top)}px`, height: `${Math.round(bottom - top)}px`, opacity: r2(0.4 * light.strength) });
+        inner.append(e);
+      }
+      if (light.kind === 'neon') inner.append(signEl(light, side, w, vw, vh));
+      const src = sourceEl(light, side, w, vw, vh);
+      if (src) inner.append(src);
+    }
+    return group;
   }
 
-  /** The drops on the glass: beads, and a few running down. Near the sign they carry its colour. */
-  function drops(zone: Span, origin: number): HTMLElement {
+  /**
+   * On a rain night, a side's light in the wet glass: its colour running down in rivulets, and for a
+   * neon sign smears of its colour in the glass, longest below it. (It rides in the drops near it too.)
+   */
+  function wetEl(light: Light, side: Side, vw: number, vh: number): HTMLElement {
+    const isNeon = light.kind === 'neon';
+    const y = lightY(light, vh);
+    const parts: HTMLElement[] = [];
+    if (isNeon) {
+      const sign = signFor(vh, light.word);
+      const reflect = div('wx-reflect');
+      const h = (sign.bottom - sign.top) * 0.55 * 1.9;
+      const smear = (x: number, rw: number, rh: number, dy: number, pct: number): string =>
+        `radial-gradient(${r1(rw)}px ${r1(rh)}px at ${r1(side === 'left' ? x : 160 - x)}px ${r1(sign.middle + dy)}px, ${tone(light.tone, pct * light.strength)}, ${tone(light.tone, pct * 0.35 * light.strength)} 45%, transparent)`;
+      style(reflect, {
+        left: side === 'left' ? '0px' : `${vw - 160}px`,
+        background: [smear(10, 9, h, h * 0.12, 70), smear(30, 6, h * 0.8, h * 0.3, 55), smear(52, 10, h * 0.65, h * 0.05, 34), smear(78, 7, h * 0.5, h * 0.4, 24)].join(', '),
+      });
+      parts.push(reflect);
+    }
+    const reach = isNeon ? 300 : 170;
+    const top = Math.round(Math.max(0, y - vh * 0.15));
+    const riv = div('wx-rivulets');
+    style(riv, { width: `${reach}px`, left: side === 'left' ? '0px' : `${vw - reach}px`, top: `${top}px`, height: `${vh - top}px` });
+    mask(riv, `linear-gradient(to ${side === 'left' ? 'right' : 'left'}, #000, rgba(0,0,0,.55) 35%, transparent)`);
+    const sheet = div(`wx-rivulet${isNeon ? '' : ' wx-rivulet--soft'}`);
+    style(sheet, { background: tone(light.tone, 100), opacity: r2((isNeon ? 0.85 : 0.4) * light.strength) });
+    mask(sheet, tile(side === 'left' ? 'rivulets' : 'rivuletsB'));
+    riv.append(sheet);
+    parts.push(riv);
+    const group = div(isNeon ? 'wx-lit wx-lit--on' : 'wx-light wx-light--on');
+    const inner = div(isNeon ? 'wx-flick' : 'wx-steady');
+    inner.append(...parts);
+    group.append(inner);
+    return group;
+  }
+
+  /** The drops on the glass: beads, and a few running down. Near a light they carry its colour. */
+  function drops(zone: Span, origin: number, lit: { light: Light; side: Side }[]): HTMLElement {
     const [a, b] = zone;
     const w = b - a;
+    const vw = window.innerWidth;
     const box = div('wx-drops');
     const beads = div('wx-beads');
     mask(beads, tile('beads'));
@@ -922,9 +1374,12 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
         'animation-delay': `${r1(-rand() * dur)}s`,
         '--trail': `${Math.round(50 + rand() * 110)}px`,
       });
-      // Near the sign, its light rides down in the drop.
-      if (wx < 150) {
-        style(run, { '--run': `color-mix(in srgb, var(--wx-neon) ${Math.round(70 - (wx / 150) * 40)}%, var(--wx-drop))` });
+      // Near a light, it rides down in the drop.
+      for (const { light, side } of lit) {
+        const d = side === 'left' ? wx : vw - wx;
+        if (d >= 150) continue;
+        const pct = Math.round((70 - (d / 150) * 40) * (light.kind === 'neon' ? 1 : 0.6));
+        style(run, { '--run': `color-mix(in srgb, var(${TONE_VAR[light.tone]}) ${pct}%, var(--wx-drop))` });
       }
       run.append(div('wx-run-trail'), div('wx-run-head'));
       box.append(run);
@@ -932,11 +1387,21 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     return box;
   }
 
-  /** Cut one strip per margin and fill each with tonight's weather. */
-  function cut(width: number): void {
-    while (layer.firstChild) layer.firstChild.remove();
+  /**
+   * Cut one strip per margin and fill each with tonight's weather and the view outside, into a new
+   * set. `fade`: the view changed (a walk, the hour), so the new set crossfades in over the old, a
+   * beat long; still, it is instant.
+   */
+  function cut(width: number, fade = false): void {
+    const old = set;
+    set = div('wx-set');
     const w = current.weather;
-    if (!w) return;
+    if (!w) {
+      old?.remove();
+      layer.replaceChildren();
+      set = null;
+      return;
+    }
     // The strips are placed in the layer's own box, which starts at the window's left edge
     // (or, where the spread cannot let it out sideways, at the spread's).
     const origin = layer.getBoundingClientRect().left;
@@ -944,8 +1409,16 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     style(layer, { '--wx-age': `${-Math.round(performance.now() - since) / 1000}s` });
     const vw = window.innerWidth;
     const vh = Math.round(layer.getBoundingClientRect().height || window.innerHeight);
-    const sign = signFor(Math.min(vh, window.innerHeight));
-    const reach = neonReach(w);
+    const lights = current.neon
+      ? (
+          [
+            ['left', view.left],
+            ['right', view.right],
+          ] as const
+        )
+          .filter((x): x is readonly [Side, Light] => x[1] !== null)
+          .map(([side, light]) => ({ side, light, reach: lightReach(light, w), y: lightY(light, Math.min(vh, window.innerHeight)) }))
+      : [];
     let frost: FrostPiece[] = [];
     let glints: FrostPiece[] = [];
     if (current.frost) {
@@ -954,30 +1427,60 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
       frost = frostCache.pieces;
       glints = frostCache.glints;
     }
+    const lvh = Math.min(vh, window.innerHeight);
     for (const zone of zones) {
       const [a, b] = zone;
-      const near = current.neon && a < reach;
+      // The lights whose glow reaches this margin.
+      const near = lights.filter((l) => (l.side === 'left' ? a < l.reach : b > vw - l.reach));
       const strip = div('wx-strip');
       style(strip, { left: `${a - origin}px`, width: `${b - a}px` });
       // A wide feather: the weather is thickest at the window's edge and thins all the way to the
       // text, rather than stopping at a line.
       mask(strip, stripMask(zone, width, width < 600 ? 8 : 30));
-      const view = div('wx-view');
-      style(view, { left: `${-a}px`, width: `${vw}px` });
-      // Beyond the glass: the sign and its light, then the fog between it and us.
-      if (near && a < WASH[w].rx * 1.3) view.append(litOut(w, sign, vh, a));
-      if (current.fog) view.append(div('wx-haze'), div('wx-pool'), div('wx-fog-a'), div('wx-fog-b'));
-      // On the glass: the rime, stage by stage; near the sign, its crystals take the light.
+      const v = div('wx-view');
+      style(v, { left: `${-a}px`, width: `${vw}px` });
+      // Toward morning, the margins grey: the deadline you can see.
+      if (view.dawn > 0) {
+        const dawn = div('wx-dawn');
+        style(dawn, { opacity: r2(view.dawn * 0.24) });
+        v.append(dawn);
+      }
+      // Beyond the glass: the lights, then the fog between them and us.
+      for (const l of near) {
+        const edge = l.side === 'left' ? a < 1 : b > vw - 1;
+        v.append(outEl(l.light, l.side, w, vw, lvh, edge));
+      }
+      if (view.cabs && b > vw - 140 && !narrow()) {
+        const cabs = div('wx-cabs');
+        const y = vh - 36;
+        style(cabs, {
+          background: [
+            [vw - 24, y],
+            [vw - 44, y],
+            [vw - 104, y + 8],
+            [vw - 122, y + 8],
+          ]
+            .map(([x, yy]) => `radial-gradient(9px 7px at ${x}px ${yy}px, ${tone('lamp', 70)}, ${tone('lamp', 18)} 60%, transparent)`)
+            .join(', '),
+        });
+        v.append(cabs);
+      }
+      if (current.fog) v.append(div('wx-haze'), div('wx-pool'), div('wx-fog-a'), div('wx-fog-b'));
+      // On the glass: the rime, stage by stage; near a light, its crystals take the light.
       const place = (el: HTMLElement): void => style(el, { left: `${a}px`, width: `${b - a}px` });
       const lit = (el: HTMLElement): void => {
-        if (!near) return;
-        const glow = div('wx-lit wx-frost-lit');
-        const flick = div('wx-flick');
-        style(flick, {
-          background: `radial-gradient(${Math.round(reach * 1.1)}px ${Math.round(vh * 0.5)}px at ${-a}px ${Math.round(sign.middle)}px, ${neon(85)}, ${neon(45)} 35%, transparent 80%)`,
-        });
-        glow.append(flick);
-        el.append(glow);
+        for (const l of near) {
+          const isNeon = l.light.kind === 'neon' || l.light.kind === 'glow';
+          const glow = div(isNeon ? 'wx-lit wx-frost-lit' : 'wx-light wx-frost-lit');
+          const inner = div(isNeon ? 'wx-flick' : 'wx-steady');
+          const cx = l.side === 'left' ? -a : vw - a;
+          const k = l.light.strength * (isNeon ? 1 : 0.6);
+          style(inner, {
+            background: `radial-gradient(${Math.round(l.reach * 1.1)}px ${Math.round(vh * 0.5)}px at ${cx}px ${Math.round(l.y)}px, ${tone(l.light.tone, 85 * k)}, ${tone(l.light.tone, 45 * k)} 35%, transparent 80%)`,
+          });
+          glow.append(inner);
+          el.append(glow);
+        }
       };
       for (let s = 0; s < STAGES && frost.length; s++) {
         const m = frostMask(frost, zone, vh, (x) => x === s);
@@ -987,7 +1490,7 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
         style(stage, { '--d': `${stageDelay(s)}s` });
         mask(stage, m);
         lit(stage);
-        view.append(stage);
+        v.append(stage);
       }
       for (let s = 0; s < 5 && glints.length; s++) {
         const m = frostMask(glints, zone, vh, (x) => x === s);
@@ -996,10 +1499,10 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
         place(g);
         mask(g, m);
         lit(g);
-        view.append(g);
+        v.append(g);
       }
-      if (near && w === 'rain') view.append(litWet(sign, vh));
-      if (view.childNodes.length > 0) strip.append(view);
+      if (w === 'rain') for (const l of near) v.append(wetEl(l.light, l.side, vw, lvh));
+      strip.append(v);
       if (current.rain) {
         const rain = div('wx-rain');
         for (const depth of ['far', 'near'] as const) {
@@ -1009,9 +1512,19 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
         }
         strip.append(rain);
       }
-      if (current.drops) strip.append(drops(zone, origin));
-      layer.append(strip);
+      if (current.drops) strip.append(drops(zone, origin, near));
+      set.append(strip);
     }
+    layer.append(set);
+    if (!old) return;
+    if (fade && current.motion) {
+      // Over a beat: the old lights fade as the new come up. The weather is the same in both.
+      const ease = 'cubic-bezier(.45,.05,.55,.95)';
+      set.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1600, easing: ease });
+      const out = old.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1600, easing: ease, fill: 'forwards' });
+      const done = (): void => old.remove();
+      out.finished.then(done, done);
+    } else old.remove();
   }
 
   function build(): void {
@@ -1020,21 +1533,40 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     if (key === effectsKey) return;
     effectsKey = key;
     current = next;
+    view = computeView();
+    viewKey = drawnKey(view);
     since = performance.now();
-    stopSteam();
-    stopFlicker();
+    stopAll();
     layer.dataset['weather'] = next.weather ?? 'none';
     layer.dataset['motion'] = String(next.motion);
     layer.dataset['steam'] = String(next.steam !== null);
     layer.hidden = next.weather === null;
     zonesKey = '';
     if (next.weather === null) {
-      while (layer.firstChild) layer.firstChild.remove();
+      layer.replaceChildren();
+      set = null;
       return;
     }
     relayout();
-    scheduleSteam(true);
-    scheduleFlicker(true);
+    scheduleAll(true);
+  }
+
+  /** The view outside may have changed (a walk, the hour, the lab): crossfade to it, or just retime. */
+  function reView(): void {
+    const next = computeView();
+    const key = drawnKey(next);
+    const carsChanged = next.cars !== view.cars || next.el !== view.el;
+    view = next;
+    if (key !== viewKey) {
+      viewKey = key;
+      if (layer.isConnected && !layer.hidden && current.weather) cut(measure().width, true);
+    }
+    if (carsChanged) {
+      scheduleCar(false);
+      scheduleEl(false);
+    }
+    if (!hasNeon()) stop('flicker');
+    else if (timers.flicker === undefined) scheduleFlicker(false);
   }
 
   function relayout(): void {
@@ -1063,13 +1595,8 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
   new MutationObserver(onResize).observe(document.body, { attributes: true, attributeFilter: ['class'] });
   document.addEventListener('visibilitychange', () => {
     layer.dataset['paused'] = String(document.hidden);
-    if (document.hidden) {
-      stopSteam();
-      stopFlicker();
-    } else {
-      scheduleSteam(false);
-      scheduleFlicker(false);
-    }
+    if (document.hidden) stopAll();
+    else scheduleAll(false);
   });
   reduce?.addEventListener?.('change', () => {
     build();
@@ -1085,12 +1612,23 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
       }
       build();
       relayout();
-      if (timer === undefined) scheduleSteam(true);
-      if (flickerTimer === undefined) scheduleFlicker(true);
+      if (Object.values(timers).every((t) => t === undefined)) scheduleAll(true);
     },
     show(w) {
       weather = w;
+      if (w === null) book = { building: null, minutes: null };
       build();
+    },
+    scene(s) {
+      // A new page: nothing passes in the street, nothing flickers, for a few seconds.
+      if (s.page !== page) {
+        page = s.page;
+        quietUntil = performance.now() + 8000;
+      }
+      book = { building: s.building, minutes: s.minutes };
+      reView();
+      // (For the lab, which shows the book's place and hour.)
+      layer.dispatchEvent(new Event('wx-scene'));
     },
     setMode(m) {
       mode = m;
@@ -1107,5 +1645,28 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     },
     relayout,
     effects: () => current,
+    view: () => view,
+    get bookScene() {
+      return book;
+    },
+    get night() {
+      return weather;
+    },
+    get lab() {
+      return lab;
+    },
+    setLab(s) {
+      const weatherChanged = s.weather !== undefined && s.weather !== lab.weather;
+      lab = { ...lab, ...s };
+      if (weatherChanged) {
+        effectsKey = '';
+        build();
+      } else reView();
+    },
+    trigger(kind) {
+      if (kind === 'car') car();
+      else if (kind === 'el') train();
+      else flicker();
+    },
   };
 }
