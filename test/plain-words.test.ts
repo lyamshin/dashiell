@@ -23,11 +23,12 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, boardGridText, gridKey, meansAsked, placeCodes, placesKey } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, lineGroupHeads, lineNumbers, notebookLines, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, curtainSheet, lineGroupHeads, lineNumbers, notebookLines, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { hintLabel, hintsLine, hintsNote, takeHint } from '../src/game/board/hints.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, PICKER_COST, TALK_HEADING, TURN_DIVIDER, chapterShown, costText, notebookText, questionsText } from '../src/game/board/text.js';
 import { linesHeld } from '../src/game/board/knowledge.js';
+import { TRACK_NAMES, WHOLE_TRUTH, cellKnown, cellTruth, fastestTrack, nightTrack, positionWords } from '../src/game/board/replay.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
 
 /** The retired words (docs/64's table), as the chrome must never say them. "Clear" stays. */
@@ -224,8 +225,26 @@ describe('docs/64: plain words in the chrome', () => {
     expect([...new Set(found)]).toEqual([]);
   });
 
+  it('the curtain’s replay never says a retired word: its steps, captions and what each cell says', () => {
+    const found: string[] = [];
+    for (const [seed, tier] of [[3, 0], [4, 2], [5, 3], [39, 5], [2, 4]] as [number, TierIndex][]) {
+      for (const type of typesFor(tier)) {
+        const d = dealBoard(seed, tier, type);
+        const o = playBoardOracle(d);
+        const sheet = curtainSheet(d, o.run, truthReport(d, o.run));
+        for (const t of [fastestTrack(d, sheet), nightTrack(d, o.run)]) {
+          const said = [t.caption, TRACK_NAMES[t.kind], WHOLE_TRUTH, ...t.steps.flatMap((s, i) => [s.label, s.why, positionWords(t, i)])];
+          for (const r of sheet.board.rows) for (const x of r.cells) said.push(cellTruth(d, sheet, r.id, x.hour), cellKnown(d, sheet, t, r.id, x.hour));
+          for (const x of said) found.push(...retiredIn(unquoted(x)).map((h) => `${seed}/${tier}/${type} ${t.kind}: ${h}`));
+        }
+      }
+    }
+    expect(found).toEqual([]);
+  });
+
   it('the book’s own strings never say a retired word', () => {
-    for (const file of ['src/ui/board-book.ts', 'src/ui/report.ts']) {
+    // (curtain, docs/76: and the curtain's own, its replay's words in the game layer too.)
+    for (const file of ['src/ui/board-book.ts', 'src/ui/report.ts', 'src/ui/curtain.ts', 'src/ui/cells.ts', 'src/game/board/replay.ts']) {
       const src = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8')
         .replace(/\/\*[\s\S]*?\*\//g, '')
         .replace(/^\s*\/\/.*$/gm, '')

@@ -30,7 +30,8 @@ export interface Endings {
   story: string[];
   /** book-look, item 5: the night's actions against the fastest solve, said after the story. */
   fastest?: string[];
-  truthSheet: () => string;
+  /** curtain (docs/76): the solved board, how it came together, the report against the truth and the lies. */
+  curtain: () => HTMLElement;
 }
 
 /**
@@ -144,7 +145,7 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
   });
   const curtain = disclosure('ending-curtain', 'Look behind the curtain', (panel) => {
     panel.classList.add('ending-curtain');
-    panel.append(el('pre', { text: endings.truthSheet() }));
+    panel.append(endings.curtain());
   });
   wrap.append(
     el('div', { class: 'endings' }, el('div', { class: 'ending-buttons' }, story.button, curtain.button), story.panel, curtain.panel),

@@ -197,7 +197,8 @@
 }
 
 .bgrid .is-says .bgrid-btn,
-.bgrid-key .is-says {
+.bgrid-key .is-says,
+.bgrid-said.is-says {
   font-style: italic;
   color: var(--ink-soft);
 }
@@ -208,7 +209,10 @@
 .bgrid .is-confirmed .bgrid-btn,
 .bgrid-key .is-says,
 .bgrid-key .is-collision,
-.bgrid-key .is-confirmed {
+.bgrid-key .is-confirmed,
+.bgrid-said.is-says,
+.bgrid-said.is-collision,
+.bgrid-said.is-confirmed {
   text-decoration: underline dotted;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -216,23 +220,27 @@
 
 /* Somebody else saw them there: upright, and no underline. Agreed (✓) is the claim backed: solid. */
 .bgrid .is-confirmed .bgrid-btn,
-.bgrid-key .is-confirmed {
+.bgrid-key .is-confirmed,
+.bgrid-said.is-confirmed {
   text-decoration-style: solid;
 }
 
 .bgrid .is-seen .bgrid-btn,
-.bgrid-key .is-seen {
+.bgrid-key .is-seen,
+.bgrid-said.is-seen {
   color: var(--ink);
 }
 
 .bgrid .is-confirmed .bgrid-btn,
-.bgrid-key .is-confirmed {
+.bgrid-key .is-confirmed,
+.bgrid-said.is-confirmed {
   color: var(--ink);
   font-weight: 700;
 }
 
 .bgrid .is-collision .bgrid-btn,
-.bgrid-key .is-collision {
+.bgrid-key .is-collision,
+.bgrid-said.is-collision {
   color: var(--accent);
   font-weight: 700;
 }
@@ -1533,4 +1541,412 @@ nav.choices--board .choice--search:hover:not(:disabled) {
 
 .choices:has(:focus-visible) .key-num {
   display: inline-block;
+}
+
+/* ---------------------------------------------------- behind the curtain */
+
+/*
+ * curtain (docs/76): the solved board, in the notebook grid's look (its table, its cells, its key, its
+ * open cell under the row; the notebook's own cell rules carry `.bgrid-said` beside theirs, so the two
+ * read alike). At the whole truth every cell is where they were, and a lie is what they said struck in
+ * the law's red with the truth under it. At a step the board is the notebook as it stood then: the
+ * cells that step added lit in jade (the one thing jade means here), and the truth faint under every
+ * cell not known yet. The board and its bar stay in view while the steps scroll under them, when they
+ * fit (`curtain-replay--pinned`).
+ */
+.curtain {
+  max-width: var(--measure);
+}
+
+.leaf .curtain p {
+  margin: 0;
+  text-indent: 0;
+}
+
+.curtain-head {
+  margin: 2.6rem 0 0.9rem;
+  font-family: var(--deco);
+  font-size: max(12px, 0.68rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nickel);
+  text-wrap: balance;
+}
+
+.curtain-replay > .curtain-head:first-child {
+  margin-top: 0;
+}
+
+.curtain-stage {
+  background: var(--paper);
+}
+
+.curtain-replay--pinned .curtain-stage {
+  position: sticky;
+  top: var(--curtain-top, 0px);
+  z-index: 3;
+  box-shadow: 0 10px 12px -12px rgba(0, 0, 0, 0.9);
+}
+
+.curtain-replay--pinned .curtain-step {
+  scroll-margin-top: calc(var(--curtain-top, 0px) + var(--curtain-stage, 0px) + 0.6rem);
+  scroll-margin-bottom: 4.5rem;
+}
+
+.bgrid--curtain {
+  margin-top: 0;
+}
+
+.bgrid--curtain .bgrid-name {
+  width: 22%;
+}
+
+.bgrid--curtain thead th {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.bgrid--curtain .bgrid-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.05rem;
+  min-height: 2.2rem;
+}
+
+.bgrid--curtain .bgrid-btn > * {
+  display: block;
+  overflow: hidden;
+}
+
+/* Where they were, known: upright ink, as somebody else's word is in the notebook. */
+.bgrid--curtain .c-true,
+.curtain-key .c-true {
+  color: var(--ink);
+}
+
+/* What they said, struck in the law's red: a lie. */
+.curtain .c-claim {
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: max(1px, 0.1em);
+}
+
+/* Where they were, not known yet: faint, under what the cell shows. */
+.curtain .c-ghost {
+  color: var(--ink-faint);
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+}
+
+.bgrid--curtain .bgrid-btn > .c-ghost:only-child {
+  font-size: 1em;
+}
+
+/* The name of whoever did it, and a word under it. */
+.curtain-did {
+  display: block;
+  margin-top: 0.1rem;
+  font-family: var(--deco);
+  font-style: normal;
+  font-weight: 600;
+  font-size: max(12px, 0.56rem);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nickel);
+}
+
+/*
+ * What this step added: a jade edge on a jade wash, the edge landing wide and settling to a hairline.
+ * (The wash is 5%: the faint truth under a cell still reads at 4.5:1 on it, as it does under the pointer.)
+ */
+.bgrid--curtain td.is-added,
+.curtain-key .k-added {
+  box-shadow: inset 0 0 0 1px var(--jade);
+  background: color-mix(in srgb, var(--jade) 5%, var(--paper));
+}
+
+.curtain-key .k-added {
+  padding: 0 0.2em;
+}
+
+.bgrid--curtain td.is-added.is-fresh {
+  animation: curtain-lit 900ms var(--ease) both;
+}
+
+@keyframes curtain-lit {
+  from {
+    box-shadow: inset 0 0 0 3px var(--jade);
+  }
+}
+
+/* The lie under the pointer or the focus, below: its cell, edged in ink. */
+.bgrid--curtain td.is-pointed {
+  background: color-mix(in srgb, var(--ink) 5%, var(--paper));
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.curtain-detail .curtain-truth {
+  margin: 0.15rem 0 0.4rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.leaf .curtain .curtain-detail .bgrid-line {
+  margin: 0.1rem 0;
+}
+
+.leaf .curtain .curtain-detail .curtain-when {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.curtain-key {
+  margin-top: 0.5rem;
+}
+
+/* The bar under the board: a step back, where it stands, a step on, and Play. */
+.curtain-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0 0.5rem;
+}
+
+.leaf .curtain .curtain-now {
+  flex: 1 1 8rem;
+  margin: 0;
+  text-align: center;
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.64rem);
+  line-height: 1.3;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--nickel);
+}
+
+.curtain-ctl,
+.curtain-track {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.15rem 0.95rem 0;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.62rem);
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 120ms linear, background-color 120ms linear;
+}
+
+.curtain-ctl:hover,
+.curtain-track:hover {
+  border-color: var(--ink);
+}
+
+.curtain-play {
+  min-width: 5.4rem;
+}
+
+/* With reduced motion nothing plays: Next walks it a step at a time. */
+@media (prefers-reduced-motion: reduce) {
+  .curtain-play {
+    display: none;
+  }
+  .bgrid--curtain td.is-added.is-fresh {
+    animation: none;
+  }
+}
+
+/* The two tracks: a small switch. */
+.curtain-tracks {
+  display: inline-flex;
+  margin: 0 0 0.7rem;
+}
+
+.curtain-track {
+  color: var(--ink-soft);
+}
+
+.curtain-track + .curtain-track {
+  border-left: 0;
+}
+
+.curtain-track[aria-pressed='true'] {
+  background: var(--paper-raised);
+  border-color: var(--nickel);
+  color: var(--ink);
+}
+
+.curtain-track[aria-pressed='true'] + .curtain-track {
+  border-left: 0;
+}
+
+.leaf .curtain .curtain-caption {
+  margin: 0 0 0.9rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* The steps: ruled like the interview sheet, each number set like a room number. */
+.curtain-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.curtain-steps li {
+  margin: 0;
+}
+
+.curtain-step {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0 0.7rem;
+  align-items: baseline;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.6rem 0.55rem 0.2rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms linear;
+}
+
+.curtain-step:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.curtain-step:focus-visible {
+  outline-offset: -2px;
+}
+
+.curtain-step[aria-current='step'] {
+  background: var(--paper-raised);
+}
+
+.curtain-step .num {
+  font-family: var(--deco);
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1;
+  text-align: right;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--nickel-dim);
+}
+
+.curtain-step[aria-current='step'] .num {
+  color: var(--ink);
+}
+
+.curtain-step .label {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.curtain-step .why {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.curtain-step--truth .label {
+  font-family: var(--deco);
+  font-weight: 600;
+  font-size: max(12px, 0.66rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nickel);
+}
+
+.curtain-step--truth[aria-current='step'] .label {
+  color: var(--ink);
+}
+
+/* The report against the truth: what was so, what settled it, and what you picked, as the ledger. */
+.curtain-report {
+  margin-top: 0.4rem;
+}
+
+.leaf .curtain .curtain-said {
+  margin: 0 0 0.7rem;
+  text-wrap: pretty;
+}
+
+.curtain-ledger {
+  border-top: 3px double var(--rule);
+  border-bottom: 3px double var(--rule);
+}
+
+.curtain-ledger .proof {
+  grid-column: 2 / -1;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+@media (max-width: 600px) {
+  .curtain-ledger .proof {
+    grid-column: 1 / -1;
+  }
+}
+
+/* The lies: one an entry, the claim struck. Under the pointer or the focus, its cell lights on the board. */
+.curtain-lie-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.curtain-lie {
+  padding: 0.75rem 0 0.85rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.leaf .curtain .curtain-lie-said {
+  margin: 0 0 0.3rem;
+  text-wrap: pretty;
+}
+
+.leaf .curtain .curtain-lie-after {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+@media (max-width: 480px) {
+  .bgrid--curtain .bgrid-name {
+    width: 21%;
+  }
+  .bgrid--curtain .bgrid-btn {
+    min-height: 44px;
+  }
+  .curtain-ctl {
+    padding-inline: 0.7rem;
+    letter-spacing: 0.14em;
+  }
+  .leaf .curtain .curtain-now {
+    letter-spacing: 0.14em;
+  }
 }

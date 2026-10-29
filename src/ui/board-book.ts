@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, meansReasons, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, faceMarkDue, meansAsked, meansReasons, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -35,7 +35,7 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { nameInFull, peopleLine } from '../game/board/gloss.js';
-import { BACK_TO_CASE, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankReport, blankRule, boardFields, canGoBack, chargeLines, breakOptionsShown, clearOptions, curtainOfBoard, fastestSolveLines, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BACK_TO_CASE, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankReport, blankRule, boardFields, canGoBack, chargeLines, breakOptionsShown, clearOptions, fastestSolveLines, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
@@ -49,6 +49,8 @@ import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
 import { attachCard, hideCard, type CardSource } from './hover.js';
 import { renderVerdict, type TierNews } from './report.js';
+import { cellLabel, cellWords } from './cells.js';
+import { curtainNode } from './curtain.js';
 import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, routeSvg, setback } from './deco.js';
 import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
 import './board.css';
@@ -435,7 +437,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     if (screen.kind === 'verdict') {
       leaf.append(
-        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), fastest: fastestSolveLines(d as BoardDeal, r, screen.verdict.outcome), truthSheet: () => curtainOfBoard(d as BoardDeal, r, r.filed) }, screen.news, caption()),
+        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), fastest: fastestSolveLines(d as BoardDeal, r, screen.verdict.outcome), curtain: () => curtainNode(d as BoardDeal, r, r.filed) }, screen.news, caption()),
       );
       page.append(leaf, pageFoot('What next'));
       return page;
@@ -1155,7 +1157,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const k = `${r.id}@${h}`;
         const cls = ['bgrid-cell', cell.collision ? 'is-collision' : cell.confirmed ? 'is-confirmed' : cell.seen ? 'is-seen' : cell.says ? 'is-says' : cell.pencil ? 'is-pencil' : 'is-empty', g.crimeHour === h ? 'is-crime' : ''].join(' ');
         const td = el('td', { class: cls });
-        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(cell)}`, text: cellText(g, cell).replace(/["[\]]/g, '').replace(/→.*$/, '').replace(/([✓✗])/g, '\u200b$1') });
+        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(c, cell)}`, text: cellLabel(g, cell) });
         b.addEventListener('click', () => {
           openCell = openCell === k ? null : k;
           renderInPlace();
@@ -1237,28 +1239,6 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function meansHead(label: string): string {
     const what = /^could have got (?:the |a |an )?(.+)$/.exec(label)?.[1] ?? /\b(key|window|lock|door)\b/.exec(label)?.[1] ?? 'how';
     return `${what}?`;
-  }
-
-  /** "Corrigan’s list" (the grid's source name) said as what happened: "Corrigan saw them at the Velvet Room". */
-  function seenWords(by: string, place: string): string {
-    const list = /^(.+)’s list$/.exec(by);
-    if (list) return `${list[1]} saw them at ${place}`;
-    const said = /^(.+)’s (?:story|word)$/.exec(by);
-    if (said) return `${said[1]} says they were at ${place}`;
-    return `${by} says they were at ${place}`;
-  }
-
-  function cellWords(cell: BoardCell): string {
-    const c = (d as BoardDeal).kase;
-    const bits: string[] = [];
-    if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
-    if (cell.seen) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
-    if (cell.collision) bits.push('the two don’t agree');
-    // (Round 8, B9: the second story, and whether it clashes too.)
-    if (cell.admitted) bits.push(`admitted ${placeName(c, cell.admitted)}`);
-    else if (cell.second) bits.push(`then said ${placeName(c, cell.second)}${cell.secondClash ? ', and that doesn’t agree either' : ''}`);
-    if (cell.pencil?.at) bits.push(`your guess: ${placeName(c, cell.pencil.at)}`);
-    return bits.join('; ') || 'nothing yet';
   }
 
   /* ------------------------------------------------------------ title */

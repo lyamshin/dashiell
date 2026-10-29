@@ -1305,15 +1305,37 @@ export function curtainSheet(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'
 export function fastestKinds(d: BoardDeal): string {
   const kinds = d.analysis.path.map((s) => s.q.split(':')[0]);
   const n = (...ks: string[]) => kinds.filter((k) => ks.includes(k as string)).length;
-  const count = (k: number, one: string, many = `${one}s`) => (k === 1 ? `a ${one}` : `${k} ${many}`);
+  return kindsWords({ questions: n('account', 'list'), searches: n('search'), confrontations: n('confront'), papers: !!d.analysis.motive, walks: d.analysis.walks ?? 0 });
+}
+
+/** A night's actions counted by kind, as the fastest solve's are (curtain, docs/76: the player's night too). */
+export function kindsWords(k: { questions: number; searches: number; confrontations: number; papers: boolean; walks: number }): string {
+  const count = (n: number, one: string, many = `${one}s`) => (n === 1 ? `a ${one}` : `${n} ${many}`);
   const parts = [
-    n('account', 'list') ? count(n('account', 'list'), 'question') : '',
-    n('search') ? count(n('search'), 'search', 'searches') : '',
-    n('confront') ? count(n('confront'), 'confrontation') : '',
-    d.analysis.motive ? 'a look at the papers for the motive' : '',
-    d.analysis.walks ? count(d.analysis.walks, 'walk') : '',
+    k.questions ? count(k.questions, 'question') : '',
+    k.searches ? count(k.searches, 'search', 'searches') : '',
+    k.confrontations ? count(k.confrontations, 'confrontation') : '',
+    k.papers ? 'a look at the papers for the motive' : '',
+    k.walks ? count(k.walks, 'walk') : '',
   ].filter(Boolean);
   return andList(parts);
+}
+
+/**
+ * curtain (docs/76): an action as the curtain's steps say it, for any question asked: "Ask Feeney: who was
+ * at the Kit Kat tonight?", "Search the table at Grasso’s place.", "Confront Tillman: ten o’clock.", and a
+ * suspect's reason, "Ask Tillman about Grasso.".
+ */
+export function actionLabel(d: BoardDeal, q: string): string {
+  const c = d.kase;
+  if (q.startsWith('motive:')) return `Ask ${nameOf(c, q.slice('motive:'.length))} about ${victimOf(c).short}.`;
+  const label = questionById(c, q)?.label ?? q;
+  return `${pathLabel(label)}${/[?.!]$/.test(label) ? '' : '.'}`;
+}
+
+/** What a confrontation got, said of them: "owned up", "told another story", "cracked", "refused to say". */
+export function confrontWords(d: BoardDeal, p: PersonId, h: Hour): string {
+  return wouldHave(confrontationOf(d.kase, p, h)?.response);
 }
 
 /** docs/56: a liar's secret, as the curtain says it: a bible secret is a whole sentence ("She lets the attic …"), a dealt one a phrase. */
