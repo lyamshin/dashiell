@@ -5,20 +5,19 @@ import { TIER_NAMES, type TierIndex } from '../gen/board/types.js';
 import { el } from './dom.js';
 import { MARK_HALF, MARK_RIGHT, MARK_WRONG, STAMP_RIGHT, STAMP_WRONG, crest, starSvg } from './deco.js';
 
-/** What a filed report did for the player's record, for the closing page. */
+/**
+ * What a filed report did for the player's record, for the closing page (docs/77): it named the right
+ * culprit at a tier above any before, so tonight's case moves up to `next` (null past the last).
+ */
 export interface TierNews {
-  /** The tier the report was filed at. */
-  cleared: TierIndex;
-  /** The first full-credit report at this tier. */
-  firstClear: boolean;
+  done: TierIndex;
+  next: TierIndex | null;
 }
 
 /** The closing page's word on the tiers, in the book's plain voice. */
 export function tierNewsLines(news: TierNews): string[] {
-  if (!news.firstClear) return [];
-  const done = TIER_NAMES[news.cleared];
-  const next = TIER_NAMES[news.cleared + 1];
-  return next === undefined ? [`${done} is cleared, and that is the last of them.`] : [`${done} is cleared. **${next} is next.**`];
+  const done = TIER_NAMES[news.done];
+  return news.next === null ? [`${done} is cleared, and that is the last of them.`] : [`${done} is cleared. **${TIER_NAMES[news.next]} is next.**`];
 }
 
 /**

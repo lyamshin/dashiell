@@ -39,7 +39,7 @@ import { BACK_TO_CASE, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel,
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
-import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
+import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { TEXTURE, setTexture } from '../game/board/plan/texture.js';
@@ -271,8 +271,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     saved = { ...saved, filed: report };
     writeSaved(store, saved);
     const verdict = scoreBoard(d, run, report);
-    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent), hints: verdict.hints });
-    const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
+    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent), hints: verdict.hints, culprit: verdict.fields.some((f) => f.key === 'who' && f.correct) });
+    const news: TierNews | undefined = outcome.news ?? undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
     notebookShown(false);
     focusNext = { to: 'verdict' };
@@ -1319,15 +1319,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     let kind: CaseType | '' = '';
 
     /** A row of small buttons that acts as one radio group: the arrows move along it, Tab leaves it. */
-    function radioRow(label: string, items: { value: string; text: string; note?: string; locked?: boolean; star?: 'gold' | 'star' | null }[], current: string, pick: (v: string) => void): HTMLElement {
+    function radioRow(label: string, items: { value: string; text: string; star?: 'gold' | 'star' | null }[], current: string, pick: (v: string) => void): HTMLElement {
       const row = el('div', { class: 'pick-row', role: 'radiogroup', 'aria-label': label });
       for (const it of items) {
         const b = el('button', {
-          class: `pick${it.locked ? ' pick--locked' : ''}`,
+          class: 'pick',
           type: 'button',
           role: 'radio',
           'aria-checked': String(it.value === current),
-          'aria-disabled': it.locked ? 'true' : undefined,
           tabindex: it.value === current ? '0' : '-1',
           'data-value': it.value,
         });
@@ -1335,19 +1334,15 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         // docs/67: the tier's best report: a gold star, a star, or nothing yet. The glyph is for the eye; the words for a screen reader.
         if (it.star) name.append(el('span', { class: `pick-star pick-star--${it.star}`, 'aria-hidden': 'true', text: ' ★' }), el('span', { class: 'sr-only', text: it.star === 'gold' ? ', gold star' : ', star' }));
         b.append(name);
-        if (it.note) b.append(el('span', { class: 'pick-note', text: it.note }));
-        b.addEventListener('click', () => {
-          if (!it.locked) pick(it.value);
-        });
+        b.addEventListener('click', () => pick(it.value));
         row.append(b);
       }
       row.addEventListener('keydown', (e) => {
         const step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
         if (!step) return;
         e.preventDefault();
-        const open = items.filter((it) => !it.locked);
-        const at = open.findIndex((it) => it.value === current);
-        const next = open[(at + step + open.length) % open.length];
+        const at = items.findIndex((it) => it.value === current);
+        const next = items[(at + step + items.length) % items.length];
         if (next) {
           pick(next.value);
           form.querySelector<HTMLElement>(`[aria-label="${label}"] [data-value="${next.value}"]`)?.focus();
@@ -1361,9 +1356,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const paint = (): void => {
       clear(tierSlot);
       clear(kindSlot);
-      const tiers = ([0, 1, 2, 3, 4, 5] as TierIndex[]).map((t) =>
-        tierOpen(profile, t) ? { value: String(t), text: tierName(t), star: bestAt(profile, t) } : { value: String(t), text: tierName(t), locked: true, note: `clear ${tierName((t - 1) as TierIndex)} to open` },
-      );
+      // docs/77: every tier is open from the first night.
+      const tiers = ([0, 1, 2, 3, 4, 5] as TierIndex[]).map((t) => ({ value: String(t), text: tierName(t), star: bestAt(profile, t) }));
       tierSlot.append(
         el('p', { class: 'pick-label', text: 'Tier' }),
         radioRow('Tier', tiers, String(tier), (v) => {
