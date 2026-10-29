@@ -189,7 +189,7 @@ function readNight(spec: NightSpec): Night {
   }
   texts.push({ surface: 'notebook', text: notebookText(d, run) });
   const v = scoreBoard(d, run, p.report);
-  texts.push({ surface: 'verdict', text: [v.scoreLine, ...v.fields.map((f) => `${f.label}: ${f.given}`), ...v.plain, ...v.closing].join('\n\n') });
+  texts.push({ surface: 'verdict', text: [v.scoreLine, ...v.fields.map((f) => `${f.label}: ${f.given}`), ...v.closing].join('\n\n') });
   texts.push({ surface: 'story', text: storyOfBoard(d).join('\n\n') });
   texts.push({ surface: 'curtain', text: curtainOfBoard(d, run, p.report) });
   return { spec, d, run, texts, pages: run.log.length };

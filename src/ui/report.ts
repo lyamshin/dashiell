@@ -1,9 +1,9 @@
 /** The verdict page: the report scored, the closing, and what the ending can open. */
 
-import { pointsText, starWords, type Verdict } from '../game/board/report.js';
+import { starWords, type Verdict } from '../game/board/report.js';
 import { TIER_NAMES, type TierIndex } from '../gen/board/types.js';
 import { el } from './dom.js';
-import { MARK_HALF, MARK_RIGHT, MARK_WRONG, STAMP_RIGHT, STAMP_WRONG, crest, starSvg } from './deco.js';
+import { MARK_RIGHT, MARK_WRONG, STAMP_RIGHT, STAMP_WRONG, crest, starSvg } from './deco.js';
 
 /**
  * What a filed report did for the player's record, for the closing page (docs/77): it named the right
@@ -72,8 +72,8 @@ export interface VerdictFrame {
 /**
  * The verdict, as the DA's copy comes back (book-look, item 5): the plaque with the name you charged,
  * typed, and the stamp across its corner ("Case closed" for the right name, "Dismissed" if not); then
- * the ledger, your answers in carbon with a word for each (right, wrong, half), a wrong one struck
- * through and corrected. Everything is there at once; `.ceremony` only animates it.
+ * the ledger, your five answers in carbon with a word for each (right or wrong, docs/78), a wrong one
+ * struck through and corrected, short. Everything is there at once; `.ceremony` only animates it.
  */
 export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: Endings, news?: TierNews, frame?: VerdictFrame): HTMLElement {
   // book-look, item 2: the verdict is a region of its own; its heading (the running head's "The
@@ -89,20 +89,17 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
 
   const table = el('div', { class: 'verdict ledger' });
   for (const f of verdict.fields) {
-    // docs/46 §3: a line asked under an answer (what breaks their story) sits under it, set as a line.
-    const state = f.correct ? (f.half ? 'half' : 'right') : 'wrong';
-    const row = el('div', { class: `verdict-row verdict-row--${state}${state === 'wrong' ? ' wrong' : state === 'half' ? ' half' : ''}${f.line ? ' verdict-row--line' : ''}` });
+    const state = f.correct ? 'right' : 'wrong';
+    const row = el('div', { class: `verdict-row verdict-row--${state}${state === 'wrong' ? ' wrong' : ''}` });
     const given = el('span', { class: 'given' }, el('span', { class: 'answer', text: f.given }));
-    const correction = !f.correct ? (f.why ?? `it was ${f.truth}`) : f.half ? 'right, but you couldn’t have known' : null;
-    if (correction) given.append(el('span', { class: 'correction', text: correction }));
-    // (The mark is a word, never ✓, ✗ or ½: the eye and a screen reader read the same thing.)
-    row.append(el('span', { class: 'label' }, f.label), given, el('span', { class: 'mark', text: state === 'right' ? MARK_RIGHT : state === 'half' ? MARK_HALF : MARK_WRONG }));
+    if (!f.correct && f.correction) given.append(el('span', { class: 'correction', text: f.correction }));
+    // (The mark is a word, never ✓ or ✗: the eye and a screen reader read the same thing.)
+    row.append(el('span', { class: 'label' }, f.label), given, el('span', { class: 'mark', text: state === 'right' ? MARK_RIGHT : MARK_WRONG }));
     table.append(row);
   }
   wrap.append(table);
 
-  wrap.append(el('p', { class: 'score', text: verdict.scoreLine ?? `${pointsText(verdict.points)} out of ${verdict.asked}.` }));
-  for (const line of verdict.plain) wrap.append(el('p', { class: 'score-plain', text: line }));
+  wrap.append(el('p', { class: 'score', text: verdict.scoreLine }));
   // docs/67: the actions and the hints beside them, and the star a perfect report earns (gold with no
   // hints). The glyph is for the eye; the words beside it say it for a screen reader too.
   wrap.append(el('p', { class: 'score-plain tally', text: verdict.tally }));

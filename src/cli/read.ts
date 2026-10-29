@@ -16,8 +16,8 @@
  * what the hint said, and its choices show the stars. `--reader` takes the
  * hint-taker's route (`playReader`), hints and all.
  *
- * docs/69: `--first-liar` takes the "first liar, nobody else" reader's route (`playFirstLiar`): the
- * designed path until the grid shows a lie, and the report it files on it.
+ * docs/69: `--first-liar` takes the "first liar" reader's route (`playFirstLiar`): the designed path
+ * until the grid shows a lie, and the report it files on it.
  */
 
 import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
@@ -27,7 +27,7 @@ import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { budgetCalls, dealBoard, deadlineWords, parCalls, tierName, type BoardRun } from '../game/board/model.js';
 import { playBoardOracle, playFirstLiar, playReader, playWanderer } from '../game/board/oracle.js';
 import { hintsUsed, takeHint } from '../game/board/hints.js';
-import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
+import { curtainOfBoard, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 import { isWorld } from '../gen/board/world/index.js';
@@ -152,9 +152,8 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push(notebookText(d, run));
   out.push('');
   const v = scoreBoard(d, run, report);
-  out.push(`THE VERDICT: ${v.scoreLine} (${pointsText(v.points)} of ${v.asked}, ${v.outcome}); ${run.used} actions against par ${v.par}.`);
-  for (const f of v.fields) out.push(`  ${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? ' ½ (right, but you couldn’t have known)' : ' ✓') : ` ✗ (${f.why ?? `it was ${f.truth}`})`}`);
-  for (const p of v.plain) out.push(wrap(p));
+  out.push(`THE VERDICT: ${v.scoreLine} (${v.outcome}); ${run.used} actions against par ${v.par}.`);
+  for (const f of v.fields) out.push(`  ${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? ' ✓' : ` ✗ (${f.correction ?? `it was ${f.truth}`})`}`);
   for (const p of v.closing) out.push(wrap(p));
   out.push('');
   out.push('WHAT REALLY HAPPENED');

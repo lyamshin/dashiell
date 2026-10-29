@@ -12,9 +12,9 @@
  *   allowed, follows each star, otherwise takes the first choice, and files
  *   the name a hint handed it. Its solved rate falls with the hints.
  *
- * docs/61: where the report asks who else lied, the wanderer and the reader
- * answer it as they answer the rest: another liar they caught (the reader,
- * one a star pointed it at first), and a line off the form.
+ * docs/78: each files the five answers, who caught them out as whoever's word
+ * it holds that it set against the one it named (the wanderer, somebody off
+ * the form at random).
  */
 
 import { Rng } from '../../gen/board/rng.js';
@@ -27,36 +27,19 @@ import { newBoardRun, stepBoard } from './engine.js';
 import { collisionsOf, knownPlaces, solveRun } from './knowledge.js';
 import { OFFICE, budgetCalls, isMurder, parCalls, suspectsOf, type BoardDeal, type BoardReport, type BoardRun, type Hour, type PersonId } from './model.js';
 import { hasHints, hintsLeft, hintsUsed, takeHint } from './hints.js';
-import { NOBODY, asksOther, boardFields, breakOptions, clearOptions, heldWhereBy, truthReport, scoreBoard, whereByOptions } from './report.js';
+import { boardFields, sourceOfLine, truthReport, scoreBoard } from './report.js';
 
 export interface Played {
   run: BoardRun;
   commands: string[];
-  /** Filed solved: the right name on the right line, and the rest right. */
+  /** Filed solved: all five answers right. */
   ok: boolean;
   reason?: string;
   report: BoardReport;
-  /** The wanderer's report again, citing the line its collision showed instead of a random one. */
+  /** The wanderer's report again, naming whoever's word its collision showed instead of somebody at random. */
   alt?: BoardReport;
   /** docs/67: the hints the reader took. */
   hints?: number;
-}
-
-/** docs/61: the liars a run caught, one each, with the hour each was caught at. */
-function caughtLiars(d: BoardDeal, run: BoardRun): { person: PersonId; hour: Hour }[] {
-  const c = d.kase;
-  const out: { person: PersonId; hour: Hour }[] = [];
-  for (const x of collisionsOf(c, run)) if (suspectsOf(c).includes(x.person) && !out.some((y) => y.person === x.person)) out.push({ person: x.person, hour: x.hour });
-  return out;
-}
-
-/**
- * docs/61: who else lied, as a shortcut player answers it: another liar it caught besides the one it
- * named (the first of `prefer` it caught, else the first caught), or nobody else.
- */
-function otherCaught(caught: readonly { person: PersonId }[], who: PersonId | null, prefer: readonly PersonId[] = []): PersonId {
-  const rest = caught.map((x) => x.person).filter((p) => p !== who);
-  return prefer.find((p) => rest.includes(p)) ?? rest[0] ?? NOBODY;
 }
 
 /** The command that asks a question, from wherever the detective is, or the walk to it first. */
@@ -118,7 +101,7 @@ export function playBoardOracle(d: BoardDeal, name = 'Dashiell'): Played {
       run = r;
     }
   }
-  // The true report, on the lines the path holds: what breaks the story, and what put it there.
+  // The true report, on what the path holds: who caught them out is whoever's word it holds that breaks the story.
   const report = truthReport(d, run);
   const r = stepBoard(d, run, 'file');
   run = r.run;
@@ -290,42 +273,27 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
   }
   // What it files: whoever it caught lying, at that hour; the means if it searched for it; where
   // the thing is if the night told it; and the named one's reason. Otherwise a guess off the form.
-  // docs/46 §4: what breaks their story is a line picked at random from what the form offers for
-  // that name, and so is what puts it there; `alt` is the same report citing the collision instead.
+  // docs/78: who caught them out is somebody the form offers, at random; `alt` is the same report
+  // naming whoever's word its collision showed against the one it named.
   const caught = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
   const pick = caught.length > 0 ? (rng.pick(caught) as { person: PersonId; hour: Hour }) : null;
   const base = filedFrom(d, run, rng, pick);
-  const opts = breakOptions(d, run, base.who);
-  const wopts = whereByOptions(d, run);
-  const report: BoardReport = {
-    ...base,
-    breaks: opts.length > 0 ? rng.pick(opts).value : null,
-    ...(isMurder(c) ? {} : { whereBy: wopts.length > 0 ? rng.pick(wopts).value : null }),
-  };
-  const alt: BoardReport = { ...base, breaks: pick ? (collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id ?? null) : null, ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }) };
-  // docs/61: who else lied: another liar it caught, at random, on a line picked at random from what
-  // the form offers for them; `alt` cites the line its collision showed against them.
-  if (asksOther(d)) {
-    const rest = caughtLiars(d, run).filter((x) => x.person !== base.who);
-    const o = rest.length > 0 ? (rng.pick(rest) as { person: PersonId; hour: Hour }) : null;
-    const copts = o ? clearOptions(d, run, o.person) : [];
-    report.other = o?.person ?? NOBODY;
-    report.cleared = copts.length > 0 ? rng.pick(copts).value : null;
-    alt.other = report.other;
-    alt.cleared = o ? (collisionsOf(c, run, o.person).find((x) => x.hour === o.hour)?.breakers[0]?.id ?? null) : null;
-  }
+  const opts = boardFields(d, run).find((f) => f.key === 'caught')?.options ?? [];
+  const report: BoardReport = { ...base, caught: opts.length > 0 ? rng.pick(opts).value : null };
+  const alt: BoardReport = { ...base, caught: pick ? sourceOfLine(d, run, collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id) : null };
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report, alt };
 }
 
 /**
- * Decided 2026-10-25 (docs/69 §1.6, §3): the shortcut a night with one liar invites, "first liar, nobody
- * else". It follows the cheapest way (the designed path, as the oracle walks it, papers and all) until
- * the grid shows it a lie; then it names that liar, on the line the grid set against them, answers
- * "Nobody else", and closes on what it has. Two caught on one step are a coin flip. Caught nothing by
- * the end of the path, it takes the form's first name. Its perfect report (every point, so a star)
- * must stay under 10% from Poached up: "Nobody else" before everybody else is checked counts half.
+ * Decided 2026-10-25 (docs/69 §1.6, §3): the shortcut a night with one liar invites, "first liar". It
+ * follows the cheapest way (the designed path, as the oracle walks it, papers and all) until the grid
+ * shows it a lie; then it names that liar, and whoever's word the grid set against them as who caught
+ * them out, and closes on what it has. Two caught on one step are a coin flip. Caught nothing by the
+ * end of the path, it takes the form's first name. docs/78: with "Did anyone else lie?" gone from the
+ * report, nothing on the report stops it on a night with one liar; the red herring that should is a
+ * piece of work still to come (docs/78 §4).
  */
 export function playFirstLiar(d: BoardDeal, seed: number): Played {
   const c = d.kase;
@@ -354,12 +322,7 @@ export function playFirstLiar(d: BoardDeal, seed: number): Played {
     base.who = boardFields(d)[0]?.options[0]?.value ?? null;
     base.why = base.who;
   }
-  const report: BoardReport = {
-    ...base,
-    breaks: first ? (collisionsOf(c, run, first.person).find((x) => x.hour === first.hour)?.breakers[0]?.id ?? null) : null,
-    ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }),
-    ...(asksOther(d) ? { other: NOBODY, cleared: null } : {}),
-  };
+  const report: BoardReport = { ...base, caught: first ? sourceOfLine(d, run, collisionsOf(c, run, first.person).find((x) => x.hour === first.hour)?.breakers[0]?.id) : null };
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report };
@@ -401,24 +364,21 @@ function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: Person
  *   lie always came first, naming the second liar would be the shortcut;
  * - `liar`: a liar it caught, at random (docs/46's version);
  * - `access`: anybody who had the means, at random (the truth's access), on
- *   the line set against them if it caught them, else a hunch. The floor the
- *   first two are held to.
+ *   whoever's word was set against them if it caught them, else nobody. The
+ *   floor the first two are held to.
  *
- * docs/61: who else lied, each answers the same way: another liar it caught,
- * the one a star pointed it at first if any, cleared by the first line the
- * form offers for them (`cite`: by the line the grid showed against them).
+ * docs/78: who caught them out is whoever's word was in the line it put to
+ * the one it named, if that landed, or else the line the grid set against them.
  */
 export type ReaderGuess = 'first' | 'last' | 'liar' | 'access';
 
-export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; guess?: ReaderGuess; cite?: boolean } = {}): Played {
+export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; guess?: ReaderGuess } = {}): Played {
   const c = d.kase;
   const rng = new Rng((seed * 2654435761 + 97) >>> 0);
   const guess: ReaderGuess | undefined = opts.guess ?? (opts.liar ? 'liar' : undefined);
   let run = newBoardRun(d);
   const commands: string[] = [];
   const sentTo: PersonId[] = [];
-  // docs/61: the people a star pointed it at (asked, or put to), in order.
-  const pointed: PersonId[] = [];
   const budget = budgetCalls(d);
   // The liars in the order it caught them: each page's new collisions, a page at a time.
   const order: { person: PersonId; hour: Hour }[][] = [];
@@ -445,7 +405,6 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
     if (r.error) break;
     commands.push(next.command);
     if (next.starred && next.command.startsWith('put ')) sentTo.push(next.command.split(' ')[1] as PersonId);
-    if (next.starred && /^(ask|put) /.test(next.command)) pointed.push(next.command.split(' ')[1] as PersonId);
     run = r.run;
     if (guess === 'first' || guess === 'last') {
       const fresh = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person) && !seen.has(x.person));
@@ -484,27 +443,19 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
     }
   }
   const base = filedFrom(d, run, rng, pick);
-  let breaks: string | null;
+  let caughtBy: string | null;
   if (pick) {
-    // The line the book set against them: the line it put to them, if it landed; else the collision's.
+    // Whoever's word the book set against them: in the line it put to them, if it landed; else the collision's.
     const put = run.puts.find((x) => x.person === pick.person && x.hour === pick.hour && x.landed && !x.again);
-    breaks = put?.line ?? collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id ?? null;
+    caughtBy = sourceOfLine(d, run, put?.line ?? collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id);
   } else {
-    // Handed nothing: the form's first name, and the first line it offers for them.
-    base.who = boardFields(d)[0]?.options[0]?.value ?? null;
+    // Handed nothing: the form's first name, and the first person it offers for who caught them out.
+    const fields = boardFields(d, run);
+    base.who = fields[0]?.options[0]?.value ?? null;
     base.why = base.who;
-    breaks = breakOptions(d, run, base.who)[0]?.value ?? null;
+    caughtBy = fields.find((f) => f.key === 'caught')?.options[0]?.value ?? null;
   }
-  const report: BoardReport = { ...base, breaks, ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }) };
-  // docs/61: who else lied: another liar it caught, the one a star pointed it at first if any; cleared
-  // by the first line the form offers for them.
-  if (asksOther(d)) {
-    report.other = otherCaught(caught, report.who, pointed);
-    // `cite`: for the record, the line the grid showed against them instead (what a careless player would pick).
-    const o = report.other;
-    const shown = o === NOBODY ? undefined : collisionsOf(c, run, o).find((x) => x.hour === (caught.find((y) => y.person === o)?.hour ?? c.crime.hour))?.breakers[0]?.id;
-    report.cleared = o === NOBODY ? null : opts.cite ? (shown ?? null) : (clearOptions(d, run, o)[0]?.value ?? null);
-  }
+  const report: BoardReport = { ...base, caught: caughtBy };
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report, hints: hintsUsed(run) };

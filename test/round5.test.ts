@@ -7,10 +7,10 @@ import { describe, expect, it } from 'vitest';
 import { typesFor, type TierIndex } from '../src/gen/board/index.js';
 import { pickerFor } from '../src/game/board/choices.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
-import { accountOf, bearsOn, lineShown, linesHeld } from '../src/game/board/knowledge.js';
-import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun, type Hour } from '../src/game/board/model.js';
+import { lineShown, linesHeld } from '../src/game/board/knowledge.js';
+import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { blankRule, boardFields, breakOptionsShown, fastestSolveLines, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
+import { blankRule, boardFields, fastestSolveLines, notebookLines, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
 import { TALK_HEADING, notebookText, questionsText } from '../src/game/board/text.js';
 import { hintsNote } from '../src/game/board/hints.js';
 import { FACE_MARK } from '../src/game/board/grid.js';
@@ -69,67 +69,16 @@ describe('round 5, U1: picking somebody is free; each question is a call', () =>
 });
 
 describe('round 5, U2 and U6: the report says what to type, and what a blank is, once', () => {
-  it('“cleared” is a number from the same list (round 8, B2: said under “Did anyone else lie?”, in plain words, docs/73)', () => {
-    const out = cli(HB8)('report', 'Grasso').replace(/\s+/g, ' ');
-    expect(out).toMatch(/Did anyone else lie\? If your answer is Grasso, pick what clears (?:him|her) from this same list: somebody else’s word, not (?:his|her) own\./);
-    expect(out).not.toMatch(/lied too|give “cleared”/);
-    expect(out).not.toMatch(/counts down/);
-  });
-
-  it('what a blank goes in as is one sentence, said once, the same in the book', () => {
+  it('what a blank goes in as is one sentence, said once (docs/78: the book’s selects say “I don’t know” themselves)', () => {
     for (const n of [RAW11, POACHED5, MEDIUM14, HB8]) {
       const out = cli(n)('report').replace(/\s+/g, ' ');
-      expect(out.match(/Leave anything blank/g)?.length, n.type).toBe(1);
+      expect(out.match(/Leave anything out/g)?.length, n.type).toBe(1);
       const { d, run } = played(n);
       expect(out).toContain(blankRule(d, run.used >= budgetCalls(d)));
     }
     // (docs/64: in plain words.)
-    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Closing the case is final. Leave anything blank if you’re not sure.');
+    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Closing the case is final. Leave anything out if you’re not sure: it goes in as “I don’t know”.');
     expect(blankRule(dealBoard(11, 0, 'lost-item'), true)).toMatch(/^No actions left\. /);
-  });
-});
-
-describe('round 5, U3: docs/55 5’s wide first group, under a heading that says what it holds', () => {
-  it('every line under the heading fits it: at the hours that mattered, about them or a place they said they were tonight', () => {
-    for (const { d, run } of NIGHTS) {
-      const hours = new Set(hoursThatMattered(d));
-      const lines = linesHeld(d.kase, run);
-      for (const who of d.kase.people.filter((p) => p.role === 'suspect').map((p) => p.id)) {
-        const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
-        const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
-        const head = lineGroupHeads(d, run, who).touching;
-        // (Round 6, U5: the heading says only what every line under it is: about those hours. Round 7,
-        // U1: and about whom, and where they said they were, once their evening is held.)
-        const N = d.kase.people.find((p) => p.id === who)?.short as string;
-        // (docs/73, round 9: where company counts, Hard-boiled's pairs, and whoever they said they were with.)
-        const pair = d.kase.tier === 5;
-        expect(head, `${d.kase.id} ${who}`).toMatch(new RegExp(`^About ${N.replace(/[.]/g, '\\.')}${own ? `,${pair ? ' anybody (?:he|she) said (?:he|she) was with,' : ''} or anywhere (?:he|she) said (?:he|she) was tonight,` : ''} at (?:seven|eight|nine|ten|eleven)(?:, (?:seven|eight|nine|ten|eleven))*(?: or (?:seven|eight|nine|ten|eleven))? o’clock:$`));
-        for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
-          const l = lines.find((x) => x.id === o.value);
-          expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
-          expect(l?.about.includes(who) || (!!own && l?.place !== undefined && theirs.has(l.place)) || (pair && !!own && !!l && bearsOn(d.kase, who, l.hour as Hour, l)), `${d.kase.id} ${who}: “${o.label}” under “${head}”`).toBe(true);
-        }
-      }
-    }
-  });
-
-  it('the testers’ nights: Bellucci’s Kowalski’s ten o’clock fits the heading now, and the line that breaks a story is one of several', () => {
-    const out = cli(RAW11)('report', 'Bellucci');
-    const { d, run } = played(RAW11);
-    const head = lineGroupHeads(d, run, 'bellucci');
-    // (docs/64: the heading in plain words, over docs/55 5's same wide group.)
-    expect(head.touching).toBe('About Bellucci, or anywhere he said he was tonight, at ten o’clock:');
-    expect(head.rest).toBe('About anybody else at ten o’clock, or Bellucci at other hours:');
-    const first = out.slice(out.indexOf('About Bellucci, or anywhere'), out.indexOf('About anybody else at ten o’clock'));
-    expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
-    expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
-    const med = played(MEDIUM14);
-    const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
-    expect(thorndike.length).toBeGreaterThan(2);
-    expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
-    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('About Thorndike, or anywhere he said he was tonight, at nine or ten o’clock:');
-    const hb = played(HB8);
-    expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
 });
 
@@ -162,14 +111,14 @@ describe('round 5, U5: the notebook and the report say the line plainly, and as 
     }
   });
 
-  it('a claim says “home” where the page did, and the notebook and the report agree word for word', () => {
+  it('a claim says “home” where the page did, and the notebook says each line as the page did', () => {
     const { d, run } = played(MEDIUM14);
     const nb = notebookText(d, run).replace(/\s+/g, ' ');
     expect(nb).toContain('Thorndike says he was home at ten o’clock, on his own.');
     expect(nb).not.toContain('at Thorndike’s flat at ten');
     expect(nb).toContain('Fritz went at nine or ten o’clock.');
     // (The client's lines are under "What my client said", in the office's words.)
-    for (const o of breakOptionsShown(d, run, 'thorndike').filter((x) => !x.value.startsWith('given#'))) expect(nb).toContain(o.label.replace(/\s+/g, ' '));
+    for (const o of notebookLines(d, run).filter((x) => !x.value.startsWith('given#'))) expect(nb).toContain(o.label.replace(/\s+/g, ' '));
   });
 
   it('the why form says the reason plainly', () => {

@@ -18,9 +18,9 @@ and you get everybody, hour by hour. Every lie runs into something true, and
 pets and lost things, at six tiers from Raw to Hard-boiled. From Raw up the
 book helps less (docs/46): the stars thin out and stop at where to go, the
 detective's thoughts set two lines side by side and leave the conclusion to
-you, and the report asks for the name and what shows they lied.
-The right name on a hunch counts half. From Poached up two stories break at the
-crime hour, and the report also asks who else lied and what clears them (docs/61). Every question, search, walk and
+you. The report is five short answers, a point each (docs/78): who did it, who
+caught them out (who told you what shows they lied), when, how or where it is
+now, and why. Every question, search, walk and
 confrontation takes one action, and the clock shows what the actions add up to (docs/47); the book's own words are
 plain (docs/64): an action, "Confront", what you were told, "Close the case".
 

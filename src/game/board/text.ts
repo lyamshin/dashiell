@@ -206,14 +206,13 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   out.push('');
   out.push('Places:');
   for (const [id, why] of knownPlaces(c, run)) out.push(`  ${cap(placeName(c, id))} (${why}).`);
-  // Round 8, B1: every line the form can offer, the office's facts and a crack included, numbered from
-  // this one list (`notebookLines`, `lineNumbers`): Raw 33's confession was the report's 12 and never here.
+  // Round 8, B1: every line held, the office's facts and a crack included, numbered from this one list
+  // (`notebookLines`): a number never moves as the night goes on. (docs/78: the report asks for no line
+  // now; the numbers are the notebook's own.)
   const lines = notebookLines(d, run);
   if (lines.length > 0) {
     out.push('');
     out.push('What I was told:');
-    // Round 7, U1: numbered as the report numbers them (`lineNumbers`), so "proof=12" is the same
-    // twelfth thing here, on every person's list and on the form.
     const w = String(lines.length).length;
     lines.forEach((l, i) => {
       const n = `${String(i + 1).padStart(w)}. `;

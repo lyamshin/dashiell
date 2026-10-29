@@ -56,8 +56,19 @@ export interface HintRecord {
 }
 
 /** What the player files (docs/43 §2, the report). Any field left out is "I don't know". */
+/**
+ * docs/78: the report is five answers, one point each. Null (or left out) is "I don't know". A
+ * report filed before docs/78 may carry the old line answers too (`breaks`, `whereBy`, `other`,
+ * `cleared`); nothing reads them now.
+ */
 export interface BoardReport {
   who: PersonId | null;
+  /**
+   * Who caught them out: whose word shows the culprit's story was a lie. A person whose evening or
+   * list was asked for, or `second`, their own second story. Recorded so a measure can tell a name
+   * worked out from a name guessed.
+   */
+  caught?: string | null;
   when: Hour | null;
   /** Murder: how (the means). */
   how?: string | null;
@@ -65,20 +76,6 @@ export interface BoardReport {
   why: PersonId | null;
   /** Lost item or pet: where it is now. */
   where?: string | null;
-  /**
-   * docs/46 §3: what breaks their story, as the id of a line held (`Line.id`). Null or left out
-   * is a hunch. Recorded so a measure can tell a name worked out from a name guessed.
-   */
-  breaks?: string | null;
-  /** docs/46 §3, a lost thing: which line put it where it is now (a held line's id, or `crack:p@h`). Null is a hunch. */
-  whereBy?: string | null;
-  /**
-   * docs/61, from Poached up (round 7, B9: every night, by tier): whether anyone else lied, and who (a
-   * suspect's id, or `nobody`). Null is "I don't know".
-   */
-  other?: PersonId | null;
-  /** docs/61: the held line that cleared the other liar (`Line.id`). Null is a hunch. */
-  cleared?: string | null;
 }
 
 export interface BoardRun {

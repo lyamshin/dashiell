@@ -30,10 +30,9 @@ import { situatedDeck } from '../src/game/board/plan/situated.js';
 import { plainPage } from '../src/game/board/bones/plain.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardChoices } from '../src/game/board/choices.js';
-import { boardFields, breakOptionsShown, curtainOfBoard, scoreBoard, storyOfBoard, whereByOptions, BREAKS_LABEL, WHERE_BY_LABEL } from '../src/game/board/report.js';
+import { boardFields, curtainOfBoard, scoreBoard, storyOfBoard } from '../src/game/board/report.js';
 import { notebookText } from '../src/game/board/text.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
-import { suspectsOf, isMurder } from '../src/game/board/model.js';
 import { runPlay } from '../src/cli/play-lib.js';
 
 const args = process.argv.slice(2);
@@ -126,15 +125,13 @@ for (const world of ['dealt', 'neighbourhood']) {
         }
         if (ri === 0) {
           const where = `${world} t${tier} ${type} s${s}`;
-          // The report: labels, the lines it offers, the verdict, the story, the curtain.
-          for (const f of boardFields(d)) once('report', f.label, where);
-          once('report', BREAKS_LABEL, where);
-          once('report', WHERE_BY_LABEL, where);
-          const culprit = suspectsOf(d.kase).find((p) => p === d.kase.crime.culprit) ?? null;
-          for (const o2 of breakOptionsShown(d, run, culprit)) once('report: lines', o2.label, where);
-          if (!isMurder(d.kase)) for (const o2 of whereByOptions(d, run)) once('report: lines', o2.label, where);
+          // The report (docs/78): its five questions and their answers, the verdict, the story, the curtain.
+          for (const f of boardFields(d, run)) {
+            once('report', f.label, where);
+            for (const o2 of f.options) once('report: answers', o2.label, where);
+          }
           const v = scoreBoard(d, run, o.report);
-          for (const t of [v.scoreLine, ...v.plain, ...v.closing]) tally('report: verdict', t, where);
+          for (const t of [v.scoreLine, ...v.fields.flatMap((f) => (f.correction ? [f.correction] : [])), ...v.closing]) tally('report: verdict', t, where);
           for (const t of storyOfBoard(d)) tally('report: story', t, where);
           tally('report: curtain', curtainOfBoard(d, run, o.report), where);
           // The notebook's own words: its headings and the grid's legend, not the lines it lists.
@@ -149,7 +146,7 @@ for (const world of ['dealt', 'neighbourhood']) {
   }
 }
 
-const order = ['static: voicings', 'static: situated', 'voiced composites', 'plain fallback', 'writer: thought', 'writer: thread', 'writer: pages', 'texture: situated', 'texture: decks/writer', 'page (whole)', 'plain page', 'stars', 'report', 'report: lines', 'report: verdict', 'report: story', 'report: curtain', 'CLI: help', 'CLI: teach page', 'CLI: notebook and grid'];
+const order = ['static: voicings', 'static: situated', 'voiced composites', 'plain fallback', 'writer: thought', 'writer: thread', 'writer: pages', 'texture: situated', 'texture: decks/writer', 'page (whole)', 'plain page', 'stars', 'report', 'report: answers', 'report: verdict', 'report: story', 'report: curtain', 'CLI: help', 'CLI: teach page', 'CLI: notebook and grid'];
 process.stdout.write(`| source | texts with a hit / texts | narration hits | speech hits |\n|---|---|---|---|\n`);
 for (const k of [...order, ...[...counts.keys()].filter((x) => !order.includes(x))]) {
   const x = counts.get(k);

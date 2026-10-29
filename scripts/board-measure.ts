@@ -2,13 +2,13 @@
  * docs/43 "Done means" and docs/46 §4, measured: `npx tsx scripts/board-measure.ts [--seeds 50] [--tiers 0,1,2,3,4,5]`
  *
  * For each tier and each case type it builds, over the seeds:
- * - the oracle's route (the designed path through the engine): solved with the
- *   line that breaks the story, and at par (must be 100%);
+ * - the oracle's route (the designed path through the engine): solved, five out of
+ *   five, and at par (must be 100%);
  * - the refusal shortcut through the engine: never under par;
  * - the wanderer (random reasonable choices): how often it files who right (as
- *   before), and how often it files solved, with the line (picked at random from
- *   what the form offers; target under 10% from Poached up). "citing" is the same
- *   wanderer citing the line its collision showed, for the record;
+ *   before), and how often it files solved, who caught them out picked at random
+ *   from what the form offers (target under 10% from Poached up). "citing" is the
+ *   same wanderer naming whoever's word its collision showed, for the record;
  * - the reader, docs/67's hint-taker (every hint the tier allows, each star it
  *   gives, else the first choice; files the name a hint handed it, else the
  *   form's first choices): solved, which falls with the hints (near the oracle at
@@ -20,16 +20,13 @@
  *   and the mirror (the last liar it caught);
  * - decided 2026-10-11, the two broken stories on the designed path: whose collision is met
  *   first, the innocent liar's or the culprit's;
- * - docs/61: from Poached up, where the night has an innocent liar, solved also needs who else
- *   lied and the line that cleared them. Every reader answers it as it would (another liar it
- *   caught, a star's first; the first line the form offers for them); beside them, the last-liar
- *   reader citing the line the grid showed against the other one;
  * - the reader lint and the plain-terms check over the oracle's and the wanderer's pages;
  * - first-level choices a page (median and most);
  * - decided 2026-10-25 (docs/69 §3): the share of nights with one liar; par on those nights and on
- *   nights with two; and the shortcut they invite, "first liar, nobody else" (`playFirstLiar`): its
- *   perfect report (every point, so a star; under 10% from Poached up), how often it has who right on
- *   its line, and its points (mean, out of what the report asks).
+ *   nights with two; and the shortcut they invite, "first liar" (`playFirstLiar`): its perfect report
+ *   (five out of five, so a star), how often it has who and who caught them out right, and its points
+ *   (mean, out of five). docs/78: with "Did anyone else lie?" gone, nothing on the report holds it under
+ *   10% on a night with one liar; the red herring that should is still to come.
  *
  * Then the same by tier, all case types together.
  */
@@ -80,7 +77,6 @@ interface Tally {
   readerFirst: number;
   readerLast: number;
   readerAccess: number;
-  readerLastCite: number;
   /** Nights with an innocent liar, and how many met that liar's collision first on the path, or on the same step. */
   two: number;
   innocentFirst: number;
@@ -94,7 +90,7 @@ interface Tally {
   flPoints: number;
   flAsked: number;
 }
-const blank = (): Tally => ({ n: 0, oracle: 0, under: 0, whoRight: 0, wander: 0, citing: 0, reader: 0, readerHints: 0, readerLiar: 0, readerFirst: 0, readerLast: 0, readerAccess: 0, readerLastCite: 0, two: 0, innocentFirst: 0, same: 0, one: 0, parOne: [], parTwo: [], flPerfect: 0, flWho: 0, flPoints: 0, flAsked: 0 });
+const blank = (): Tally => ({ n: 0, oracle: 0, under: 0, whoRight: 0, wander: 0, citing: 0, reader: 0, readerHints: 0, readerLiar: 0, readerFirst: 0, readerLast: 0, readerAccess: 0, two: 0, innocentFirst: 0, same: 0, one: 0, parOne: [], parTwo: [], flPerfect: 0, flWho: 0, flPoints: 0, flAsked: 0 });
 /** A median, or a dash for none. */
 const median = (xs: number[]): string => {
   if (xs.length === 0) return '—';
@@ -113,7 +109,7 @@ function firstBreaks(d: BoardDeal): { innocent: number; culprit: number } | null
 }
 
 const rows: string[] = [];
-rows.push('| tier | type | n | oracle solved, with the lines | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | reader files solved | reader hints a night | reader naming the first liar it caught, solved | reader naming anybody with access, solved | reader naming a liar at random, solved | reader naming the last liar it caught, solved | the same, citing what caught the other one | innocent liar’s story breaks first on the path (same step) | lint issues | plain-terms hits | choices a page median / max | callback pages | nights with one liar | par questions median, one liar / two | first liar, nobody else: perfect | its who on the line | its points, mean |');
+rows.push('| tier | type | n | oracle solved, five of five | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | reader files solved | reader hints a night | reader naming the first liar it caught, solved | reader naming anybody with access, solved | reader naming a liar at random, solved | reader naming the last liar it caught, solved | innocent liar’s story breaks first on the path (same step) | lint issues | plain-terms hits | choices a page median / max | callback pages | nights with one liar | par questions median, one liar / two | first liar: perfect | its who and who caught them out | its points, mean |');
 rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const byTier = new Map<TierIndex, Tally>();
 const examples: string[] = [];
@@ -133,7 +129,6 @@ for (const tier of tiers) {
     let readerFirst = 0;
     let readerLast = 0;
     let readerAccess = 0;
-    let readerLastCite = 0;
     let rowOne = 0;
     const rowParOne: number[] = [];
     const rowParTwo: number[] = [];
@@ -178,7 +173,6 @@ for (const tier of tiers) {
       if (playReader(d, s, { guess: 'first' }).ok) readerFirst++;
       if (playReader(d, s, { guess: 'last' }).ok) readerLast++;
       if (playReader(d, s, { guess: 'access' }).ok) readerAccess++;
-      if (playReader(d, s, { guess: 'last', cite: true }).ok) readerLastCite++;
       const fb = firstBreaks(d);
       if (fb) {
         two++;
@@ -194,7 +188,7 @@ for (const tier of tiers) {
       const fl = playFirstLiar(d, s);
       const fv = scoreBoard(d, fl.run, fl.report);
       if (fv.outcome === 'solved') flPerfect++;
-      if (fv.fields[0]?.correct && !fv.fields[0]?.half) flWho++;
+      if (fv.fields.filter((f) => f.key === 'who' || f.key === 'caught').every((f) => f.correct)) flWho++;
       flPoints += fv.points;
       flAsked += fv.asked;
       for (const run of [o.run, w.run] as BoardRun[]) {
@@ -224,7 +218,7 @@ for (const tier of tiers) {
     counts.sort((a, b) => a - b);
     const pct = (k: number) => `${Math.round((100 * k) / N)}%`;
     rows.push(
-      `| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(whoRight)} | ${pct(wander)} | ${pct(citing)} | ${pct(reader)} | ${(readerHints / N).toFixed(1)} | ${pct(readerFirst)} | ${pct(readerAccess)} | ${pct(readerLiar)} | ${pct(readerLast)} | ${pct(readerLastCite)} | ${two ? `${Math.round((100 * innocentFirst) / two)}% (${Math.round((100 * same) / two)}%)` : '—'} | ${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% | ${pct(rowOne)} | ${median(rowParOne)} / ${median(rowParTwo)} | ${pct(flPerfect)} | ${pct(flWho)} | ${(flPoints / N).toFixed(2)} of ${(flAsked / N).toFixed(0)} |`,
+      `| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(whoRight)} | ${pct(wander)} | ${pct(citing)} | ${pct(reader)} | ${(readerHints / N).toFixed(1)} | ${pct(readerFirst)} | ${pct(readerAccess)} | ${pct(readerLiar)} | ${pct(readerLast)} | ${two ? `${Math.round((100 * innocentFirst) / two)}% (${Math.round((100 * same) / two)}%)` : '—'} | ${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% | ${pct(rowOne)} | ${median(rowParOne)} / ${median(rowParTwo)} | ${pct(flPerfect)} | ${pct(flWho)} | ${(flPoints / N).toFixed(2)} of ${(flAsked / N).toFixed(0)} |`,
     );
     t.one += rowOne;
     t.parOne.push(...rowParOne);
@@ -245,7 +239,6 @@ for (const tier of tiers) {
     t.readerFirst += readerFirst;
     t.readerLast += readerLast;
     t.readerAccess += readerAccess;
-    t.readerLastCite += readerLastCite;
     t.two += two;
     t.innocentFirst += innocentFirst;
     t.same += same;
@@ -255,12 +248,12 @@ process.stdout.write(`${rows.join('\n')}\n`);
 const pt = (k: number, n: number) => `${Math.round((100 * k) / Math.max(1, n))}%`;
 const sum: string[] = [
   '',
-  '| tier | nights | oracle solved, with the lines | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | refusal shortcut under par | reader files solved | reader hints a night | the liar did it: reader naming the first liar it caught | reader naming anybody with access | reader naming a liar at random (docs/46) | reader naming the last liar it caught | the same, citing what caught the other one | innocent liar’s story breaks first on the path (same step) | nights with one liar | par questions median, one liar / two | first liar, nobody else: perfect | its who on the line | its points, mean |',
-  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+  '| tier | nights | oracle solved, five of five | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | refusal shortcut under par | reader files solved | reader hints a night | the liar did it: reader naming the first liar it caught | reader naming anybody with access | reader naming a liar at random (docs/46) | reader naming the last liar it caught | innocent liar’s story breaks first on the path (same step) | nights with one liar | par questions median, one liar / two | first liar: perfect | its who and who caught them out | its points, mean |',
+  '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
 ];
 for (const [tier, t] of byTier)
   sum.push(
-    `| ${tierName(tier)} | ${t.n} | ${pt(t.oracle, t.n)} | ${pt(t.whoRight, t.n)} | ${pt(t.wander, t.n)} | ${pt(t.citing, t.n)} | ${t.under} | ${pt(t.reader, t.n)} | ${(t.readerHints / Math.max(1, t.n)).toFixed(1)} | ${pt(t.readerFirst, t.n)} | ${pt(t.readerAccess, t.n)} | ${pt(t.readerLiar, t.n)} | ${pt(t.readerLast, t.n)} | ${pt(t.readerLastCite, t.n)} | ${t.two ? `${pt(t.innocentFirst, t.two)} (${pt(t.same, t.two)})` : '—'} | ${pt(t.one, t.n)} | ${median(t.parOne)} / ${median(t.parTwo)} | ${pt(t.flPerfect, t.n)} | ${pt(t.flWho, t.n)} | ${(t.flPoints / Math.max(1, t.n)).toFixed(2)} of ${(t.flAsked / Math.max(1, t.n)).toFixed(0)} |`,
+    `| ${tierName(tier)} | ${t.n} | ${pt(t.oracle, t.n)} | ${pt(t.whoRight, t.n)} | ${pt(t.wander, t.n)} | ${pt(t.citing, t.n)} | ${t.under} | ${pt(t.reader, t.n)} | ${(t.readerHints / Math.max(1, t.n)).toFixed(1)} | ${pt(t.readerFirst, t.n)} | ${pt(t.readerAccess, t.n)} | ${pt(t.readerLiar, t.n)} | ${pt(t.readerLast, t.n)} | ${t.two ? `${pt(t.innocentFirst, t.two)} (${pt(t.same, t.two)})` : '—'} | ${pt(t.one, t.n)} | ${median(t.parOne)} / ${median(t.parTwo)} | ${pt(t.flPerfect, t.n)} | ${pt(t.flWho, t.n)} | ${(t.flPoints / Math.max(1, t.n)).toFixed(2)} of ${(t.flAsked / Math.max(1, t.n)).toFixed(0)} |`,
   );
 process.stdout.write(`${sum.join('\n')}\n`);
 if (examples.length) process.stdout.write(`\n${examples.join('\n')}\n`);

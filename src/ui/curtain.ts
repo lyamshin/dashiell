@@ -13,13 +13,13 @@ import { nameOf, placeName, type BoardDeal, type BoardReport, type BoardRun, typ
 import { curtainSheet, type CurtainCell, type CurtainMark, type CurtainRow, type CurtainSection } from '../game/board/report.js';
 import { TRACK_NAMES, WHOLE_TRUTH, cellKnown, cellTruth, fastestTrack, nightTrack, positionWords, type ReplayTrack, type TrackKind } from '../game/board/replay.js';
 import { clear, el } from './dom.js';
-import { MARK_HALF, MARK_RIGHT, MARK_WRONG } from './deco.js';
+import { MARK_RIGHT, MARK_WRONG } from './deco.js';
 import { cellLabel, cellWords } from './cells.js';
 
 /** About a second a step, as the replay plays. */
 const STEP_MS = 1000;
 
-const MARK_WORD: Record<CurtainMark, string> = { right: MARK_RIGHT, wrong: MARK_WRONG, half: MARK_HALF };
+const MARK_WORD: Record<CurtainMark, string> = { right: MARK_RIGHT, wrong: MARK_WRONG };
 
 const reducedMotion = (): boolean => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -299,7 +299,10 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
     if (s.proof) ledger.append(el('div', { class: 'verdict-row curtain-proof' }, el('span', { class: 'label', text: s.proof.label }), el('span', { class: 'proof', text: s.proof.text })));
     if (s.picked) {
       const state = s.picked.mark;
-      ledger.append(el('div', { class: `verdict-row verdict-row--${state}${state === 'wrong' ? ' wrong' : state === 'half' ? ' half' : ''}` }, el('span', { class: 'label', text: 'You picked' }), el('span', { class: 'given' }, el('span', { class: 'answer', text: s.picked.text })), el('span', { class: 'mark', text: MARK_WORD[state] })));
+      // (docs/78: the right person filed against the wrong name says so under it, as the verdict corrects.)
+      const given = el('span', { class: 'given' }, el('span', { class: 'answer', text: s.picked.text }));
+      if (s.picked.note) given.append(el('span', { class: 'correction', text: s.picked.note }));
+      ledger.append(el('div', { class: `verdict-row verdict-row--${state}${state === 'wrong' ? ' wrong' : ''}` }, el('span', { class: 'label', text: s.picked.label }), given, el('span', { class: 'mark', text: MARK_WORD[state] })));
     }
     if (ledger.childNodes.length) sec.append(ledger);
     return sec;

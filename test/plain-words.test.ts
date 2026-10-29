@@ -23,7 +23,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, boardGridText, gridKey, meansAsked, placeCodes, placesKey } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, curtainSheet, lineGroupHeads, lineNumbers, notebookLines, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { CAUGHT_LABEL, SECOND_LABEL, blankRule, boardFields, curtainOfBoard, curtainSheet, notebookLines, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport } from '../src/game/board/report.js';
 import { hintLabel, hintsLine, hintsNote, takeHint } from '../src/game/board/hints.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, PICKER_COST, TALK_HEADING, TURN_DIVIDER, chapterShown, costText, notebookText, questionsText } from '../src/game/board/text.js';
@@ -86,7 +86,6 @@ for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
 describe('docs/64: plain words in the chrome', () => {
   it('the shared words say none of the retired ones', () => {
     const d = dealBoard(5, 2, 'murder');
-    const run = newBoardRun(d);
     const texts = [
       ACTION_KEY,
       TALK_HEADING,
@@ -94,13 +93,11 @@ describe('docs/64: plain words in the chrome', () => {
       chapterShown('The turn'),
       ...BOARD_RULES,
       ...BOARD_TEACH_LINES,
-      BREAKS_LABEL,
-      CLEARED_LABEL,
-      OTHER_QUESTION,
-      WHERE_BY_LABEL,
+      CAUGHT_LABEL,
+      SECOND_LABEL,
+      ...boardFields(d).map((f) => f.label),
       blankRule(d, false),
       blankRule(d, true),
-      ...Object.values(lineGroupHeads(d, run, 'reinhardt')),
       clockStrip(0, 14).left,
       clockStrip(14, 14).left,
       clockStrip(3, 10, deadlineWords(dealBoard(11, 0, 'lost-item').kase)).left,
@@ -109,7 +106,7 @@ describe('docs/64: plain words in the chrome', () => {
     expect(clockStrip(0, 14).left).toBe('Fourteen actions left. The DA charges somebody at eight.');
     expect(clockStrip(7, 10, deadlineWords(dealBoard(11, 0, 'lost-item').kase)).left).toBe('Three actions left. Mrs. Marchetti wants an answer at eight.');
     expect(chapterShown('The turn')).toBe('Where things stood');
-    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one: somebody else’s word, not their own.');
+    expect(BOARD_TEACH_LINES).toContain('Who caught them out is the person who told you what shows the one who did it was lying.');
   });
 
   it('the CLI, over a night at every tier and both worlds, never says a retired word', { timeout: 240_000 }, () => {
@@ -150,17 +147,20 @@ describe('docs/64: plain words in the chrome', () => {
       const filed = stepBoard(d, o.run, 'file').run;
       const truth = truthReport(d, filed);
       const v = scoreBoard(d, filed, truth);
-      for (const t of [v.scoreLine, ...v.plain, ...v.closing.filter((x) => /^It took me /.test(x)), ...v.fields.map((f) => f.label)]) found.push(...retiredIn(t).map((x) => `${where} verdict: ${x}`));
+      for (const t of [v.scoreLine, ...v.closing.filter((x) => /^It took me /.test(x)), ...v.fields.map((f) => f.label)]) found.push(...retiredIn(t).map((x) => `${where} verdict: ${x}`));
+      // (docs/78: and every correction a wrong answer gets, on a report with everything wrong.)
+      const wrong = scoreBoard(d, filed, { who: d.kase.people.find((p) => p.role === 'suspect' && p.id !== d.kase.crime.culprit)?.id ?? null, caught: null, when: null, why: null, how: null, where: null });
+      for (const f of wrong.fields) found.push(...retiredIn(f.correction ?? '').map((x) => `${where} correction: ${x}`));
       const done = cli(d, [...events, { do: 'file' }, { file: truth }], world);
       const curtain = done('curtain')
         .split('\n')
         .filter((l) => /^[A-Z ,’]+$/.test(l) || /^ {2}(?:What|You)/.test(l) || /^(?:\d+|\+)\. /.test(l) || /^THE FASTEST/.test(l));
-      for (const l of curtain) found.push(...retiredIn(l.replace(/^ {2}(What [^:]+|You picked):.*/, '$1')).map((x) => `${where} curtain: ${x}`));
+      for (const l of curtain) found.push(...retiredIn(l.replace(/^ {2}(What [^:]+|You named|You said):.*/, '$1')).map((x) => `${where} curtain: ${x}`));
       const g = boardGrid(d.kase, filed);
       for (const t of [...gridKey(g), meansAsked(g.meansLabel)]) found.push(...retiredIn(t).map((x) => `${where} grid: ${x}`));
       // Round 6: the verdict whole, the answers it shows, the story, the recap and the curtain whole.
       for (const t of [...v.closing, ...v.fields.map((f) => `${f.label}: ${f.given}`)]) found.push(...retiredIn(unquoted(t)).map((x) => `${where} verdict: ${x}`));
-      for (const o of whereByOptions(d, filed)) found.push(...retiredIn(unquoted(o.label)).map((x) => `${where} report answer: ${x}`));
+      for (const f of boardFields(d, filed)) for (const o of f.options) found.push(...retiredIn(unquoted(o.label)).map((x) => `${where} report answer: ${x}`));
       for (const t of storyOfBoard(d)) found.push(...retiredIn(unquoted(t)).map((x) => `${where} story: ${x}`));
       for (const cl of recapClauses(d, filed)) found.push(...retiredIn(unquoted(cl.text)).map((x) => `${where} recap: ${x}`));
       for (const l of curtainOfBoard(d, filed, truth).split('\n')) found.push(...retiredIn(unquoted(l)).map((x) => `${where} curtain: ${x}`));
@@ -267,35 +267,42 @@ describe('docs/64: plain words in the chrome', () => {
     expect(marked).toContain('Your guess: Bellucci at Moe’s at ten.');
     expect(at('pencil', 'Bellucci ten clear')).toContain('Cleared your guess for Bellucci at ten.');
     const fields = boardFields(d);
-    expect(fields.map((f) => f.key)).toEqual(['who', 'when', 'where', 'why']);
-    // `close` with `proof` and `whereproof`; `file` with `breaks` and `whereBy`, the same verdict.
-    const plain = cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; evidence=hunch; why=rent');
-    const old = cli(d, events)('file', 'who=Bellucci; breaks=hunch; when=10; where=Pardo; whereBy=hunch; why=rent');
+    expect(fields.map((f) => f.key)).toEqual(['who', 'caught', 'when', 'where', 'why']);
+    // `close`, and `file` its old name: the same verdict.
+    const caught = d.kase.people.find((p) => p.id === truthReport(d, o.run).caught)?.short as string;
+    const plain = cli(d, events)('close', `who=Bellucci; caught=${caught}; when=10; where=Pardo; why=rent`);
+    const old = cli(d, events)('file', `who=Bellucci; caught=${caught}; when=10; where=Pardo; why=rent`);
     expect(plain).toBe(old);
-    // (Round 6, U5: `evidence`, with `whereproof` still read.)
-    expect(cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; whereproof=hunch; why=rent')).toBe(old);
-    expect(plain).toContain('What proves they lied: A hunch');
-    expect(cli(d, events)('help')).toMatch(/close "who=…; proof=…;/);
+    expect(plain).toContain(`${caught} caught him out.`);
+    expect(plain).toContain('5 out of 5.');
+    // docs/78: the old report's keys are refused, saying what to give instead, and nothing is closed.
+    for (const [key, says] of [['proof', 'caught=<name>'], ['breaks', 'caught=<name>'], ['other', 'Leave other out'], ['cleared', 'Leave cleared out'], ['evidence', 'where=… is all it needs'], ['whereproof', 'where=… is all it needs'], ['whereBy', 'where=… is all it needs']] as const) {
+      const say = cli(d, events);
+      const r = say('close', `who=Bellucci; ${key}=1; when=10; where=Pardo; why=rent`);
+      expect(r, key).toContain(says);
+      expect(say('look'), key).not.toContain('THE VERDICT');
+    }
+    expect(cli(d, events)('help')).toMatch(/close "who=…; caught=…; when=…; how=…; why=…"/);
   });
 });
 
 describe('round 7, B9: no chrome says or implies that somebody else lied', () => {
   /** "Someone else lied too", "who else lied", "the other liar", "when two people lied, it also asks": each says a second liar exists. */
-  const TELLS = /\b(?:someone|somebody) else (?:lied|is lying)\b|\bwho else lied\b|\bthe other liar\b|\bwhen two people lied, (?:it|the report) (?:also )?asks\b|\banother liar\b|\bsecond liar\b/i;
-  const tells = (t: string) => (TELLS.test(t) && !/^Did anyone else lie\?/.test(t) ? [t] : []);
+  const TELLS = /\b(?:someone|somebody) else (?:lied|is lying)\b|\bwho else lied\b|\bthe other liar\b|\bwhen two people lied\b|\banother liar\b|\bsecond liar\b|\banyone else lie\b/i;
+  const tells = (t: string) => (TELLS.test(t) ? [t] : []);
 
-  it('the question, its labels and the help ask; they never tell', () => {
-    for (const t of [OTHER_QUESTION, OTHER_LABEL, CLEARED_LABEL, ...BOARD_RULES]) expect(tells(t), t).toEqual([]);
-    expect(OTHER_QUESTION).toBe('Did anyone else lie? If so, who, and what clears them?');
-    expect(BOARD_RULES.join(' ')).toContain('it also asks whether anyone else lied, and if so, what clears them');
+  it('the labels, the teach page and the help never tell (docs/78: and nothing asks about anybody else now)', () => {
+    for (const t of [CAUGHT_LABEL, SECOND_LABEL, ...BOARD_RULES, ...BOARD_TEACH_LINES]) expect(tells(t), t).toEqual([]);
+    expect(BOARD_RULES.join(' ')).not.toMatch(/anyone else|what clears|hunch|half/i);
   });
 
-  it('the CLI’s form, a person’s list, the help and its refusals, on a night with another liar', () => {
+  it('the CLI’s form, the help and its refusals, on a night with another liar', () => {
     const d = dealBoard(17, 2, 'murder');
     const say = cli(d, playBoardOracle(d).commands.map((x) => ({ do: x })));
-    const texts = [say('report'), say('report', 'Dandridge'), say('report', 'Callahan'), say('help'), say('close', 'who=Callahan; cleared=1')];
+    const texts = [say('report'), say('report', 'Dandridge'), say('help'), say('close', 'who=Callahan; cleared=1'), say('close', 'who=Callahan; other=Dandridge')];
     for (const t of texts) for (const line of t.split('\n')) expect(tells(line), line).toEqual([]);
-    expect(texts[0]).toContain('Did anyone else lie? If so, who, and what clears them? (other):');
+    expect(texts[0]).toContain('Who caught them out? (caught):');
+    expect(texts[0]).not.toMatch(/anyone else|What clears/);
   });
 
   it('the book’s own strings never tell either', () => {
@@ -326,68 +333,15 @@ describe('round 7, U1–U3: the report’s lists, the labels and the confront bo
     return m;
   };
 
-  it('U1: one numbering a night: the same thing has the same number on every person’s list, on the form and in the notebook', () => {
-    const d = dealBoard(17, 2, 'murder');
-    const o = playBoardOracle(d);
-    const events = o.commands.map((x) => ({ do: x }));
-    const say = cli(d, events);
-    const nb = say('notebook');
-    const told = numbered(nb.slice(nb.indexOf('What I was told:'), nb.indexOf('Where things stand:')));
-    expect(told.size).toBeGreaterThan(10);
-    const lists = d.kase.people.filter((p) => p.role === 'suspect').map((p) => numbered(say('report', p.short).split('`report` shows')[0] as string));
-    const seen = new Map<number, string>();
-    for (const list of lists) {
-      for (const [n, label] of list) {
-        if (seen.has(n)) expect(label, `#${n}`).toBe(seen.get(n));
-        seen.set(n, label);
-        // (The office's own facts and a crack aren't in "What I was told"; everything else is, by the same number.)
-        if (told.has(n)) expect(told.get(n), `#${n}`).toBe(label);
-      }
-    }
-    // Bledsoe's nine o'clock, the line round 7 found at #4 on one list and #8 on another, is one number on both.
-    const bledsoe = (l: string) => l.startsWith('Bledsoe says she was at Sokol’s back room at nine');
-    expect([...seen].filter(([, l]) => bledsoe(l)).length).toBe(1);
-    expect(lists.filter((list) => [...list.values()].some(bledsoe)).length).toBeGreaterThan(1);
-    // And the number closes the case: proof and cleared by the night's numbers.
-    const truth = truthReport(d, o.run);
-    const nums = lineNumbers(d, o.run);
-    const filed = say('close', `who=Callahan; proof=${nums.get(truth.breaks as string)}; other=Dandridge; cleared=${nums.get(truth.cleared as string)}; when=nine; how=knife; why=lease`);
-    expect(filed).toMatch(/5 out of 5/);
-    // A number from somebody else's list is refused, with whose list to look at.
-    const offList = [...nums].find(([id]) => !breakOptionsShown(d, o.run, 'callahan').some((x) => x.value === id))?.[1];
-    expect(cli(d, events)('close', `who=Callahan; proof=${offList}; when=nine; how=knife; why=lease`)).toMatch(/isn’t on Callahan’s list for proof: `report Callahan` shows what is\./);
-  });
-
-  it('U1: every list the form offers, on a night at every tier and both worlds, has a number for everything on it', () => {
-    for (const { d } of NIGHTS) {
+  it('U1: the notebook numbers what you were told once, in the order it was held (docs/78: no list on the report needs the numbers now)', () => {
+    for (const { d, world } of NIGHTS) {
       const run = playBoardOracle(d).run;
-      const nums = lineNumbers(d, run);
-      const opts = [...d.kase.people.filter((p) => p.role === 'suspect').flatMap((p) => breakOptionsShown(d, run, p.id)), ...(d.kase.type === 'murder' ? [] : whereByOptions(d, run))];
-      for (const o of opts) expect(nums.get(o.value), `${d.kase.id} ${o.label}`).toBeGreaterThan(0);
-      // One number each: no two things share one.
-      expect(new Set(nums.values()).size).toBe(nums.size);
-      // The notebook's "What I was told" is numbered 1 to n: the office's facts, then in the order it was
-      // held (round 8, B1, docs/73: one list, a crack in its place).
-      notebookLines(d, run).forEach((o, i) => expect(nums.get(o.value)).toBe(i + 1));
+      // The office's facts, then in the order it was held (round 8, B1, docs/73: one list, a crack in its place).
       expect(notebookLines(d, run).filter((o) => !o.value.startsWith('given#') && !o.value.startsWith('crack:')).map((o) => o.value)).toEqual(linesHeld(d.kase, run).filter((l) => l.kind !== 'given').map((l) => l.id));
+      const nb = cli(d, playBoardOracle(d).commands.map((x) => ({ do: x })), world)('notebook');
+      const told = numbered(nb.slice(nb.indexOf('What I was told:'), nb.indexOf('Where things stand:')));
+      notebookLines(d, run).forEach((o, i) => expect(told.get(i + 1)?.replace(/\s+/g, ' '), `${d.kase.id} #${i + 1}`).toBe(o.label.replace(/\s+/g, ' ')));
     }
-  });
-
-  it('U1: the headings and the form say what a list holds, in plain words', () => {
-    const d = dealBoard(17, 2, 'murder');
-    const o = playBoardOracle(d);
-    const heads = lineGroupHeads(d, o.run, 'dandridge');
-    expect(heads.touching).toBe('About Dandridge, or anywhere he said he was tonight, at nine o’clock:');
-    expect(heads.rest).toBe('About anybody else at nine o’clock, or Dandridge at other hours:');
-    expect(lineGroupHeads(d, newBoardRun(d), 'dandridge').touching).toBe('About Dandridge at nine o’clock:');
-    const hb = dealBoard(19, 5, 'murder');
-    expect(lineGroupHeads(hb, newBoardRun(hb), 'grasso').rest).toBe('About anybody else at eight or nine o’clock, or Grasso at other hours:');
-    const form = cli(d, o.commands.map((x) => ({ do: x })))('report').replace(/\s+/g, ' ');
-    // (docs/73, round 9, item 7: the form's keys stay in the command's line, never in a sentence.)
-    expect(form).toContain('Pick who first. Then `report <name>` shows what you were told about them and about nine o’clock, numbered as in the notebook. Give one of those numbers, or “hunch”.');
-    expect(form).toContain('If you name somebody, `report <name>` shows what you were told about them. Pick what clears them from it: somebody else’s word, not their own. Give its number, or “hunch”.');
-    expect(form).not.toMatch(/lists what you know about them, or about|the same list as for proof|Name them first:/);
-    for (const t of [heads.touching, heads.rest]) expect(retiredIn(t), t).toEqual([]);
   });
 
   it('U2: the confront row, a person’s row, the grid’s key and an admission say it as a person would', () => {
