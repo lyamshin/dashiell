@@ -30,7 +30,8 @@ export interface Endings {
   story: string[];
   /** book-look, item 5: the night's actions against the fastest solve, said after the story. */
   fastest?: string[];
-  truthSheet: () => string;
+  /** curtain (docs/76): the solved board, how it came together, the report against the truth and the lies. */
+  curtain: () => HTMLElement;
 }
 
 /**
@@ -135,16 +136,17 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
   // The crime as a story; and the true board, the lies and the path, behind the curtain.
   const story = disclosure('ending-story', 'What really happened', (panel) => {
     panel.classList.add('ending-story');
-    panel.append(el('h3', { text: 'What really happened' }));
+    // (curtain, docs/76: the verdict's h1 is the running head's, so the endings' heads are h2s and h3s.)
+    panel.append(el('h2', { text: 'What really happened' }));
     for (const paragraph of endings.story) panel.append(el('p', { text: paragraph }));
     if (endings.fastest?.length) {
-      panel.append(el('h4', { class: 'ending-fastest-head', text: 'The fastest solve' }));
+      panel.append(el('h3', { class: 'ending-fastest-head', text: 'The fastest solve' }));
       for (const paragraph of endings.fastest) panel.append(el('p', { class: 'ending-fastest', text: paragraph }));
     }
   });
   const curtain = disclosure('ending-curtain', 'Look behind the curtain', (panel) => {
     panel.classList.add('ending-curtain');
-    panel.append(el('pre', { text: endings.truthSheet() }));
+    panel.append(endings.curtain());
   });
   wrap.append(
     el('div', { class: 'endings' }, el('div', { class: 'ending-buttons' }, story.button, curtain.button), story.panel, curtain.panel),

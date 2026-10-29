@@ -238,6 +238,36 @@ describe('book-look, items 2 to 4: the chrome, held in the source', () => {
     expect(ratio(tok('ink-faint'), tok('paper'))).toBeLessThan(ratio(tok('ink-soft'), tok('paper')));
   });
 
+  it('curtain (docs/76): the board behind the curtain reads at 4.5:1 on every wash it puts under a cell', () => {
+    const root = /:root \{([\s\S]*?)\n\}/.exec(src('src/ui/book.css'))?.[1] ?? '';
+    const tok = (name: string) => new RegExp(`--${name}: (#[0-9a-f]{6});`).exec(root)?.[1] as string;
+    const lum = (hex: string) => {
+      const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)) as [number, number, number];
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const ratio = (a: string, b: string) => {
+      const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p) as [number, number];
+      return (x + 0.05) / (y + 0.05);
+    };
+    // color-mix(in srgb, A p%, B), as the browser mixes it.
+    const mix = (a: string, b: string, p: number) => `#${[1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * p + parseInt(b.slice(i, i + 2), 16) * (1 - p)).toString(16).padStart(2, '0')).join('')}`;
+    const css = src('src/ui/board.css');
+    const pct = (re: RegExp) => Number(re.exec(css)?.[1]) / 100;
+    const added = pct(/td\.is-added,\s+\.curtain-key \.k-added \{[^}]*color-mix\(in srgb, var\(--jade\) (\d+)%, var\(--paper\)\)/);
+    const pointed = pct(/td\.is-pointed \{[^}]*color-mix\(in srgb, var\(--ink\) (\d+)%, var\(--paper\)\)/);
+    const crime = pct(/\.bgrid td\.is-crime \{[^}]*color-mix\(in srgb, var\(--accent\) (\d+)%, transparent\)/);
+    expect([added, pointed, crime].every((x) => x > 0)).toBe(true);
+    const paper = tok('paper');
+    const washes: Record<string, string> = { paper, 'the crime hour': mix(tok('accent'), paper, crime), 'what a step added': mix(tok('jade'), paper, added), 'a lie pointed at': mix(tok('ink'), paper, pointed), 'the current step': tok('paper-raised') };
+    // The truth not known yet (faint), what they said (soft, struck or not), a clash (red), the known truth (ink).
+    for (const [where, bg] of Object.entries(washes)) for (const t of ['ink', 'ink-soft', 'ink-faint', 'accent']) expect(ratio(tok(t), bg), `${t} on ${where}`).toBeGreaterThanOrEqual(4.5);
+    // The step numbers and the heads; the jade edge and the pointed cell's ink edge as edges.
+    for (const t of ['nickel', 'nickel-dim']) expect(ratio(tok(t), paper), `${t} on the paper`).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(tok('jade'), washes['what a step added'] as string)).toBeGreaterThanOrEqual(3);
+    // (Faint still reads under soft: the truth behind the curtain is the quietest thing on the board.)
+    expect(ratio(tok('ink-faint'), paper)).toBeLessThan(ratio(tok('ink-soft'), paper));
+  });
+
   it('the lobby lacquer: the choices panel reads at 4.5:1 for text and 3:1 for edges, and the names are ink, not the law’s red', () => {
     const root = /:root \{([\s\S]*?)\n\}/.exec(src('src/ui/book.css'))?.[1] ?? '';
     const tok = (name: string) => new RegExp(`--${name}: (#[0-9a-f]{6});`).exec(root)?.[1] as string;

@@ -18,6 +18,11 @@ declare module 'node:fs' {
   export function readFileSync(path: string | URL): Uint8Array;
 }
 
+/** docs/76: the curtain's test hashes its text over a spread of nights. */
+declare module 'node:crypto' {
+  export function createHash(algorithm: 'sha256'): { update(data: string): { digest(encoding: 'hex'): string }; digest(encoding: 'hex'): string };
+}
+
 declare module 'node:path' {
   export function join(...parts: string[]): string;
 }

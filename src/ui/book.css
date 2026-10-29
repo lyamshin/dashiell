@@ -1436,7 +1436,7 @@ input {
 /*
  * Two doors off the closing page. "What really happened" is the crime told as
  * a story, set as one more page of the book; "Look behind the curtain" is the
- * whole truth sheet, set as a carbon copy. Either opens and closes on its own.
+ * solved board and how it came together (curtain, docs/76; board.css). Either opens and closes on its own.
  */
 .endings {
   margin-top: 1.6rem;
@@ -1454,9 +1454,11 @@ input {
   min-height: 44px;
 }
 
+/* Open: the metal's edge on a raised sheet. (It was the law's red, and opening a door isn't the law's.) */
 .ending-toggle[aria-expanded='true'] {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--nickel);
+  background: var(--paper-raised);
+  color: var(--ink);
 }
 
 .ending-panel[hidden] {
@@ -1467,8 +1469,8 @@ input {
   margin-top: 1.4rem;
 }
 
-.ending-story h3,
-.ending-story h4 {
+.ending-story h2,
+.ending-story h3 {
   font-family: var(--deco);
   font-size: max(12px, 0.68rem);
   line-height: 1.3;
@@ -1479,7 +1481,7 @@ input {
   margin: 0 0 1rem;
 }
 
-.ending-story h4 {
+.ending-story h3 {
   margin-top: 1.8rem;
 }
 
@@ -1495,20 +1497,6 @@ input {
 
 .ending-story p + p {
   text-indent: 1.2em;
-}
-
-.ending-curtain pre {
-  font-family: var(--typed);
-  font-size: 0.74rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  max-width: 100%;
-  color: var(--carbon);
-  background: var(--paper-raised);
-  border: 1px solid var(--rule);
-  padding: 1rem;
-  margin: 0;
 }
 
 /* docs/39 §5: the teach-once page. Plain: a title, six lines, Start. */
