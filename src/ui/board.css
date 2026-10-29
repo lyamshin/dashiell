@@ -1689,6 +1689,15 @@ nav.choices--board .choice--search:hover:not(:disabled) {
   box-shadow: inset 0 0 0 1px var(--ink);
 }
 
+/* The open cell's words: the book's leading, and a measure a line can be read in. */
+.bgrid--curtain .curtain-detail {
+  line-height: 1.4;
+}
+
+.bgrid--curtain .curtain-detail > p {
+  max-width: 52ch;
+}
+
 .curtain-detail .curtain-truth {
   margin: 0.15rem 0 0.4rem;
   font-size: 0.86rem;
@@ -1703,6 +1712,11 @@ nav.choices--board .choice--search:hover:not(:disabled) {
 .leaf .curtain .curtain-detail .curtain-when {
   margin-top: 0.4rem;
   font-size: 0.8rem;
+}
+
+/* The key under the board, at a measure a line can be read in (the board itself runs wider). */
+.curtain .bgrid-key {
+  max-width: 54ch;
 }
 
 .curtain-key {

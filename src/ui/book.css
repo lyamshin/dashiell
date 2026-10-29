@@ -1469,8 +1469,8 @@ input {
   margin-top: 1.4rem;
 }
 
-.ending-story h3,
-.ending-story h4 {
+.ending-story h2,
+.ending-story h3 {
   font-family: var(--deco);
   font-size: max(12px, 0.68rem);
   line-height: 1.3;
@@ -1481,7 +1481,7 @@ input {
   margin: 0 0 1rem;
 }
 
-.ending-story h4 {
+.ending-story h3 {
   margin-top: 1.8rem;
 }
 

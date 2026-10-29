@@ -50,7 +50,7 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
   /* ------------------------------------------------ the board and its bar */
 
   const replay = el('div', { class: 'curtain-replay' });
-  const boardHead = el('h3', { class: 'curtain-head', id: 'curtain-board-head', text: sheet.board.head });
+  const boardHead = el('h2', { class: 'curtain-head', id: 'curtain-board-head', text: sheet.board.head });
   const stage = el('div', { class: 'curtain-stage' });
   const boardWrap = el('div', { class: 'bgrid-wrap curtain-board' });
   const status = el('p', { class: 'curtain-now', role: 'status', 'aria-atomic': 'true' });
@@ -63,7 +63,7 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
   const places = placesKey(c, { asked: [], visited: [] }, codes, new Set(sheet.board.rows.flatMap((r) => r.cells.flatMap((x) => [x.place, ...(x.claim ? [x.claim] : [])]))));
   const placesNote = places ? el('p', { class: 'bgrid-key', text: places }) : null;
 
-  const replayHead = el('h3', { class: 'curtain-head', id: 'curtain-replay-head', text: 'How it came together' });
+  const replayHead = el('h2', { class: 'curtain-head', id: 'curtain-replay-head', text: 'How it came together' });
   const switcher = el('div', { class: 'curtain-tracks', role: 'group', 'aria-labelledby': 'curtain-replay-head' });
   const caption = el('p', { class: 'curtain-caption' });
   const steps = el('ol', { class: 'curtain-steps' });
@@ -293,7 +293,7 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
   function sectionNode(s: CurtainSection): HTMLElement {
     const id = `curtain-sec-${s.key}`;
     const sec = el('section', { class: `curtain-sec curtain-sec--${s.key}`, 'aria-labelledby': id });
-    sec.append(el('h3', { class: 'curtain-head', id, text: s.head }));
+    sec.append(el('h2', { class: 'curtain-head', id, text: s.head }));
     if (s.said) sec.append(el('p', { class: 'curtain-said', text: s.said }));
     const ledger = el('div', { class: 'curtain-ledger' });
     if (s.proof) ledger.append(el('div', { class: 'verdict-row curtain-proof' }, el('span', { class: 'label', text: s.proof.label }), el('span', { class: 'proof', text: s.proof.text })));
@@ -308,7 +308,7 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
   /* ------------------------------------------------ the lies */
 
   const lies = el('section', { class: 'curtain-lies', 'aria-labelledby': 'curtain-lies-head' });
-  lies.append(el('h3', { class: 'curtain-head', id: 'curtain-lies-head', text: sheet.lies.head }));
+  lies.append(el('h2', { class: 'curtain-head', id: 'curtain-lies-head', text: sheet.lies.head }));
   const list = el('ul', { class: 'curtain-lie-list' });
   for (const l of sheet.lies.items) {
     const k = `${l.person}@${l.hour}`;
