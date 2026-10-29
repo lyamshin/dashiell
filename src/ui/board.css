@@ -356,11 +356,16 @@
   text-transform: none;
 }
 
-/* A place label stays whole; the column is wide enough for eight letters at this size. */
+/*
+ * A place label stays whole: never cut inside a word ("Delmonic" read as a bug). A two-word one
+ * wraps at its space when the column is too narrow for it and its mark ("Blue Lantern✓" was cut to
+ * "Blue Lantern" at 1280, Poached 3), balanced, so it reads "Blue / Lantern✓", not the mark alone.
+ */
 .bgrid-btn {
   word-break: keep-all;
   overflow-wrap: normal;
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
   overflow: hidden;
   padding: 0.2rem 0.1rem;
 }
