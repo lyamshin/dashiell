@@ -1,10 +1,11 @@
 /**
- * The profile, on the board alone: reports filed, full credit, tiers cleared.
+ * The profile, on the board alone: reports filed, full credit, tiers cleared, and (docs/77) the tiers
+ * where the right culprit was named, which move tonight's case on.
  * A profile the engines before the board wrote (`dashiell:profile`, with its
  * Over easy and its levels) is never read.
  */
 import { describe, expect, it } from 'vitest';
-import { clearsAt, emptyProfile, fileToProfile, loadProfile, PROFILE_KEY, recordRun, sanitizeProfile, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../src/game/board/profile.js';
+import { clearsAt, emptyProfile, fileToProfile, loadProfile, PROFILE_KEY, recordRun, sanitizeProfile, teachOn, tonightTier, type KeyValueStore, type Profile } from '../src/game/board/profile.js';
 import { tierNewsLines } from '../src/ui/report.js';
 
 function memoryStore(init: Record<string, string> = {}): KeyValueStore & { data: Map<string, string> } {
@@ -40,20 +41,34 @@ describe('board: the profile', () => {
     expect(fileToProfile(blocked, { tier: 0, points: 4, asked: 4, actionsUsed: 8, par: 8 }).won).toBe(true);
   });
 
-  it('clears a tier on its first full-credit report, keeps the best par delta, and says so once', () => {
+  it('clears a tier on its first full-credit report, and keeps the best par delta', () => {
     let p = emptyProfile();
     let o = recordRun(p, { tier: 1, points: 3, asked: 4, actionsUsed: 9, par: 9 });
-    expect(o).toMatchObject({ won: false, firstClear: null });
+    expect(o).toMatchObject({ won: false, news: null });
     p = o.profile;
     o = recordRun(p, { tier: 1, points: 4, asked: 4, actionsUsed: 11, par: 9 });
-    expect(o).toMatchObject({ won: true, firstClear: 1 });
+    expect(o).toMatchObject({ won: true, news: { done: 1, next: 2 } });
     p = o.profile;
     o = recordRun(p, { tier: 1, points: 4, asked: 4, actionsUsed: 8, par: 9 });
-    expect(o.firstClear).toBeNull();
-    expect(o.profile).toMatchObject({ cleared: [1], best: { 1: -1 }, runs: 3, wins: 2 });
-    expect(tierNewsLines({ cleared: 1, firstClear: true })).toEqual(['Coddled is cleared. **Poached is next.**']);
-    expect(tierNewsLines({ cleared: 5, firstClear: true })).toEqual(['Hard-boiled is cleared, and that is the last of them.']);
-    expect(tierNewsLines({ cleared: 1, firstClear: false })).toEqual([]);
+    expect(o.news).toBeNull();
+    expect(o.profile).toMatchObject({ cleared: [1], named: [1], best: { 1: -1 }, runs: 3, wins: 2 });
+  });
+
+  it('docs/77: the right culprit moves tonight on, perfect or not, and the verdict says so once', () => {
+    let o = recordRun(emptyProfile(), { tier: 0, points: 3.5, asked: 4, actionsUsed: 9, par: 9, culprit: true });
+    expect(o).toMatchObject({ won: false, news: { done: 0, next: 1 } });
+    expect(o.profile.cleared).toEqual([]);
+    expect(o.profile.named).toEqual([0]);
+    // Again at Raw: nothing new to say. The wrong culprit at Coddled: nothing either.
+    o = recordRun(o.profile, { tier: 0, points: 2, asked: 4, actionsUsed: 9, par: 9, culprit: true });
+    expect(o.news).toBeNull();
+    o = recordRun(o.profile, { tier: 1, points: 2, asked: 4, actionsUsed: 9, par: 9, culprit: false });
+    expect(o.news).toBeNull();
+    expect(o.profile.named).toEqual([0]);
+    expect(tierNewsLines({ done: 1, next: 2 })).toEqual(['Coddled is cleared. **Poached is next.**']);
+    expect(tierNewsLines({ done: 5, next: null })).toEqual(['Hard-boiled is cleared, and that is the last of them.']);
+    // The tiers named survive the store; nonsense in it is dropped.
+    expect(sanitizeProfile({ version: 1, cleared: [], best: {}, runs: 2, wins: 0, named: [3, 'x', 0, 9] }).named).toEqual([0, 3]);
   });
 
   it('teaches before the office until the first full-credit report: on the first night, and at Raw', () => {
@@ -65,57 +80,43 @@ describe('board: the profile', () => {
 
 });
 
-describe('board: the tier the title page chooses', () => {
+describe('board: the tier the title page suggests (docs/77: every tier is open)', () => {
   const win = (p: Profile, tier: 0 | 1 | 2 | 3 | 4 | 5): Profile => recordRun(p, { tier, points: 3, asked: 3, actionsUsed: 8, par: 8 }).profile;
+  const named = (p: Profile, tier: 0 | 1 | 2 | 3 | 4 | 5): Profile => recordRun(p, { tier, points: 2, asked: 3, actionsUsed: 8, par: 8, culprit: true }).profile;
   const lose = (p: Profile, tier: 0 | 1 | 2 | 3 | 4 | 5): Profile => recordRun(p, { tier, points: 1, asked: 3, actionsUsed: 8, par: 8 }).profile;
 
-  it('opens Raw on a first visit, and on a profile with nothing cleared', () => {
+  it('suggests Raw on a first visit, and until the right culprit is named', () => {
     expect(tonightTier(emptyProfile())).toBe(0);
     expect(tonightTier(lose(lose(emptyProfile(), 0), 2))).toBe(0);
-    expect(tierOpen(emptyProfile(), 0)).toBe(true);
-    expect(tierOpen(emptyProfile(), 1)).toBe(false);
   });
 
-  it('stays on the highest tier cleared until it is cleared twice, then moves up one', () => {
-    let p = win(emptyProfile(), 0);
-    expect(tonightTier(p)).toBe(0);
-    expect(tierOpen(p, 1)).toBe(true);
-    expect(tierOpen(p, 2)).toBe(false);
-    p = lose(p, 0);
-    expect(tonightTier(p)).toBe(0);
-    p = win(p, 0);
-    expect(clearsAt(p, 0)).toBe(2);
+  it('moves up one on the right culprit at the highest tier so far, perfect or not', () => {
+    let p = named(emptyProfile(), 0);
     expect(tonightTier(p)).toBe(1);
-    // A loss at the new tier keeps the player on it; one clear there makes it the highest, cleared once.
     p = lose(p, 1);
     expect(tonightTier(p)).toBe(1);
     p = win(p, 1);
-    expect(tonightTier(p)).toBe(1);
-    p = win(p, 1);
     expect(tonightTier(p)).toBe(2);
+    // The right culprit lower down doesn't move it back.
+    expect(tonightTier(named(p, 0))).toBe(2);
   });
 
-  it('goes by the highest tier cleared, whatever was cleared under it', () => {
-    let p = win(win(emptyProfile(), 0), 0);
-    p = win(p, 3);
-    expect(tonightTier(p)).toBe(3);
-    expect(tierOpen(p, 4)).toBe(true);
-    expect(tierOpen(p, 5)).toBe(false);
-    expect(tonightTier(win(p, 3))).toBe(4);
+  it('goes by the highest tier named, whatever came under it', () => {
+    const p = named(win(emptyProfile(), 0), 3);
+    expect(tonightTier(p)).toBe(4);
   });
 
   it('stops at Hard-boiled', () => {
-    const p = win(win(win(emptyProfile(), 5), 5), 5);
-    expect(clearsAt(p, 5)).toBe(3);
-    expect(tonightTier(p)).toBe(5);
+    expect(tonightTier(named(emptyProfile(), 5))).toBe(5);
+    expect(tonightTier(win(win(emptyProfile(), 4), 5))).toBe(5);
   });
 
-  it('counts a tier cleared on a profile from before the count as cleared once', () => {
+  it('counts the tiers a profile from before cleared, and their counts still make the stars', () => {
     const old = sanitizeProfile({ version: 1, cleared: [0, 1], best: {}, runs: 5, wins: 4 });
     expect(old.clears).toBeUndefined();
+    expect(old.named).toBeUndefined();
     expect(clearsAt(old, 1)).toBe(1);
-    expect(tonightTier(old)).toBe(1);
-    expect(tonightTier(win(old, 1))).toBe(2);
+    expect(tonightTier(old)).toBe(2);
     // The count survives the store, and a count for a tier not cleared is dropped.
     expect(sanitizeProfile({ version: 1, cleared: [0], best: {}, runs: 3, wins: 2, clears: { 0: 2, 3: 4, 1: 'x' } }).clears).toEqual({ 0: 2 });
   });

@@ -883,7 +883,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
           } catch {
             old = null;
           }
-          const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent), hints: v.hints }).profile;
+          const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent), hints: v.hints, culprit: v.fields.some((f) => f.key === 'who' && f.correct) }).profile;
           io.write(night.save.profile, JSON.stringify(next));
         }
         return { out: `${charge}\n\n${DOUBLE}\n\n${verdictText(night)}`, code: 0 };

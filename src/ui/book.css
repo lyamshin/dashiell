@@ -1107,21 +1107,6 @@ input {
   color: var(--paper);
 }
 
-.pick--locked,
-.pick--locked:hover {
-  border-style: dashed;
-  border-color: var(--rule);
-  color: var(--ink-faint);
-  cursor: not-allowed;
-}
-
-.pick-note {
-  margin-top: 0.15rem;
-  font-size: 0.66rem;
-  font-style: italic;
-  color: var(--ink-faint);
-}
-
 .picker-form input {
   width: 100%;
   min-height: 44px;
