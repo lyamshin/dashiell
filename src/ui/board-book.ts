@@ -136,6 +136,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   /** book-look, item 5: the render right after closing the case plays the ceremony, once. */
   let ceremony = false;
   /**
+   * curtain (docs/76): the verdict's page, kept while the verdict is the same, so a redraw of the notebook
+   * beside it (a cell opened) leaves an open curtain, and where its replay stood, as they were.
+   */
+  let verdictPage: { screen: Screen; page: HTMLElement } | null = null;
+  /**
    * book-look, item 2: the page's numbered choices, as the CLI numbers them (`play-lib.ts` `pageItems`,
    * and a person's topics once they're open): number keys 1–9 pick them.
    */
@@ -436,10 +441,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       return page;
     }
     if (screen.kind === 'verdict') {
+      if (verdictPage?.screen === screen) return verdictPage.page;
       leaf.append(
         renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), fastest: fastestSolveLines(d as BoardDeal, r, screen.verdict.outcome), curtain: () => curtainNode(d as BoardDeal, r, r.filed) }, screen.news, caption()),
       );
       page.append(leaf, pageFoot('What next'));
+      verdictPage = { screen, page };
       return page;
     }
     const newest = shown === r.log.length - 1;

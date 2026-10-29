@@ -208,7 +208,7 @@ export function curtainNode(d: BoardDeal, run?: BoardRun, filed?: BoardReport): 
     // (While it plays, the steps aren't read out one a second; where it stopped is.)
     status.setAttribute('aria-live', announce ? 'polite' : 'off');
     play.textContent = timer ? 'Stop' : 'Play';
-    play.setAttribute('aria-label', timer ? 'Stop playing' : 'Play from the first step');
+    play.setAttribute('aria-label', timer ? 'Stop playing' : pos >= track.steps.length ? 'Play from the first step' : 'Play on from this step');
   }
 
   function drawSteps(): void {
