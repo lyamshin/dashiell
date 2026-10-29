@@ -32,6 +32,14 @@ night.
   **both** (drops running on the glass, streaks falling beyond it). The other takes and the lab are
   gone. The reader's one control is the pager's switch, which gains a still: **weather on, weather
   still, weather off**.
+- **2026-10-29, `lights`.** Designer: "I think we should probably have some other lights to
+  balance beyond the neon … It feels with it only on one side." A street lamp on the right and
+  passing headlights, and a lab to answer "should we have different backgrounds when we move, or
+  should it always be the same": A one window all night, B by place, C by the hour, D both. The
+  designer: **"D with electric lamps, fix the marquee, ship it."** So the view outside is the
+  building's, run on by the clock; the street lamps are electric (a flat or home keeps its gas lamp,
+  as that place's own); the theatre's marquee is a frame of incandescent bulbs. A, B, C, the gas
+  switch and the lab are gone.
 
 ## What shipped
 
@@ -42,8 +50,9 @@ night.
 | The margins, pure | `pageColumn`, `marginZones`, `stripMask` |
 | The rime, pure | `rimeFrost`, `rimeGlints`, `frostMask`, `stageDelay` |
 | The sign, pure | `signFor`, `tubeMask`, `TUBE_BLUR`, `WASH`, `neonReach` |
+| The view outside, pure | `buildingOf`, `BY_PLACE`, `hourOf`, `viewFor`, `lightLevel`, `LAMP_WASH` |
 | The layer | `createWeatherLayer({ mode })` in `src/ui/weather.ts`, styles in `src/ui/weather.css` |
-| Wiring | `src/ui/board-book.ts`: the spread is kept across renders; `weather.show(run.weather)`; the switch in the pager |
+| Wiring | `src/ui/board-book.ts`: the spread is kept across renders; `weather.scene({ building, minutes, page })` and `weather.show(run.weather)` on every render; the switch in the pager |
 | Tests | `test/ui/weather.test.ts` |
 
 No dependencies, no canvas. `src/game` is untouched.
@@ -221,13 +230,7 @@ of it, while the rime grows, is under a twentieth of a millisecond a frame. Buil
 masks is a one-off: at 1920, 3.3 ms to draw the rime and 2.0 ms to write its masks (110 KB of SVG
 across the three margins); less at 1280 and on a phone.
 
-## The lights outside (branch `lights`, in the lab)
-
-The designer, after the weather shipped: "I think we should probably have some other lights to
-balance beyond the neon — would there have been cars with lights? ambient light from another
-building? It feels with it only on one side." Then, choosing a street lamp on the right and passing
-headlights: "build it, but also build more variations — I wonder if we should have different
-backgrounds when we move, or if it should always be the same."
+## The lights outside
 
 Noir lighting is one hard key and a softer light from the other side, motivated by sources in the
 scene (a street lamp, a window), with now and then slatted light through blinds. The 1920s give
@@ -235,69 +238,72 @@ them: electric headlamps on every car (about 7,000 yellow cabs), streets lit by 
 gas mantles (no sodium orange: that is the 1930s), neon from 1924, the El past apartment windows,
 and Prohibition (a speakeasy lights no BAR sign; a bulb over a door).
 
-**What's new on every night**
+**What's outside depends on where you are** (`BY_PLACE`). Each building has a cool key at one
+edge and a warm, dimmer fill at the other (a test holds it for every building on every night, by
+`lightLevel`, the light's strength on the glass):
 
-- **The street lamp**, just past the right edge: a soft warm white (`--wx-lamp: #f3e5c8`), steady,
-  half as bright on the glass as the sign; its globe cropped by the edge. Fog shows its cone down to
-  the street; rain runs its colour down the glass and carries it in the drops near it; the rime on
-  that side warms. The lab's gas option is a mantle's greenish white (`--wx-gas: #f6f7e6`) with a
-  faint shimmer.
-- **Passing cars**: now and then (16–45 s on an ordinary street) a soft bar of headlamp light
-  (`--wx-car`), slatted by blinds, sweeps across the whole window in one direction in two or three
-  seconds, through every margin in turn. Wider and softer in fog. No cars when still, nor on a phone.
+| Building | Left (key) | Right (fill) | And |
+|---|---|---|---|
+| the office | HOTEL, argon | electric lamp | |
+| bar, club (speakeasy) | a cold bare bulb over the door | a lamp, dimmer | a cab rank; more cars |
+| restaurant | CHOP SUEY, argon (Hopper's 1929 joint) | electric lamp | |
+| theatre | the marquee: a frame of warm incandescent bulbs, chasing | the cool spill of the next theatre's sign | a cab rank; more cars |
+| work | a cold bulb over a loading door, dim | a dim lamp | the El nearby |
+| station (transit) | the El station's cold globe | a lamp under the tracks | the El, often |
+| rooming house | a small ROOMS, argon | lodgers' lit windows | few cars |
+| flat, home | a gas lamp's greenish white (gas lingered on residential streets) | a lit window across the way | few cars |
 
-The pale lights are tested to stay low in chroma (≤ 18) and at least ΔE 27 from the book's red,
-amber, jade, lacquer and carbon (the lamp is 47 from the clock's amber).
+A walk crossfades the view over 1.6 s (the old lights fade as the new come up), never a cut. The
+title page has the office's window.
 
-**The question, as four variations** (`viewFor(variation, scene)`; the layer's default on this
-branch is D, the designer's leaning):
+**And on the clock** (`hourOf`, the night's clock, not a turned-back page's): cars thin after one;
+the margins start greying at 5:45 (a New York winter's sunrise is about seven); the street lamp goes
+out at first light, 6:45; the signs, bulbs and lit windows at seven; by eight the margins are
+morning grey, the deadline you can see. Dawn is the one big change; the rest is quiet.
 
-- **A. One window, all night.** The office's view always: HOTEL left, the lamp right, the cars.
-- **B. By place.** The view is the building the reader is in, period-true, each with its own
-  balance of a cool key at one edge and a warm, dimmer fill at the other:
+**The lamp** (`--wx-lamp: #f3e5c8`), a pale warm white, steady, half as bright on the glass as the
+sign (`LAMP_WASH`), its globe cropped by the edge. Fog shows its cone down to the street; rain runs
+its colour down the glass and carries it in the drops near it; the rime on its side warms.
 
-  | Building | Left (key) | Right (fill) | And |
-  |---|---|---|---|
-  | the office | HOTEL, argon | electric lamp | |
-  | bar, club (speakeasy) | a cold bare bulb over the door | a lamp, dimmer | a cab rank; more cars |
-  | restaurant | CHOP SUEY, argon (Hopper's 1929 joint) | electric lamp | |
-  | theatre | the marquee's warm chasing bulbs | the cool spill of the next theatre's sign | a cab rank; more cars |
-  | work | a cold bulb over a loading door, dim | a dim lamp | the El nearby |
-  | station (transit) | the El station's cold globe | a lamp under the tracks | the El, often |
-  | rooming house | a small ROOMS, argon | lodgers' lit windows | few cars |
-  | flat, home | a gas lamp's greenish white | a lit window across the way | few cars |
+**The marquee**: a blade sign's frame of bulbs, two columns (the outer cropped by the window's
+edge) joined top and bottom, every 17 px. Each bulb is a hot core (`--wx-bulb: #fff2dc`) and a soft
+warm halo (`--wx-lamp`). They chase round the frame, one in three lit, a third of a second a step
+(three phases, each lit a shade over a third of the cycle so the frame is never dark between
+steps); still, all of them are lit, steady. The group is at 62%: balance, not a feature.
 
-  A walk crossfades the view over 1.6 s (the old lights fade as the new come up), never a cut.
-- **C. By the hour.** The office's view, with the night running on to eight on the book's clock
-  (the night's, not a turned-back page's): cars thin after one; the margins start greying at 5:45
-  (a New York winter's sunrise is about seven); the lamp goes out at first light, 6:45; the sign and
-  every other light at seven; by eight the margins are morning grey, the deadline you can see. Dawn
-  is the one big change; the rest is quiet.
-- **D. Both**: the place's view, run through the hour.
+**Cars**: now and then (16–45 s on an ordinary street, more often at a club or a theatre, fewer late
+at night) a soft bar of headlamp light (`--wx-car`), slatted by blinds, sweeps across the whole
+window in one direction in two or three seconds, through every margin in turn. Wider and softer in
+fog. **The El**: near a workplace, and often at a station, a train's lit windows slide across the
+top of the window. None of either when still, nor on a phone.
 
-**Guardrails** (the designer's, for D): nothing outside may read as a clue. The view comes only
-from what the building is (`buildingOf`: `Place.kind`, or a rooming house), never its part in the
-case: the scene, the night's unwatched place, a watched workplace all look like what they are. It
-changes only with the clock and the place, that is on the player's actions, and only one way
-through the night (a test walks every building from midnight to eight: the grey never lifts, a
-light that goes out never comes back). No light event (a car, the El, a flicker, a wisp) comes
-within 8 s of a new page, so nothing passes in the street just as something is found. Still and
-reduced motion show the hour's state (the grey, the lights out) with the transitions instant.
+The pale lights (lamp, gas, cold bulb, marquee bulb, headlamps) are tested to stay low in chroma
+(≤ 18) and at least ΔE 27 from the book's red, amber, jade, lacquer and carbon; the lamp and the
+bulbs are over 40 from the clock's amber.
 
-**The lab** (`?wxlab=1` on the dev server; out before merge): the view (A / B / C / D), the place
-(the book's, or any building), the hour (the book's, or a slider from midnight to eight), the night's
-weather, the lamp (electric / gas), and a car, the El or the sign's flicker now; a line says what is
-outside. Its settings ride in the URL (`wxview`, `wxplace`, `wxmin`, `wx`, `wxlamp`).
+**Guardrails** (the designer's): nothing outside may read as a clue.
 
-Checked in headless Chrome: every variation on every night at 1512 and 1920, D at 1280 and 375;
-no strip over text, panels or buttons; no sideways scroll; a walk's crossfade; the hour stepped;
-a car and the El caught going by; 75 s of page turns at a busy club with no light event closer than
-8.6 s to a page. A steady-state trace shows no main-thread frame work for any building (the
-marquee's chase and the gas shimmer run on the compositor).
+- The view comes only from what the building is (`buildingOf`: `Place.kind`, or a rooming house),
+  never its part in the case: the scene, the night's unwatched place, a watched workplace all look
+  like what they are.
+- It changes only with the clock and the place, that is on the player's actions, and only one way
+  through the night: a test walks every building from midnight to eight, and the grey never lifts,
+  and a light that goes out never comes back.
+- No light event (a car, the El, a flicker, a wisp) comes within 8 s of a new page
+  (`scene({ page })` starts the quiet), so nothing passes in the street just as something is found.
+  Checked: 75 s of page turns every 9 s at a busy club, and no event came closer than 8.6 s.
+- Still and reduced motion show the hour's state (the grey, the lights out) with the transitions
+  instant.
+
+Checked in headless Chrome: each night at 1280, 1512, 1920 and 375 (no strip over text, panels or
+buttons; no sideways scroll), a walk's crossfade, the hours to dawn and the verdict's eight
+o'clock, the marquee at each theatre (moving and still), a car and the El caught going by, still
+and off. A steady-state trace shows no main-thread frame work for any building (the marquee's chase
+and the gas lamp's shimmer run on the compositor).
 
 ## Not done
 
 - The weather does not change through the night (one sky per case); nothing in `src/game` was
   touched.
 - No canvas: none of this needs per-frame drawing.
-- The sign is always at the left edge.
+- The office's sign is always at the left edge, its lamp at the right.

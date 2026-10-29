@@ -4,10 +4,13 @@
  * Every night rolls its weather (`run.weather`) and the prose already says what it is. The screen
  * agrees, as if the book were read at a window: on a rain night drops run down the glass and rain
  * falls beyond it; on a cold one rime creeps in from the window's edges and its crystals glint; fog
- * pools low; now and then a wisp of steam rises off a manhole cover. And every night a HOTEL sign
- * hangs just past the window's left edge, its argon-blue tubes cropped by the edge. It hums, now and
- * then it flickers, and the night changes how it reads: crisp when it's clear, smeared into streaks
- * and running down the wet glass in the rain, haloed by fog, caught in the rime.
+ * pools low; now and then a wisp of steam rises off a manhole cover. And outside, the lights of the
+ * street: from the office, a HOTEL sign just past the window's left edge (its argon tubes cropped by
+ * the edge, humming, now and then flickering) and a warm street lamp past the right; elsewhere, what
+ * that building would have outside it in 1920s New York, always a cool key one side and a warm fill
+ * the other; now and then a car's headlamps through the blinds. The night changes how they read
+ * (crisp when it's clear, smeared and running down the wet glass in the rain, haloed by fog, caught
+ * in the rime), and the clock runs them on toward eight: the margins grey toward the deadline.
  *
  * Only on the glass around the book. The layer measures the pages' text columns and cuts one strip
  * for each margin they leave (the window's margins beside the book, the pages' padding, the gutter
@@ -15,9 +18,12 @@
  * stay clear and crisp. It sits under them, at the bottom of the spread's stacking context, and never
  * takes a click.
  *
+ * The view outside comes only from what the building is and what the clock says, never from the
+ * case, and nothing passes in the street just as a page comes up: it must never read as a clue.
+ *
  * All of it CSS: what moves moves on transform or opacity, on the compositor. The textures are seeded
- * SVG masks drawn once per window size. The only script that runs is a timer for the next wisp and
- * the next flicker, and neither runs while the tab is hidden.
+ * SVG masks drawn once per window size. The only script that runs is a timer for the next wisp,
+ * flicker, car or train, and none runs while the tab is hidden.
  *
  * The reader's one control is the pager's switch: weather on, still, or off. Still is the
  * reduced-motion version: the rime formed at once, the sign steady (no hum, no flicker), the fog
@@ -641,10 +647,6 @@ export interface View {
   dawn: number;
 }
 
-/** The lab's question (docs/27): A one window all night; B by place; C by the hour; D both. */
-export type Variation = 'A' | 'B' | 'C' | 'D';
-export const VARIATIONS: readonly Variation[] = ['A', 'B', 'C', 'D'];
-
 const HOTEL: Light = { kind: 'neon', tone: 'neon', word: 'HOTEL', strength: 1 };
 const LAMP: Light = { kind: 'lamp', tone: 'lamp', strength: 1 };
 const COLD_BULB: Light = { kind: 'bulb', tone: 'cold', strength: 1 };
@@ -709,14 +711,14 @@ export interface Scene {
   minutes: number | null;
 }
 
-/** The view outside, for a variation, a scene, and the lamp the lab is trying (electric or gas). */
-export function viewFor(variation: Variation, scene: Scene, lamp: 'electric' | 'gas' = 'electric'): View {
-  const byPlace = variation === 'B' || variation === 'D';
-  const byHour = variation === 'C' || variation === 'D';
-  const base = BY_PLACE[byPlace ? (scene.building ?? 'office') : 'office'];
-  const gas = (l: Light | null): Light | null => (l && lamp === 'gas' && l.kind === 'lamp' && l.tone === 'lamp' ? { ...l, tone: 'gas' } : l);
-  let view: View = { ...base, left: gas(base.left), right: gas(base.right), dawn: 0 };
-  if (byHour && scene.minutes !== null) {
+/**
+ * The view outside: the building's (the office's when there is none, as on the title page), run on
+ * through the night by the clock (designer, 2026-10-29: "D with electric lamps").
+ */
+export function viewFor(scene: Scene): View {
+  const base = BY_PLACE[scene.building ?? 'office'];
+  let view: View = { ...base, dawn: 0 };
+  if (scene.minutes !== null) {
     const h = hourOf(scene.minutes);
     const lit = (l: Light | null): Light | null => {
       if (!l) return l;
@@ -733,18 +735,6 @@ export function viewFor(variation: Variation, scene: Scene, lamp: 'electric' | '
 
 /** The event the layer sends when what the switch should show changes under it (the system's setting). */
 export const SHOWN_EVENT = 'wx-shown';
-
-/** The lab's settings (dev only, `?wxlab=1`; out before merge). */
-export interface LabSettings {
-  variation: Variation;
-  /** Preview a building, or null for the book's. */
-  building: Building | null;
-  /** Preview an hour (minutes past midnight), or null for the book's. */
-  minutes: number | null;
-  lamp: 'electric' | 'gas';
-  /** Show this weather whatever the night rolled, or null for the roll. */
-  weather: Weather | null;
-}
 
 export interface WeatherLayer {
   /** The layer itself, for the book to put inside the spread. */
@@ -769,17 +759,6 @@ export interface WeatherLayer {
   relayout(): void;
   /** What is showing now. */
   effects(): Effects;
-  /** The view outside now. */
-  view(): View;
-  /** The book's scene (the lab shows it). */
-  readonly bookScene: Scene;
-  /** The night's own weather (the lab's "roll"). */
-  readonly night: Weather | null;
-  /** The lab: its settings. */
-  readonly lab: LabSettings;
-  setLab(settings: Partial<LabSettings>): void;
-  /** The lab: a car now, a train now, the sign's flicker now. */
-  trigger(kind: 'car' | 'el' | 'flicker'): void;
 }
 
 const TILES = {
@@ -845,11 +824,10 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
   let mode = opts.mode;
   let book: Scene = { building: null, minutes: null };
   let page = -1;
-  let lab: LabSettings = { variation: 'D', building: null, minutes: null, lamp: 'electric', weather: null };
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   let current: Effects = NO_EFFECTS;
   let effectsKey = '';
-  let view: View = viewFor('A', book);
+  let view: View = viewFor(book);
   let viewKey = '';
   /** When this night's weather began, so a re-cut carries on where it was. */
   let since = 0;
@@ -865,10 +843,8 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
 
   const reducedBySystem = (): boolean => reduce?.matches ?? false;
   const narrow = (): boolean => window.innerWidth < 600;
-  const shownWeather = (): Weather | null => (weather === null ? null : (lab.weather ?? weather));
-  const effects = (): Effects => effectsFor(shownWeather(), { mode, reducedMotion: reducedBySystem(), narrow: narrow() });
-  const scene = (): Scene => ({ building: lab.building ?? book.building, minutes: lab.minutes ?? book.minutes });
-  const computeView = (): View => viewFor(lab.variation, scene(), lab.lamp);
+  const effects = (): Effects => effectsFor(weather, { mode, reducedMotion: reducedBySystem(), narrow: narrow() });
+  const computeView = (): View => viewFor(book);
   /** What of the view is drawn (how often cars pass is the timers', not the drawing's). */
   const drawnKey = (v: View): string => JSON.stringify([v.left, v.right, v.cabs, v.dawn]);
 
@@ -1247,24 +1223,35 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
       return el;
     }
     if (light.kind === 'marquee') {
-      // A theatre's blade of bulbs, two columns cropped by the edge, chasing (three sheets, a third
-      // of a beat apart).
-      const wrap = box('wx-marquee', 40);
-      const top = Math.round(vh * 0.12);
-      const bottom = Math.round(vh * 0.58);
+      // A theatre's blade sign, its frame of incandescent bulbs: two columns (the outer one cropped by
+      // the window's edge) joined top and bottom. Each bulb a hot little core and a soft warm halo;
+      // they chase round the frame, one in three lit, a third of a second a step.
+      const W = 44;
+      const wrap = box('wx-marquee', W);
+      const gap = 17;
+      const top = Math.round(vh * 0.13);
+      const bottom = top + Math.round((vh * 0.42) / gap) * gap;
+      const [outer, inner] = [1, 1 + gap];
+      const bulbs: [number, number][] = [];
+      bulbs.push([outer, top], [inner, top]);
+      for (let y = top + gap; y < bottom; y += gap) bulbs.push([inner, y]);
+      bulbs.push([inner, bottom], [outer, bottom]);
+      for (let y = bottom - gap; y > top; y -= gap) bulbs.push([outer, y]);
+      const halo = r1(2.6 * soft);
       for (let k = 0; k < 3; k++) {
-        const sheet = div(`wx-chase wx-chase--${k}`);
-        let dots = '';
-        let i = 0;
-        for (let yy = top; yy <= bottom; yy += 13, i++) {
-          if (i % 3 !== k) continue;
-          for (const x of [3, 14]) dots += `<circle cx="${at(x, 40)}" cy="${yy}" r="2.3"/>`;
-        }
-        mask(sheet, svgUrl(`<svg xmlns="${SVG}" width="40" height="${vh}" viewBox="0 0 40 ${vh}"><defs><filter id="b"><feGaussianBlur stdDeviation="${r1(0.9 * soft)}"/></filter></defs><g fill="#fff" filter="url(#b)">${dots}</g></svg>`));
-        style(sheet, { background: tone(light.tone, 100) });
-        wrap.append(sheet);
+        const phase = div(`wx-chase wx-chase--${k}`);
+        const mine = bulbs.filter((_, n) => n % 3 === k);
+        const sheet = (part: 'halo' | 'core'): HTMLElement => {
+          const el = div(`wx-bulbs wx-bulbs--${part}`);
+          const dots = mine.map(([x, y]) => `<circle cx="${r1(at(x, W))}" cy="${y}" r="${part === 'halo' ? 8.5 : 3.1}"/>`).join('');
+          const blur = part === 'halo' ? halo : '0.45';
+          mask(el, svgUrl(`<svg xmlns="${SVG}" width="${W}" height="${vh}" viewBox="0 0 ${W} ${vh}"><defs><filter id="b" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="${blur}"/></filter></defs><g fill="#fff" fill-opacity="${part === 'halo' ? 0.5 : 1}" filter="url(#b)">${dots}</g></svg>`));
+          return el;
+        };
+        phase.append(sheet('halo'), sheet('core'));
+        wrap.append(phase);
       }
-      style(wrap, { opacity: r2(0.75 * light.strength) });
+      style(wrap, { opacity: r2(0.62 * light.strength) });
       return wrap;
     }
     return null;
@@ -1551,7 +1538,7 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     scheduleAll(true);
   }
 
-  /** The view outside may have changed (a walk, the hour, the lab): crossfade to it, or just retime. */
+  /** The view outside may have changed (a walk, the hour): crossfade to it, or just retime. */
   function reView(): void {
     const next = computeView();
     const key = drawnKey(next);
@@ -1627,8 +1614,6 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
       }
       book = { building: s.building, minutes: s.minutes };
       reView();
-      // (For the lab, which shows the book's place and hour.)
-      layer.dispatchEvent(new Event('wx-scene'));
     },
     setMode(m) {
       mode = m;
@@ -1645,28 +1630,5 @@ export function createWeatherLayer(opts: { mode: WeatherMode }): WeatherLayer {
     },
     relayout,
     effects: () => current,
-    view: () => view,
-    get bookScene() {
-      return book;
-    },
-    get night() {
-      return weather;
-    },
-    get lab() {
-      return lab;
-    },
-    setLab(s) {
-      const weatherChanged = s.weather !== undefined && s.weather !== lab.weather;
-      lab = { ...lab, ...s };
-      if (weatherChanged) {
-        effectsKey = '';
-        build();
-      } else reView();
-    },
-    trigger(kind) {
-      if (kind === 'car') car();
-      else if (kind === 'el') train();
-      else flicker();
-    },
   };
 }

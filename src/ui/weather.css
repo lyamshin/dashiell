@@ -27,6 +27,8 @@
   --wx-gas: #f6f7e6;
   /* A cold bare bulb over a door. */
   --wx-cold: #f4f6fa;
+  /* A marquee bulb's hot filament (its halo is the lamp's warm white). */
+  --wx-bulb: #fff2dc;
   /* Headlamps going by. */
   --wx-car: #f6efe2;
   /* The sky greying toward eight. */
@@ -193,34 +195,49 @@
   opacity: 0.55;
 }
 
+/* The marquee's bulbs, in three phases round the frame: one bulb in three lit, the lit ones stepping
+ * along, a third of a second a step. Still, they are all lit, steady. */
 .wx-chase {
   position: absolute;
   inset: 0;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  opacity: 0.8;
-  animation: wx-chase 0.9s steps(1, end) infinite;
+  opacity: 0.6;
+  animation: wx-chase 1.05s steps(1, end) infinite;
 }
 
 .wx-chase--1 {
-  animation-delay: -0.3s;
+  animation-delay: -0.35s;
 }
 
 .wx-chase--2 {
-  animation-delay: -0.6s;
+  animation-delay: -0.7s;
 }
 
-/* One bulb in three lit at a time, the lit ones stepping along: the marquee chases. */
+/* Lit a shade longer than a third, so the steps overlap and the frame is never dark between them. */
 @keyframes wx-chase {
   0% {
     opacity: 1;
   }
-  33.3% {
-    opacity: 0.22;
+  35% {
+    opacity: 0.16;
   }
   100% {
-    opacity: 0.22;
+    opacity: 0.16;
   }
+}
+
+.wx-bulbs {
+  position: absolute;
+  inset: 0;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+.wx-bulbs--halo {
+  background: var(--wx-lamp);
+}
+
+.wx-bulbs--core {
+  background: var(--wx-bulb);
 }
 
 .wx-windows {

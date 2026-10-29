@@ -171,18 +171,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   setTexture(params().get('texture'));
   // docs/52 §3: `?plain=1` shows each page's plain page: every fact it says, and no voice.
   const PLAIN = params().get('plain') === '1';
-  // docs/27: `?wxlab=1` on the dev server opens the lights lab (out before merge).
-  if (import.meta.env.DEV && params().get('wxlab') === '1') void import('./weather-lab.js').then((m) => m.mountWeatherLab(weather));
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
     const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
     const q1a = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
     const q1 = TEXTURE.mode === 'full' ? `${q1a ? `${q1a}&` : '?'}texture=full` : q1a;
-    const q2 = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
-    // (The lights lab's own settings ride along: `wxlab`, `wxview` and the rest.)
-    const lab = [...params()].filter(([k]) => k.startsWith('wx')).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
-    const q = lab ? `${q2 ? `${q2}&` : '?'}${lab}` : q2;
+    const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
