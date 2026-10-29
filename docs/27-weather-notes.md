@@ -1,226 +1,224 @@
-# Weather on the glass — notes
+# Weather on the window — notes
 
-Branch `weather`. The designer: "can we have weather effects on screen? Rain,
-frost, maybe some manhole cover steam? Nothing major."
+Branch `weather` first (2026-09): the designer, "can we have weather effects on screen? Rain, frost,
+maybe some manhole cover steam? Nothing major." Branch `weather2` (2026-10): "I think we can
+improve the weather effects."
 
-Every night already rolls its weather (`rollDashiell` in
-`src/game/voice/roll.ts`: `clear`, `rain`, `fog` or `cold`, carried in the save
-as `state.cast.roll.weather`), and the prose already says what it is. The
-screen now agrees, quietly, in the margins only.
+Every night rolls its weather (`run.weather`: `clear`, `rain`, `fog` or `cold`,
+`WEATHERS[(seed*13+tier) % 4]` in `src/game/board/engine.ts`; at tier 1, seed 1 is fog, 2 cold, 3
+clear, 4 rain), and the prose already says what it is. The screen agrees, as if the book were read
+at a window: rain runs down the glass, frost grows in from its edges, fog pools low, steam rises off
+a manhole cover now and then, and a neon sign outside the window's left edge hums every night.
+
+## History
+
+- **2026-09, `weather`.** Rain, frost, fog and steam in the margins only, under the text.
+- **2026-09-24.** Designer: "let weather go over the text, assuming that it's mostly transparent
+  anyway." The layer went to one full-window zone at `z-index: 5`, over the pages.
+- **2026-10, `weather2`.** Over the text it read badly at 1280×800: the rain faint slanted
+  scratches on the screen, the frost grey mottled smudges over the choices, the fog a grey film that
+  mostly lowered the text's contrast, clear nothing at all. Designer: "As if you read the book at a
+  window: rain runs down the glass, frost grows at the edges, fog pools low and in the margins. The
+  text column stays clear and crisp." So the weather is back in the margins and under the page
+  (`z-index: -1`), the frost and the clear night are rebuilt, and the sign is new. Cold and clear
+  were the weakest; rain and fog keep their character.
 
 ## What was built
 
 | | Where |
 |---|---|
-| The night → the screen, pure | `effectsFor(weather, { enabled, reducedMotion })` in `src/ui/weather.ts` |
-| The margins, pure | `marginZones(columns, width)`, `stripMask(zone, width, feather)` in `src/ui/weather.ts` |
+| The night → the screen, pure | `effectsFor(weather, { enabled, reducedMotion, narrow, rain })` in `src/ui/weather.ts` |
+| The margins, pure | `pageColumn`, `marginZones`, `stripMask` |
+| The frost, pure | `fernFrost`, `etchedFrost`, `rimeFrost`, `rimeGlints`, `frostMask`, `stageDelay` |
+| The sign, pure | `signFor`, `tubeMask`, `TUBE_BLUR`, `WASH`, `neonReach` |
 | The switch, pure | `loadWeatherOn(store)`, `saveWeatherOn(store, on)`, key `dashiell:weather` |
 | The layer | `createWeatherLayer()` in `src/ui/weather.ts`, styles in `src/ui/weather.css` |
-| Wiring | `src/ui/book.ts`: the spread is kept across renders; `weather.show(state.cast.roll.weather)`; the switch in the pager |
+| Wiring | `src/ui/board-book.ts`: the spread is kept across renders; `weather.show(run.weather)`; the switch in the pager |
+| The lab (dev only, comes out before merge) | `src/ui/weather-lab.ts`, `?wxlab=1` |
 | Tests | `test/ui/weather.test.ts` |
-| Browser check | `scripts/check-weather.mjs` (playwright-core, the Chrome on the machine) |
 
-No dependencies. `src/game` is untouched.
+No dependencies, no canvas. `src/game` is untouched.
 
 ## What each night shows
 
-| Night | On screen | Steam (a wisp every …) |
-|---|---|---|
-| rain | faint streaks, two depths, falling at 13° | 22–50 s |
-| cold | rime in the corners, forming over the first ~11 s, then still | 7–18 s, a little whiter |
-| fog | a soft haze, thickest low down, two sheets drifting over 70 s and 97 s | 22–50 s |
-| clear | nothing | 45–110 s, faint |
-| title page, no case | nothing (the layer is not in the document) | — |
-| switched off | nothing | — |
+| Night | On the glass | The sign | Steam (a wisp every …) |
+|---|---|---|---|
+| clear | nothing but the sign: its main effect | crisp tubes, a clean glow spilling in | 45–110 s, faint |
+| rain | drops beaded and running down; streaks falling beyond | drawn into vertical streaks; its colour runs down the glass in rivulets and rides in the drops near it | 22–50 s |
+| fog | a haze pooled low, two sheets drifting over 70 s and 97 s | a wide soft halo, the tubes softened | 22–50 s |
+| cold | frost grown in from the edges and corners over ~13 s, then still | diffused by the frost; the crystals near it take its colour | 7–18 s, a little whiter |
+| title page | rain (as before) | through the rain | 22–50 s |
+| switched off | nothing, the sign included | — | — |
 
-A wisp is two or three soft puffs rising from below the bottom edge of the
-window, 22–38% of its height, spreading and fading over 5–8 s. The first comes
-2.5–14.5 s after a case opens, so a short visit still sees one.
+**The sign** hangs just past the window's left edge (it's the wider side at 1280, where the
+notebook's grid reaches nearly to the right edge). It hums, a slow breath of brightness (opacity
+1 → 0.8 over 4.6 s, alternate), and every 20–60 s it flickers: a buzz (half a second of stutter),
+one letter out for a beat, or the whole tube out for a beat and back. The first flicker comes 6–16 s
+in, so a short visit sees one. The light on the glass goes with it.
 
-**Reduced motion** (`prefers-reduced-motion: reduce`): the still version. The
-frost is there, already formed; the fog's haze is there, not drifting; no rain,
-no steam. `effectsFor` drops rain and steam, and the stylesheet turns every
-animation in the layer off as well, in case the preference changes mid-case
-(the layer also rebuilds on the media query's `change`).
+**Its colour** is argon blue (`--wx-neon: #4d8bff`, core `#e1ebff`), the 1920s' blue tube, and none
+of the book's meanings: not the law's red, the clock's amber, the choices' jade and lacquer, or the
+carbon violet. A test holds every `--wx-neon` in `weather.css` at a CIE76 ΔE over 30 from each of
+those tokens (argon is ~47 from carbon, its nearest). The lab has a rose (`#ff5fb4`) to compare; it
+reads as a pink tube, not the stamp's salmon red.
 
-**The switch**: `weather on` / `weather off`, a small faint button at the right
-of the pager (`‹ back · page 3 of 9 · forward ›`), `aria-pressed`, labelled
-"Weather effects". Remembered under `dashiell:weather` (`off` or `on`; absent
-is on). The store is the book's `safeStore()`, and the two helpers catch a
-throwing store as well: blocked storage reads as on and the switch still works
-for the page's life. It is on every page of the book, including a page turned
-back to; it is not on the verdict page, where the weather keeps whatever it was
-set to.
+**Reduced motion** (`prefers-reduced-motion: reduce`, or the lab's "still"): the still version. The
+frost is there, formed; the fog is there, not drifting; the sign is steady (no hum, no flicker, and
+the lab's flicker button does nothing); a rain night keeps the sign's smear, still; no drops, no
+streaks, no steam. `effectsFor` drops what moves, and the stylesheet turns every animation in the
+layer off as well (also under `data-motion="false"`), in case the preference changes mid-case (the
+layer also rebuilds on the media query's `change`).
 
-**Turned-back pages**: the weather is the night's, not the page's, so it does
-not change. The book now keeps the spread element from one render to the next
-(clearing everything in it but the layer), so turning a page does not restart
-the rain or re-grow the frost.
+**The switch**: `weather on` / `weather off`, a small faint button at the right of the pager,
+`aria-pressed`, labelled "Weather effects". Remembered under `dashiell:weather` (`off` or `on`;
+absent is on). A store that throws reads as on and the switch still works for the page's life. Off
+is nothing at all, the sign included.
+
+**Turned-back pages**: the weather is the night's, not the page's. The book keeps the spread element
+from one render to the next (clearing everything in it but the layer), so turning a page does not
+restart the rain or regrow the frost.
 
 ## Where it sits, and why so
 
-The layer is one element, `div.weather`, the first child of `.spread`,
-`aria-hidden`, `pointer-events: none`:
+The layer is one element, `div.weather`, the first child of `.spread` (or of the title page's
+`.title-sheet`), `aria-hidden`, `pointer-events: none`:
 
-- **Behind the text, on the paper.** `.spread` gets `isolation: isolate` (its
-  own stacking context) and `position: relative`; the layer is
-  `position: absolute; z-index: -1` inside it, so it paints over the spread's
-  paper and the margins' `--paper-edge`, and under every word and button.
-- **Across the window.** It is `100vw` wide, centred on the spread, so on a
-  screen wider than the book (78rem) it reaches the margins outside the book
-  too. `.spread` lets it out sideways with `overflow-x: visible;
-  overflow-y: clip`, only under `@supports (overflow: clip)`; without that the
-  spread keeps `overflow: hidden` and the weather stays on the book.
-- **Only in the margins.** After every render, resize, and the phone's
-  notebook class change, the layer measures each visible `.page`: its content
-  box, widened to any direct child that reaches into the page margin (the
-  notebook's scrolling body does on a wide screen, for the grid), plus two
-  pixels of air. What is left of the window's width is the margins, and the
-  layer cuts one strip per margin, `overflow: hidden`, feathered by a
-  `mask-image` gradient toward any side that meets text (30 px on a wide
-  screen, 8 px on a phone), never toward the window's edge. Inside each strip a
-  window-sized view keeps fog and frost in one coordinate system, so the
-  margins read as one weather. Strips are re-cut only when the margins
-  actually move; a re-cut carries on from where the weather had got to
-  (`--wx-age`, a negative `animation-delay`).
+- **Under the page.** `.spread` is its own stacking context (`isolation: isolate`) and the layer is
+  `position: absolute; z-index: -1` inside it: on the paper and the window's edge, under every
+  word, panel, button, focus ring and hover card. (2026-09-24 had it at `z-index: 5`, over the
+  pages; that's undone.)
+- **Across the window.** It is `100vw` wide, centred on the spread, so on a screen wider than the
+  book (78rem, 1482 px) it reaches the margins outside the book too. `.spread` lets it out sideways
+  with `overflow-x: visible; overflow-y: clip`, only under `@supports (overflow: clip)`.
+- **Only in the margins.** After every render, resize, and the phone's notebook class change, the
+  layer measures each visible `.page` (and the title page's `.title-page`): `pageColumn` takes its
+  content box, widened to any child that reaches into the page's padding (the notebook's body does,
+  for the grid; the choices' lacquer panel does by 16 px), plus two pixels of air. Two kinds of child
+  don't count: one out of the flow (the skip link, parked above the page), and a band as wide as the
+  page itself (on a phone, the choices' panel and the page's foot), which has an opaque ground of
+  its own and simply covers the weather under it as it scrolls past. What is left of the window is
+  the margins, and the layer cuts one strip per margin, `overflow: hidden`, feathered by a
+  `mask-image` gradient toward any side that meets text (30 px wide, 8 px on a phone), never toward
+  the window's edge. Inside each strip a window-sized view keeps the fog, the frost and the sign's
+  light in one coordinate system, so the margins read as one window. A re-cut (a resize) carries on
+  from where the weather had got to (`--wx-age`, a negative `animation-delay`).
 
-At 1280×800 the margins are the left one (window edge to the prose, ~64 px),
-the gutter between the pages (~67 px), and a thin right one (~12 px: the
-notebook's body reaches into its own margin for the grid). On a 390 phone they
-are the two 16 px gutters (14 px after the air), so the phone's weather is
-genuinely faint — a rime along the edges, an occasional streak.
+The margins, measured (headless Chrome, a night's first page):
 
-**Why not `position: fixed`, and why strips rather than one masked sheet.** The
-first version was one fixed full-window layer with a single left-to-right
-mask. It changed text pixels: a fixed element is composited over the whole
-window, and Chrome then rasterizes the text painted after it in a transparent
-layer of its own, a shade differently (the notebook's running head moved by
-1/255 in 344–755 pixels). An absolute layer made of strips that overlap no
-text leaves the text exactly as it was whenever nothing is animating. While
-something *is* animating, a composited child under the spread's content still
-makes Chrome give the spread's foreground its own layer, and the one piece of
-text that is outside every scroller — the notebook's running head on a wide
-screen — rounds by at most 1/255 in its antialiasing. The reading column, the
-choices and the notebook's body are scrollers with layers of their own and do
-not change at all. `scripts/check-weather.mjs` holds both lines: zero changed
-pixels in the prose page, and no text pixel anywhere changed by more than 1.
+| Window | Left | Gutter | Right |
+|---|---|---|---|
+| 1280×800 | 0–31 | 660–711 | 1269–1280 |
+| 1512×982 | 0–46 | 768–835 | 1486–1512 |
+| 1920×1080 | 0–250 | 972–1039 | 1690–1920 |
+| 375×812 | 0–14 | — | 361–375 |
+| title page, 1280 | 0–369 | — | 911–1280 |
+
+So at 1280 the weather is slivers at the edges (the book fills the window); at 1512 a little more;
+at 1920 the outer margins are wide and it is all there.
+
+**Phones.** The only margins are the two 14 px gutters, and the choices' panel runs edge to edge
+over them. Rain, fog and steam in a strip that thin were a flicker of noise beside the reading, so
+`narrow` (under 600 px) drops them: the sign's light at the left gutter carries the night (crisp,
+smeared, haloed, frosted, as on a wide screen), and a cold night has its frost along both edges.
+
+**Why not `position: fixed`, and why strips.** The first version (2026-09) was one fixed full-window
+layer with a single mask. It changed text pixels: a fixed element is composited over the whole
+window, and Chrome then rasterizes the text painted after it in a layer of its own, a shade
+differently. Strips that overlap no text leave the text as it was.
 
 ## How it is drawn (all CSS, compositor-driven)
 
-- **Rain**: two sheets per strip, each a solid `--wx-rain` masked by a seeded
-  SVG tile of short vertical streaks (180×420 with 24, 260×560 with 15), inside
-  a container turned 13°; each sheet slides down one tile height on
-  `transform` (2.1 s far, 1.55 s near), `linear infinite`. The far sheet is at
-  60% opacity.
-- **Frost**: a corner element per window corner that a strip reaches, masked by
-  a seeded SVG: a radial rime, `feTurbulence` mottling, and seven fine needles
-  with barbs growing from the two edges; the fill is `--wx-frost` with a
-  cooler `--wx-frost-edge` toward the corner. Mirrored for the other corners,
-  and grown once from the corner (`scale` 0.45 → 1, `opacity` 0 → 1, 11 s,
-  staggered 0–1.2 s), then still.
-- **Fog**: a static haze (`--wx-fog` at the bottom to `--wx-haze` above) and two
-  sheets of soft radial blobs, 136% of the window, drifting ±5%/±1.5% on
-  `transform`, 70 s and 97 s, `alternate`.
-- **Steam**: `Element.animate()` on two or three radial-gradient puffs per
-  wisp; the only script is a `setTimeout` for the next wisp, not scheduled
-  while the tab is hidden (`visibilitychange`), and the layer's CSS animations
-  are paused when hidden too.
+- **The frost**: each version is a seeded drawing in window pixels (`fernFrost`, `etchedFrost`,
+  `rimeFrost`), made of pieces tagged with the stage of the growth they form in and the x-span they
+  cover. For each margin and each of the 9 stages, `frostMask` writes an SVG mask whose view box is
+  the margin itself, holding only what falls in it; the stage's element is the margin's size,
+  `background: var(--wx-frost)`, and fades in when its turn comes (`stageDelay`: 0 s to 10.8 s,
+  quick at first and slowing, each over 2.2 s), so the frost advances in from the edges and is still
+  by ~13 s. Near the sign each stage holds a second, neon-coloured layer under the same mask, inside
+  the sign's flicker group, so the crystals there take its light and lose it when it goes out.
+- **The sign**: five letters, each its own element (so one can drop out), each two masks of an SVG
+  tube (`tubeMask`: the core, and the glow around it, blurred by the night's `TUBE_BLUR`;
+  anisotropic in the rain); a radial wash of its colour from the left edge (`WASH`, by night); a
+  faint line where it catches the window's edge. All inside `.wx-lit` (the hum, a CSS animation) >
+  `.wx-flick` (the flicker, `Element.animate()` on opacity).
+- **Rain**: drops beaded (two seeded tiles of lenses, one slowly fading in and out as drops form
+  and run off) and a few running down in fits (`wx-run-a/b/c`, transform keyframes that gather,
+  slide, catch and slide on; 6–13 s each), and, with "both", the old streaks falling beyond the
+  glass at 60%. Near the sign, its colour runs down in rivulets (a streak tile sliding on transform)
+  and rides in the drops.
+- **Fog**: a static haze, a pool low down, and two sheets of soft radial blobs drifting on
+  `transform`, 70 s and 97 s.
+- **Steam**: `Element.animate()` on two or three radial-gradient puffs per wisp, in a margin chosen
+  by its width.
 
-Colours are tokens on `:root` (`--wx-rain`, `--wx-frost`, `--wx-frost-edge`,
-`--wx-fog`, `--wx-haze`, `--wx-steam`), redefined for dark under
-`prefers-color-scheme: dark` guarded by `:root:not([data-theme='light'])` and
-again under `:root[data-theme='dark']`, as `book.css` does. On the cream paper
-the weather is cool and pale; on the dark paper it is a pale grey at low alpha.
+The only script that runs is a `setTimeout` for the next wisp and one for the next flicker; neither
+is scheduled while the tab is hidden (`visibilitychange`), and the layer's CSS animations are paused
+then too.
+
+## The versions, and the lab
+
+The designer chooses by watching, so each of the frost and the sign has three takes, and the rain
+two ways, all in the same layer: a `WeatherLook` option object (`frost`, `neon`, `hue`, `rain`) and
+data attributes on `.weather` (`data-frost`, `data-neon`, `data-hue`, `data-rain`). The takes not
+chosen, and the lab, come out before merge.
+
+| | 1 | 2 | 3 |
+|---|---|---|---|
+| Frost | **fern**: crisp white-blue dendrites, a stem with pinnae at 60° barbed with finer needles, long ones from the corners and short ones all along the edges, over a thin rime band hugging the edge | **etched**: Deco geometry, as a speakeasy door's etched panel: a sunburst in each corner (frosted quarter disc, alternate wedges to a double arc, stepped beyond), a frosted border with a hairline inside, small fans along the edges; it unfolds outward | **rime**: a soft frosted band along the edges, uneven and thicker in the corners, creeping inward; fine six-armed crystals in it, and four-pointed glints in five sheets that catch the light on their own clocks (6.3–13.9 s) |
+| Sign | **HOTEL**: a vertical sign beside the window, its tubes cropped by the edge, the glow spilling in | **light**: no letters, the colour of a sign out of frame washing the edge of the glass (stronger wash, a brighter edge) | **wet glass**: the sign hardly there; its colour as smears in the glass, and on a rain night strong rivulets and drops carrying it |
+| Colour | **argon** blue | rose, to compare | |
+| Rain | streaks (falling, as before) | runs (drops on the glass) | **both** |
+
+**The lab**: on the dev server, add `?wxlab=1` to a night's URL (or the title page's). A small panel
+in the bottom right corner: the night (the roll, or clear / rain / fog / cold), the frost, the sign,
+its colour, the rain, and `regrow` (the frost grows again), `flicker` (now), `still` (the reduced
+motion version), `hide`. What it shows is in the URL (`wx`, `wxfrost`, `wxneon`, `wxhue`, `wxrain`,
+`wxstill`) and survives a reload and the book's own URL rewrites, so a link opens the same view. It
+is not in the build: the import is behind `import.meta.env.DEV`, and without the parameter there is
+no lab.
 
 ## Checked in a real browser
 
-`node scripts/check-weather.mjs --url http://localhost:5217` (after
-`npx vite --port 5217`). Nights: untiered, difficulty 2 (`?seed=N&d=2`), seeds
-by `npm run read -- --seed N --pages 1`, whose cast line prints the roll:
+Headless Chrome (playwright-core, the Chrome on the machine) against the dev server, every weather ×
+every version at 1280×800, 1512×982, 1920×1080 and 375×812, stills in the session's scratchpad:
 
-| Night | Seed |
-|---|---|
-| rain | 4 |
-| cold | 3 (also 5, 8, 12) |
-| fog | 1 (also 2, 6, 7) |
-| clear | 9 (also 10, 11) |
-
-For each night at 1280×800 and 390×844, light and dark, and still (reduced
-motion) — 20 configurations — it checks the layer shows the rolled night and
-nothing else, `pointer-events: none`, `z-index: -1`; every visible button is
-what is under its own centre, at the top of the page and scrolled to the
-switch; no text-bearing element (button, link, field, paragraph, list item,
-cell, heading, span; clipped to its scroller) intersects a strip; and then it
-turns the weather off **with a real click on the switch**, with the layer on,
-and compares the before and after screenshots pixel by pixel.
-
-Result: in every configuration, **0 pixels changed in the reading column**
-(prose, choices, pager), and no text pixel anywhere changed by more than 1/255
-(the notebook's running head at 1280 while an animation runs, as above; 0 when
-still, 0 on the phone). The margins did change (e.g. fog at 1280: ~95 000
-pixels; frost at 1280: ~28 000; rain at 1280: ~1 600, it is faint).
-
-Also: a choice clicked with the layer on turns the page, and turning back keeps
-the same layer element, still `cold`; the switch turned off survives a reload
-(`weather off`, `aria-pressed="false"`) and turns back on; the title page has
-no weather; with `localStorage` throwing on access the switch still works; and
-on a cold night a wisp of steam rises within 25 s, at both sizes.
-
-`scripts/check-layout.mjs` (seeds 1–3, the oracle's route, 42 pages at each
-size, clicking through with the weather on) still passes.
-`scripts/check-grid.mjs --seed 3` fails "Grasso at ten shows 1 sources, wanted
-2" at both sizes — and fails identically with `src/ui/book.ts` from `main`, so
-it is not this branch (the seed's content has moved since the check was
-written).
-
-Screenshots, `docs/screens/`:
-
-- `weather-rain-{1280,390}-{light,dark,still}.png`
-- `weather-cold-{1280,390}-{light,dark,still}.png`
-- `weather-fog-{1280,390}-{light,dark,still}.png`
-- `weather-steam-{1280,390}-light.png` (a cold night, a wisp caught mid-rise)
-
-The screenshots fast-forward the frost to formed and hold rain and fog still
-for the shot; `-still` is the reduced-motion version (rain there is, correctly,
-nothing).
+- In all 45 desktop configurations no strip intersects any text-bearing element (paragraph, button,
+  link, list item, cell, heading, label, the choices' panel, the running head, the pager), and the
+  page never scrolls sideways (`scrollWidth` = the window). On a phone the only element over a
+  gutter is the choices' panel, edge to edge, whose ground covers the weather under it.
+- The frost's growth, in series a second or two apart; the sign's own first flicker, caught as it
+  ran (after 8–14 s) for each take; a steam wisp rising in the left margin of a cold night within
+  4 s.
+- Reduced motion: the frost formed at once, the fog still, the sign steady, no drops, streaks or
+  steam. The switch, clicked: nothing in the layer at all.
+- The lab: no panel without `?wxlab=1`; each button sets the layer's data attribute and the URL;
+  a reload and a page turn keep it; "roll" gives the night back.
 
 ## Performance
 
-Measured by `scripts/check-weather.mjs` with CDP `Performance.getMetrics`
-(headless Chrome on this Mac, M-series): open the night, wait 1.5 s, then take
-`TaskDuration` (all main-thread work), `RecalcStyleDuration`,
-`LayoutDuration` and `ScriptDuration` over 10 s, with the weather on and again
-with `dashiell:weather = off`. The phone is 390×844 with CDP's 4× CPU
-throttle. Per frame is ms/s ÷ 60. (The full test suite was running alongside,
-so these are, if anything, high.)
+A Chrome trace of 4 s in a steady state, at 1920 (main-thread frame work: style, layout, paint,
+commit):
 
-| | On: main thread | per 60 Hz frame | of which style / script | Off |
-|---|---|---|---|---|
-| 1280, rain | 1.36 ms/s | 0.02 ms | 0.05 / 0.07 ms/s | 0.05 ms/s |
-| 1280, cold | 1.63 ms/s | 0.03 ms | 0.15 / 0.07 ms/s | 0.06 ms/s |
-| 1280, fog | 1.16 ms/s | 0.02 ms | 0.07 / 0.06 ms/s | 0.06 ms/s |
-| 390 ×4 throttle, rain | 3.71 ms/s | 0.06 ms | 0.23 / 0.61 ms/s | 0.08 ms/s |
-| 390 ×4 throttle, cold | 4.25 ms/s | 0.07 ms | 0.59 / 0.27 ms/s | 0.43 ms/s |
-| 390 ×4 throttle, fog | 3.79 ms/s | 0.06 ms | 0.36 / 0.48 ms/s | 0.23 ms/s |
+| | Commits/s | Style + paint |
+|---|---|---|
+| weather off | 0.8 | — |
+| clear, HOTEL | 0.8 | — |
+| rain, wet glass | 0.8 | — |
+| fog, HOTEL | 0.3 | — |
+| cold, fern, formed | 0.8 | — |
+| cold, rime, formed | 2.8 | 0.8 ms/s (the glint sheets starting) |
+| cold, fern, growing | 6.8 | 1.7 ms/s, for the 13 s it grows |
+| 375, rain, wet glass | 0.8 | — |
 
-Layout is ~0 throughout: nothing the weather does moves anything else. The
-animations run on the compositor; the main thread only wakes for the steam
-timer and the odd animation tick. Worst case, when something else forces a
-main-thread frame every vsync (an earlier run with a `requestAnimationFrame`
-counter in the page, which does exactly that): 0.32 ms a frame on, against
-0.11 off, at 1280; 0.45–0.82 against 0.13–0.20 on the throttled phone — still
-under 1 ms of a 16.7 ms frame. GPU and compositor cost is not in these numbers:
-the layer is at most a handful of small composited layers, each clipped to a
-margin strip, at the device's pixel ratio.
-
-The tab hidden: CSS animations do not run (and the layer sets
-`animation-play-state: paused` on `visibilitychange`), and no wisp is
-scheduled until the tab is visible again.
+That is: once the frost has formed nothing the weather does needs the main thread; the hum, the
+rain, the drops, the fog and the glints all run on the compositor. Building a night's masks is a
+one-off: the fern at 1920 is ~22 ms to draw and ~6 ms to write its masks (~560 KB of SVG across
+the margins, culled to 64 px columns), the etched and rime a few ms; at 1280 and on a phone less.
 
 ## Not done
 
-- No weather on the title page, by the brief. The verdict page keeps the
-  night's weather but has no switch.
-- The weather does not change through the night (the roll is one sky per
-  case); nothing in `src/game` was touched.
+- The weather does not change through the night (one sky per case); nothing in `src/game` was
+  touched.
 - No canvas: none of this needs per-frame drawing.
+- The neon is always at the left edge; it could move with the book's spread side if the designer
+  wants it on the right.

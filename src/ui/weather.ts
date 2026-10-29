@@ -1046,6 +1046,8 @@ export function createWeatherLayer(opts: { enabled: boolean; look?: Partial<Weat
    * tube out for a beat and back. The light on the glass goes with it: it is all in `.wx-flick`.
    */
   function flicker(kind?: 'buzz' | 'letter' | 'drop'): void {
+    // Steady under reduced motion, even when asked (the lab's button).
+    if (!current.flicker) return;
     const groups = [...layer.querySelectorAll<HTMLElement>('.wx-flick')];
     if (groups.length === 0) return;
     const letters = [...layer.querySelectorAll<HTMLElement>('.wx-letter')];
