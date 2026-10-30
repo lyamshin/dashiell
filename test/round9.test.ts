@@ -124,8 +124,8 @@ describe('item 2: the weapon column says why in the grid itself, and a poisoning
     const run = route(d, MEDIUM37.slice(0, 9));
     const g = boardGrid(d.kase, run);
     expect(g.rows.find((r) => r.id === 'broadnax')?.means).toBe('no');
-    expect(meansReasons(g)).toContain('Broadnax didn’t come to Mrs. Nagy’s till nine, too late for it.');
-    expect(boardGridText(d.kase, run)).toContain('Why “no”: Broadnax didn’t come to Mrs. Nagy’s till nine, too late for it.');
+    expect(meansReasons(g)).toContain('Broadnax didn’t come to Mrs. Nagy’s till nine, too late for the revolver.');
+    expect(boardGridText(d.kase, run)).toContain('Why “no”: Broadnax didn’t come to Mrs. Nagy’s till nine, too late for the revolver.');
     expect(meansAsked(g.meansLabel)).toBe('Could they get the weapon?');
   });
   it('the rule: every “no” has its reason; a poisoning asks for the poison, never by name', () => {
@@ -194,7 +194,7 @@ describe('item 4: the curtain knows every confront made, landed or not', () => {
     const run = route(d, [...HB39.slice(0, 10), 'put tillman 10 claim:obermann@10']);
     expect(run.puts.at(-1)?.landed).toBe(false);
     const lie = curtainOfBoard(d, run).split('\n').find((x) => x.startsWith('- Tillman said')) ?? '';
-    expect(lie).toContain('You confronted her, but nothing you put to her broke what she said about ten, so she stood by it; with something that did, she would have told another story.');
+    expect(lie).toContain('You confronted her, but nothing you put to her broke what she said about ten; if it had, she would have told another story.');
     expect(lie).not.toContain('never confronted');
   });
 });
@@ -263,8 +263,11 @@ describe('item 7: the report’s words', () => {
   });
   it('docs/78: the rules, the teach page and the help say who caught them out is, plainly', () => {
     expect(BOARD_TEACH_LINES).toContain('Who caught them out is the person who told you what shows the one who did it was lying.');
-    expect(BOARD_RULES.join(' ')).toContain('Who caught them out is the person who told you what shows the one who did it was lying. It can be their own second story, if they changed it.');
-    expect(flat(cli(37, 4, 'murder', [], ['help']))).toContain('caught is who caught them out: who told you what showed the one who did it was lying, or their own second story');
+    // (docs/80: the rules say what the teach lines don't, and the help prints both, so it says it once.)
+    expect(BOARD_RULES.join(' ')).toContain('Who caught them out can be their own second story, if they changed it.');
+    const help = flat(cli(37, 4, 'murder', [], ['help']));
+    expect(help).toContain('Who caught them out is the person who told you what shows the one who did it was lying.');
+    expect(help.match(/Who caught them out is the person/g)).toHaveLength(1);
     for (const l of [...BOARD_TEACH_LINES, ...BOARD_RULES]) expect(l).not.toMatch(/what clears|anyone else|hunch|counts half|what proves it/i);
   });
   it('confronting on the last action says so plainly, and that anybody they name needs another', () => {
@@ -272,7 +275,7 @@ describe('item 7: the report’s words', () => {
     const run = route(d, MEDIUM37.slice(0, 15));
     expect(budgetCalls(d) - run.used).toBe(1);
     const pk = pickerFor(d, run, 'sirkin')!;
-    expect(pickerNote(d, pk)).toContain('This is your last action: if he names somebody, asking them would take another, and you won’t have one.');
+    expect(pickerNote(d, pk)).toContain('This is your last action: if he names somebody, you won’t be able to ask them.');
     const early = pickerFor(d, route(d, MEDIUM37.slice(0, 13)), 'ashby')!;
     expect(pickerNote(d, early)).not.toContain('last action');
   });

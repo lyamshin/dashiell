@@ -72,12 +72,12 @@ describe('round 5, U2 and U6: the report says what to type, and what a blank is,
   it('what a blank goes in as is one sentence, said once (docs/78: the book’s selects say “I don’t know” themselves)', () => {
     for (const n of [RAW11, POACHED5, MEDIUM14, HB8]) {
       const out = cli(n)('report').replace(/\s+/g, ' ');
-      expect(out.match(/Leave anything out/g)?.length, n.type).toBe(1);
+      expect(out.match(/Anything you leave out/g)?.length, n.type).toBe(1);
       const { d, run } = played(n);
       expect(out).toContain(blankRule(d, run.used >= budgetCalls(d)));
     }
     // (docs/64: in plain words.)
-    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Closing the case is final. Leave anything out if you’re not sure: it goes in as “I don’t know”.');
+    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Closing the case is final. Anything you leave out goes in as “I don’t know”.');
     expect(blankRule(dealBoard(11, 0, 'lost-item'), true)).toMatch(/^No actions left\. /);
   });
 });
@@ -146,7 +146,9 @@ describe('round 5, U7: the verdict says which call was spare, and the score does
     for (const [n, who, him, he] of [[POACHED5, 'Reinhardt', 'her', 'she'], [MEDIUM14, 'Thorndike', 'him', 'he'], [HB8, 'Grasso', 'her', 'she']] as const) {
       const { d, run, v } = filedAs(n);
       expect(spareCalls(d, run)).toHaveLength(1);
-      expect(fastestSolveLines(d, run, v.outcome).join(' ')).toContain(`It doesn’t confront ${who}. Confronting ${him} caught ${him} in the lie, even if ${he} wouldn’t say more.`);
+      // (docs/80: as the confront box says it, not needed to prove the lie; never "caught her in the lie".)
+      expect(fastestSolveLines(d, run, v.outcome).join(' ')).toContain(`It doesn’t confront ${who}: what I’d been told already showed ${he} was lying.`);
+      expect(fastestSolveLines(d, run, v.outcome).join(' ')).not.toMatch(new RegExp(`caught ${him} in the lie`));
       expect(v.closing.join(' ')).not.toMatch(/It took me|didn’t need/);
       expect(v.points).toBe(v.asked);
     }
@@ -158,7 +160,7 @@ describe('round 5, U7: the verdict says which call was spare, and the score does
       const v = scoreBoard(d, run, truthReport(d, run));
       expect(v.closing.join(' ')).not.toContain('I didn’t need');
       const fast = fastestSolveLines(d, run, v.outcome).join(' ');
-      if (v.outcome === 'solved') expect(fast, d.kase.id).toMatch(/^It took me \d+ actions?, and the fastest solve takes \d+\. It can’t be done in fewer\.$/);
+      if (v.outcome === 'solved') expect(fast, d.kase.id).toMatch(/^It took me \d+ actions?, and the fastest solve takes \d+\.$/);
       expect(fast).not.toMatch(/better detective|didn’t need|needless/);
     }
   });

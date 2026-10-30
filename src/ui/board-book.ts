@@ -11,8 +11,8 @@
  * The URL says which night: `?seed=4&t=2[&type=lost-pet]`.
  */
 
-import { NIGHT_MINUTES, clockStrip, minutesAfter, usedByPage } from '../game/board/clock.js';
-import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
+import { NIGHT_MINUTES, clockStrip, headLeft, minutesAfter, usedByPage } from '../game/board/clock.js';
+import { boardChoices, pickerFor, pickerLast, pickerNote, placeWhy, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { FACE_MARK, boardGrid, faceMarkDue, meansAsked, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
@@ -557,7 +557,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       notches.append(n);
     });
     dial.append(el('span', { class: 'dial-end', 'aria-hidden': 'true', text: '12' }), notches, el('span', { class: 'dial-end dial-end--eight', 'aria-hidden': 'true', text: '8' }));
-    head.append(dial, el('div', { class: 'calls-left', text: closed ? 'Eight o’clock. The case is closed.' : strip.left }));
+    // (docs/80: who is waiting at eight, on the first page and the last action; the count between.)
+    head.append(dial, el('div', { class: 'calls-left', text: closed ? 'Eight o’clock. The case is closed.' : headLeft(strip, i, budget, used) }));
     return head;
   }
 
@@ -626,7 +627,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const who = peopleLine(c, id);
     const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead ${p.female ? 'woman' : 'man'}.` : `${who[0]?.toUpperCase()}${who.slice(1)}.`;
     const lines = [role];
-    if ((run as BoardRun).asked.includes(`account:${id}`)) lines.push('Their own evening is in the notebook.');
+    // (docs/80: the person's own pronoun, never "their" for one man, docs/47 A6.)
+    if ((run as BoardRun).asked.includes(`account:${id}`)) lines.push(`${p.female ? 'Her' : 'His'} evening is in the notebook.`);
     return { title: nameInFull(c, id), lines };
   }
 
@@ -834,15 +836,19 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
    * book-look, items 1 and 5: "Close the case", the office door at the foot of the choices (and of the
    * notebook): a full-width bar behind a double rule, "ends the night" beside it, and under it what
    * pressing it does: it opens the report first, which goes back in the drawer until you close it.
+   * docs/80: the tag and that note on the night's first page only, as the key is; after it, the bar alone.
    */
   function closeSection(where: 'page' | 'notebook' = 'page'): HTMLElement {
     const id = `close-note-${where}`;
+    const first = (run as BoardRun).log.length === 1;
     const section = el('section', { class: 'choice-group choice-group--close file', 'aria-labelledby': `close-heading-${where}` });
     section.append(el('h2', { class: 'choice-heading sr-only', id: `close-heading-${where}`, text: CLOSE_HEADING }));
-    const b = el('button', { class: 'choice choice--file', type: 'button', 'data-command': 'file', 'aria-label': `Close the case, ${CLOSE_TAG}`, 'aria-describedby': id });
-    b.append(el('span', { class: 'label', text: 'Close the case' }), el('span', { class: 'mins', text: CLOSE_TAG }));
+    const b = el('button', { class: 'choice choice--file', type: 'button', 'data-command': 'file', 'aria-label': `Close the case, ${CLOSE_TAG}`, ...(first ? { 'aria-describedby': id } : {}) });
+    // (docs/80: "ends the night" and the note under it on the first page; after it the bar says its name.)
+    b.append(el('span', { class: 'label', text: 'Close the case' }), ...(first ? [el('span', { class: 'mins', text: CLOSE_TAG })] : []));
     b.addEventListener('click', () => command('file'));
-    section.append(b, el('p', { class: 'close-note', id, text: CLOSE_NOTE }));
+    section.append(b);
+    if (first) section.append(el('p', { class: 'close-note', id, text: CLOSE_NOTE }));
     return section;
   }
 
@@ -883,7 +889,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // and that the report counts it either way. docs/64: an action, said only where it's free.
     const female = personOf(c, pk.person)?.female === true;
     const him = female ? 'her' : 'him';
-    box.append(el('p', { class: 'note', text: pickerNote(d as BoardDeal, pk) }));
+    // (docs/80: the note on the first step only: the hour, or the ready pairs. The line's step has its
+    // own head, and the last action's warning if it is one.)
+    const claimed = pk.ready.length === 0 && pickerClaim !== null && pk.claims.some((x) => x.hour === pickerClaim);
+    const note = claimed ? pickerLast(d as BoardDeal, pk) : pickerNote(d as BoardDeal, pk, run as BoardRun);
+    if (note) box.append(el('p', { class: 'note', text: note }));
     if (pk.ready.length > 0) {
       const sec = el('section', { class: 'picker-sec' });
       sec.append(el('h4', { class: 'picker-head', text: `What ${female ? 'she' : 'he'} said, and what says otherwise` }));
@@ -956,7 +966,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       weather.setMode(m);
       sayWeather(wx);
     });
-    hint.append(back, el('span', { class: 'pager-at', text: `page ${turned + 1} of ${r.log.length}` }), forward, wx);
+    // (docs/80: where you are, on a page turned back to; the newest page needs no "page 9 of 9".)
+    hint.append(back, el('span', { class: 'pager-at', text: turned < r.log.length - 1 ? `page ${turned + 1} of ${r.log.length}` : '' }), forward, wx);
     return hint;
   }
 
@@ -1060,7 +1071,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         { class: 'runhead runhead--notebook' },
         el('h2', { class: 'nb-title', id: 'notebook-title', tabindex: '-1', text: 'Notebook' }),
         el('span', { class: 'nb-case', text: `Case № ${c.seed} · ${tierName(c.tier)}` }),
-        el('span', { class: 'nb-clock', text: screen.kind === 'verdict' ? 'Eight o’clock. The case is closed.' : `${clockParts(strip.time).figures} ${clockParts(strip.time).ampm} · ${strip.left.replace(/\. .*$/, '.')}` }),
+        el('span', { class: 'nb-clock', text: screen.kind === 'verdict' ? 'Eight o’clock. The case is closed.' : `${clockParts(strip.time).figures} ${clockParts(strip.time).ampm} · ${strip.count}` }),
       ),
     );
     const body = el('div', { class: 'body', tabindex: '-1' });
@@ -1070,7 +1081,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (r.log.length > 1) {
       body.append(el('h2', { text: 'Where things stand' }));
       const ul = el('ul', { class: 'nb-stands' });
-      for (const cl of recapClauses(d as BoardDeal, r)) ul.append(el('li', { text: cl.text }));
+      // (docs/80: not whose evenings and whose counts are in: the grid's rows and "What I was told" under
+      // it say that.)
+      for (const cl of recapClauses(d as BoardDeal, r)) if (cl.key !== 'held') ul.append(el('li', { text: cl.text }));
       body.append(ul);
     }
     // Everything held, by whose word.
@@ -1080,7 +1093,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
         const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';
-        bySource.set(src, [...(bySource.get(src) ?? []), lineShown(c, r, l)]);
+        const who = l.q.startsWith('list:') ? l.q.slice(5) : l.q.startsWith('account:') ? l.q.slice(8) : null;
+        bySource.set(src, [...(bySource.get(src) ?? []), who ? underWhose(lineShown(c, r, l), nameOf(c, who)) : lineShown(c, r, l)]);
       }
       // (Round 8, B1: every line the form can offer is here, a confession too.)
       for (const o of notebookLines(d as BoardDeal, r)) if (o.value.startsWith('crack:')) bySource.set('When I faced them with it', [...(bySource.get('When I faced them with it') ?? []), o.label]);
@@ -1097,7 +1111,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     body.append(el('h2', { text: 'What my client said' }));
     const office = el('ul', { class: 'nb-stands' });
-    for (const t of officeLines(d as BoardDeal)) office.append(el('li', { text: t }));
+    // (docs/80: not who the client is: "People and places" says it, "my client, Dandridge’s sister".)
+    const kinds = (d as BoardDeal).kase.givens.lines?.map((g) => g.kind) ?? [];
+    officeLines(d as BoardDeal).forEach((t, i) => {
+      if (kinds[i] !== 'relation') office.append(el('li', { text: t }));
+    });
     body.append(office);
     body.append(el('h2', { text: 'People and places' }));
     const people = el('ul', { class: 'nb-stands' });
@@ -1107,7 +1125,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       // (Round 6, U6: the CLI's words, who they are and never where they sat tonight.)
       people.append(el('li', { text: `${nameInFull(c, id)}: ${peopleLine(c, id)}.` }));
     }
-    for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${why}.` }));
+    for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${placeWhy(c, id, why)}.` }));
     body.append(people);
     if (!r.reportOpen) body.append(closeSection('notebook'));
     page.append(body);
@@ -1115,6 +1133,20 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     back.addEventListener('click', () => notebookShown(false, true));
     page.append(back);
     return page;
+  }
+
+  /**
+   * docs/80: a line under its speaker's own heading ("Hauck’s evening", "Who Schilling saw") without
+   * their name again: "At Moe’s at seven o’clock, with Grasso and Dandridge.", "At ten o’clock, only
+   * Hauck and Petrosino were at Moe’s.", "“Passed Ellery on Grand Street at ten…”". The words after
+   * the name are the line's own, as the picker and the grid's cells quote it whole.
+   */
+  function underWhose(text: string, name: string): string {
+    const n = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const m = new RegExp(`^${n}(?: says (?:he|she|they) (?:was|were) |: )(.+)$`).exec(text);
+    if (!m) return text;
+    const rest = m[1] as string;
+    return rest.startsWith('“') ? rest : `${rest.charAt(0).toUpperCase()}${rest.slice(1)}`;
   }
 
   /** docs/43 §4: the grid is the board. Fits 375 px: four hours and five people, no sideways scroll. */
@@ -1302,7 +1334,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       if (typeof drawer.showModal === 'function') drawer.showModal();
       else drawer.setAttribute('open', '');
     });
-    wrap.append(el('p', { class: 'new-line' }, 'New? The first night teaches you as you go. ', how), drawer);
+    // (docs/80: the link alone. The first night teaches itself; the line that said so went.)
+    wrap.append(el('p', { class: 'new-line' }, how), drawer);
     return sheet;
   }
 
@@ -1376,7 +1409,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     form.append(
       tierSlot,
       kindSlot,
-      el('div', { class: 'pick-field' }, el('label', { class: 'pick-label', for: 'pick-seed', text: 'Case number (any number; the same number gives the same night)' }), seed),
+      el('div', { class: 'pick-field' }, el('label', { class: 'pick-label', for: 'pick-seed', text: 'Case number' }), seed),
       el('div', { class: 'pick-field' }, el('label', { class: 'pick-label', for: 'pick-name', text: 'The detective' }), name),
       el('button', { class: 'big-button big-button--second', type: 'submit', text: 'Open this case' }),
     );
@@ -1394,7 +1427,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return form;
   }
 
-  /** "How it plays": the rules, and the teach page's seven lines, in a drawer. Esc or Close shuts it. */
+  /** "How it plays": the teach page's eight lines and the rules, in a drawer. Esc or Close shuts it. */
   function howDrawer(): HTMLDialogElement {
     const dialog = el('dialog', { class: 'drawer', 'aria-labelledby': 'how-title' });
     const close = el('button', { class: 'quiet-button drawer-close', type: 'button', text: 'Close' });
@@ -1405,11 +1438,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     });
     // Close sits at the top, so the drawer opens with the focus on it and its first line in view.
     const body = el('div', { class: 'drawer-body' }, el('div', { class: 'drawer-head' }, el('h2', { id: 'how-title', text: 'How it plays' }), close));
-    for (const l of BOARD_RULES) body.append(el('p', { text: l }));
-    body.append(el('h3', { text: BOARD_TEACH_TITLE }));
+    // (docs/80: the teach page's eight lines, then the rules they don't say; never one rule twice.)
     const list = el('ol', { class: 'teach-list' });
     for (const l of BOARD_TEACH_LINES) list.append(el('li', { text: l }));
     body.append(list);
+    for (const l of BOARD_RULES) body.append(el('p', { text: l }));
     dialog.append(body);
     return dialog;
   }

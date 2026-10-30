@@ -98,6 +98,11 @@ export interface ClockStrip {
   notches: Notch[];
   /** "Six actions left. The DA charges somebody at eight." (docs/64: an action, never a "call") */
   left: string;
+  /**
+   * docs/80: "Six actions left.", for every page after the first: who is waiting at eight is said on the
+   * first page and again when one action or none is left (`headLeft`), not on every page between.
+   */
+  count: string;
 }
 
 /**
@@ -117,8 +122,17 @@ export function clockStrip(
   const n = callsLeft(used, budget);
   const word = countWord(n);
   const Deadline = `${deadline.charAt(0).toUpperCase()}${deadline.slice(1)}`;
-  const left = n === 0 ? `No actions left. ${Deadline}.` : `${word.charAt(0).toUpperCase()}${word.slice(1)} action${n === 1 ? '' : 's'} left. ${Deadline}.`;
-  return { time: clockAfter(used, budget), notches, left };
+  const count = n === 0 ? 'No actions left.' : `${word.charAt(0).toUpperCase()}${word.slice(1)} action${n === 1 ? '' : 's'} left.`;
+  return { time: clockAfter(used, budget), notches, left: `${count} ${Deadline}.`, count };
+}
+
+/**
+ * docs/80: the running head's line under the dial: the whole of it ("Fourteen actions left. The DA
+ * charges somebody at eight.") on the night's first page and once one action or none is left, and
+ * the count alone on the pages between, where the dial and the first page have said it.
+ */
+export function headLeft(strip: ClockStrip, page: number, budget: number, used: number): string {
+  return page === 0 || callsLeft(used, budget) <= 1 ? strip.left : strip.count;
 }
 
 /** Calls spent by the end of page `n` of a log: what the strip shows on that page. */

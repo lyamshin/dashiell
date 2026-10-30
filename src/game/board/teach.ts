@@ -50,13 +50,18 @@ export function teachLines(world?: string, c?: { type: string; tier: number; puz
   return b ? [...BOARD_TEACH_LINES.slice(0, 5), b, ...BOARD_TEACH_LINES.slice(5)] : BOARD_TEACH_LINES;
 }
 
-/** The book's help, for the play CLI and the title page's "How it plays": how a night plays. */
+/**
+ * The book's help, for the play CLI and the title page's "How it plays": how a night plays. docs/80:
+ * what the teach lines above don't say, and read after them (the drawer and the CLI's help print the
+ * eight first), so no rule is said twice in one place: the five answers and who caught them out are
+ * the teach page's, the Hint button its last line's.
+ */
 export const BOARD_RULES: readonly string[] = [
-  'Each page gives you choices: who to ask, what to search, where to go. Each one takes an action, and you have the night, until eight in the morning.',
-  // docs/67: no star by itself; the Hint button gives one.
-  'The Hint button stars a choice worth taking now and says why. A perfect report earns a star; a perfect one with no hints, a gold star.',
-  'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
+  'Each page ends in choices: who to ask, what to search, where to go. Each takes an action, and you have until eight in the morning.',
+  'The notebook keeps what you’ve learned. Its grid shows where everyone says they were, and where the stories clash.',
   // (Case 2312, the owner's ruling: the report asks "When did it happen?", so a poisoning's when is said here.)
   // (docs/78: five answers, one point each; a lost thing asks where it is now in place of how.)
-  'Close the case when you’re ready. You give five answers, one point each: who did it, who caught them out, when, how, and why. Who caught them out is the person who told you what shows the one who did it was lying. It can be their own second story, if they changed it. For a poisoning, when is the hour the poison was given, not the hour of death. For a lost thing, you say where it is now instead of how.',
+  'Each answer is a point. Who caught them out can be their own second story, if they changed it. For a poisoning, when is the hour the poison was given, not the hour of death. For a lost thing, you say where it is now instead of how.',
+  // docs/67: no star by itself; the Hint button gives one.
+  'A perfect report earns a star; a perfect one with no hints, a gold star.',
 ];
