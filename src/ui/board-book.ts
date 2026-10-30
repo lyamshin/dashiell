@@ -1327,7 +1327,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const td = el('td', { class: `bgrid-cell is-facts${empty ? ' is-empty' : ''}` });
         const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(c, cell)}` });
         if (cell.says) b.append(el('span', { class: 'bgrid-own', text: code(cell.says) }));
-        if (cell.clash) b.append(el('span', { class: 'bgrid-mine', 'aria-hidden': 'true', text: '✗' }));
+        // (A break before the mark, as the notebook's own ✗ has it, so a long label wraps rather than cuts it.)
+        if (cell.clash) b.append('​', el('span', { class: 'bgrid-mine', 'aria-hidden': 'true', text: '✗' }));
         const heard = [...new Set((cell.heard ?? []).map((x) => (x.place !== undefined ? code(x.place) : (x.street ?? '').replace(/ Street$/, ' St').replace(/ Avenue$/, ' Ave'))))];
         if (heard.length) b.append(el('span', { class: 'bgrid-heard', text: heard.join(' / ') }));
         if (cell.pencil?.at) b.append(el('span', { class: 'bgrid-guess', text: `~${code(cell.pencil.at)}` }));
@@ -1455,7 +1456,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     table.append(tbody);
     wrap.append(table);
-    wrap.append(el('p', { class: 'bgrid-key', text: 'Each list as it was told: everybody the one keeping the door saw there, hour by hour. Hover for their words.' }));
+    wrap.append(el('p', { class: 'bgrid-key', text: 'Each list as it was told: everybody the one keeping the door saw there, hour by hour.' }));
     return wrap;
   }
 
