@@ -23,12 +23,12 @@
  */
 
 import { parseTier, typesFor, type CaseType } from '../gen/board/index.js';
-import { clockStrip, usedByPage } from '../game/board/clock.js';
-import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
+import { clockStrip, headLeft, usedByPage } from '../game/board/clock.js';
+import { boardChoices, pickerFor, pickerLast, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { FACE_MARK, boardGridText, placeCodes } from '../game/board/grid.js';
 import { peopleAt } from '../game/board/knowledge.js';
-import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
+import { BOARD_TEACH_LINES, BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
@@ -160,13 +160,15 @@ function markRun(run: BoardRun, m: { person: string; hour: number; action: 'at' 
 
 function head(night: Night, i: number): string {
   const { d, run } = night;
-  const strip = clockStrip(usedByPage(run.log, i), budgetCalls(d), deadlineWords(d.kase));
+  const used = usedByPage(run.log, i);
+  const strip = clockStrip(used, budgetCalls(d), deadlineWords(d.kase));
   const place = run.log[i]?.head ?? '';
   // Round 5, U8: "page 9 of 9" counted nothing a tester could name. The head says the time; `page <n>`
   // turns back, and a page turned back to says which it is.
   const right = strip.time;
   const notches = strip.notches.map((n) => (n === 'spent' ? 'x' : n === 'next' ? 'o' : '.')).join('');
-  return [`${place}${' '.repeat(Math.max(2, WIDTH - place.length - right.length))}${right}`, `[${notches}] ${strip.left}`, RULE].join('\n');
+  // (docs/80: who is waiting at eight on the first page and the last action, as the book's head says it.)
+  return [`${place}${' '.repeat(Math.max(2, WIDTH - place.length - right.length))}${right}`, `[${notches}] ${headLeft(strip, i, budgetCalls(d), used)}`, RULE].join('\n');
 }
 
 function pageText(night: Night, i: number): string {
@@ -219,13 +221,16 @@ function pageChoicesText(night: Night): string {
     // says what it does rather than "free" (it opens the report, which can be put away again).
     const kind = it.choice.command === 'file' ? 'close' : it.group.kind;
     if (kind === 'close') {
-      out.push('', `${CLOSE_HEADING}:`, itemLine(it.n, { ...it.choice, note: CLOSE_TAG }, ''), wrap(CLOSE_NOTE, WIDTH, '          '));
+      // (docs/80: "ends the night" and what pressing it does, on the first page only, as the book says it.)
+      const first = night.run.log.length === 1;
+      out.push('', `${CLOSE_HEADING}:`, itemLine(it.n, first ? { ...it.choice, note: CLOSE_TAG } : it.choice, ''), ...(first ? [wrap(CLOSE_NOTE, WIDTH, '          ')] : []));
       last = kind;
       continue;
     }
     if (kind !== last) {
       out.push('');
-      out.push(kind === 'ask' ? `${TALK_HEADING}:` : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
+      // (docs/80: the free row under no heading; each of its choices says free itself.)
+      if (kind !== 'free') out.push(kind === 'ask' ? `${TALK_HEADING}:` : `${it.group.heading}:`);
       last = kind;
     }
     if (it.person) {
@@ -240,10 +245,10 @@ function pageChoicesText(night: Night): string {
   // docs/47 A3: the key to the marks, once, on the first page; round 5, U10: and at Hard-boiled, that
   // its star is the night's only one.
   if (night.run.log.length === 1) out.push('', wrap(CHOICE_KEY));
-  // docs/67: tonight's hints, said once on the first page (and Hard-boiled's mark line), and the count
-  // under the choices on every page of a tier that has them.
+  // docs/67: tonight's hints, said once on the first page (and Hard-boiled's mark line). docs/80: the
+  // count isn't said again under every page's choices; `hint` says what's left, and so does the report.
   const note = hintsNote(night.d, night.run);
-  const left = hintsLine(night.run);
+  const left = night.run.log.length === 1 ? hintsLine(night.run) : null;
   // (Round 7, U4: the mark line, once, on the page of the night's first coat or hat, with the command.)
   if (note) out.push('', wrap(left ? `${note} \`hint\` stars a good next step and says why.` : note === FACE_MARK ? `${note} (\`mark "<Name> <hour> at <place>"\`)` : note));
   // (After a hint on the first page, how many are left, as on every page after.)
@@ -253,7 +258,8 @@ function pageChoicesText(night: Night): string {
 
 /** The key to a page's marks, said once, on the first page (docs/47 A3), in docs/64's words; and the CLI's own two commands. */
 // (Round 6, U2: "`back` shuts it" said what it does: takes you back to the page.)
-const CHOICE_KEY = `${ACTION_KEY} Pick somebody to see what you can ask them; \`back\` takes you back to the page, and \`page <n>\` shows an earlier page.`;
+// (docs/80's blind tester: a person's row has no "free" beside it, so the key says picking them is.)
+const CHOICE_KEY = `${ACTION_KEY} Picking somebody is free: it shows what you can ask them (\`back\` returns to the page). \`page <n>\` shows an earlier page.`;
 
 function topicItems(night: Night, person: string): Item[] {
   const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
@@ -289,9 +295,11 @@ function pickerItems(night: Night, pk: Picker): { n: number; command: string; la
 
 function pickerText(night: Night, pk: Picker): string {
   const c = night.d.kase;
-  const out = [`CONFRONT ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(pickerNote(night.d, pk))];
-  const items = pickerItems(night, pk);
   const picking = pk.ready.length === 0 && night.save.claim !== null;
+  // (docs/80: the note on the first step, the book's; the line's step says only a last action.)
+  const note = picking ? pickerLast(night.d, pk) : pickerNote(night.d, pk, night.run);
+  const out = [`CONFRONT ${nameOf(c, pk.person).toUpperCase()}`, ...(note ? ['', wrap(note)] : [])];
+  const items = pickerItems(night, pk);
   const his = pronWord(night, pk.person, 'his');
   out.push('');
   const she = his === 'her' ? 'she' : his === 'his' ? 'he' : 'they';
@@ -325,7 +333,7 @@ function closeLines(night: Night, path: string): string[] {
 }
 
 /** book-look, item 1: the CLI's way back from the report, the book's "Back to the case". */
-const BACK_LINE = 'Not ready? `do back` puts the report away and goes back to the case. It costs nothing.';
+const BACK_LINE = 'Not ready? `do back` goes back to the case, free.';
 
 /** docs/78: the five questions, each with its key and its answers numbered, and how to close it. */
 function reportText(night: Night, path: string): string {
@@ -389,23 +397,28 @@ function verdictText(night: Night): string {
   out.push('');
   for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
   // (docs/64: plain words. "The true board" was the builders'.)
-  out.push(wrap('`story` tells what really happened; `curtain` shows where everybody really was, the lies and the fastest solve.'));
+  out.push(wrap('`story` tells what really happened; `curtain` shows where everybody really was.'));
   return out.join('\n');
 }
 
 /* ------------------------------------------------------------ commands */
 
-function lookText(night: Night, path: string): string {
+/**
+ * The page and what's open under it. docs/80: `page: false` for a step within one page (somebody's
+ * topics opened or shut, the picker, an hour picked in it): the menu alone, since the page above it
+ * was just printed and `look` prints it again.
+ */
+function lookText(night: Night, path: string, page = true): string {
   const { run, save } = night;
   if (run.filed) return verdictText(night);
-  const body = pageText(night, run.log.length - 1);
-  if (run.reportOpen) return `${body}\n\n${DOUBLE}\n\n${reportText(night, path)}`;
+  const body = page ? `${pageText(night, run.log.length - 1)}\n\n${DOUBLE}\n\n` : '';
+  if (run.reportOpen) return `${body}${reportText(night, path)}`;
   if (save.picker) {
     const pk = pickerFor(night.d, run, save.picker);
-    if (pk) return `${body}\n\n${DOUBLE}\n\n${pickerText(night, pk)}`;
+    if (pk) return `${body}${pickerText(night, pk)}`;
   }
-  if (save.person) return `${body}\n\n${DOUBLE}\n\n${topicText(night, save.person)}`;
-  return `${body}\n\n${DOUBLE}\n\n${pageChoicesText(night)}`;
+  if (save.person) return `${body}${topicText(night, save.person)}`;
+  return `${body}${pageChoicesText(night)}`;
 }
 
 /**
@@ -482,15 +495,11 @@ function awayText(night: Night, p: string): string | null {
   return `${who.short} isn’t here. ${pr}’s at ${placeName(d.kase, who.foundAt)}, and confronting ${who.female ? 'her' : 'him'} takes a walk there first.`;
 }
 
-function titleText(save: BoardSave, type: CaseType): string {
-  // The case's own kind: a stolen watch isn't a murder (docs/47, Raw 11's #25).
+function titleText(type: CaseType): string {
+  // The case's own kind: a stolen watch isn't a murder (docs/47, Raw 11's #25). (docs/80: the line after
+  // it, the tier and how a question pays, went: the case line says the tier, the teach page the rest.)
   const what = type === 'murder' ? 'A murder' : type === 'lost-pet' ? 'A missing pet' : 'A theft';
-  return [
-    'DASHIELL',
-    `${what}, an evening, and eight hours to write it down.`,
-    '',
-    wrap(`${tierName(save.tier as 0)}. Ask anybody where they were and you get the whole evening; ask a barman who came in and you get everybody. Every lie runs into something true. Murders, lost pets and lost things.`),
-  ].join('\n');
+  return ['DASHIELL', `${what}, an evening, and eight hours to write it down.`].join('\n');
 }
 
 /** docs/67: the book's "Hint button", as the CLI has it: the `hint` command. */
@@ -501,8 +510,7 @@ function cliHint(l: string): string {
 function teachText(world?: string): string {
   const out = [BOARD_TEACH_TITLE.toUpperCase(), ''];
   for (const l of teachLines(world)) out.push(wrap(cliHint(l)), '');
-  out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
-  return out.join('\n');
+  return out.join('\n').trimEnd();
 }
 
 function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): string {
@@ -524,7 +532,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
-  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)}${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+  return [titleText(night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)}${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
@@ -551,14 +559,14 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
     const items = pickerItems(night, pk);
     if (v === 'back' || v === String(items.length + 1) || /^(?:put nothing to|don't confront) (them|her|him)$/.test(v)) {
       night = commit(io, path, night, [], s.claim !== null && pk.ready.length === 0 ? { claim: null } : { picker: null, claim: null });
-      return lookText(night, path);
+      return lookText(night, path, false);
     }
     const hit = /^\d+$/.test(v) ? items.find((i) => i.n === Number(v)) : items.find((i) => fold(i.label) === v || fold(i.command) === v);
     if (!hit) fail(`No choice "${raw}" in the picker.`);
     const h = hit as (typeof items)[number];
     if (h.claim !== undefined) {
       night = commit(io, path, night, [], { claim: h.claim });
-      return lookText(night, path);
+      return lookText(night, path, false);
     }
     night = commit(io, path, night, [{ do: h.command }], { picker: null, claim: null, person: null });
     return lookText(night, path);
@@ -568,14 +576,14 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
     const items = topicItems(night, s.person);
     if (v === 'back' || v === String(items.length + 1) || v === 'back to the page') {
       night = commit(io, path, night, [], { person: null });
-      return lookText(night, path);
+      return lookText(night, path, false);
     }
     const hit = /^\d+$/.test(v) ? items.find((i) => i.n === Number(v)) : items.find((i) => fold(i.choice.label) === v || fold(i.choice.command) === v);
     if (!hit) fail(`No topic "${raw}". \`do back\` shuts the topics.`);
     const c = (hit as Item).choice;
     if (c.command.startsWith('picker ')) {
       night = commit(io, path, night, [], { picker: c.command.slice(7), claim: null });
-      return lookText(night, path);
+      return lookText(night, path, false);
     }
     night = commit(io, path, night, [{ do: c.command }], { person: null });
     return lookText(night, path);
@@ -586,9 +594,10 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
   const it = hit as Item;
   if (it.person) {
     night = commit(io, path, night, [], { person: it.person });
-    return lookText(night, path);
+    return lookText(night, path, false);
   }
   if (it.choice.command === 'file') {
+    // (The report's own page, and the form under it.)
     night = commit(io, path, night, [{ do: 'file' }]);
     return lookText(night, path);
   }
@@ -650,20 +659,19 @@ function cmdHint(io: PlayIo, path: string): string {
 }
 
 function helpText(): string {
+  // (docs/80: the teach page's eight lines, then the rules they don't say, as the book's drawer has them.)
   const out = ['HOW IT PLAYS', ''];
-  for (const l of BOARD_RULES) out.push(wrap(cliHint(l)), '');
+  for (const l of [...BOARD_TEACH_LINES, ...BOARD_RULES]) out.push(wrap(cliHint(l)), '');
   out.push(
     'COMMANDS',
     '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] [--profile P] --save F',
-    '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and closing the case adds this night to it)',
+    '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and closing the case adds it)',
     '  look · do <n|words> · page <n> · notebook · grid',
-    '  hint (stars a good next step and says why; unlimited at Raw, three at Coddled, one at Poached, none after)',
-    '  mark "<Name> <hour> at|not|clear [place]" (mark a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
-    '  report (the report: five questions, each with its answers numbered)',
-    '       (choosing "Close the case" opens the report; `do back` puts it away again, free, while you have actions left)',
+    '  hint (unlimited at Raw, three at Coddled, one at Poached, none after)',
+    '  mark "<Name> <hour> at|not|clear [place]" (a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
+    '  report (the five questions, each with its answers numbered; `do back` puts it away, free, while you have actions left)',
     '  close "who=…; caught=…; when=…; how=…; why=…"',
-    '       (each answer a number from `report` or enough of its words; a lost thing asks where=… instead of how=…;',
-    '        caught is who caught them out: who told you what showed the one who did it was lying, or their own second story)',
+    '       (each answer a number from `report` or enough of its words; a lost thing asks where=… instead of how=…)',
     '  story · curtain (once the case is closed)',
   );
   return out.join('\n');
@@ -724,7 +732,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const away = awayText(night, (who as { id: string }).id);
         if (away) fail(away);
         night = commit(io, path, night, [], { picker: (who as { id: string }).id, claim: null, person: null });
-        return { out: lookText(night, path), code: 0 };
+        return { out: lookText(night, path, false), code: 0 };
       }
       case 'report': {
         const night = load(io, path);

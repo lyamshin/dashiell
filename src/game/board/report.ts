@@ -99,9 +99,12 @@ export interface Verdict {
   tally: string;
 }
 
-/** docs/67: the verdict's star, said for a screen reader and beside the glyph: "Gold star: a perfect report, with no hints." */
+/**
+ * docs/67: the verdict's star, said for a screen reader and beside the glyph. docs/80: "A gold star.",
+ * no more: the score and the tally above it say perfect and the hints, and the rules say what earns one.
+ */
 export function starWords(star: Verdict['star']): string {
-  return star === 'gold' ? 'Gold star: a perfect report, with no hints.' : star === 'star' ? 'Star: a perfect report.' : '';
+  return star === 'gold' ? 'A gold star.' : star === 'star' ? 'A star.' : '';
 }
 
 /** docs/67: "11 actions, 2 hints.", "11 actions, no hints.", or at a tier without hints "11 actions." */
@@ -288,7 +291,7 @@ export function notebookLines(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'
  */
 export function blankRule(d: BoardDeal, spent: boolean): string {
   void d;
-  return `${spent ? 'No actions left. ' : ''}Closing the case is final. Leave anything out if you’re not sure: it goes in as “I don’t know”.`;
+  return `${spent ? 'No actions left. ' : ''}Closing the case is final. Anything you leave out goes in as “I don’t know”.`;
 }
 
 /**
@@ -624,7 +627,8 @@ export function fastestSolveLines(d: BoardDeal, run: BoardRun, outcome: Outcome)
   const par = parCalls(d);
   const took = `It took me ${run.used} ${run.used === 1 ? 'action' : 'actions'}`;
   if (outcome !== 'solved') return [`${took}. The fastest solve takes ${par}.`];
-  if (run.used <= par) return [`${took}, and the fastest solve takes ${par}. It can’t be done in fewer.`];
+  // (docs/80: "It can’t be done in fewer." after it said the same again.)
+  if (run.used <= par) return [`${took}, and the fastest solve takes ${par}.`];
   const spare = spareCalls(d, run).slice(0, 3);
   // The questions and searches it skips in one sentence ("It doesn’t ask Quill where she was tonight, or
   // search the floor."); a confrontation in its own, with what it got.
@@ -659,8 +663,12 @@ function spareSaid(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial
       const saw = coat && holder ? `the coat ${nameOf(c, who)} saw go straight to ${holder} at ${hour}` : `what ${nameOf(c, who)} saw at ${hour}`;
       return `${lead}: ${saw} shows where ${victimOf(c).short} went. Confronting ${pr.him} got ${pr.him} to say it.`;
     }
-    if (k?.response === 'refuse') return `${lead}. Confronting ${pr.him} caught ${pr.him} in the lie, even if ${pr.he} wouldn’t say more.`;
-    return `${lead}. Confronting ${pr.him} caught ${pr.him} in the lie.`;
+    // (docs/80: the confront box says confronting "isn’t needed to prove she lied", and this agrees: what
+    // was told already showed it. "Confronting her caught her in the lie" said the opposite, a tester found.)
+    const showed = `${lead}: what I’d been told already showed ${pr.he} was lying.`;
+    if (k?.response === 'admit') return `${showed} Confronting ${pr.him} got ${pr.him} to own up.`;
+    if (k?.response === 'second-lie') return `${showed} Confronting ${pr.him} got another story out of ${pr.him}.`;
+    return showed;
   }
   if (kind === 'list') return `It doesn’t ask ${nameOf(c, rest)} who was in tonight.`;
   if (kind === 'account') return `It doesn’t ask ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight.`;
@@ -692,7 +700,8 @@ function storyLines(d: BoardDeal): string[] {
   const claim = lie ? (personOf(c, p)?.home === lie.claim ? 'home' : placeName(c, lie.claim)) : undefined;
   const motive = personOf(c, p)?.motive;
   if (isMurder(c)) {
-    out.push(`${name} did it. The reason was an old one: ${motive}.`);
+    // (docs/80: the reason said, without "The reason was an old one:" before it on every night.)
+    out.push(`${name} did it, because ${motive}.`);
     // (Round 9, item 6: the weapon as the scene card had it, and nothing it didn't say: "took the landlady’s
     // late husband’s revolver" had a husband nobody had mentioned; the scene said the landlady shows it to
     // any lodger behind with the rent.)
@@ -717,7 +726,15 @@ function storyLines(d: BoardDeal): string[] {
     if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}${back ? `, as if ${pr.he} had never left` : ''}.`);
   } else {
     out.push(`${name} took ${v.short}. ${cap(pastOf(motive ?? ''))}.`);
-    if (atOrigin !== undefined) out.push(`${cap(short)} was at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)} and heard about ${c.means.originText.replace(/^[^;]*; /, '')}.`);
+    if (atOrigin !== undefined) {
+      // (docs/56's open bug, docs/80: the place said once. "heard about the key under the mat, which Vogel
+      // told the room at the Velvet Room about" is "heard Vogel tell the room about the key under the mat";
+      // "the spare key on the nail in the hall at the Delmonico rooms", at the Delmonico rooms, ends at "hall".)
+      const at = placeName(c, c.means.origin);
+      const what = c.means.originText.replace(/^[^;]*; /, '').replace(new RegExp(` at ${at.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), '');
+      const told = /^(.+?), which (.+?) told the room at .+? about$/.exec(what);
+      out.push(`${cap(short)} was at ${at} at ${oclock(atOrigin)} and ${told ? `heard ${told[2]} tell the room about ${told[1]}` : `heard about ${what}`}.`);
+    }
     out.push(`At ${oclock(c.crime.hour)} ${pr.he} let ${pr.self} into ${placeName(c, c.crime.scene)} and came out with ${v.short}.`);
     // Round 6, P11: the handover the watcher saw, in the story too (it went straight from the theft to
     // "ended up with Benny", and the eleven o'clock step the player had found wasn't in it).
@@ -803,6 +820,16 @@ function breakerOf(d: BoardDeal): string {
 /* ------------------------------------------------------------------ *
  * Behind the curtain: the true board, the path and the lies.
  * ------------------------------------------------------------------ */
+
+/**
+ * docs/80: a step's reason without the action its label already says: "Start at the scene.", not "Start
+ * at the scene: search the table." under "Search the table at Dandridge’s place."; "Hauck found him.",
+ * not "…: ask Hauck where he was." An action that says more than the label ("ask Pickering who she
+ * passed on the way") stays.
+ */
+function withoutAct(why: string): string {
+  return why.replace(/: (?:ask [^:]*? (?:where (?:he|she|they) (?:was|were)|who was there)|search [^:]+|confront [^:]+)\.$/, '.');
+}
 
 /** docs/53, addendum: a step's reason as a person says it: "Shapiro saw Tramonti at …", "(Mrs. Krantz said so)", "confront Grasso" (docs/64). */
 function pathWhy(why: string, client: string): string {
@@ -1006,7 +1033,7 @@ export function curtainSheet(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'
       !run || run.asked.includes(`confront:${l.person}@${l.hour}`)
         ? `When you confronted ${pr.him}, ${pr.he} ${would}.`
         : tried
-          ? `You confronted ${pr.him}, but nothing you put to ${pr.him} broke what ${pr.he} said about ${hourWord(l.hour)}, so ${pr.he} stood by it; with something that did, ${pr.he} would have ${wouldHave(k?.response)}.`
+          ? `You confronted ${pr.him}, but nothing you put to ${pr.him} broke what ${pr.he} said about ${hourWord(l.hour)}; if it had, ${pr.he} would have ${wouldHave(k?.response)}.`
           : `You never confronted ${pr.him}; if you had, ${pr.he} would have ${wouldHave(k?.response)}.`;
     return { person: l.person, hour: l.hour, claim: l.claim, truth: l.truth, said: saidParts(c, l.person, l.claim, l.hour), was: `${pr.he} was at ${placeName(c, l.truth)}`, why, confronted };
   });
@@ -1021,7 +1048,7 @@ export function curtainSheet(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'
     const star = hintWords(c, { asked: d.analysis.path.slice(0, i).map((x) => x.q) }, s.q);
     return star ? `${pathWhy(star.replace(' — ', ': ').replace(/^nobody\b/, 'Nobody'), nameOf(c, c.client))}.` : pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
   };
-  const steps: CurtainStep[] = d.analysis.path.map((s, i) => ({ n: String(i + 1), q: s.q, label: `${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'}`, why: stepWhy(s, i) }));
+  const steps: CurtainStep[] = d.analysis.path.map((s, i) => ({ n: String(i + 1), q: s.q, label: `${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'}`, why: withoutAct(stepWhy(s, i)) }));
   if (d.analysis.motive) steps.push({ n: '+', q: d.analysis.motive, label: `${questionById(c, d.analysis.motive)?.label ?? ''}.`, why: '' });
   return {
     sections,

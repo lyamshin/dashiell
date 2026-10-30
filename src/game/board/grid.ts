@@ -226,14 +226,17 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
         return (x && x.place !== c.means.origin) || s.notPlaced.get(`${id}@${h}`)?.has(c.means.origin);
       });
       const meansKnown = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means) || !isMurder(c);
+      // (docs/80, the blind tester: "while it was there" under "Could they get the poison?" left "it" to work
+      // out. A murder's means said by its name: "while the chloral was there", "too late for the revolver".)
+      const it = isMurder(c) ? `the ${c.means.name.replace(/^(?:a|an|the) /, '')}` : 'it';
       if (meansKnown && yes) {
         means = 'yes';
-        meansWhy = `${nameOf(c, id)} was at ${placeName(c, c.means.origin)} while it was there.`;
+        meansWhy = `${nameOf(c, id)} was at ${placeName(c, c.means.origin)} while ${it} was there.`;
       } else if (meansKnown && no) {
         means = 'no';
         // (Round 7, B6: there, but only once it had to be gone, says so.)
         const late = meansLate(c, run, id);
-        meansWhy = late !== undefined ? `${nameOf(c, id)} didn’t come to ${placeName(c, c.means.origin)} till ${hourWord(late)}, too late for it.` : `${nameOf(c, id)} was never at ${placeName(c, c.means.origin)} while it was there.`;
+        meansWhy = late !== undefined ? `${nameOf(c, id)} didn’t come to ${placeName(c, c.means.origin)} till ${hourWord(late)}, too late for ${it}.` : `${nameOf(c, id)} was never at ${placeName(c, c.means.origin)} while ${it} was there.`;
       }
     }
     const isVictim = id === c.crime.victim;

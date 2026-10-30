@@ -158,7 +158,7 @@ describe('book-look, item 1: the CLI says and does the same', () => {
   it('`do back` puts the report away, free; the report page says how', () => {
     const say = at([{ do: RAW12_ROUTE[0] }, { do: 'file' }]);
     const look = say('look').out;
-    expect(look.replace(/\s+/g, ' ')).toContain('Not ready? `do back` puts the report away and goes back to the case. It costs nothing.');
+    expect(look.replace(/\s+/g, ' ')).toContain('Not ready? `do back` goes back to the case, free.');
     expect(say('do', RAW12_ROUTE[1] as string)).toMatchObject({ code: 1, out: 'The case is being closed: `report` shows the form, `close` closes it, and `do back` goes back to the case.' });
     const back = say('do', 'back');
     expect(back.code).toBe(0);

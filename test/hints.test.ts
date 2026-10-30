@@ -361,7 +361,8 @@ describe('docs/67 §3: the profile counts stars and gold stars per tier', () => 
 describe('docs/67 §4: explaining it', () => {
   it('“How this works” has the hint line, and the help says what a hint and a star are', () => {
     expect(BOARD_TEACH_LINES).toContain('Stuck? The Hint button shows you a good next step and why. You get fewer as the cases get harder.');
-    expect(BOARD_RULES).toContain('The Hint button stars a choice worth taking now and says why. A perfect report earns a star; a perfect one with no hints, a gold star.');
+    // (docs/80: the Hint button is the teach line's; the rules say only what a star is.)
+    expect(BOARD_RULES).toContain('A perfect report earns a star; a perfect one with no hints, a gold star.');
     expect(BOARD_RULES.join(' ')).not.toMatch(/A star marks/);
   });
 });
@@ -416,8 +417,8 @@ describe('docs/67 §5: the CLI and the save', () => {
   it('the help names `hint`, and the teach page says it as the CLI has it', () => {
     const files = new Map<string, string>();
     const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, s) => void files.set(p, s) };
-    expect(runPlay(['help'], io).out).toContain('  hint (stars a good next step and says why; unlimited at Raw, three at Coddled, one at Poached, none after)');
-    expect(runPlay(['help'], io).out).toContain('The `hint` command stars a choice worth taking now and says why.');
+    expect(runPlay(['help'], io).out).toContain('  hint (unlimited at Raw, three at Coddled, one at Poached, none after)');
+    expect(runPlay(['help'], io).out).toContain('Stuck? The `hint` command shows you a good next step and why.');
     const out = runPlay(['new', '--seed', '3', '--tier', '0', '--save', 'n'], io).out;
     expect(out).toContain('Stuck? The `hint` command shows you a good next step and why.');
   });

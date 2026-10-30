@@ -66,8 +66,9 @@ describe('docs/71: Poached 17, the testers’ route', () => {
   });
   it('8: the fastest solve asks for Dandridge by the hour that matters', () => {
     const c = curtainOfBoard(d, run).replace(/\s+/g, ' ');
-    expect(c).toContain('Nobody had said where Dandridge was at nine: ask Dandridge where he was.');
-    expect(c).not.toContain('Bidwell saw Dandridge at Moe’s at eight: ask Dandridge');
+    // (docs/80: the reason alone; the step's label is the ask.)
+    expect(c).toContain('Ask Dandridge: where were you tonight? Nobody had said where Dandridge was at nine.');
+    expect(c).not.toContain('Bidwell saw Dandridge at Moe’s at eight');
   });
 });
 
