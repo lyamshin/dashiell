@@ -20,7 +20,7 @@
  * until the grid shows a lie, and the report it files on it.
  */
 
-import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
+import { CASE_TYPES, parsePuzzles, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
@@ -35,7 +35,7 @@ import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader] [--first-liar]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader] [--first-liar] [--puzzles B]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -49,7 +49,9 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   SITUATED.on = values.get('situated') !== '0';
   // docs/60: `--texture full` reads the night with every line of texture, as before the budget.
   setTexture(values.get('texture'));
-  const d = dealBoard(seed, tier, type, world ? { world } : {});
+  // docs/82: `--puzzles B` deals the night with the harder-puzzle prototypes behind the flag.
+  const puzzles = parsePuzzles(values.get('puzzles'));
+  const d = dealBoard(seed, tier, type, { ...(world ? { world } : {}), ...(puzzles.length ? { puzzles } : {}) });
   const c = d.kase;
   let run: BoardRun;
   let commands: string[];

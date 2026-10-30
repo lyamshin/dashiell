@@ -103,12 +103,30 @@ export const INNOCENT_LEADS = 0.6;
 export const ONE_LIAR_SHARE: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.34, 3: 0.34, 4: 0.34, 5: 0.5 };
 
 /**
+ * docs/82 (puzzles B): the designer's one night in six with one liar from Soft-boiled up, drawn so the
+ * share dealt (after the gates refuse some) is about that; Poached as above. Tuned by the rig.
+ */
+export const ONE_LIAR_SHARE_B: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.34, 3: 0.15, 4: 0.22, 5: 0.45 };
+
+/** docs/82: with B, whose broken story the path meets first is an even draw. */
+export const INNOCENT_LEADS_B = 0.5;
+
+/** docs/82: the harder-puzzle prototypes a night can be dealt with, behind a flag (`?puzzles=B`). */
+export const PUZZLES = ['B'] as const;
+
+/** docs/82: B, two broken stories and one killer, applies from Soft-boiled up, and not to the Hard-boiled pair. */
+export function puzzleB(puzzles: readonly string[] | undefined, tier: TierIndex): boolean {
+  return !!puzzles?.includes('B') && tier >= 3;
+}
+
+/**
  * Decided 2026-10-25: whether this attempt deals a one-liar night, on its own stream (docs/69 §1.1). The
  * stream's salt is the first from 0x1a that keeps the 36 nights the tests and docs/46–68 read by seed
  * (the blind testers' nights, the golden's, the reads) dealt as they were: any salt deals the same share.
  */
-export function oneLiarDrawn(seed: number, tier: TierIndex, type: CaseType, attempt: number): boolean {
-  return ONE_LIAR_SHARE[tier] > 0 && new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x13fd4)).chance(ONE_LIAR_SHARE[tier]);
+export function oneLiarDrawn(seed: number, tier: TierIndex, type: CaseType, attempt: number, puzzles?: readonly string[]): boolean {
+  const share = puzzleB(puzzles, tier) ? ONE_LIAR_SHARE_B[tier] : ONE_LIAR_SHARE[tier];
+  return share > 0 && new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x13fd4)).chance(share);
 }
 
 /**
@@ -280,7 +298,7 @@ function veto(why: string): null {
   return null;
 }
 
-export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt: number, world?: WorldCtx): BoardCase | null {
+export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt: number, world?: WorldCtx, puzzles: readonly string[] = []): BoardCase | null {
   const rng = new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt));
   const murder = type === 'murder';
   const windowed = tier >= 3;
@@ -292,6 +310,13 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const variant: 'pair' | 'face' | undefined = tier === 5 ? rng.pick(['pair', 'face'] as const) : undefined;
   // An innocent liar with a secret (Poached up, not the Hard-boiled pair).
   const secretLiar = tier >= 2 && variant !== 'pair';
+  // docs/82 (puzzles B, behind the flag): two broken stories and one killer, from Soft-boiled up. Its
+  // draws are on a stream of their own, so the main stream deals as it does without the flag as far as
+  // it can, and a night without the flag is never touched.
+  const bOn = puzzleB(puzzles, tier) && variant !== 'pair';
+  const bRng = new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0xb0b));
+  // What tells the two stories apart: the hour at Soft-boiled, the means at Medium, either at Hard-boiled.
+  const disc: 'hour' | 'means' | undefined = !bOn ? undefined : tier === 3 ? 'hour' : tier === 4 ? 'means' : bRng.chance(0.5) ? 'hour' : 'means';
 
   // The crime hour, the window the office gives, and the hours the means sat at its origin. In a
   // murder with an innocent liar the means sits there two hours or more, so the culprit and the
@@ -301,6 +326,14 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   // A small case: the thief learns the way in, goes about the evening, and comes back.
   else hc = rng.pick(hours.filter((h) => h >= h0 + 2));
   const window = windowed ? [hc - 1, hc] : [hc];
+  // docs/82 (B): the same window, and the crime at either of its hours, on about half the nights each.
+  // (With the means, the later hour is turned down more often, a liar who's home all evening having
+  // fewer ways to be passed in the street; drawn a little under half, it's dealt about half.)
+  if (bOn && windowed) hc = bRng.chance(disc === 'means' ? 0.42 : 0.5) ? (window[0] as Hour) : (window[1] as Hour);
+  /** docs/82 (B): the window's other hour, where the innocent liar's lie falls when the hour tells them apart. */
+  const hx = windowed ? (window.find((h) => h !== hc) as Hour) : hc;
+  /** docs/82 (B): the hour the innocent liar lies about: the other hour, or with the means, the crime's. */
+  const lieHourL = disc === 'hour' ? hx : hc;
 
   // --- Places, and the setup ------------------------------------------------------------------
   const tags = rng.shuffle(ROLES[tier]);
@@ -320,7 +353,10 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     const wantSecond = !murder && tier <= 1 && rng.chance(0.6);
     const L0 = tags.includes('L');
     worldRefuses = L0 && variant !== 'pair' && !(tier === 2 && murder) && rng.chance(REFUSE_SHARE[tier]);
-    const r = castNight(world, { rng, tier, type, tags, ...(variant ? { variant } : {}), secretLiar, refuses: worldRefuses, admits: L0 && variant !== 'pair' && !worldRefuses, hours, hc, windowed, wantWork, wantSecond });
+    // docs/82 (B): the innocent liar was alone and unwatched: nobody keeps the place, nobody was with them.
+    if (bOn) worldRefuses = false;
+    const bCast = bOn ? { w0: window[0] as Hour, ...(disc === 'means' ? { lHome: true } : {}) } : {};
+    const r = castNight(world, { rng, tier, type, tags, ...(variant ? { variant } : {}), secretLiar, refuses: worldRefuses, admits: L0 && variant !== 'pair' && !worldRefuses && !bOn, hours, hc, windowed, wantWork, wantSecond, ...bCast });
     if ('veto' in r) return veto(r.veto);
     cast = r.cast;
     ({ venue, rooming, u, work, second, sm, rm } = cast);
@@ -343,18 +379,25 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const mode = sm?.mode;
 
   // The hours the means was there to be had.
+  // (docs/82, B: before the window's first hour, whichever of its hours the crime was at.)
+  const before = bOn ? (window[0] as Hour) : hc;
   const avail: Hour[] = murder
-    ? hours.filter((h) => h < (windowed ? hc - 1 : hc))
+    ? hours.filter((h) => h < (bOn ? before : windowed ? hc - 1 : hc))
     : mode === 'party'
       ? [h0]
       : mode === 'told'
-        ? [h0, h0 + 1].filter((h) => h < hc)
-        : hours.filter((h) => h < hc);
+        ? [h0, h0 + 1].filter((h) => h < before)
+        : hours.filter((h) => h < before);
   if (avail.length === 0) return veto('no hours for the means');
 
   const hasL = tags.includes('L');
-  const refuses = world ? worldRefuses : hasL && variant !== 'pair' && !(tier === 2 && murder) && rng.chance(REFUSE_SHARE[tier]);
-  const admits = hasL && variant !== 'pair' && !refuses;
+  let refuses = world ? worldRefuses : hasL && variant !== 'pair' && !(tier === 2 && murder) && rng.chance(REFUSE_SHARE[tier]);
+  // docs/82 (B): nobody keeps the place the innocent liar really was, and nobody was with them, so put to
+  // it they never own up with a name: they refuse, or tell a second lie that breaks too (below).
+  if (bOn) refuses = false;
+  const admits = hasL && variant !== 'pair' && !refuses && !bOn;
+  /** docs/82 (B): the innocent liar, alone and unwatched at the hour they lie about. */
+  const alone = bOn && hasL;
   let names: Named[];
   if (cast) {
     // The bible's people, laid out as the dealt names are: the suspects by role, then the dead man,
@@ -404,7 +447,9 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   };
   const C = idOf('C');
   const cName = nm(tags.indexOf('C'));
-  const worker = cast ? (cast.worker !== undefined ? ids[cast.worker] : undefined) : work ? rng.pick(ids.filter((_, i) => tags[i] !== 'N')) : undefined;
+  let worker = cast ? (cast.worker !== undefined ? ids[cast.worker] : undefined) : work ? rng.pick(ids.filter((_, i) => tags[i] !== 'N')) : undefined;
+  // docs/82 (B, the means): the innocent liar never had it, so it isn't kept where they work.
+  if (!cast && work && disc === 'means' && worker === ids[tags.indexOf('L')]) worker = bRng.pick(ids.filter((_, i) => tags[i] !== 'N' && tags[i] !== 'L'));
   /** docs/48: does this suspect live at the second place, by the bible? (A dealt night draws it.) */
   const lodgesW = (p: PersonId) => !!cast && cast.lodges.has(ids.indexOf(p));
   const N = tags.includes('N') ? idOf('N') : undefined;
@@ -418,17 +463,19 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const U = 'u';
   const H = 'h';
   const YH = 'yhome';
+  /** docs/82 (B, the means): the innocent liar's flat. */
+  const LH = 'lhome';
   // Decided 2026-10-11: whose broken story the path meets first (`BoardCase.lead`), drawn on a
   // stream of its own so nothing else moves. The night is built for it where it can be: the one who
   // leads claims the room the office sends you to first (the bar, or the house where the spare key
   // hangs), and the other claims the second.
-  const lead: 'innocent' | 'culprit' | undefined = hasL && tier >= 2 ? (new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x1e)).chance(INNOCENT_LEADS) ? 'innocent' : 'culprit') : undefined;
+  const lead: 'innocent' | 'culprit' | undefined = hasL && tier >= 2 ? (new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x1e)).chance(bOn ? INNOCENT_LEADS_B : INNOCENT_LEADS) ? 'innocent' : 'culprit') : undefined;
   const firstRoom: PlaceId = mode === 'spare' ? X : B;
   const pet = type === 'lost-pet' ? rng.pick(K.PETS) : undefined;
   const item = type === 'lost-item' ? rng.pick(K.ITEMS) : undefined;
   const thing = (pet ?? item) as { name: string; short: string; where: string; empty: string };
   // docs/48: a place from the bible keeps its own name, street and key, and says which it is.
-  const wp = (slot: 'S' | 'B' | 'X' | 'U' | 'H' | 'YH') => {
+  const wp = (slot: 'S' | 'B' | 'X' | 'U' | 'H' | 'YH' | 'LH') => {
     const n = cast?.placeNames[slot];
     return n ? { name: n.name, short: n.short, street: n.street, key: n.key, world: n.world, ...(n.stage ? { stage: true } : {}) } : undefined;
   };
@@ -439,6 +486,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     if (tier >= 1) places.push({ id: U, kind: u.kind, open: all, ...(wp('U') as NonNullable<ReturnType<typeof wp>>) });
     if (tier >= 4) places.push({ id: H, kind: 'home', open: all, ...(wp('H') as NonNullable<ReturnType<typeof wp>>) });
     if (admits) places.push({ id: YH, kind: 'home', open: all, offBoard: true, ...(wp('YH') as NonNullable<ReturnType<typeof wp>>) });
+    if (alone && disc === 'means') places.push({ id: LH, kind: 'home', open: all, ...(wp('LH') as NonNullable<ReturnType<typeof wp>>) });
   } else {
     if (murder) {
       const sc = rng.pick(K.SCENE_HOMES);
@@ -462,6 +510,13 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       places.push({ id: H, name: `${shortOf(cName)}’s flat on ${street}`, short: `${shortOf(cName)}’s flat`, kind: 'home', open: all, street, key: 'flat' });
     }
     if (admits) places.push({ id: YH, name: `${shortOf(yName)}’s rooms on Broome Street`, short: `${shortOf(yName)}’s rooms`, kind: 'home', open: all, street: 'Broome Street', offBoard: true, key: 'rooms' });
+    // docs/82 (B, the means): the innocent liar's own flat, which nobody watches, where they say they were.
+    if (alone && disc === 'means') {
+      const taken = places.find((p) => p.id === H)?.street;
+      const street = bRng.pick(['Ridge Street', 'Attorney Street', 'Clinton Street', 'Eldridge Street', 'Orchard Street'].filter((x) => x !== taken));
+      const lName = nm(tags.indexOf('L'));
+      places.push({ id: LH, name: `${shortOf(lName)}’s flat on ${street}`, short: `${shortOf(lName)}’s flat`, kind: 'home', open: all, street, key: 'flat' });
+    }
   }
   const placeById = new Map(places.map((p) => [p.id, p]));
   const open = (p: PlaceId, h: Hour) => {
@@ -552,12 +607,28 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     a.set(hc, S);
     // After it, the venue; from Medium up, home. Decided 2026-10-11: a lodger beside an innocent
     // liar goes home too.
-    if (hc < hL) a.set(hc + 1, murder && tier >= 4 ? H : murder && secretLiar && lodges.has(C) ? X : B);
+    // (docs/82, B with the hour: the window's other hour is somewhere a list sees them, never home alone.)
+    const seenAfter = disc === 'hour' && hc + 1 === hx;
+    // (docs/82, B with the hour: the house where it was kept, by preference, so the innocent can say the bar.)
+    const xSeen = open(X, hx) && (visitX || lodges.has(C));
+    if (hc < hL) a.set(hc + 1, seenAfter ? bRng.pick(xSeen ? [X, X, B] : [B]) : murder && tier >= 4 ? H : murder && secretLiar && lodges.has(C) ? X : B);
     // Between the origin and the crime, somewhere they can be seen.
     for (const h of hours) {
       if (h <= h0 || h >= hc || a.has(h)) continue;
-      const opts = (murder ? (tier >= 4 ? [X, B, H] : [X, B]) : tier >= 4 ? [H] : visitX ? [B, X] : [B]).filter((p) => open(p, h));
+      let opts = (murder ? (tier >= 4 ? [X, B, H] : [X, B]) : tier >= 4 ? [H] : visitX ? [B, X] : [B]).filter((p) => open(p, h));
+      if (disc === 'hour' && h === hx) {
+        opts = opts.filter((p) => p !== H && (p !== X || visitX || lodges.has(C)));
+        if (opts.includes(X)) opts = [X, X, ...opts];
+      }
       a.set(h, pick(opts.length ? opts : [B]));
+    }
+    // docs/82 (B): a thief from Medium up sells it at the venue the hour after and goes home after that,
+    // when the crime was at the window's first hour and there's no hour before it to be home in.
+    if (bOn && !murder && tier >= 4 && hc + 2 <= hL && ![...a.values()].includes(H) && !a.has(hc + 2)) a.set(hc + 2, H);
+    // (And from Medium up the culprit is at home some hour of the evening, the flat they say they were in.)
+    if (bOn && tier >= 4 && !Object.values(evening(a, base, B)).includes(H)) {
+      const free = hours.find((h) => !a.has(h) && h !== hx && h !== hc);
+      if (free !== undefined) a.set(free, H);
     }
     // A lodger at the origin is out for an hour while it's there to be had, so the innocent liar
     // can have been there apart from them.
@@ -611,13 +682,22 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const rAtHc = tier === 1 && open(X, hc) ? X : B;
   // An innocent liar lodges at the rooming house sometimes, so a cover story there is a lie about
   // their own home (4a.2: a lie claims somewhere the liar would plausibly be).
-  const lLodges = !!L && xRooming && variant !== 'pair' && !lodges.has(C) && (cast ? lodgesW(L) : rng.chance(0.5));
+  let lLodges = !!L && xRooming && variant !== 'pair' && !lodges.has(C) && (cast ? lodgesW(L) : rng.chance(0.5));
+  // docs/82 (B, the means): the innocent liar never had it, so they don't lodge where it was kept, nor work there.
+  if (disc === 'means') {
+    lLodges = false;
+    if (L && worker === L) return veto('the liar works where the means was');
+  }
+  // docs/82 (B, the hour): where the culprit was at the window's other hour is somewhere the innocent
+  // liar doesn't claim then. A liar who doesn't lodge at the house can only say the bar, so the culprit
+  // was at the house.
+  if (disc === 'hour' && L && (!lLodges || tier === 5) && rows[C]?.[hx] === B && open(X, hx) && (visitX || lodges.has(C))) (rows[C] as Record<Hour, PlaceId>)[hx] = X;
   for (const { t, id, k } of others) {
     const a = new Map<Hour, PlaceId>();
     let base: PlaceId = B;
     // The liar hears or takes it apart from the culprit.
     const accessHours = t === 'L' && secretLiar && origin !== S ? avail.filter((h) => rows[C]?.[h] !== origin) : avail;
-    if (!murder && t !== 'N') {
+    if (!murder && t !== 'N' && !(t === 'L' && disc === 'means')) {
       if (t === 'L' && accessHours.length === 0 && id !== resident) return veto('the liar can’t learn the way in apart from the culprit');
       smallAccess(id, a, accessHours);
     }
@@ -640,6 +720,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       } else base = pick(visitX ? [B, X] : [B]);
       const where = hbAt(t, k) ?? (tier === 1 ? rAtHc : B);
       a.set(hc, where);
+      // docs/82 (B with the hour, Hard-boiled): the face at the bar is there at the window's other hour too.
+      if (disc === 'hour' && tier === 5 && where === B && variant === 'face' && !a.has(hx)) a.set(hx, B);
       if (where === X && !murder && kindOf(X) === 'home') {
         base = X;
         lodges.add(id);
@@ -660,6 +742,72 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
         a.set(hc - 1, away);
         a.set(hc, B);
       } else a.set(hc, hbAt(t, k) ?? B);
+      // docs/82 (B): the innocent liar was alone at the secret place at the hour they lie about.
+      if (alone && base === U && !a.has(lieHourL)) a.set(lieHourL, B);
+    } else if (t === 'L' && alone) {
+      // docs/82 (B): alone and unwatched at the hour they lie about, at the place of their secret,
+      // where nobody keeps a list and nobody was with them.
+      if (disc === 'hour') {
+        // Both had the means: at the origin while it was there, but never when the culprit was.
+        if (murder && worker !== id && accessHours.length === 0) return veto('the liar can’t reach the origin apart from the culprit');
+        if (lLodges) {
+          lodges.add(id);
+          base = X;
+        }
+        if (!murder && !lLodges) base = pick(visitX ? [B, X] : [B]);
+        // At the crime hour, somewhere a list (or a neighbour who sat in all evening) sees them; at the
+        // window's other hour, alone at the secret place. Of the evenings that fit (two moves at most,
+        // never where the culprit is), one where both stories have somewhere to claim: the culprit not
+        // where the liar was at the crime hour, the liar not where the culprit was at the other.
+        const cRow = rows[C] as Record<Hour, PlaceId>;
+        const cx = cRow[hx] as PlaceId;
+        const cPlausX = lodges.has(C) || (worker === C && open(X, hc));
+        const lPlausX = lLodges || (worker === id && open(X, hx));
+        const options: Map<Hour, PlaceId>[] = [];
+        const lodgeHome = lLodges ? X : undefined;
+        for (const ah of murder && worker !== id ? accessHours : [undefined]) {
+          for (const pw of [X, B]) {
+            if (!open(pw, hc) || (pw === X && !visitX && !lLodges)) continue;
+            if (tier === 5 ? pw !== X : pw === B && !cPlausX) continue;
+            if (cx === B && (!lPlausX || tier === 5)) continue;
+            const m = new Map(a);
+            if (ah !== undefined) m.set(ah, X);
+            if (m.get(hx) !== undefined && m.get(hx) !== U) continue;
+            if (m.get(hc) !== undefined && m.get(hc) !== pw) continue;
+            m.set(hx, U);
+            m.set(hc, pw);
+            // Every evening the free hours allow: the bar, the house (to visit, or home), the secret place
+            // next to the hour there; never where the culprit is, never anywhere shut. (The secret place
+            // next to it puts it in their own story, with nobody there to ask; without it, the crime at the
+            // later hour has no evening that fits on four nights in five.)
+            const free = hours.filter((h) => !m.has(h));
+            const choices = (h: Hour): PlaceId[] =>
+              [...new Set([...(lodgeHome ? [lodgeHome] : []), B, ...(visitX || lLodges ? [X] : []), ...(Math.abs(h - hx) === 1 ? [U] : [])])].filter((q) => open(q, h) && q !== cRow[h] && !(q === X && murder && avail.includes(h) && h !== ah && cRow[h] === X));
+            const walk = (i: number, row: Record<Hour, PlaceId>): void => {
+              if (i === free.length) {
+                if (moves(row, hours) <= 2) options.push(new Map(hours.map((h) => [h, row[h] as PlaceId])));
+                return;
+              }
+              const h = free[i] as Hour;
+              for (const q of choices(h)) walk(i + 1, { ...row, [h]: q });
+            };
+            const fixed = Object.fromEntries([...m.entries()]) as Record<Hour, PlaceId>;
+            if (hours.some((h) => fixed[h] !== undefined && fixed[h] === cRow[h] && !(mode === 'party' && h === h0))) continue;
+            walk(0, fixed);
+          }
+        }
+        if (options.length === 0) return veto('no evening for the liar that fits');
+        for (const [h, q] of bRng.pick(options)) a.set(h, q);
+      } else {
+        // The means: never where it was kept while it was there. Home, in a flat nobody watches, but
+        // for the hour of the secret; sometimes out at the bar for the window's other hour.
+        base = LH;
+        a.set(hc, U);
+        if (open(B, hx) && rows[C]?.[hx] !== B && bRng.chance(0.4)) a.set(hx, B);
+        // (Home after it, so the secret place is in nobody's story, theirs included: a place a story
+        // names and nobody keeps sends the player there for nothing.)
+        if (hc < hL && !a.has(hc + 1)) a.set(hc + 1, LH);
+      }
     } else if (t === 'L') {
       if (murder && worker !== id) {
         // At the origin while the means was there, but never when the culprit was.
@@ -740,13 +888,15 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   }
   if (moves(rows[C] as Record<Hour, PlaceId>, hours) > 3) return veto('the culprit moves too often');
   // Rule 1: the board's places are the places people were. None sits empty all night.
-  for (const pl of places) if (!boardPeople.some((p) => hours.some((h) => at(p, h) === pl.id))) return veto('a place sits empty');
+  for (const pl of places) if (!boardPeople.some((p) => hours.some((h) => at(p, h) === pl.id))) return veto(bOn ? `a place sits empty (${pl.id})` : 'a place sits empty');
   if (withAt(S, hc, C).some((x) => x !== V)) return veto('company at the scene at the crime');
   if (N && murder && avail.some((h) => at(N, h) === X)) return veto('the outsider had access');
   if (N && !murder && (guests.has(N) || residentAtScene.includes(N) || avail.some((h) => at(N, h) === origin))) return veto('the outsider had access');
   if (tier === 1 && N && withAt(U, hc, N).length > 0) return veto('the outsider had company');
   // Decided 2026-09-28: nothing but the resolution places the innocent liar at the lied hour.
-  if (L && variant !== 'pair' && withAt(U, hc, L).some((x) => x !== Y)) return veto('somebody else at the secret place');
+  if (L && variant !== 'pair' && !alone && withAt(U, hc, L).some((x) => x !== Y)) return veto('somebody else at the secret place');
+  // docs/82 (B): the innocent liar was alone where they really were, at the hour they lie about.
+  if (alone && L && (at(L, lieHourL) !== U || withAt(U, lieHourL, L).length > 0)) return veto('the liar wasn’t alone at the secret place');
   // Decided 2026-10-11: a refuser's secret place is in nobody's story but their own, so their
   // broken story is what sends you to its keeper.
   if (refuses && L && hours.some((h) => withAt(U, h, L).length > 0)) return veto('somebody else at a refuser’s secret place');
@@ -757,8 +907,9 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   // Decided 2026-10-11: in the pair, the barman knows the culprit's friend only by face. So their
   // own story is what puts a name to the face at the bar, and the two broken stories are met
   // together or the friend's first, never the culprit's alone.
-  const faceOf = variant === 'face' ? suspects.find((p) => p !== C && at(p, hc) === B) : variant === 'pair' ? L : undefined;
-  if (variant && (!faceOf || at(faceOf, hc) !== B || withAt(B, hc, faceOf).length > 0)) return veto('no face');
+  // (docs/82, B with the hour: the innocent liar may be at the bar at the crime hour too, by name.)
+  const faceOf = variant === 'face' ? suspects.find((p) => p !== C && !(alone && p === L) && at(p, hc) === B) : variant === 'pair' ? L : undefined;
+  if (variant && (!faceOf || at(faceOf, hc) !== B || withAt(B, hc, faceOf).some((x) => !(alone && x === L)))) return veto('no face');
 
   // --- People (needed for pronouns in the reasons) ------------------------------------------------
   const people: Person[] = [];
@@ -808,6 +959,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
         ? `lodges with ${fullOf(clientName)}`
         : id === C && tier >= 4
           ? `lives at ${(placeById.get(H) as Place).short}`
+          : t === 'L' && alone && disc === 'means'
+            ? `lives at ${(placeById.get(LH) as Place).short}`
           : cast
             ? `lives at ${worldHomeShort((world as WorldCtx).bible, cast.suspects[i] as BiblePerson)}`
             : `lives on ${streets[i % streets.length]}`;
@@ -853,9 +1006,9 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       foundAt: id === C && tier >= 4 ? H : id === C && murder && secretLiar && lodges.has(C) ? X : last === S ? B : last,
       motive,
       female: n.female,
-      ...(lodges.has(id) ? { home: X } : residentAtScene.includes(id) ? { home: S } : id === C && tier >= 4 ? { home: H } : {}),
+      ...(lodges.has(id) ? { home: X } : residentAtScene.includes(id) ? { home: S } : id === C && tier >= 4 ? { home: H } : t === 'L' && alone && disc === 'means' ? { home: LH } : {}),
       ...((id === worker && work) || (secondWorker && kindOf(X) === 'work') ? { works: X } : {}),
-      ...(t === 'L' ? { secret: fill(variant === 'pair' ? `covering for ${shortOf(cName)}, who is owed a favour` : u.secret, n) } : {}),
+      ...(t === 'L' ? { secret: fill(variant === 'pair' ? `covering for ${shortOf(cName)}, who is owed a favour` : alone ? (u.alone ?? u.secret) : u.secret, n) } : {}),
       ...(cast ? { world: (cast.suspects[i] as BiblePerson).id, ...(worldMotive.get(id) as object) } : {}),
     });
   });
@@ -1034,8 +1187,18 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     return k === 'home' && comp.some((x) => personOf(x)?.home === pl);
   };
   let cClaim: PlaceId;
-  if (variant === 'pair' || tier === 4) cClaim = H;
-  else {
+  if (variant === 'pair' || tier === 4 || disc === 'means') cClaim = H;
+  else if (alone && L) {
+    // docs/82 (B, the hour): the culprit's lie at the crime hour, the innocent's at the window's other;
+    // both somewhere a list covers, so both fall to the same kind of answer, and never where the other
+    // says they were at that hour. At Hard-boiled, both the bar, whose list has a face at both hours: a
+    // coat that broke only the culprit's story would tell them apart.
+    const lAt = at(L, hc) as PlaceId;
+    const cands = [B, X].filter((pl) => checkable(pl, hc) && plausible(C, pl, hc) && pl !== lAt && (tier !== 5 || pl === B));
+    if (cands.length === 0) return veto('nowhere checkable and plausible for the culprit to claim');
+    const fits = lead ? cands.filter((pl) => (pl === firstRoom) === (lead === 'culprit')) : [];
+    cClaim = bRng.pick(fits.length > 0 ? fits : cands);
+  } else {
     let cands = [B, X].filter((pl) => checkable(pl, hc) && plausible(C, pl, hc));
     if (tier === 1 && cands.some((pl) => pl !== rAtHc)) cands = cands.filter((pl) => pl !== rAtHc);
     if (cands.length === 0) return veto('nowhere checkable and plausible for the culprit to claim');
@@ -1049,7 +1212,23 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     company: variant === 'pair' && L ? [L] : [],
     ...(variant === 'pair' ? { reason: 'had a game of gin at home' } : {}),
   });
-  if (L && tier >= 2) {
+  if (alone && L) {
+    // docs/82 (B): the innocent liar's cover. With the hour, somewhere a list covers at the window's
+    // other hour, never where the culprit was then; with the means, home, which nobody watches, as the
+    // culprit says too. Either way, after midnight both are back where they say they were.
+    let cover: PlaceId;
+    if (disc === 'hour') {
+      const cAt = at(C, hx) as PlaceId;
+      const cands = [B, X].filter((pl) => checkable(pl, hx) && plausible(L, pl, hx) && pl !== cAt && (tier !== 5 || pl === B));
+      if (cands.length === 0) return veto('nowhere checkable and plausible for the liar’s cover');
+      const fits = lead ? cands.filter((pl) => (pl === firstRoom) === (lead === 'innocent')) : [];
+      cover = bRng.pick(fits.length > 0 ? fits : cands);
+    } else cover = LH;
+    lies.push({ person: L, hour: lieHourL, kind: 'secret', truth: U, claim: cover });
+    claimOverride.set(`${L}@${lieHourL}`, { place: cover, company: [] });
+    personOf(L).foundAt = cover;
+    personOf(C).foundAt = cClaim;
+  } else if (L && tier >= 2) {
     if (variant === 'pair') {
       lies.push({ person: L, hour: hc, kind: 'pair', truth: at(L, hc) as PlaceId, claim: H });
       claimOverride.set(`${L}@${hc}`, { place: H, company: [C], reason: `went round to ${shortOf(cName)}’s for a game of gin` });
@@ -1125,7 +1304,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   // after, or, after the board's last hour, where the culprit goes then: home from a murder, the venue
   // with a lost thing). The scene's own street where the walks can cross on it; else the street
   // nearest the scene they both come near. Two walks that never come near each other pass nobody.
-  if (tier === 4 && N) {
+  if (tier === 4 && N && !bOn) {
     const at = (p: PlaceId) => placeSpot(placeById.get(p), p);
     const nRow = rows[N] as Record<Hour, PlaceId>;
     const cRow = rows[C] as Record<Hour, PlaceId>;
@@ -1142,6 +1321,50 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       side: true,
     });
   }
+  // docs/82 (B, the means): both say they were home, where nobody watches, and a passer-by saw each of
+  // them out: the same kind of answer breaks both stories. Whoever walked over somewhere at the crime
+  // hour, on a way that crossed theirs; two people where two can, else one who saw them both.
+  if (alone && L && disc === 'means') {
+    const spot = (p: PlaceId) => placeSpot(placeById.get(p), p);
+    const targets = [
+      { who: C, mid: S, home: murder ? H : B, claim: H, name: cName },
+      { who: L, mid: U, home: LH, claim: LH, name: nm(tags.indexOf('L')) },
+    ];
+    const ways = (t: (typeof targets)[number]): [Spot, Spot][] => {
+      const row = rows[t.who] as Record<Hour, PlaceId>;
+      const before = row[(hc - 1) as Hour];
+      const after = row[(hc + 1) as Hour] ?? t.home;
+      return [...(before !== undefined && before !== t.mid ? [[spot(before), spot(t.mid)] as [Spot, Spot]] : []), ...(after !== t.mid ? [[spot(t.mid), spot(after)] as [Spot, Spot]] : [])];
+    };
+    const walkers = suspects.filter((p) => {
+      if (p === C || p === L) return false;
+      const row = rows[p] as Record<Hour, PlaceId>;
+      const from = row[(hc - 1) as Hour];
+      const to = row[hc] as PlaceId;
+      return from !== undefined && from !== to && to !== U && to !== S;
+    });
+    // (The street nearest the scene where the two walks could cross, for both: the innocent's sighting
+    // is put as near the dead man's door as the culprit's is, where the walks allow it, so "seen on his
+    // street" isn't what tells them apart.)
+    const crossing = (w: PersonId, t: (typeof targets)[number]): string | undefined => {
+      const row = rows[w] as Record<Hour, PlaceId>;
+      return crossingStreet([spot(row[(hc - 1) as Hour] as PlaceId), spot(row[hc] as PlaceId)], spot(S), ways(t));
+    };
+    const options = targets.map((t) => walkers.filter((w) => crossing(w, t) !== undefined));
+    if (options.some((o) => o.length === 0)) return veto('no passer-by comes near one of the two liars’ ways');
+    const pairs: [PersonId, PersonId][] = [];
+    for (const a of options[0] as PersonId[]) for (const b of options[1] as PersonId[]) pairs.push([a, b]);
+    const apart = pairs.filter(([a, b]) => a !== b);
+    const [wc, wl] = bRng.pick(apart.length > 0 ? apart : pairs);
+    const said = targets.map((t, i) => ({ t, w: i === 0 ? wc : wl }));
+    for (const { t, w } of bRng.shuffle(said)) {
+      accountOf(w).remarks.push({
+        text: `Walking over to ${short_(rows[w]?.[hc] as PlaceId)} at ${fmtHour(hc)} I passed ${shortOf(t.name)} on ${crossing(w, t) as string}, going fast, no hat.`,
+        facts: [{ k: 'notAt', p: t.who, h: hc, place: t.claim }],
+        side: true,
+      });
+    }
+  }
   // The pet's keeper: the last sighting away from the scene.
   if (company.includes(KP) && pet) {
     accountOf(KP).remarks.push({
@@ -1149,6 +1372,11 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       facts: [{ k: 'at', p: V, h: hc - 1, place: X }],
       side: false,
     });
+    // docs/82 (B): with the crime at the window's first hour, she looked in at its second, and it was gone.
+    if (bOn && hc === window[0]) {
+      const pp = pet.male ? { he: 'he', his: 'his' } : { he: 'she', his: 'her' };
+      accountOf(KP).remarks.push({ text: `A little before ${fmtHour(hc + 1)} I looked in on ${pet.short} with ${pp.his} supper, and ${pp.he} was gone.`, facts: [], side: false, done: hc + 1 });
+    }
   }
 
   // --- People at watched places who aren't rows (4a.2: the lists leave nobody out) -----------------
@@ -1168,7 +1396,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       out[h] = [
         ...boardPeople
           .filter((x) => at(x, h) === place)
-          .map((x): ListEntry => (faceOf && x === faceOf && h === hc && place === B ? { look: personOf(x).look as string } : { person: x })),
+          .map((x): ListEntry => (faceOf && x === faceOf && (h === hc || (disc === 'hour' && h === hx)) && place === B ? { look: personOf(x).look as string } : { person: x })),
         ...otherList.filter((o) => o.at[h] === place).map((o): ListEntry => ({ other: o.id })),
       ];
     }
@@ -1189,6 +1417,22 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   // 2026-10-11: what sends the player there is the refuser's own story, which has them there an hour
   // either side of the lie (4a.2's barman's remark, "she goes on to the Palace most nights", sent
   // you there without it, and so their broken story was never needed).
+  // docs/82 (B): with the crime at the window's first hour, the barman sent the boy round with what the
+  // dead man left behind at its second, and the boy saw him on his floor: it was done by then.
+  if (bOn && murder && windowed && hc === window[0]) {
+    const left = bRng.pick(['hat', 'gloves', 'umbrella', 'newspaper', 'cigarette case', 'change']);
+    // (How the boy saw him is how he was found: in his chair with a drink, on the floor shot, by the door stabbed.)
+    const kind = work ? (work.means === 'gun' ? 'gun' : 'poison') : (rm?.kind ?? 'poison');
+    const lay = kind === 'gun' ? 'on the floor with his eyes open' : kind === 'blade' ? 'face down by the door' : 'in his chair with his eyes open';
+    // (Said so the hour is plain, and whom "he" means: the boy was back before the later hour began.)
+    const V0 = shortOf(victimName);
+    barRemarks.push({
+      text: ofDead(`A little before ${fmtHour(hc + 1)} I sent the boy round to ${V0}’s with the ${left} he left here. The boy was back by ${fmtHour(hc + 1)}: ${V0} was ${lay}, and didn’t answer when the boy called. I should have gone myself.`, victimName),
+      facts: [],
+      side: false,
+      done: hc + 1,
+    });
+  }
   lists.push({ watcher: barkeep, place: B, entries: entriesAt(B), remarks: barRemarks });
 
   // --- The means ------------------------------------------------------------------------------------
@@ -1282,7 +1526,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     lines.push({ kind, id, text: line, vars });
   };
   const programme = rng.pick(K.PROGRAMMES);
-  const hourVars = { hc: fmtHour(hc), a: fmtHour(hc - 1), b: fmtHour(hc), programme, client: shortOf(clientName) };
+  // (docs/82, B: the window's own two hours, whichever of them the crime was at.)
+  const hourVars = { hc: fmtHour(hc), a: fmtHour(bOn ? (window[0] as Hour) : hc - 1), b: fmtHour(bOn ? (window[1] as Hour) : hc), programme, client: shortOf(clientName) };
   const who = { client: shortOf(clientName), clientFull: `${fullOf(clientName)}` };
   let clockId: string;
   let pointerKind: string;
@@ -1405,7 +1650,12 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     if (lie.person === C) {
       // The second lie goes somewhere else watched and plausible, but never where the innocent liar claims.
       const coverL = lies.find((l) => l.kind === 'secret')?.claim;
-      const alt = [B, X].find((pl) => pl !== lie.claim && pl !== coverL && lists.some((l) => l.place === pl) && at(C, hc) !== pl && checkable(pl, hc) && plausible(C, pl, hc));
+      // (docs/82, B: nor where the innocent liar says they were at that hour, truly or not.)
+      const lSays = alone && L ? accountOf(L).claims[hc]?.place : undefined;
+      const alt0 = [B, X].find((pl) => pl !== lie.claim && pl !== coverL && pl !== lSays && lists.some((l) => l.place === pl) && at(C, hc) !== pl && checkable(pl, hc) && plausible(C, pl, hc));
+      // (docs/82, B: the culprit tries a second story as often as the innocent liar does, about half the
+      // time there's one to try, so how they answer doesn't tell them apart.)
+      const alt = alt0 && alone && !bRng.chance(0.5) ? undefined : alt0;
       const second2 = alt
         ? { text: `All right, I wasn’t at ${short_(lie.claim)}. I was at ${short_(alt)}.`, collidesWith: `${personOf(lists.find((l) => l.place === alt)?.watcher as string).short}’s list at ${hc}`, place: alt }
         : undefined;
@@ -1429,6 +1679,14 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
           ...(second2 ? { secondLie: second2 } : {}),
         });
       }
+    } else if (alone && lie.person === L) {
+      // docs/82 (B): nobody to name. Put to it, they refuse, as the culprit may, or try another place
+      // a list covers, which breaks too; never the place they really were.
+      const h = lie.hour;
+      const cSays = accountOf(C).claims[h]?.place;
+      const alt = [B, X].find((pl) => pl !== lie.claim && pl !== cSays && lists.some((l) => l.place === pl) && at(lie.person, h) !== pl && checkable(pl, h) && plausible(lie.person, pl, h));
+      const second2 = alt && bRng.chance(0.5) ? { text: `All right, I wasn’t at ${short_(lie.claim)}. I was at ${short_(alt)}.`, collidesWith: `${personOf(lists.find((l) => l.place === alt)?.watcher as string).short}’s list at ${h}`, place: alt } : undefined;
+      confrontations.push({ person: lie.person, hour: h, response: second2 ? 'second-lie' : 'refuse', text: second2 ? `“${second2.text}”` : '“I’ve told you where I was.”', facts: [], ...(second2 ? { secondLie: second2 } : {}) });
     } else if (lie.kind === 'pair') {
       // Covering for a friend: they stick to it.
       confrontations.push({ person: lie.person, hour: hc, response: 'refuse', text: `“I told you. We were at ${shortOf(cName)}’s, playing gin.”`, facts: [] });
@@ -1544,6 +1802,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     setup,
     ...(lead ? { lead } : {}),
     ...(world ? { world: world.name } : {}),
+    ...(bOn ? { puzzles: [...puzzles], ...(disc ? { discriminator: disc } : {}) } : {}),
   };
   return c;
 }

@@ -9,7 +9,7 @@
  * Nothing here touches the DOM.
  */
 
-import { analyse, generateBoard, type Analysis } from '../../gen/board/index.js';
+import { analyse, generateBoard, parsePuzzles, type Analysis } from '../../gen/board/index.js';
 import type { BoardCase, CaseType, Hour, Person, PersonId, Place, PlaceId, TierIndex } from '../../gen/board/types.js';
 import { TIER_NAMES } from '../../gen/board/types.js';
 import { fmtHour } from '../../gen/board/solver.js';
@@ -144,6 +144,11 @@ const DEALT = new Map<string, BoardDeal>();
 export interface DealWorld {
   world?: string;
   avoid?: { culprits?: string[]; victims?: string[] };
+  /**
+   * docs/82: the harder-puzzle prototypes to deal with (`['B']`), behind a flag, off by default. Without
+   * them the night is main's, word for word.
+   */
+  puzzles?: readonly string[];
 }
 
 /** The bible ids a night's culprit and wronged party (the dead man, or the owner) were cast from. */
@@ -170,13 +175,14 @@ export function keepsContinuity(c: BoardCase, avoid: DealWorld['avoid']): boolea
  * night carries (and the link that shares it) is always the night itself.
  */
 export function dealBoard(seed: number, tier: TierIndex, type?: CaseType, w: DealWorld = {}): BoardDeal {
-  const key = `${seed}|${tier}|${type ?? ''}|${w.world ?? ''}|${JSON.stringify(w.avoid ?? {})}`;
+  const puzzles = parsePuzzles(w.puzzles);
+  const key = `${seed}|${tier}|${type ?? ''}|${w.world ?? ''}|${JSON.stringify(w.avoid ?? {})}${puzzles.length ? `|${puzzles.join(',')}` : ''}`;
   const hit = DEALT.get(key);
   if (hit) return hit;
   const ctx = w.world ? worldCtx(w.world) : undefined;
   const made = new Map<number, ReturnType<typeof generateBoard>>();
   const make = (s: number) => {
-    if (!made.has(s)) made.set(s, generateBoard(s, tier, { ...(type ? { type } : {}), ...(ctx ? { world: ctx } : {}) }));
+    if (!made.has(s)) made.set(s, generateBoard(s, tier, { ...(type ? { type } : {}), ...(ctx ? { world: ctx } : {}), ...(puzzles.length ? { puzzles } : {}) }));
     return made.get(s) ?? null;
   };
   // Continuity as far as the bible allows it: the whole of it over the next sixteen seeds, then the
