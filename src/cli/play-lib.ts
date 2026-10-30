@@ -750,7 +750,8 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         let night = load(io, path);
         const who = night.d.kase.people.find((p) => fold(p.short) === fold(arg ?? ''));
         if (!who) fail(`Nobody here called ${arg}.`);
-        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I have disagrees with what ${(who as { short: string }).short} said.`);
+        // (docs/83: with puzzles A anybody whose story is held can be confronted; the book doesn't say whether anything disagrees.)
+        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(factsOnly(night.d.kase) ? `I haven’t heard ${(who as { short: string }).short}’s story yet.` : `Nothing I have disagrees with what ${(who as { short: string }).short} said.`);
         // Round 7, B1: confronting somebody is done to their face. Refused here, with where they are,
         // never opened and then dropped when the last pick finds them gone (the book offers it only
         // in the room with them).
