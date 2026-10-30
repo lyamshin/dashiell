@@ -108,6 +108,8 @@ export interface BoardGrid {
   meansHead?: string;
   /** docs/83: the means as facts: where it came from, and what the one who keeps that place said of it. */
   meansFacts?: string[];
+  /** docs/83: where the means came from, once it's known. */
+  meansOrigin?: PlaceId;
 }
 
 /** A title before a name, never a label of its own ("Dr." and "Miss" were codes, round 7). */
@@ -418,7 +420,7 @@ export function factGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'v
       const line = lines.find((x) => x.id === `list:${l.watcher}@${h}`);
       if (!line) continue;
       const es = l.entries[h] ?? [];
-      const names = es.map((e) => ('look' in e ? `somebody ${e.look}` : 'other' in e ? strangerName(entryName(c, e)) : short(entryName(c, e))));
+      const names = es.map((e) => ('look' in e ? `somebody ${e.look}` : short(entryName(c, e))));
       row.hours[h] = { names, ...(shutAt(c, l.place, h) ? { shut: true } : {}), line: lineShown(c, run, line) };
       void listExhaustive;
     }
@@ -454,17 +456,13 @@ export function factGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'v
     places,
     meansHead: meansKnown ? `at ${codes[origin] ?? placeName(c, origin)}` : '',
     meansFacts,
+    ...(meansKnown ? { meansOrigin: origin } : {}),
   };
 }
 
 /** In the places view a regular is his name, as the notebook has him: "Pardo", not "Pardo who buys things". */
 function short(n: string): string {
   return n.replace(/^(Lou|Pardo|Benny)\b.*$/, '$1');
-}
-
-/** A stranger on a list, as the watcher said them: "a man I didn’t know". */
-function strangerName(n: string): string {
-  return n;
 }
 
 /* ------------------------------------------------------------------ *
@@ -696,7 +694,7 @@ function factGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visi
   out.push('');
   out.push(gridKey(g).join('  ·  '));
   out.push(`? the ${g.window.length > 1 ? 'hours' : 'hour'} ${g.givenBy} gave`);
-  if (g.meansHead) out.push(`The last column: who somebody saw ${g.meansHead}, and when.${(g.meansFacts ?? []).length ? ` ${(g.meansFacts ?? []).join(' ')}` : ''}`);
+  if (g.meansOrigin) out.push(`The last column: when somebody saw them at ${placeName(c, g.meansOrigin)}, and whether they live or work there.${(g.meansFacts ?? []).length ? ` ${(g.meansFacts ?? []).join(' ')}` : ''}`);
   out.push(CLASH_MARK);
   if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
   const shown = shownPlaces(g);
