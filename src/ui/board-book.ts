@@ -37,7 +37,7 @@ import {
 import { recapClauses } from '../game/board/pages.js';
 import { nameInFull, peopleLine } from '../game/board/gloss.js';
 import { BACK_TO_CASE, blankReport, boardFields, canGoBack, chargeLines, fastestSolveLines, notebookLines, reportFrom, scoreBoard, storyOfBoard, type FieldKey, type Verdict } from '../game/board/report.js';
-import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachB, teachLines } from '../game/board/teach.js';
+import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachA, teachB, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
 import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
@@ -234,8 +234,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     selected = null;
     pickerOpen = false;
     pickerClaim = null;
-    // (docs/82: a fresh night with puzzles B, from Soft-boiled up, opens on the teach page, for the line B adds.)
-    screen = run.filed ? { kind: 'verdict', verdict: scoreBoard(d, run, run.filed) } : !same && (teachOn(loadProfile(store), tier) || teachB(d.kase) !== null) ? { kind: 'teach' } : { kind: 'book' };
+    // (docs/82: a fresh night with puzzles B, from Soft-boiled up, opens on the teach page, for the line B adds.
+    // docs/83: and with A, from Poached up, for A's.)
+    screen = run.filed ? { kind: 'verdict', verdict: scoreBoard(d, run, run.filed) } : !same && (teachOn(loadProfile(store), tier) || teachB(d.kase) !== null || teachA(d.kase) !== null) ? { kind: 'teach' } : { kind: 'book' };
     writeUrl();
     render();
   }
@@ -325,6 +326,33 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     run = { ...run, marks };
     writeSaved(store, saved);
     renderInPlace();
+  }
+
+  /**
+   * docs/83 (puzzles A): the player's own mark that a cell doesn't fit, or taken off. Free; the save keeps it
+   * as a command, in order, so a reload marks the same. The first that's a real clash brings the turn, a
+   * page of its own, and the book turns to it; any other mark changes nothing and says nothing.
+   */
+  function clashMark(person: string, hour: number, on: boolean): void {
+    if (!d || !run || !saved || run.filed) return;
+    const cmd = `clash ${person} ${hour}${on ? '' : ' off'}`;
+    const r = stepBoard(d, run, cmd);
+    if (r.error) return;
+    const turnedNow = r.run.log.length > run.log.length;
+    run = { ...r.run, marks: saved.marks };
+    saved = { ...saved, commands: [...saved.commands, cmd] };
+    writeSaved(store, saved);
+    if (!turnedNow) {
+      renderInPlace();
+      return;
+    }
+    turned = run.log.length - 1;
+    openCell = null;
+    justSpent = 0;
+    notebookShown(false);
+    focusNext = { to: 'page' };
+    render();
+    root.querySelector('.page--prose')?.scrollTo?.({ top: 0 });
   }
 
   function toTitle(): void {
@@ -1075,7 +1103,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       ),
     );
     const body = el('div', { class: 'body', tabindex: '-1' });
-    body.append(el('h2', { text: 'Where they were' }), gridNode(boardGrid(c, run as BoardRun)));
+    const g0 = boardGrid(c, run as BoardRun);
+    // (docs/83, puzzles A: what was said, and under it every list as it was said, so the two halves of a
+    // clash are a glance apart.)
+    if (g0.facts) body.append(el('h2', { text: 'Where they were' }), factGridNode(g0), el('h2', { text: 'Who was seen where' }), placesNode(g0));
+    else body.append(el('h2', { text: 'Where they were' }), gridNode(g0));
     const r = run as BoardRun;
     // Where it stands, plainly.
     if (r.log.length > 1) {
@@ -1257,6 +1289,173 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess". Round 7,
     // U4: once a night, on the page of the first coat or hat. It stays out of the fold: it's needed then.)
     if (faceMarkDue(c, run as BoardRun)) wrap.append(el('p', { class: 'bgrid-key bgrid-face', text: FACE_MARK }));
+    return wrap;
+  }
+
+  /**
+   * docs/83 (puzzles A): the grid that says only what was said. A cell is their own word (soft, dotted, as
+   * ever) and, under it, where anybody else said they saw them (upright); the player's own ✗ beside their
+   * word, and a guess in pencil. The last column is the hours somebody saw them where the means came from.
+   * Tap a cell for what was said of that hour, a "Doesn’t fit" mark, and a guess.
+   */
+  function factGridNode(g: BoardGrid): HTMLElement {
+    const c = (d as BoardDeal).kase;
+    const wrap = el('div', { class: 'bgrid-wrap' });
+    if (g.rows.length === 0) {
+      wrap.append(el('p', { class: 'note', text: 'Nobody on it yet.' }));
+      return wrap;
+    }
+    const table = el('table', { class: 'bgrid bgrid--facts' });
+    const head = el('tr');
+    head.append(el('th', { class: 'bgrid-name', scope: 'col', text: '' }));
+    for (const h of g.hours) {
+      const maybe = g.window.includes(h);
+      head.append(el('th', { scope: 'col', class: `bgrid-hour${maybe ? ' bgrid-hour--maybe' : ''}`, title: maybe ? `an hour ${g.givenBy ?? 'the client'} gave` : '', text: `${h}` }));
+    }
+    const mh = g.meansHead ? g.meansHead.replace(/^at /, '') : '';
+    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: g.meansHead ? `Who somebody saw ${g.meansHead}, and when` : '' }, el('span', { text: mh || '' })));
+    table.append(el('thead', {}, head));
+    const tbody = el('tbody');
+    const code = (p: string) => g.codes[p] ?? placeName(c, p);
+    for (const r of g.rows) {
+      const tr = el('tr', { class: r.victim ? 'bgrid-row--victim' : r.company ? 'bgrid-row--company' : '' });
+      tr.append(el('th', { scope: 'row', class: 'bgrid-name', text: r.name }));
+      for (const h of g.hours) {
+        const cell = r.cells[h] as BoardCell;
+        const k = `${r.id}@${h}`;
+        const empty = !cell.says && !(cell.heard ?? []).length && !cell.pencil && !cell.clash;
+        const td = el('td', { class: `bgrid-cell is-facts${empty ? ' is-empty' : ''}` });
+        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(c, cell)}` });
+        if (cell.says) b.append(el('span', { class: 'bgrid-own', text: code(cell.says) }));
+        if (cell.clash) b.append(el('span', { class: 'bgrid-mine', 'aria-hidden': 'true', text: '✗' }));
+        const heard = [...new Set((cell.heard ?? []).map((x) => (x.place !== undefined ? code(x.place) : (x.street ?? '').replace(/ Street$/, ' St').replace(/ Avenue$/, ' Ave'))))];
+        if (heard.length) b.append(el('span', { class: 'bgrid-heard', text: heard.join(' / ') }));
+        if (cell.pencil?.at) b.append(el('span', { class: 'bgrid-guess', text: `~${code(cell.pencil.at)}` }));
+        if (empty) b.append('·');
+        b.addEventListener('click', () => {
+          openCell = openCell === k ? null : k;
+          renderInPlace();
+        });
+        td.append(b);
+        tr.append(td);
+      }
+      const short = r.meansHome ? r.meansHome.replace(/ there$/, '') : '';
+      const at = (r.meansAt ?? []).join(', ');
+      const mtd = el('td', { class: `bgrid-means is-${r.means === '?' ? 'unknown' : 'facts'}`, title: r.victim ? '' : [r.meansHome ? `${r.meansHome.charAt(0).toUpperCase()}${r.meansHome.slice(1)}.` : '', at ? `Seen ${g.meansHead ?? ''} at ${at}.` : ''].filter(Boolean).join(' ') });
+      if (!r.victim) {
+        if (r.means === '?') mtd.append('·');
+        else {
+          if (short) mtd.append(el('span', { class: 'bgrid-means-home', text: short }));
+          if (at) mtd.append(el('span', { class: 'bgrid-means-at', text: at }));
+          if (!short && !at) mtd.append('·');
+        }
+      }
+      tr.append(mtd);
+      tbody.append(tr);
+      if (openCell && openCell.startsWith(`${r.id}@`)) {
+        const h = Number(openCell.split('@')[1]);
+        const cell = r.cells[h] as BoardCell;
+        const detail = el('td', { colspan: String(g.hours.length + 2), class: 'bgrid-detail' });
+        detail.append(el('div', { class: 'bgrid-detail-head', text: `${r.name}, ${h} o’clock` }));
+        if (cell.lines.length === 0) detail.append(el('p', { class: 'note', text: 'Nothing yet about this hour.' }));
+        for (const l of cell.lines) detail.append(el('p', { class: 'bgrid-line', text: l }));
+        // The player's own mark: where their story doesn't fit what somebody else said. Only on what they said.
+        if (cell.says) {
+          const mark = el('div', { class: 'bgrid-pencil bgrid-clash', role: 'group', 'aria-label': 'Your mark' });
+          const on = !!cell.clash;
+          const xb = el('button', { type: 'button', class: `chip chip--clash${on ? ' on' : ''}`, 'data-mark': `${openCell}:clash`, 'aria-pressed': String(on), text: 'Doesn’t fit' });
+          xb.addEventListener('click', () => {
+            focusNext = { to: 'key', key: `[data-mark="${CSS.escape(`${openCell ?? ''}:clash`)}"]` };
+            clashMark(r.id, h, !on);
+          });
+          mark.append(xb);
+          detail.append(mark);
+        }
+        const pencil = el('div', { class: 'bgrid-pencil', role: 'group', 'aria-label': 'Mark a guess' });
+        pencil.append(el('span', { class: 'bgrid-pencil-label', text: 'Your guess:' }));
+        for (const [pid] of knownPlaces(c, run as BoardRun)) {
+          const pb = el('button', { type: 'button', class: `chip${cell.pencil?.at === pid ? ' on' : ''}`, 'data-mark': `${openCell}:${pid}`, 'aria-pressed': String(cell.pencil?.at === pid), text: code(pid) });
+          pb.addEventListener('click', () => mark(r.id, h, cell.pencil?.at === pid ? null : { at: pid }));
+          pencil.append(pb);
+        }
+        if (cell.pencil) {
+          const rub = el('button', { type: 'button', class: 'chip', 'data-mark': `${openCell}:clear`, text: 'clear' });
+          rub.addEventListener('click', () => {
+            focusNext = { to: 'key', key: `[data-cell="${CSS.escape(openCell ?? '')}"]` };
+            mark(r.id, h, null);
+          });
+          pencil.append(rub);
+        }
+        detail.append(pencil);
+        tbody.append(el('tr', { class: 'bgrid-detail-row' }, detail));
+      }
+    }
+    table.append(tbody);
+    wrap.append(table);
+    const lab = KEY_SAMPLE;
+    const key = el('p', { class: 'bgrid-key' });
+    key.append(el('span', { class: 'k bgrid-own', text: lab }), ' they say so · ', el('span', { class: 'k bgrid-heard', text: lab }), ' somebody says they saw them there · ', el('span', { class: 'k' }, el('span', { class: 'bgrid-own', text: lab }), el('span', { class: 'bgrid-mine', text: '✗' })), ' your mark: it doesn’t fit');
+    const cells = g.rows.flatMap((x) => g.hours.map((h) => x.cells[h] as BoardCell));
+    if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: `~${lab}` }), ' your own guess');
+    key.append('. Tap a cell for what was said, and to mark it.');
+    const shown = shownPlaces(g, false);
+    for (const p of g.places ?? []) shown.add(p.place);
+    const places = placesKey(c, run as BoardRun, g.codes, shown);
+    const marked = g.window.length > 1 ? `The marked hours are the ones ${g.givenBy} gave.` : `The marked hour is the one ${g.givenBy} gave.`;
+    const meansLine = g.meansHead ? `The last column: when somebody saw them ${g.meansHead}.${(g.meansFacts ?? []).length ? ` ${(g.meansFacts ?? []).join(' ')}` : ''}` : '';
+    const d0 = el('details', { class: 'bgrid-notes' }, el('summary', { text: 'How to read the grid' }), el('ul', {}, ...[key, ...[marked, meansLine, places ?? ''].filter(Boolean).map((t) => el('p', { class: 'bgrid-key', text: t }))].map((x) => el('li', {}, x))));
+    (d0 as HTMLDetailsElement).open = notesOpen.key;
+    d0.addEventListener('toggle', () => {
+      notesOpen.key = (d0 as HTMLDetailsElement).open;
+      try {
+        store.setItem(GRID_NOTES_KEY, JSON.stringify(notesOpen));
+      } catch {
+        /* a blocked store forgets; the notes still fold */
+      }
+    });
+    wrap.append(d0);
+    // (Where the means came from and when it was there, said as facts, outside the fold: it's what the last column reads by.)
+    if ((g.meansFacts ?? []).length) wrap.append(el('p', { class: 'bgrid-key bgrid-means-facts', text: (g.meansFacts ?? []).join(' ') }));
+    if (faceMarkDue(c, run as BoardRun)) wrap.append(el('p', { class: 'bgrid-key bgrid-face', text: FACE_MARK }));
+    return wrap;
+  }
+
+  /**
+   * docs/83 (puzzles A): the second view. Every list held, as it was said: a place a row, the hours across,
+   * who the watcher saw then (or nobody, or shut). Her story says the Delmonico rooms at nine; this says
+   * Mrs. Tillman had nobody there then: the join is the player's, a glance up the page.
+   */
+  function placesNode(g: BoardGrid): HTMLElement {
+    const c = (d as BoardDeal).kase;
+    const wrap = el('div', { class: 'bgrid-wrap' });
+    const rows = g.places ?? [];
+    if (rows.length === 0) {
+      wrap.append(el('p', { class: 'note', text: 'Nobody has said who came and went yet.' }));
+      return wrap;
+    }
+    const table = el('table', { class: 'bgrid bgrid--places' });
+    const head = el('tr');
+    head.append(el('th', { class: 'bgrid-name', scope: 'col', text: '' }));
+    for (const h of g.hours) head.append(el('th', { scope: 'col', class: `bgrid-hour${g.window.includes(h) ? ' bgrid-hour--maybe' : ''}`, text: `${h}` }));
+    table.append(el('thead', {}, head));
+    const tbody = el('tbody');
+    for (const p of rows) {
+      const tr = el('tr');
+      tr.append(el('th', { scope: 'row', class: 'bgrid-name' }, el('span', { class: 'pgrid-place', text: g.codes[p.place] ?? placeName(c, p.place) }), el('span', { class: 'pgrid-by', text: `says ${p.by}` })));
+      for (const h of g.hours) {
+        const x = p.hours[h];
+        const td = el('td', { class: 'pgrid-cell', title: x?.line ?? '' });
+        if (!x) td.append(el('span', { class: 'pgrid-none', text: '·' }));
+        else if (x.shut) td.append(el('span', { class: 'pgrid-none', text: 'shut' }));
+        else if (x.names.length === 0) td.append(el('span', { class: 'pgrid-none', text: 'nobody' }));
+        else for (const n of x.names) td.append(el('span', { class: 'pgrid-who', text: n.replace(/^somebody /, '') }));
+        tr.append(td);
+      }
+      tbody.append(tr);
+    }
+    table.append(tbody);
+    wrap.append(table);
+    wrap.append(el('p', { class: 'bgrid-key', text: 'Each list as it was told: everybody the one keeping the door saw there, hour by hour. Hover for their words.' }));
     return wrap;
   }
 

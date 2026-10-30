@@ -31,6 +31,7 @@ import {
   andList,
   cap,
   clientOf,
+  factsOnly,
   hourWord,
   isMurder,
   nameOf,
@@ -203,7 +204,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // This page's own list, said whole beside a lie it breaks ("Shapiro had Tramonti and Lindemann at
   // the Odessa at ten"): who it puts there then needn't be said again.
   const listSaid = new Set<string>();
-  for (const col of fresh.slice(0, 2)) {
+  // docs/83 (puzzles A): from Poached up the thought never says a clash: where two stories don't fit is
+  // the player's to find, and to mark.
+  const facts = factsOnly(c);
+  for (const col of facts ? [] : fresh.slice(0, 2)) {
     const br = col.breakers[0];
     if (!br) continue;
     if (fact && !(col.claim.q === q && br.q === q)) continue;
@@ -793,7 +797,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // (docs/62, P1: and at Hard-boiled too, where the sighting is this page's own fact: "So Carbone was
   // still at the Odessa at nine" is what the barman's answer means, and it's said first. Only the link,
   // never which hour is left.)
-  if (b.possibleHours.length > 1 && a.possibleHours.length === 1) {
+  // (docs/83, puzzles A: and never "At nine, Havemeyer was still alive at the Odessa": the list said he was
+  // there, and the grid's row for him shows it; which hour that leaves is the player's.)
+  if (!facts && b.possibleHours.length > 1 && a.possibleHours.length === 1) {
     const lost = b.possibleHours.filter((h) => !a.possibleHours.includes(h));
     const h1 = a.possibleHours[0] as Hour;
     const seen = lost.map((h) => ({ h, x: a.placed.get(`${c.crime.victim}@${h}`) })).find((y) => y.x && (!fact || (lean() && (y.x.deps ?? []).includes(q))));

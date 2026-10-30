@@ -26,7 +26,7 @@ import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
 import { accountOf, knownPeople, knownPlaces, linesHeld, meansShown, peopleAt, solveHeld, solveRun } from './knowledge.js';
-import { andList, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, suspectsOf, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
+import { andList, factsOnly, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, suspectsOf, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
 import { accessPhrase, wayKnown } from './bones/phrase.js';
 import { remarkStreet } from '../../gen/board/streets.js';
 
@@ -351,6 +351,8 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   // sits on (the walk) says where. (`walk`: this star sits on a walk.)
   if (q.kind === 'confront') {
     const [p, hs] = q.subject === undefined ? ['', ''] : [q.subject, String(q.hour)];
+    // docs/83 (puzzles A): a hint may point, but never at a clash the player hasn't marked: at the person.
+    if (factsOnly(c) && !((run as Partial<BoardRun>).clashes ?? []).includes(`${p}@${hs}`)) return `${nameOf(c, p)} is worth confronting`;
     const st = solveRun(c, run).status.get(`${p}@${hs}`);
     const by = st?.deps.find((d) => d !== `account:${p}` && d !== qid);
     const src = by ? sourceName(c, by) : '';

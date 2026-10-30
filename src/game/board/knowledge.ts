@@ -493,6 +493,18 @@ export function secondBreakers(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts
 }
 
 /**
+ * docs/83 (puzzles A): whether a cell the player marks "doesn't fit" is a real clash: their story at that
+ * hour, held, is broken by what's held (the solver on the questions asked, never the truth), or the
+ * second story they told when it was put to them has a held list against it. A face the player hasn't
+ * marked counts: marking the clash is showing the match.
+ */
+export function clashReal(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour): boolean {
+  if (!run.asked.includes(`account:${p}`)) return false;
+  if (solveRun(c, run).status.get(`${p}@${h}`)?.s === 'broken') return true;
+  return secondBreakers(c, run, p, h).length > 0;
+}
+
+/**
  * Round 7, B3: what broke a story is never the line that agrees with it. On a pair night the break
  * rests on the partner's own story too ("Mosley says he was at Grasso’s flat at nine, with Grasso"),
  * which says just what Grasso said; what broke it is the face at Moskowitz’s that was Mosley's. A

@@ -24,11 +24,14 @@ export function seenWords(by: string, place: string): string {
 export function cellWords(c: BoardCase, cell: BoardCell): string {
   const bits: string[] = [];
   if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
-  if (cell.seen) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
+  if (cell.seen && !cell.heard) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
   if (cell.collision) bits.push('the two don’t agree');
   // (Round 8, B9: the second story, and whether it clashes too.)
   if (cell.admitted) bits.push(`admitted ${placeName(c, cell.admitted)}`);
   else if (cell.second) bits.push(`then said ${placeName(c, cell.second)}${cell.secondClash ? ', and that doesn’t agree either' : ''}`);
+  // (docs/83, puzzles A: what others said of them, each by whose word, and the player's own mark.)
+  for (const x of cell.heard ?? []) bits.push(x.place !== undefined ? `${x.by} puts them at ${placeName(c, x.place)}` : `${x.by} saw them on ${x.street}`);
+  if (cell.clash) bits.push('you marked it: it doesn’t fit');
   if (cell.pencil?.at) bits.push(`your guess: ${placeName(c, cell.pencil.at)}`);
   return bits.join('; ') || 'nothing yet';
 }

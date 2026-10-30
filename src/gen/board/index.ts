@@ -1,6 +1,6 @@
 import { Rng } from './rng.js';
 import type { BoardCase, CaseType, TierIndex } from './types.js';
-import { PUZZLES, buildCase, lastVeto, oneLiarDrawn, oneLiarNight, typesFor } from './generate.js';
+import { PUZZLES, buildCase, lastVeto, oneLiarDrawn, oneLiarNight, puzzleA, typesFor } from './generate.js';
 import { analyse, oneLiar, rate, ratesAt, refusalShortcut, type Analysis } from './path.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
 import { PAR_TARGET, TIERS } from './tiers.js';
@@ -14,7 +14,7 @@ export { checkInvariants, invariantFailures } from './invariants.js';
 export { solve, questionsOf } from './solver.js';
 export { closure, pointed, pointerIndex } from './pointers.js';
 export { techniquesUpTo, TIERS, LADDER, parseTier } from './tiers.js';
-export { typesFor, REFUSE_SHARE, ONE_LIAR_SHARE, ONE_LIAR_SHARE_B, PUZZLES, puzzleB, oneLiarDrawn, oneLiarNight } from './generate.js';
+export { typesFor, REFUSE_SHARE, ONE_LIAR_SHARE, ONE_LIAR_SHARE_B, PUZZLES, puzzleA, puzzleB, oneLiarDrawn, oneLiarNight } from './generate.js';
 
 /**
  * docs/42 §1–2: generate, then accept the way Tatham does. A candidate is kept
@@ -100,7 +100,15 @@ export function generateBoard(
 ): Generated | null {
   const type = opts.type ?? pickType(seed, tier);
   const max = opts.maxAttempts ?? MAX_ATTEMPTS;
-  const puzzles = parsePuzzles(opts.puzzles);
+  // docs/83: A deals nothing. The night is dealt as without it, and carries the flag after, from Poached up.
+  const all = parsePuzzles(opts.puzzles);
+  const puzzles = all.filter((p) => p !== 'A');
+  const g = dealt(seed, tier, type, max, opts, puzzles);
+  if (g && puzzleA(all, tier)) g.kase = { ...g.kase, puzzles: ['A', ...(g.kase.puzzles ?? [])] };
+  return g;
+}
+
+function dealt(seed: number, tier: TierIndex, type: CaseType, max: number, opts: { onReject?: (why: string) => void; world?: WorldCtx }, puzzles: readonly string[]): Generated | null {
   for (let attempt = 0; attempt < max; attempt++) {
     const c = buildCase(seed, tier, type, attempt, opts.world, puzzles);
     if (!c) {

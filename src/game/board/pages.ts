@@ -50,6 +50,7 @@ import {
   budgetCalls,
   cap,
   clientOf,
+  factsOnly,
   hourWord,
   isMurder,
   nameOf,
@@ -2565,7 +2566,10 @@ export function writeSearch(w: Writer, findId: string): void {
   const refs = isMurder(c) ? ['givens:found'] : ['givens:means'];
   void origin;
   // (docs/56 A19: the search's reasoning says itself, without a "So" in front of it.)
-  think(w, q, thoughtOnly([{ text: bodyBy, props, say }], refs, { places: [at] }));
+  // (docs/83, puzzles A: from Poached up the scene says what was found and stops: "Whoever stabbed Ellery
+  // had been at the Delmonico rooms first" and "had to fetch it from Mrs. Nagy’s before nine" are the
+  // player's to draw.)
+  if (!factsOnly(c)) think(w, q, thoughtOnly([{ text: bodyBy, props, say }], refs, { places: [at] }));
   closeWith(w, undefined, 'search-close', {}, {});
   lay(w, 'search');
 }
@@ -3304,8 +3308,8 @@ function brokenClauses(c: BoardCase, run: BoardRun, s: Solved, p: PersonId, hs: 
  * Orpheum." (docs/73 §3, round 8's B9: and where a keeper's word held says that wasn't so either, as the
  * grid's ✗ does, one plain clause: "…, and Alfano hadn’t seen her there either.").
  */
-function secondClause(c: BoardCase, run: BoardRun, p: PersonId, h: Hour, place: PlaceId, again: boolean, refused: string): Clause {
-  const by = again ? undefined : secondBreakers(c, run, p, h).find((l) => !!l.speaker)?.speaker as PersonId | undefined;
+function secondClause(c: BoardCase, run: BoardRun, p: PersonId, h: Hour, place: PlaceId, again: boolean, refused: string, factsOnly = false): Clause {
+  const by = again || factsOnly ? undefined : secondBreakers(c, run, p, h).find((l) => !!l.speaker)?.speaker as PersonId | undefined;
   const changed = `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, place)}`;
   return {
     key: `second:${p}`,
@@ -3362,12 +3366,21 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
     if (where) out.push(where);
     return out;
   }
+  // (docs/83, puzzles A: what they said when it was put to them, an owning up too, and never whether a
+  // second story clashes: that's the player's.)
+  const facts = factsOnly(c);
   for (const putx of run.puts.filter((x) => x.landed && !x.again)) {
     const k = confrontationOf(c, putx.person, putx.hour);
     if (!k) continue;
     const name = nameOf(c, putx.person);
     const again = run.puts.some((x) => x.person === putx.person && x.hour === putx.hour && x.again && x.landed);
-    if (k.response === 'second-lie' && k.secondLie?.place) out.push(secondClause(c, run, putx.person, putx.hour, k.secondLie.place, again, `, and faced with that, ${pronOf(c, putx.person).he} wouldn’t say more`));
+    const lie = c.lies.find((l) => l.person === putx.person && l.hour === putx.hour);
+    if (facts && k.response === 'admit' && lie) {
+      const y = (k.names ?? [])[0];
+      out.push({ key: `admit:${putx.person}`, text: `${name} admitted ${pronOf(c, putx.person).he} was at ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}.`, hours: [], people: [putx.person, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: putx.person, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', 'checked'] : ['alone'])], args: { person: { t: 'person', id: putx.person }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
+      continue;
+    }
+    if (k.response === 'second-lie' && k.secondLie?.place) out.push(secondClause(c, run, putx.person, putx.hour, k.secondLie.place, again, `, and faced with that, ${pronOf(c, putx.person).he} wouldn’t say more`, facts));
     else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Faced with it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
   }
   // (docs/72: whose evenings I didn't have is the gap, and only the full dial says it.)
@@ -3427,7 +3440,7 @@ export function writeRecap(w: Writer): void {
  * docs/43 §2: the turn, at the first lie caught. A chapter break, a recap, and
  * what next: put it to them now, or find out first what the star points at.
  */
-export function writeTurn(w: Writer): void {
+export function writeTurn(w: Writer, marked?: { p: PersonId; h: Hour }): void {
   const c = w.c;
   const title = w.hand.draw('turn-title', {}, {}, { widen: true, plain: true }) ?? 'Two Stories';
   // docs/55 7: the heading is plain, not a label ("The Turn: Where the Story Broke" before anything broke).
@@ -3442,7 +3455,11 @@ export function writeTurn(w: Writer): void {
   // (clarity-5b, item 2: who could have had the means, or the way in, by what's held: the trim never drops them.)
   const sh = solveHeld(c, solverHeld(w.run));
   const all = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90, c, sh.accessNo) : recapClauses(w.d, w.run, true);
-  const clauses = !sumsSaid(c) || thoughtLevel(c) === 'fact' ? all.filter((x) => !turnSaysNot(w, x)) : all;
+  const kept = !sumsSaid(c) || thoughtLevel(c) === 'fact' ? all.filter((x) => !turnSaysNot(w, x)) : all;
+  // docs/83 (puzzles A): the turn comes when the player marks a clash that's real, and it says the clash
+  // they found, first: theirs now, so the notebook can write it down.
+  const found = marked ? brokenClauses(c, w.run, sh, marked.p, [marked.h], false).filter((x) => x.key === `broken:${marked.p}`) : [];
+  const clauses = [...found, ...kept];
   for (const cl of clauses) {
     for (const h of cl.hours) w.hours.add(h);
     for (const p of cl.people) w.people.add(p);

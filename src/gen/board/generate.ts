@@ -111,8 +111,17 @@ export const ONE_LIAR_SHARE_B: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.34
 /** docs/82: with B, whose broken story the path meets first is an even draw. */
 export const INNOCENT_LEADS_B = 0.5;
 
-/** docs/82: the harder-puzzle prototypes a night can be dealt with, behind a flag (`?puzzles=B`). */
-export const PUZZLES = ['B'] as const;
+/**
+ * docs/82: the harder-puzzle prototypes a night can be dealt with, behind a flag (`?puzzles=B`). docs/83:
+ * and A, the notebook only writes down what was said, which deals nothing: the night carries the flag
+ * from Poached up (`puzzleA`) so the book can show it that way.
+ */
+export const PUZZLES = ['A', 'B'] as const;
+
+/** docs/83: A, the notebook stops concluding, applies from Poached up (Raw and Coddled keep every sum: they teach). */
+export function puzzleA(puzzles: readonly string[] | undefined, tier: TierIndex): boolean {
+  return !!puzzles?.includes('A') && tier >= 2;
+}
 
 /** docs/82: B, two broken stories and one killer, applies from Soft-boiled up, and not to the Hard-boiled pair. */
 export function puzzleB(puzzles: readonly string[] | undefined, tier: TierIndex): boolean {

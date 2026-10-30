@@ -35,7 +35,7 @@ import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader] [--first-liar] [--puzzles B]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader] [--first-liar] [--puzzles A,B]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);

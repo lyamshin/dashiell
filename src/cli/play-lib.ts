@@ -33,7 +33,7 @@ import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 
-import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
+import { OFFICE, budgetCalls, dealBoard, deadlineWords, factsOnly, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
   BACK_TO_CASE,
   BLANK_REPORT,
@@ -530,7 +530,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   if (world !== undefined && !isWorld(world)) fail('--world: the one world there is is neighbourhood.');
   // docs/82: `--puzzles B`, the harder-puzzle prototypes, off by default.
   const puzzles = parsePuzzles(values.get('puzzles'));
-  if (values.get('puzzles') !== undefined && puzzles.length === 0) fail('--puzzles: the prototypes there are: B.');
+  if (values.get('puzzles') !== undefined && puzzles.length === 0) fail('--puzzles: the prototypes there are: A and B.');
   // docs/55 6: a profile, when given, says what the last nights dealt; this night keeps it.
   const profilePath = values.get('profile');
   const prof = profilePath ? sanitizeProfile((() => { try { return JSON.parse(io.read(profilePath) ?? 'null'); } catch { return null; } })()) : null;
@@ -617,15 +617,27 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   let night = load(io, path);
   // docs/47 A5: the hour as the grid says it ("ten") or as a number ("10"), with or without "o’clock".
   const HOURS: Record<string, number> = { five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
-  const m = /^(\S+(?: \S+)?)\s+(\d{1,2}|five|six|seven|eight|nine|ten|eleven|twelve)(?:\s+o[’']clock)?\s+(at|not|clear)\s*(.*)$/i.exec((raw ?? '').trim());
-  if (!m) fail('mark "<Name> <hour> at|not|clear [place]", e.g. mark "Feldman ten at Rafferty’s" or mark "Feldman 10 at Rafferty’s".');
-  const [, who, hs, act, pl] = m as RegExpExecArray;
   const c = night.d.kase;
+  // docs/83 (puzzles A): and "clash", the player's own mark that a cell doesn't fit.
+  const facts = factsOnly(c);
+  const m = /^(\S+(?: \S+)?)\s+(\d{1,2}|five|six|seven|eight|nine|ten|eleven|twelve)(?:\s+o[’']clock)?\s+(at|not|clear|clash)\s*(.*)$/i.exec((raw ?? '').trim());
+  if (!m || (!facts && /^clash$/i.test(m[3] ?? ''))) fail('mark "<Name> <hour> at|not|clear [place]", e.g. mark "Feldman ten at Rafferty’s" or mark "Feldman 10 at Rafferty’s".');
+  const [, who, hs, act0, pl] = m as RegExpExecArray;
+  const act = /^clash$/i.test(act0 as string) ? 'clash' : (act0 as string);
   const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
   if (!person) fail(`Nobody in this case called ${who}.`);
   const h = /^\d+$/.test(hs as string) ? Number(hs) : (HOURS[(hs as string).toLowerCase()] as number);
   if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.map((x) => hourWord(x)).join(', ')}.`);
   let place: string | undefined;
+  if (act === 'clash') {
+    const id = (person as { id: string }).id;
+    if (night.run.filed) fail('The case is closed; the night is over. `look` shows the verdict again.');
+    const pages = night.run.log.length;
+    night = commit(io, path, night, [{ do: `clash ${id} ${h}` }]);
+    // (The first mark that's a real clash brings the turn, a page of its own; any other says nothing.)
+    if (night.run.log.length > pages) return lookText(night, path);
+    return `Marked: ${nameOf(c, id)} at ${hourWord(h)} doesn’t fit. It shows as ✗ on the grid.\n\n${boardGridText(c, night.run)}`;
+  }
   if (act !== 'clear') {
     const codes = placeCodes(c);
     const want = fold(pl ?? '').replace(/^the /, '');
@@ -634,7 +646,9 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
     if (!hit) fail(`No place called "${pl}".`);
     place = (hit as { id: string }).id;
   }
-  night = commit(io, path, night, [{ mark: { person: (person as { id: string }).id, hour: h, action: act as 'at' | 'not' | 'clear', ...(place ? { place } : {}) } }]);
+  // (docs/83: "clear" takes the player's clash mark off too.)
+  const off = act === 'clear' && facts && (night.run.clashes ?? []).includes(`${(person as { id: string }).id}@${h}`) ? [{ do: `clash ${(person as { id: string }).id} ${h} off` }] : [];
+  night = commit(io, path, night, [...off, { mark: { person: (person as { id: string }).id, hour: h, action: act as 'at' | 'not' | 'clear', ...(place ? { place } : {}) } }]);
   const said = act === 'clear' ? `Cleared your guess for ${nameOf(c, (person as { id: string }).id)} at ${hourWord(h)}.` : `Your guess: ${nameOf(c, (person as { id: string }).id)} ${act === 'not' ? 'not at' : 'at'} ${placeName(c, place as string)} at ${hourWord(h)}. It shows as ~ on the grid.`;
   return `${said}\n\n${boardGridText(c, night.run)}`;
 }
