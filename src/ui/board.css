@@ -476,6 +476,134 @@
   }
 }
 
+/*
+ * docs/83 (puzzles A): the grid that says only what was said. A cell holds their own word (soft, dotted,
+ * as ever) and under it where anybody else put them (upright ink); no tick and no cross of the book's.
+ * The cross is the player's own, set beside their word in the accent, as a pencilled mark; a guess
+ * stays faint. The last column is wider: it says when somebody saw them where the means came from.
+ */
+.bgrid--facts .bgrid-btn {
+  color: var(--ink);
+}
+
+.bgrid--facts td.is-empty .bgrid-btn {
+  color: var(--ink-faint);
+}
+
+.bgrid-own,
+.bgrid-key .bgrid-own {
+  font-style: italic;
+  color: var(--ink-soft);
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bgrid-heard {
+  display: block;
+  color: var(--ink);
+}
+
+.bgrid-key .bgrid-heard {
+  display: inline;
+}
+
+.bgrid-mine {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 0.1em;
+}
+
+.bgrid-guess {
+  display: block;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.bgrid--facts thead .bgrid-means,
+.bgrid--facts td.bgrid-means {
+  width: 15%;
+}
+
+.bgrid--facts td.bgrid-means {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  padding: 0.2rem 0.1rem;
+}
+
+.bgrid-means-home,
+.bgrid-means-at {
+  display: block;
+}
+
+.bgrid-means-home {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.bgrid--facts td.bgrid-means.is-facts {
+  color: var(--ink);
+}
+
+.bgrid-means-facts {
+  color: var(--ink-soft);
+}
+
+.bgrid-clash {
+  margin-top: 0.4rem;
+}
+
+.bgrid-pencil .chip--clash.on {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* The second view: a place a row, the hours across, who the one keeping the door saw then. */
+.bgrid--places td.pgrid-cell {
+  padding: 0.3rem 0.15rem;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.bgrid--places .bgrid-name {
+  vertical-align: top;
+  padding-top: 0.3rem;
+}
+
+.pgrid-place,
+.pgrid-by,
+.pgrid-who {
+  display: block;
+}
+
+.pgrid-by {
+  font-size: 0.66rem;
+  color: var(--ink-faint);
+}
+
+.pgrid-who {
+  color: var(--ink);
+}
+
+.pgrid-none {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .bgrid--facts .bgrid-name,
+  .bgrid--places .bgrid-name {
+    width: 18%;
+  }
+  .bgrid--facts thead .bgrid-means,
+  .bgrid--facts td.bgrid-means {
+    width: 14%;
+  }
+  .pgrid-by {
+    font-size: 12px;
+  }
+}
+
 /* A star's reason and a place's note go on their own line under the label, not squeezed beside it. */
 .choices--board .choice {
   flex-wrap: wrap;

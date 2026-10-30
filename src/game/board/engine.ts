@@ -11,6 +11,9 @@
  * - `recap`: go over what I have, free;
  * - `hint`: docs/67, star a good next step (or say the report is ready), free, on a tier that has hints;
  * - `file`: take out the report form, free;
+ * - `clash <person> <hour> [off]`: docs/83 (puzzles A, from Poached up), the player's own mark on the grid
+ *   that a cell doesn't fit, free, or taken off. The first mark that's a real clash brings the turn, a
+ *   page of its own; a mark that isn't real changes nothing and says nothing;
  * - `back`: book-look, item 1: put the report away and go back to the case, free, while there are
  *   actions left. The report page comes out of the night as if it had never been written, so the
  *   log, its numbering and the cards dealt are what they were before `file`. Once the clock has run
@@ -26,10 +29,11 @@ import { takeHint } from './hints.js';
 import { thinNames } from './names.js';
 import { nameHomesOnPage, titleClientOnPage } from './home.js';
 import { PLAN, linkGaps } from './plan/index.js';
-import { collisionsOf, judgeLine, secondBreakers, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
+import { clashReal, collisionsOf, judgeLine, secondBreakers, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
   OFFICE,
   budgetCalls,
+  factsOnly,
   nameOf,
   placeName,
   type BoardDeal,
@@ -134,6 +138,24 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   }
   if (run.reportOpen) return fail(isOver(run.used, budgetCalls(d)) ? 'The case is being closed: close it.' : 'The case is being closed: close it, or go back to the case.');
 
+  // docs/83 (puzzles A): the clash mark, free. Kept with the run (the save's commands replay it in order),
+  // and the first that's real writes the turn.
+  if (verb === 'clash' && factsOnly(c)) {
+    const p = words[1] as PersonId;
+    const h = Number(words[2]) as Hour;
+    if (!knownPeople(c, run).has(p) || !c.people.some((x) => x.id === p)) return fail(`I don’t know anybody called ${p}.`);
+    if (!c.board.hours.includes(h)) return fail('No such hour on the grid.');
+    const k = `${p}@${h}`;
+    const had = run.clashes ?? [];
+    const off = words[3] === 'off';
+    next.clashes = off ? had.filter((x) => x !== k) : had.includes(k) ? [...had] : [...had, k];
+    if (off || had.includes(k) || run.turn !== undefined || !clashReal(c, run, p, h)) return { run: next, page: run.log[n - 1] as Page };
+    next.turn = n;
+    const w = writer(d, run, next, n);
+    writeTurn(w, { p, h });
+    return { run: finish(w, next, { job: 'recap', cost: 0, turn: true }), page: next.log[n] as Page };
+  }
+
   if (verb === 'recap') {
     if (run.at === OFFICE) return fail('Not in the office.');
     const w = writer(d, run, next, n);
@@ -232,12 +254,13 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
 }
 
 /** Write the page into the run: the turn if this is the first lie caught, the clock, the head. */
-function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>['job']; cost: number; q?: string; head?: string; at?: string }): BoardRun {
+function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>['job']; cost: number; q?: string; head?: string; at?: string; turn?: boolean }): BoardRun {
   const c = w.c;
   const n = next.log.length;
-  // The turn: the first page on which a lie is caught.
-  let turn = false;
-  if (next.turn === undefined && o.job !== 'recap' && o.job !== 'repeat' && collisionsOf(c, next).length > 0) {
+  // The turn: the first page on which a lie is caught. (docs/83, puzzles A: from Poached up, the first clash
+  // the player marks that's real, never the solver's: `clash` writes it.)
+  let turn = !!o.turn;
+  if (next.turn === undefined && !factsOnly(c) && o.job !== 'recap' && o.job !== 'repeat' && collisionsOf(c, next).length > 0) {
     writeTurn(w);
     next.turn = n;
     turn = true;

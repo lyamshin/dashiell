@@ -3,7 +3,7 @@
  * report (docs/78), with the cross-referencer and the first liar, and the puzzle flags.
  *
  *   npx tsx scripts/lazy-rig.ts [--seeds 25] [--tiers 0,1,2,3,4,5] [--worlds dealt,neighbourhood]
- *                               [--strategies all|a,b] [--no-depth] [--json out.json] [--puzzles B]
+ *                               [--strategies all|a,b] [--no-depth] [--json out.json] [--puzzles A,B]
  *
  * It plays lazy strategies against many nights through the real game (`dealBoard`, `stepBoard`, the
  * grid and the notebook's own models, `scoreBoard`) and reports, per tier, how often each names the
@@ -69,7 +69,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, type BoardGrid } from '../src/game/board/grid.js';
 import { hasHints, hintsLeft, hintsUsed, takeHint } from '../src/game/board/hints.js';
 import { accountOf, collisionsOf, knownPeople, knownPlaces, linesHeld, listExhaustive, listOf, peopleAt, solveRun, type Line } from '../src/game/board/knowledge.js';
-import { OFFICE, budgetCalls, dealBoard, isMurder, parCalls, personOf, suspectsOf, tierName, type BoardDeal, type BoardReport, type BoardRun, type Hour, type PersonId, type PlaceId } from '../src/game/board/model.js';
+import { OFFICE, budgetCalls, dealBoard, factsOnly, isMurder, parCalls, personOf, suspectsOf, tierName, type BoardDeal, type BoardReport, type BoardRun, type Hour, type PersonId, type PlaceId } from '../src/game/board/model.js';
 import { playBoardOracle, playFirstLiar } from '../src/game/board/oracle.js';
 import { boardFields, scoreBoard, sourceOfLine, truthReport } from '../src/game/board/report.js';
 
@@ -90,7 +90,7 @@ const depthOn = !args.includes('--no-depth');
 const jsonOut = val('json');
 /** `--trace`: each strategy's questions and the name it gave, night by night, on stderr. */
 const trace = args.includes('--trace');
-/** docs/82: `--puzzles B` deals the nights with the harder-puzzle prototypes behind the flag. */
+/** docs/82: `--puzzles B` deals the nights with the harder-puzzle prototypes behind the flag (docs/83: and A). */
 const puzzles = parsePuzzles(val('puzzles'));
 
 /* ------------------------------------------------------------------ *
@@ -200,7 +200,12 @@ function putCommand(d: BoardDeal, run: BoardRun, p: PersonId): string | null {
   const made = new Set(run.puts.map((x) => `put ${x.person} ${x.hour} ${x.line}${x.again ? ' again' : ''}`));
   for (const r of pk.ready) if (!made.has(r.command)) return r.command;
   // From Poached up: the claim, then the line the grid's "where they clash" sets against it, or the first offered.
+  // (docs/83: only a claim the grid marks ✗, or a second story it marks ✗ too: with puzzles A the picker
+  // offers every hour of anybody's evening, and the grid marks nothing.)
+  const g = boardGrid(d.kase, run);
+  const cell = (h: Hour) => g.rows.find((r) => r.id === p)?.cells[h];
   for (const cl of pk.claims) {
+    if (!(cl.again ? cell(cl.hour)?.secondClash : cell(cl.hour)?.collision)) continue;
     const col = cl.again ? undefined : collisionsOf(d.kase, run, p).find((x) => x.hour === cl.hour);
     const prefer = col?.breakers[0]?.id;
     const cmds = cl.lines.map((l) => l.command);
@@ -316,7 +321,9 @@ function fileAs(d: BoardDeal, run: BoardRun, who: PersonId, rng: Rng, own?: { ca
     const opts = fields.find((f) => f.key === k)?.options ?? [];
     return opts.length > 0 ? rng.pick(opts).value : null;
   };
-  const caught = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
+  // (docs/83: with puzzles A the grid sets no line against anybody and marks no hour: what's left is the
+  // line it put to them, if that landed.)
+  const caught = factsOnly(c) ? [] : collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
   const mine = caught.find((x) => x.person === who);
   const g = boardGrid(c, run);
   const hs = hoursLeft(d, g, run);

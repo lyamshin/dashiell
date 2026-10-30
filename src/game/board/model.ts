@@ -103,6 +103,11 @@ export interface BoardRun {
   filed?: BoardReport;
   /** The page the turn (the first lie caught) fell on. */
   turn?: number;
+  /**
+   * docs/83 (puzzles A): the cells (`person@hour`) the player has marked "doesn't fit", in the order
+   * marked. Free, the player's own, never a fact; the first that's a real clash brings the turn.
+   */
+  clashes?: string[];
   /** Deck cards and noted lines spent tonight, so none comes round twice. */
   spent: string[];
   weather: Weather;
@@ -315,8 +320,19 @@ export function tierName(t: TierIndex): string {
  */
 export type ThoughtLevel = 'walk' | 'link' | 'fact';
 
-export function thoughtLevel(c: Pick<BoardCase, 'tier'>): ThoughtLevel {
-  return c.tier === 5 ? 'fact' : 'link';
+export function thoughtLevel(c: Pick<BoardCase, 'tier'> & Partial<Pick<BoardCase, 'puzzles'>>): ThoughtLevel {
+  return c.tier === 5 || factsOnly(c) ? 'fact' : 'link';
+}
+
+/**
+ * docs/83 (puzzles A, behind the flag): from Poached up the notebook only writes down what was said. The
+ * grid shows each person's own word and who said they saw them where, and nothing the solver derived (no
+ * ✗, no ✓, no placement on a chain); the means column says the facts; the thoughts run at Hard-boiled's
+ * fact level and never say a clash; "Where things stand" says what was said, not who's caught out; and
+ * where two stories don't fit is the player's to mark. Raw and Coddled keep every sum: they teach.
+ */
+export function factsOnly(c: Pick<BoardCase, 'tier'> & Partial<Pick<BoardCase, 'puzzles'>>): boolean {
+  return c.tier >= 2 && !!c.puzzles?.includes('A');
 }
 
 /**

@@ -16,12 +16,13 @@
 
 import { minutesAfter } from './clock.js';
 import type { OfferedChoice, OfferedGroup } from './types.js';
-import { bearsOn, candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, lineShown, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
+import { accountOf, bearsOn, candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, lineShown, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
 import {
   OFFICE,
   andList,
   budgetCalls,
   cap,
+  factsOnly,
   hourWord,
   isMurder,
   nameOf,
@@ -225,6 +226,10 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
   const claims: PickerClaim[] = [];
   const ready: { command: string; label: string }[] = [];
   const pr = pronOf(c, p);
+  // docs/83 (puzzles A): from Poached up, anybody whose evening is held can be confronted, about any hour of
+  // it, with anything held at that hour: whether it lands is the player's to judge, and one that doesn't
+  // costs its action, as ever.
+  if (factsOnly(c)) return openPicker(d, run, p, lines, landed, landedAgain);
   for (const col of collisionsOf(c, run, p)) {
     if (landed.has(`${p}@${col.hour}`)) continue;
     // (Round 9, item 3: only what bears on what they said: a line that doesn't isn't offered, and one
@@ -262,6 +267,44 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
       c.tier <= 1
         ? `Pick what you’ll tell ${pr.him}.`
         : `Pick the hour that doesn’t match, then who says otherwise: somebody who saw ${pr.him} somewhere else, or who saw everybody where ${pr.he} said ${pr.he} was, and not ${pr.him}.`,
+    minutes: callMinutes(d, run),
+    ...(budgetCalls(d) - run.used === 1 ? { last: true } : {}),
+  };
+}
+
+/**
+ * docs/83 (puzzles A): the picker that doesn't know which story breaks. Every hour of their evening not
+ * yet put with a line that landed, each with every line held at that hour that isn't theirs (the lines
+ * about them or the place they named first, as the notebook would have them); and a second story once
+ * told, with every line held at its hour.
+ */
+function openPicker(d: BoardDeal, run: BoardRun, p: PersonId, lines: Line[], landed: ReadonlySet<string>, landedAgain: ReadonlySet<string>): Picker | null {
+  const c = d.kase;
+  const pr = pronOf(c, p);
+  const claims: PickerClaim[] = [];
+  const acc = accountOf(c, p);
+  for (const h of c.board.hours) {
+    const cl = acc?.claims[h];
+    if (!cl || landed.has(`${p}@${h}`)) continue;
+    const label = `${personOf(c, p)?.home === cl.place ? (homeNamed(c, p) ? 'home' : `home at ${placeName(c, cl.place)}`) : `at ${placeName(c, cl.place)}`} at ${hourWord(h)}`;
+    const cands = candidateLines(c, run, p, h, lines).filter((l) => l.kind !== 'find');
+    if (cands.length === 0) continue;
+    claims.push({ hour: h, label, said: `${pr.He} said ${pr.he} was ${label}`, again: false, lines: cands.map((l) => lineChoice(d, p, h, l, false, run)) });
+  }
+  for (const put of run.puts.filter((x) => x.person === p && x.landed && !x.again)) {
+    const alt = confrontationOf(c, p, put.hour)?.secondLie?.place;
+    if (!alt || landedAgain.has(`${p}@${put.hour}`)) continue;
+    const cands = candidateLines(c, run, p, put.hour, lines).filter((l) => l.kind !== 'find');
+    if (cands.length === 0) continue;
+    const label = `at ${placeName(c, alt)} at ${hourWord(put.hour)}`;
+    claims.push({ hour: put.hour, label, said: `Then ${pr.he} said ${pr.he} was ${label}`, again: true, lines: cands.map((l) => lineChoice(d, p, put.hour, l, true, run)) });
+  }
+  if (claims.length === 0) return null;
+  return {
+    person: p,
+    ready: [],
+    claims,
+    help: `Pick the hour that doesn’t match, then who says otherwise: somebody who saw ${pr.him} somewhere else, or who saw everybody where ${pr.he} said ${pr.he} was, and not ${pr.him}.`,
     minutes: callMinutes(d, run),
     ...(budgetCalls(d) - run.used === 1 ? { last: true } : {}),
   };

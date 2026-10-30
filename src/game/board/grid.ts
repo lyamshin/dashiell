@@ -10,8 +10,9 @@
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, lineShown, accountOf, agreesWith, collisionsOf, solveRun, knownPeople, knownPlaces, faceUnmatched, listOf, meansLate, secondBreakers } from './knowledge.js';
-import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, sumsSaid, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
+import { linesHeld, lineShown, accountOf, agreesWith, collisionsOf, solveRun, knownPeople, knownPlaces, faceUnmatched, listOf, meansLate, secondBreakers, entryName, listExhaustive, shutAt, type Line } from './knowledge.js';
+import { andList, cap, clientOf, factsOnly, hourWord, isMurder, nameOf, personOf, placeName, sumsSaid, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
+import { remarkStreet } from '../../gen/board/streets.js';
 import { isPoison } from './when.js';
 import { sourceName } from './stars.js';
 import { meansKnew } from './bones/phrase.js';
@@ -37,6 +38,38 @@ export interface BoardCell {
   /** The lines behind the cell, for the hover or tap. */
   lines: string[];
   pencil?: CellMark;
+  /**
+   * docs/83 (puzzles A): what other people said of where they were then, each as it was said: a list that
+   * has them, somebody's company, the office, a passer-by who saw them in the street. Never the solver's.
+   */
+  heard?: Heard[];
+  /** docs/83: the player's own mark that this cell doesn't fit. Free; never a fact. */
+  clash?: boolean;
+}
+
+/** docs/83: one thing somebody else said of where a person was at an hour. */
+export interface Heard {
+  /** Where it puts them: a place on the board. */
+  place?: PlaceId;
+  /** Or the street a passer-by saw them in. */
+  street?: string;
+  /** Whose word: "Mrs. Tillman", "Colquitt", the client for the office. */
+  by: string;
+  /** The line, as the notebook says it. */
+  line: string;
+}
+
+/**
+ * docs/83 (puzzles A): one place's list, hour by hour, as the watcher said it: the second view, so the
+ * join a player makes (her story says the Delmonico rooms at nine; Mrs. Tillman had nobody there then) is
+ * a glance across two tables. The office's party is a list too, in the client's word.
+ */
+export interface PlaceRow {
+  place: PlaceId;
+  /** Whose list: the watcher, or the client. */
+  by: string;
+  /** Per hour said: who they saw ("Schilling", "somebody in a pea coat", "a man I didn’t know"), or nobody, or shut. */
+  hours: Record<number, { names: string[]; shut?: boolean; line: string }>;
 }
 
 export interface BoardRow {
@@ -49,6 +82,10 @@ export interface BoardRow {
   /** Could get the means: yes, no, or not known yet. Empty on the victim's row. */
   means: 'yes' | 'no' | '?' | '';
   meansWhy?: string;
+  /** docs/83 (puzzles A): the hours somebody else put them where the means came from. */
+  meansAt?: Hour[];
+  /** docs/83: the means came from where they live or work ("lodges there"). */
+  meansHome?: string;
 }
 
 export interface BoardGrid {
@@ -63,6 +100,16 @@ export interface BoardGrid {
   /** A short label for every place the grid names, and the key to them. */
   codes: Record<PlaceId, string>;
   meansLabel: string;
+  /** docs/83 (puzzles A): the notebook only writes down what was said. Absent: main's grid. */
+  facts?: boolean;
+  /** docs/83: each list as it was said, by place. */
+  places?: PlaceRow[];
+  /** docs/83: the last column's head, where the means came from ("at Delmonico"); empty until it's known. */
+  meansHead?: string;
+  /** docs/83: the means as facts: where it came from, and what the one who keeps that place said of it. */
+  meansFacts?: string[];
+  /** docs/83: where the means came from, once it's known. */
+  meansOrigin?: PlaceId;
 }
 
 /** A title before a name, never a label of its own ("Dr." and "Miss" were codes, round 7). */
@@ -131,7 +178,12 @@ export function placesKey(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited'>
   return `In the grid, ${said.length > 1 ? `${said.slice(0, -1).join(', ')} and ${said[said.length - 1]}` : said[0]}.`;
 }
 
-export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): BoardGrid {
+/**
+ * The grid as the notebook shows it. docs/83 (puzzles A): from Poached up with the flag, what was said and
+ * nothing more (`factGrid`); `solved` is the solver's grid whatever the flag (the curtain's replay).
+ */
+export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log' | 'clashes'>>, opts: { solved?: boolean } = {}): BoardGrid {
+  if (factsOnly(c) && !opts.solved) return factGrid(c, run);
   const s = solveRun(c, run);
   const hours = c.board.hours;
   const known = knownPeople(c, run);
@@ -271,6 +323,148 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
   };
 }
 
+/**
+ * docs/83 (puzzles A): the grid that says only what was said. A cell is their own word and whatever
+ * somebody else said of where they were then (a list that has them, somebody's company, the office, a
+ * passer-by), each by whose word; no ✗, no ✓, and no placement the solver made of a chain (a story
+ * checked placing its company, an owning-up's check). The last column is where the means came from and
+ * the hours somebody saw them there; the places view is every list as it was said. The clash mark is
+ * the player's own.
+ */
+export function factGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log' | 'clashes'>>): BoardGrid {
+  const hours = c.board.hours;
+  const known = knownPeople(c, run);
+  const lines = linesHeld(c, run);
+  const codes = placeCodes(c);
+  const victim = personOf(c, c.crime.victim);
+  const victimRow = isMurder(c) || c.type === 'lost-pet';
+  const ids = [
+    ...(victimRow && victim ? [victim.id] : []),
+    ...suspectsOf(c).filter((p) => known.has(p)),
+    ...c.people.filter((p) => p.role === 'company' && known.has(p.id)).map((p) => p.id),
+  ];
+  const client = clientOf(c).short;
+  const byOf = (l: Line) => (l.kind === 'given' ? client : l.speaker ? nameOf(c, l.speaker) : client);
+  // A passer-by's remark: the street they were seen in, or a place.
+  const remarkHeard = (l: Line, p: PersonId, h: Hour): Heard | undefined => {
+    const m = /^remark:(list|account):(.+)#(\d+)$/.exec(l.id);
+    const rs = m ? (m[1] === 'list' ? listOf(c, m[2] as string)?.remarks : accountOf(c, m[2] as string)?.remarks) : undefined;
+    const r = rs?.[Number(m?.[3])];
+    const f = r?.facts.find((x) => x.p === p && x.h === h);
+    if (!r || !f) return undefined;
+    if (f.k === 'at') return { place: f.place, by: byOf(l), line: lineShown(c, run, l) };
+    const street = remarkStreet(r.text);
+    return street ? { street, by: byOf(l), line: lineShown(c, run, l) } : undefined;
+  };
+  const heardOf = (p: PersonId, h: Hour): Heard[] => {
+    const out: Heard[] = [];
+    for (const l of lines) {
+      if (l.hour !== h || l.speaker === p || !l.about.includes(p)) continue;
+      if ((l.kind === 'list' || l.kind === 'claim' || l.kind === 'given' || l.kind === 'admit') && l.place !== undefined) out.push({ place: l.place, by: byOf(l), line: lineShown(c, run, l) });
+      else if (l.kind === 'remark') {
+        const x = remarkHeard(l, p, h);
+        if (x) out.push(x);
+      }
+    }
+    return out;
+  };
+  const meansKnown = !isMurder(c) || run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
+  const origin = c.means.origin;
+  const rows: BoardRow[] = ids.map((id) => {
+    const cells: Record<number, BoardCell> = {};
+    const acc = run.asked.includes(`account:${id}`) ? accountOf(c, id) : undefined;
+    for (const h of hours) {
+      const cell: BoardCell = { confirmed: false, collision: false, lines: [] };
+      const says = acc?.claims[h]?.place;
+      if (says) cell.says = says;
+      const heard = heardOf(id, h);
+      if (heard.length) cell.heard = heard;
+      const at = heard.find((x) => x.place !== undefined);
+      if (at?.place) cell.seen = { place: at.place, by: at.by };
+      const k2 = c.confrontations.find((x) => x.person === id && x.hour === h);
+      if (k2 && run.asked.includes(`confront:${id}@${h}`)) {
+        const lie = c.lies.find((l) => l.person === id && l.hour === h);
+        if (k2.response === 'admit' && lie) cell.admitted = lie.truth;
+        if (k2.secondLie?.place) cell.second = k2.secondLie.place;
+      }
+      // What was said of them then, their own word first: never the list at the place they named, which
+      // would make the join for them.
+      for (const l of lines) {
+        if (l.hour !== h) continue;
+        if (l.speaker === id && (l.kind === 'claim' || l.kind === 'second' || l.kind === 'admit')) cell.lines.push(lineShown(c, run, l));
+      }
+      for (const x of heard) if (!cell.lines.includes(x.line)) cell.lines.push(x.line);
+      if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
+      if ((run.clashes ?? []).includes(`${id}@${h}`)) cell.clash = true;
+      cells[h] = cell;
+    }
+    const row: BoardRow = { id, name: id === c.crime.victim && isMurder(c) ? `${nameOf(c, id)} †` : nameOf(c, id), company: personOf(c, id)?.role === 'company', ...(id === c.crime.victim ? { victim: true } : {}), cells, means: id === c.crime.victim ? '' : meansKnown ? '' : '?' };
+    if (id !== c.crime.victim && meansKnown) {
+      const at = hours.filter((h) => (cells[h]?.heard ?? []).some((x) => x.place === origin));
+      if (at.length) row.meansAt = at;
+      const who = personOf(c, id);
+      // (As the notebook's people say them: "lodges at the Delmonico rooms".)
+      if (who?.home === origin) row.meansHome = /\blodges\b/.test(who.description) ? 'lodges there' : 'lives there';
+      else if (who?.works === origin) row.meansHome = 'works there';
+    }
+    return row;
+  });
+  // The second view: each list held, as it was said, and the office's party.
+  const places: PlaceRow[] = [];
+  for (const q of run.asked) {
+    if (!q.startsWith('list:')) continue;
+    const l = listOf(c, q.slice(5));
+    if (!l) continue;
+    const row: PlaceRow = { place: l.place, by: nameOf(c, l.watcher), hours: {} };
+    for (const h of hours) {
+      const line = lines.find((x) => x.id === `list:${l.watcher}@${h}`);
+      if (!line) continue;
+      const es = l.entries[h] ?? [];
+      const names = es.map((e) => ('look' in e ? `somebody ${e.look}` : short(entryName(c, e))));
+      row.hours[h] = { names, ...(shutAt(c, l.place, h) ? { shut: true } : {}), line: lineShown(c, run, line) };
+      void listExhaustive;
+    }
+    places.push(row);
+  }
+  const party = lines.filter((l) => l.kind === 'given' && l.place !== undefined && l.hour !== undefined);
+  for (const pl of [...new Set(party.map((l) => l.place as PlaceId))]) {
+    const row: PlaceRow = { place: pl, by: client, hours: {} };
+    for (const h of hours) {
+      const at = party.filter((l) => l.place === pl && l.hour === h);
+      if (at.length) row.hours[h] = { names: at.flatMap((l) => l.about.map((p) => nameOf(c, p))), line: at.map((l) => l.text).join(' ') };
+    }
+    places.push(row);
+  }
+  // The means as facts: where it came from, and what the one who keeps that place said of it.
+  const meansFacts: string[] = [];
+  if (isMurder(c) && meansKnown) {
+    const word = c.means.name.replace(/^(?:a|an|the) /, '');
+    meansFacts.push(`The ${word} came from ${placeName(c, origin)}.`);
+    const last = word.split(/\s+/).pop() ?? word;
+    for (const l of lines) if (l.kind === 'remark' && l.place === undefined && new RegExp(`\\b${last}\\b`, 'i').test(l.text) && (listOf(c, l.speaker as PersonId)?.place === origin || personOf(c, l.speaker as PersonId)?.home === origin)) meansFacts.push(lineShown(c, run, l));
+  }
+  const office = c.givens.window ?? c.crime.window;
+  return {
+    hours,
+    rows,
+    crimeHour: null,
+    window: [...office],
+    givenBy: client,
+    codes,
+    meansLabel: isMurder(c) ? (isPoison(c) ? 'could have got the poison' : 'could have got the weapon') : meansKnew(c),
+    facts: true,
+    places,
+    meansHead: meansKnown ? `at ${codes[origin] ?? placeName(c, origin)}` : '',
+    meansFacts,
+    ...(meansKnown ? { meansOrigin: origin } : {}),
+  };
+}
+
+/** In the places view a regular is his name, as the notebook has him: "Pardo", not "Pardo who buys things". */
+function short(n: string): string {
+  return n.replace(/^(Lou|Pardo|Benny)\b.*$/, '$1');
+}
+
 /* ------------------------------------------------------------------ *
  * As text, for the play CLI and the read tool.
  * ------------------------------------------------------------------ */
@@ -282,6 +476,14 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
  */
 export function cellText(g: BoardGrid, cell: BoardCell): string {
   const code = (p: PlaceId) => g.codes[p] ?? p;
+  // docs/83 (puzzles A): their own word, what they said after, and the player's marks; what others said
+  // of them is the line under it (`heardText`).
+  if (g.facts) {
+    const pencil = cell.pencil?.at ? `~${code(cell.pencil.at)}` : cell.pencil?.notAt?.length ? `~not ${code(cell.pencil.notAt[0] as string)}` : '';
+    const tail = cell.admitted ? `→${code(cell.admitted)}` : cell.second ? `→"${code(cell.second)}"` : '';
+    const own = cell.says ? `"${code(cell.says)}"${cell.clash ? '✗' : ''}${tail}` : cell.clash ? '✗' : '';
+    return [own, pencil].filter(Boolean).join(' ') || '·';
+  }
   // docs/47 A5: the pencil shows beside whatever else the cell holds, never under it.
   const pencil = cell.pencil?.at ? `~${code(cell.pencil.at)}` : cell.pencil?.notAt?.length ? `~not ${code(cell.pencil.notAt[0] as string)}` : '';
   let base = '';
@@ -296,6 +498,17 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
 }
 
 /**
+ * docs/83 (puzzles A): what other people said of where they were, in a few characters: `[Velvet]`,
+ * `[Velvet/Odessa]`, `[Ludlow St]` (a passer-by saw them in the street). Empty where nobody said.
+ */
+export function heardText(g: BoardGrid, cell: BoardCell): string {
+  const hs = cell.heard ?? [];
+  if (hs.length === 0) return '';
+  const said = [...new Set(hs.map((x) => (x.place !== undefined ? (g.codes[x.place] ?? x.place) : `${(x.street ?? '').replace(/ Street$/, ' St').replace(/ Avenue$/, ' Ave')}`)))];
+  return `[${said.join('/')}]`;
+}
+
+/**
  * clarity-5b, item 7: the places the grid's cells show, as `cellText` says them, for the key's labels.
  * `arrows`: and what they admitted or said the second time, after "→" (the CLI's; the book's cells leave it).
  */
@@ -307,6 +520,14 @@ export function shownPlaces(g: BoardGrid, arrows = true): Set<PlaceId> {
       if (!cell) continue;
       if (cell.pencil?.at) out.add(cell.pencil.at);
       else if (cell.pencil?.notAt?.length) out.add(cell.pencil.notAt[0] as PlaceId);
+      // (docs/83, puzzles A: their word, and every place somebody else put them.)
+      if (g.facts) {
+        if (cell.says) out.add(cell.says);
+        if (arrows && cell.admitted) out.add(cell.admitted);
+        else if (arrows && cell.second) out.add(cell.second);
+        for (const x of cell.heard ?? []) if (x.place !== undefined) out.add(x.place);
+        continue;
+      }
       if (cell.collision) {
         if (cell.says) out.add(cell.says);
         if (arrows && cell.admitted) out.add(cell.admitted);
@@ -376,6 +597,15 @@ export function faceMarkDue(c: BoardCase, run: Pick<BoardRun, 'log'>): boolean {
 
 export function gridKey(g: BoardGrid): string[] {
   const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
+  if (g.facts) {
+    // docs/83 (puzzles A): what was said, and the player's own marks.
+    const out = ['"X" they say so', '[X] somebody says they saw them there'];
+    if (cells.some((x) => x.admitted)) out.push('→Y where they admitted they were');
+    if (cells.some((x) => x.second && !x.admitted)) out.push('→"Y" what they said the second time');
+    out.push('"X"✗ your mark: it doesn’t fit');
+    if (cells.some((x) => x.pencil)) out.push('~X your own guess');
+    return out;
+  }
   const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
   if (cells.some((x) => x.confirmed)) out.push('"X"✓ they say so, and somebody saw them there');
   if (cells.some((x) => x.admitted)) out.push('→Y where they admitted they were');
@@ -386,8 +616,15 @@ export function gridKey(g: BoardGrid): string[] {
   return out;
 }
 
-export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): string {
+/**
+ * docs/83 (puzzles A): the CLI's mark, said once a night under the grid: how to mark a cell that doesn't
+ * fit, as a rule about the grid. A player's mark is free and never a fact.
+ */
+export const CLASH_MARK = 'Where two stories don’t fit, mark it: mark "<Name> <hour> clash" (and "<Name> <hour> clear" takes your marks off).';
+
+export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log' | 'clashes'>>): string {
   const g = boardGrid(c, run);
+  if (g.facts) return factGridText(c, run, g);
   const out: string[] = [];
   out.push('WHERE THEY WERE');
   if (g.rows.length === 0) {
@@ -421,6 +658,65 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
     out.push('');
     out.push('WHERE THEY CLASH');
     for (const { r, h } of coll) {
+      out.push(`${r.name}, ${hourWord(h)}:`);
+      for (const l of r.cells[h]?.lines ?? []) out.push(`  ${l}`);
+    }
+  }
+  return out.join('\n');
+}
+
+/**
+ * docs/83 (puzzles A): the CLI's grid that says only what was said: each person's own word, a line under
+ * it for what others said of them, the last column where the means came from, then every list as it was
+ * said (the places view), and the player's own marks with what's behind them.
+ */
+function factGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log' | 'clashes'>>, g: BoardGrid): string {
+  const out: string[] = ['WHERE THEY WERE'];
+  if (g.rows.length === 0) {
+    out.push('', 'Nobody on it yet.');
+    return out.join('\n');
+  }
+  const w0 = Math.max(6, ...g.rows.map((r) => r.name.length)) + 2;
+  // (Each hour as wide as what it holds, so one long cell doesn't widen the rest.)
+  const cw = new Map(g.hours.map((h) => [h, Math.max(9, `${hourWord(h)} ?`.length + 2, ...g.rows.flatMap((r) => [cellText(g, r.cells[h] as BoardCell), heardText(g, r.cells[h] as BoardCell)]).map((x) => x.length + 2))]));
+  const pad = (x: string, h: Hour) => x.padEnd(cw.get(h) ?? 9);
+  const head = g.hours.map((h) => pad(`${hourWord(h)}${g.window.includes(h) ? ' ?' : ''}`, h)).join('');
+  out.push(`${''.padEnd(w0)}${head}${g.meansHead ?? ''}`.trimEnd());
+  for (const r of g.rows) {
+    const m = r.victim ? '' : r.means === '?' ? '?' : [r.meansHome, r.meansAt?.length ? andList(r.meansAt.map(hourWord)) : ''].filter(Boolean).join('; ') || '·';
+    const own = g.hours.map((h) => cellText(g, r.cells[h] as BoardCell));
+    const under = g.hours.map((h) => heardText(g, r.cells[h] as BoardCell));
+    // (Nobody's own word on the row, the dead man's or an evening not asked: what others said, on the row itself.)
+    const mine = own.some((x) => x !== '·');
+    out.push(`${r.name.padEnd(w0)}${g.hours.map((h, i) => pad(mine ? (own[i] as string) : under[i] || '·', h)).join('')}${m}`.trimEnd());
+    if (mine && under.some(Boolean)) out.push(`${''.padEnd(w0)}${g.hours.map((h, i) => pad(under[i] || '·', h)).join('')}`.trimEnd());
+  }
+  out.push('');
+  out.push(gridKey(g).join('  ·  '));
+  out.push(`? the ${g.window.length > 1 ? 'hours' : 'hour'} ${g.givenBy} gave`);
+  if (g.meansOrigin) out.push(`The last column: when somebody saw them at ${placeName(c, g.meansOrigin)}, and whether they live or work there.${(g.meansFacts ?? []).length ? ` ${(g.meansFacts ?? []).join(' ')}` : ''}`);
+  out.push(CLASH_MARK);
+  if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
+  const shown = shownPlaces(g);
+  for (const p of g.places ?? []) shown.add(p.place);
+  const places = placesKey(c, run, g.codes, shown);
+  if (places) out.push(places);
+  // The second view: every list held, as it was said.
+  out.push('', 'WHO WAS SEEN WHERE');
+  if ((g.places ?? []).length === 0) out.push('', 'Nobody has said who came and went yet.');
+  for (const p of g.places ?? []) {
+    out.push('', `${g.codes[p.place] ?? placeName(c, p.place)}, says ${p.by}:`);
+    for (const h of g.hours) {
+      const x = p.hours[h];
+      if (!x) continue;
+      out.push(`  ${hourWord(h).padEnd(7)}${x.shut ? 'shut' : x.names.length ? andList(x.names) : 'nobody'}`);
+    }
+  }
+  // The player's own marks, and what's behind each.
+  const marked = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.clash).map((h) => ({ r, h })));
+  if (marked.length > 0) {
+    out.push('', 'WHERE YOU MARKED IT DOESN’T FIT');
+    for (const { r, h } of marked) {
       out.push(`${r.name}, ${hourWord(h)}:`);
       for (const l of r.cells[h]?.lines ?? []) out.push(`  ${l}`);
     }

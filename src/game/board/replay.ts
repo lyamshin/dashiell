@@ -123,7 +123,8 @@ function faceMarks(d: BoardDeal, asked: readonly string[]): Record<PersonId, Rec
 
 /** The grid on what's held, as the lines prove it, with no guess on it. */
 function gridOn(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts' | 'visited'> & Partial<Pick<BoardRun, 'log'>>): BoardGrid {
-  const g = boardGrid(d.kase, { ...run, marks: faceMarks(d, run.asked) });
+  // (docs/83: the solver's grid, ✗ and all, whatever the flag: the curtain shows every clash.)
+  const g = boardGrid(d.kase, { ...run, marks: faceMarks(d, run.asked) }, { solved: true });
   for (const r of g.rows) {
     for (const h of g.hours) {
       const cell = r.cells[h];

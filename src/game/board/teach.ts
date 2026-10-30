@@ -40,14 +40,25 @@ export function teachB(c: { type: string; tier: number; puzzles?: readonly strin
 }
 
 /**
+ * docs/83 (puzzles A, behind the flag, from Poached up): the one thing A teaches. The notebook writes
+ * down what was said and draws nothing from it; finding where two stories don't fit is the player's.
+ */
+export function teachA(c: { tier: number; puzzles?: readonly string[] } | undefined): string | null {
+  if (!c?.puzzles?.includes('A') || c.tier < 2) return null;
+  return 'From here on the notebook only writes down what you were told. Where two stories don’t fit is yours to find.';
+}
+
+/**
  * The teach page's lines for a night. The same eight from every world (the neighbourhood's map line
  * went with the period voice); `world` is kept so callers needn't change. docs/82: with puzzles B, the
- * line it teaches after the refusal's.
+ * line it teaches after the refusal's. docs/83: with A, its line after the one about two stories.
  */
 export function teachLines(world?: string, c?: { type: string; tier: number; puzzles?: readonly string[] }): readonly string[] {
   void world;
+  const a = teachA(c);
   const b = teachB(c);
-  return b ? [...BOARD_TEACH_LINES.slice(0, 5), b, ...BOARD_TEACH_LINES.slice(5)] : BOARD_TEACH_LINES;
+  if (!a && !b) return BOARD_TEACH_LINES;
+  return [...BOARD_TEACH_LINES.slice(0, 4), ...(a ? [a] : []), BOARD_TEACH_LINES[4] as string, ...(b ? [b] : []), ...BOARD_TEACH_LINES.slice(5)];
 }
 
 /**
