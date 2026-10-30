@@ -930,7 +930,8 @@ input {
 
 .title-page h1 {
   font-family: var(--deco);
-  font-size: clamp(2.2rem, 11vw, 3.6rem);
+  /* The word is about 8.5 ems wide with its spacing: sized to fit inside the 16px gutters down to 280px. */
+  font-size: clamp(1.6rem, calc(11.8vw - 4px), 3.6rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: 0.4em;
