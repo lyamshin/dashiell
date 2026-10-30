@@ -1312,7 +1312,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const maybe = g.window.includes(h);
       head.append(el('th', { scope: 'col', class: `bgrid-hour${maybe ? ' bgrid-hour--maybe' : ''}`, title: maybe ? `an hour ${g.givenBy ?? 'the client'} gave` : '', text: `${h}` }));
     }
-    const mh = g.meansHead ? g.meansHead.replace(/^at /, '') : '';
+    const mh = g.meansHead ?? '';
     head.append(el('th', { scope: 'col', class: 'bgrid-means', title: g.meansHead ? `Who somebody saw ${g.meansHead}, and when` : '' }, el('span', { text: mh || '' })));
     table.append(el('thead', {}, head));
     const tbody = el('tbody');
@@ -1402,7 +1402,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const p of g.places ?? []) shown.add(p.place);
     const places = placesKey(c, run as BoardRun, g.codes, shown);
     const marked = g.window.length > 1 ? `The marked hours are the ones ${g.givenBy} gave.` : `The marked hour is the one ${g.givenBy} gave.`;
-    const meansLine = g.meansHead ? `The last column: when somebody saw them ${g.meansHead}.${(g.meansFacts ?? []).length ? ` ${(g.meansFacts ?? []).join(' ')}` : ''}` : '';
+    const meansLine = g.meansHead ? `The last column: when somebody saw them ${g.meansHead}, and whether they live or work there.` : '';
     const d0 = el('details', { class: 'bgrid-notes' }, el('summary', { text: 'How to read the grid' }), el('ul', {}, ...[key, ...[marked, meansLine, places ?? ''].filter(Boolean).map((t) => el('p', { class: 'bgrid-key', text: t }))].map((x) => el('li', {}, x))));
     (d0 as HTMLDetailsElement).open = notesOpen.key;
     d0.addEventListener('toggle', () => {
