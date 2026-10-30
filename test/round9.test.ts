@@ -15,7 +15,7 @@ import { hintStep, starReason } from '../src/game/board/stars.js';
 import { bearsOn, candidateLines, collisionsOf, judgeLine, linesHeld, storyBreakers } from '../src/game/board/knowledge.js';
 import { budgetCalls, clientOf, dealBoard, parCalls, sumsSaid, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
-import { breakOptions, clearOptions, curtainOfBoard, fastestKinds, heldBreakers, lineNumbers, notebookLines, scoreBoard, whereByOptions } from '../src/game/board/report.js';
+import { curtainOfBoard, fastestKinds, heldBreakers, notebookLines, scoreBoard } from '../src/game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { notebookText, pageBodyText } from '../src/game/board/text.js';
 import { breakToFace } from '../src/game/board/bones/phrase.js';
@@ -237,34 +237,35 @@ describe('item 6 (round 8, B10): the put says only what the line said', () => {
 });
 
 describe('item 7: the report’s words', () => {
-  it('B2: the culprit’s own page says nothing of clearing under the proof; under “Did anyone else lie?” it says it plainly', () => {
+  it('docs/78: `report Tillman` is the one form, and nothing on it is about clearing anybody', () => {
     const page = cli(39, 5, 'murder', dos(HB39), ['report', 'Tillman']);
-    expect(page).not.toMatch(/lied too|give “cleared”/);
-    expect(flat(page)).toContain('Did anyone else lie? If your answer is Tillman, pick what clears her from this same list: somebody else’s word, not her own.');
-    expect(page.indexOf('Did anyone else lie?')).toBeGreaterThan(page.indexOf('A hunch: give'));
+    expect(page).toBe(cli(39, 5, 'murder', dos(HB39), ['report']));
+    expect(page).not.toMatch(/lied too|clear|hunch|Did anyone else lie/i);
+    expect(page).toContain('Who caught them out? (caught):');
   });
-  it('the form’s keys stay in the command line: no “proof=hunch” or “Give cleared as” in a sentence', () => {
+  it('the form’s keys stay in the command line: no “caught=” in a sentence', () => {
     for (const out of [cli(39, 5, 'murder', dos(HB39), ['report']), cli(39, 5, 'murder', dos(HB39), ['report', 'Obermann'])]) {
       const prose = out.split('\n').filter((x) => !/npm run play -- close/.test(x)).join(' ');
-      expect(prose).not.toMatch(/\b(?:proof|cleared|other)=/);
-      expect(prose).not.toMatch(/\bGive (?:proof|cleared) as\b|\bFor proof and cleared\b/);
+      expect(prose).not.toMatch(/\b(?:proof|cleared|other|caught)=/);
     }
   });
-  it('the verdict says a line as a line: “what cleared him: Bledsoe says…”, never “it was Bledsoe says”', () => {
+  it('docs/78: the verdict says who caught them out by name, never a line read back as “it was Bledsoe says”', () => {
     const d = dealBoard(37, 4, 'murder');
     const run = { ...route(d, MEDIUM37), reportOpen: true };
-    const v = scoreBoard(d, run, { who: 'ashby', when: 10, why: 'ashby', how: 'a revolver', breaks: 'remark:account:broadnax#0', other: 'sirkin', cleared: 'admit:sirkin@10' } as never);
-    const cleared = v.fields.find((f) => f.key === 'cleared')!;
-    expect(cleared.why).toBe('what cleared him: Bledsoe says he was at the print shop at ten o’clock, with Sirkin.');
-    expect(v.plain.join(' ')).toContain('his own word doesn’t clear him; somebody else’s has to');
-    const out = cli(37, 4, 'murder', [...dos(MEDIUM37), { do: 'file' }, { file: { who: 'ashby', when: 10, why: 'ashby', how: 'a revolver', breaks: 'remark:account:broadnax#0', other: 'sirkin', cleared: 'admit:sirkin@10' } }], ['look']);
+    const filed = { who: 'ashby', caught: 'sirkin', when: 10 as const, why: 'ashby', how: 'a revolver' };
+    const v = scoreBoard(d, run, filed);
+    const caught = v.fields.find((f) => f.key === 'caught')!;
+    expect(caught).toMatchObject({ given: 'Sirkin', correct: false, correction: 'Broadnax caught her out' });
+    expect(scoreBoard(d, run, { ...filed, caught: 'broadnax' }).fields.find((f) => f.key === 'caught')?.correct).toBe(true);
+    const out = cli(37, 4, 'murder', [...dos(MEDIUM37), { do: 'file' }, { file: filed }], ['look']);
     expect(flat(out)).not.toMatch(/it was [A-Z][a-z]+ says/);
+    expect(flat(out)).toContain('Who caught them out? Sirkin ✗ — Broadnax caught her out');
   });
-  it('what clears the other liar is somebody else’s word: the rules, the help and the report’s prompt say so', () => {
-    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one: somebody else’s word, not their own.');
-    expect(BOARD_RULES.join(' ')).toContain('and if so, what clears them. What clears them is somebody else’s word, not their own.');
-    expect(flat(cli(37, 4, 'murder', dos(MEDIUM37), ['report']))).toContain('Pick what clears them from it: somebody else’s word, not their own.');
-    expect(flat(cli(37, 4, 'murder', [], ['help']))).toContain('what clears them: somebody else’s word, not their own');
+  it('docs/78: the rules, the teach page and the help say who caught them out is, plainly', () => {
+    expect(BOARD_TEACH_LINES).toContain('Who caught them out is the person who told you what shows the one who did it was lying.');
+    expect(BOARD_RULES.join(' ')).toContain('Who caught them out is the person who told you what shows the one who did it was lying. It can be their own second story, if they changed it.');
+    expect(flat(cli(37, 4, 'murder', [], ['help']))).toContain('caught is who caught them out: who told you what showed the one who did it was lying, or their own second story');
+    for (const l of [...BOARD_TEACH_LINES, ...BOARD_RULES]) expect(l).not.toMatch(/what clears|anyone else|hunch|counts half|what proves it/i);
   });
   it('confronting on the last action says so plainly, and that anybody they name needs another', () => {
     const d = dealBoard(37, 4, 'murder');
@@ -289,31 +290,27 @@ describe('item 9 (round 8, B1): one numbering, from the notebook’s list', () =
   it('Raw 33: the confession is in the notebook as 12, and the parlor found after it is 13', () => {
     const d = dealBoard(33, 0, 'lost-item');
     const run = route(d, RAW33);
-    const nums = lineNumbers(d, run);
-    expect(nums.get('crack:bidwell@10')).toBe(12);
-    expect(nums.get('find:scene')).toBe(13);
+    const ids = notebookLines(d, run).map((x) => x.value);
+    expect(ids.indexOf('crack:bidwell@10') + 1).toBe(12);
+    expect(ids.indexOf('find:scene') + 1).toBe(13);
     const nb = flat(notebookText(d, run));
     expect(nb).toMatch(/12\. Bidwell, when I confronted him: “All right/);
     expect(nb).toMatch(/13\. The parlor at the Mosley flat/);
-    expect(flat(cli(33, 0, 'lost-item', dos(RAW33), ['report']))).toMatch(/12\. Bidwell, when I confronted him/);
   });
-  it('the rule: every line the form can offer is in the notebook, and a number never moves as the night goes on', () => {
+  it('the rule: a number in the notebook never moves as the night goes on', () => {
     for (const tier of [0, 1, 2, 4, 5] as TierIndex[])
       for (const type of typesFor(tier))
         for (let s = 1; s <= 3; s++) {
           const d = dealBoard(s, tier, type);
           const o = playBoardOracle(d);
           let run = newBoardRun(d);
-          let was = new Map<string, number>();
+          let was: string[] = [];
           for (const cmd of o.commands) {
             run = stepBoard(d, run, cmd).run;
-            const nums = lineNumbers(d, run);
-            for (const [id, n] of was) expect(nums.get(id), `${tier} ${type} ${s}: ${id}`).toBe(n);
-            was = nums;
+            const ids = notebookLines(d, run).map((x) => x.value);
+            expect(ids.slice(0, was.length), `${tier} ${type} ${s}`).toEqual(was);
+            was = ids;
           }
-          const listed = new Set(notebookLines(d, run).map((x) => x.value));
-          const offered = [...d.kase.people.filter((p) => p.role === 'suspect').flatMap((p) => [...breakOptions(d, run, p.id), ...clearOptions(d, run, p.id)]), ...(d.kase.type === 'murder' ? [] : whereByOptions(d, run))];
-          for (const x of offered) expect(listed.has(x.value), `${tier} ${type} ${s}: ${x.value}`).toBe(true);
         }
   });
 });

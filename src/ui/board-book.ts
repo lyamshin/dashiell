@@ -23,7 +23,6 @@ import {
   castOf,
   dealBoard,
   deadlineWords,
-  hourWord,
   nameOf,
   personOf,
   placeName,
@@ -37,7 +36,7 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { nameInFull, peopleLine } from '../game/board/gloss.js';
-import { BACK_TO_CASE, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankReport, blankRule, boardFields, canGoBack, chargeLines, breakOptionsShown, clearOptions, fastestSolveLines, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BACK_TO_CASE, blankReport, boardFields, canGoBack, chargeLines, fastestSolveLines, notebookLines, reportFrom, scoreBoard, storyOfBoard, type FieldKey, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
@@ -958,63 +957,16 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const form = el('form', { class: 'report' });
     // book-look, item 5: the report is a typed charge to the DA. The plaque's caption says who it's for
     // ("The People of the State of New York against …", or a small case's "Report to …"), and the blank
-    // under it is the "Who" field, a real select with its own label.
+    // under it is the "Who" field, a real select with its own label. docs/78: then the other four
+    // answers, a ruled row each, as the verdict's ledger will hand them back; no rules on the form
+    // (every select starts at "I don't know", and the confirm says closing is final).
     const cap = caption();
     const plaque = el('div', { class: 'plaque report-plaque' });
     plaque.append(crest(), el('p', { class: 'court', text: cap.court }), el('p', { class: 'against', text: cap.against }));
-    form.append(
-      el('h2', { class: 'sr-only', text: 'Close the case' }),
-      plaque,
-      // Round 5, U6: what a blank goes in as, once, the CLI's words.
-      el('p', { class: 'note report-rule', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
-    );
-    // book-look, item 1: taken out by choice, the report goes back in the drawer, free; never once the clock is out.
-    if (canGoBack(d as BoardDeal, r)) {
-      const back = el('button', { class: 'choice choice--free report-back', type: 'button', 'data-command': 'back' });
-      back.append(el('span', { class: 'label', text: BACK_TO_CASE }), el('span', { class: 'mins', text: 'free' }));
-      back.addEventListener('click', () => command('back'));
-      form.append(el('div', { class: 'report-back-row' }, back));
-    }
-    // docs/67: here a hint says what's still missing, or that the report can be filled from what you have.
-    const [hb, hnote] = hintNodes();
-    if (hb && hnote) form.append(el('div', { class: 'choice-list report-hint' }, hb), hnote);
+    form.append(el('h2', { class: 'sr-only', text: 'Close the case' }), plaque);
     const dd = d as BoardDeal;
     const selects = new Map<FieldKey, HTMLSelectElement>();
-    const lines = new Map<FieldKey, () => string | null>();
-    // docs/46 §3: the hours that mattered, as the notebook has them.
-    const hs = hoursThatMattered(dd).map((h) => hourWord(h));
-    const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
-    /** A line question: the lines it offers as a list to pick one from, and a hunch. */
-    const lineField = (key: 'breaks' | 'whereBy' | 'cleared', label: string, options: () => LineOption[], note: () => string, group: () => { touching: string; rest: string } | null = () => null) => {
-      const box = el('fieldset', { class: 'field field--lines' });
-      box.append(el('legend', { text: label }));
-      const hint = el('p', { class: 'line-hint' });
-      const list = el('div', { class: 'line-options', role: 'radiogroup', 'aria-label': label });
-      box.append(hint, list);
-      const fill = () => {
-        hint.textContent = note();
-        // (A line picked before the name, or before the name changed, stays picked while it's still offered.)
-        const was = (list.querySelector('input:checked') as HTMLInputElement | null)?.value;
-        clear(list);
-        const opts: LineOption[] = options();
-        const keep = keptPick(was, opts);
-        // docs/47 A4: the lines that touch the named person's own story come first, under a heading.
-        const touching = opts.filter((o) => o.touches).length;
-        [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
-          const heads = group();
-          if (heads && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: heads.touching }));
-          if (heads && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: heads.rest }));
-          const id = `rf-${key}-${i}`;
-          const input = el('input', { type: 'radio', name: key, value: o.value, id });
-          if (o.value === keep) input.checked = true;
-          list.append(el('label', { class: `line-option${o.value === '' ? ' line-option--hunch' : ''}${(o as LineOption).touches ? ' line-option--touches' : ''}`, for: id }, input, el('span', { text: o.label })));
-        });
-      };
-      fill();
-      lines.set(key, () => (list.querySelector('input:checked') as HTMLInputElement | null)?.value || null);
-      form.append(box);
-      return fill;
-    };
+    const rows = el('div', { class: 'report-rows' });
     for (const f of boardFields(dd, r)) {
       const s = el('select', { name: f.key, id: `rf-${f.key}` });
       s.append(el('option', { value: '' }, 'I don’t know'));
@@ -1023,42 +975,25 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       // (book-look, item 2: the label names its select. Item 5: "Who" is the plaque's typed blank.)
       if (f.key === 'who') {
         plaque.append(el('div', { class: 'blank' }, el('label', { class: 'sr-only', for: `rf-${f.key}`, text: f.label }), s), el('p', { class: 'meta' }, el('span', { text: DETECTIVES_REPORT }), ' ', el('span', { text: cap.caseLine })));
-      } else form.append(el('div', { class: 'field' }, el('label', { for: `rf-${f.key}`, text: f.label }), s));
-      if (f.key === 'who') {
-        const who = () => s.value || null;
-        const refill = lineField(
-          'breaks',
-          BREAKS_LABEL,
-          () => breakOptionsShown(dd, r, who()),
-          () => (who() ? 'Pick what proves it, or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
-          () => (who() ? lineGroupHeads(dd, r, who() as string) : null),
-        );
-        s.addEventListener('change', refill);
-      }
-      if (f.key === 'other') {
-        // docs/61: who else lied, and the line that cleared them: the same lines as for who, for that name.
-        const other = () => s.value || null;
-        const named = () => {
-          const o = other();
-          return o && o !== NOBODY ? nameOf(dd.kase, o) : null;
-        };
-        const refill = lineField(
-          'cleared',
-          CLEARED_LABEL,
-          () => clearOptions(dd, r, other()),
-          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them: somebody else’s word, not their own. Or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
-          () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
-        );
-        s.addEventListener('change', refill);
-      }
-      if (f.key === 'where') lineField('whereBy', whereByLabel(dd), () => whereByOptions(dd, r), () => 'What people let slip, what you found, and what they said when you confronted them.');
+      } else rows.append(el('div', { class: 'field report-row' }, el('label', { for: `rf-${f.key}`, text: f.label }), el('span', { class: 'report-pick' }, s)));
     }
+    form.append(rows);
     const submit = el('div', { class: 'after report-submit' }, el('button', { class: 'open-case close-button file-it', type: 'submit', text: 'Close the case' }));
     form.append(submit);
+    // (docs/78: the free controls after the one that closes it, so the five answers read as one form.)
+    // docs/67: here a hint says what's still missing, or that the report can be filled from what you have.
+    const [hb, hnote] = hintNodes();
+    if (hb && hnote) form.append(el('div', { class: 'choice-list report-hint' }, hb), hnote);
+    // book-look, item 1: taken out by choice, the report goes back in the drawer, free; never once the clock is out.
+    if (canGoBack(dd, r)) {
+      const back = el('button', { class: 'choice choice--free report-back', type: 'button', 'data-command': 'back' });
+      back.append(el('span', { class: 'label', text: BACK_TO_CASE }), el('span', { class: 'mins', text: 'free' }));
+      back.addEventListener('click', () => command('back'));
+      form.append(el('div', { class: 'report-back-row' }, back));
+    }
     const answers = (): BoardReport => {
       const a: Partial<Record<FieldKey, string | null>> = {};
       for (const [k, s] of selects) a[k] = s.value || null;
-      for (const [k, v] of lines) a[k] = v();
       return reportFrom(dd, a);
     };
     // book-look, item 1: the charge said back in plain words, then "Close it" or "Not yet". Changing

@@ -12,7 +12,7 @@ import { meansLate, peopleAt } from '../src/game/board/knowledge.js';
 import { dealBoard, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
 import { namePlural } from '../src/game/board/pages.js';
-import { boardFields, curtainOfBoard, scoreBoard, storyOfBoard, truthReport, whereByLabel } from '../src/game/board/report.js';
+import { boardFields, curtainOfBoard, scoreBoard, storyOfBoard, truthReport } from '../src/game/board/report.js';
 import { clockWords } from '../src/game/board/clock.js';
 import { notebookText, officeLines, pageBodyText } from '../src/game/board/text.js';
 import { replaySave, runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -188,40 +188,30 @@ describe('B7: the confront box is true, and shorter', () => {
   });
 });
 
-describe('B9: whether anyone else lied is asked, never told, on every night from Poached up', () => {
-  it('asked by tier: every night from Poached up, never below', () => {
+describe('B9, and docs/78: nothing asks whether anyone else lied, so nothing tells', () => {
+  it('no night asks it, at any tier', () => {
     for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
       for (let seed = 1; seed <= 4; seed++) {
         for (const type of typesFor(tier)) {
           const d = dealBoard(seed, tier, type);
-          expect(boardFields(d).some((f) => f.key === 'other'), `${tier} ${type} ${seed}`).toBe(tier >= 2);
+          expect(boardFields(d).map((f) => f.key), `${tier} ${type} ${seed}`).toEqual(['who', 'caught', 'when', d.kase.type === 'murder' ? 'how' : 'where', 'why']);
         }
       }
     }
   });
 
-  it('a night where only one story broke: "Nobody else" is right', () => {
+  it('a night where only one story broke closes on the five, and the curtain says only the one lie', () => {
     // (Decided 2026-10-25, docs/69: dealt now. Poached 6, a murder: Rosenbaum, who would have lied, tells the truth.)
     const d: BoardDeal = dealBoard(6, 2, 'murder');
     expect(d.kase.lies.map((l) => l.person)).toEqual([d.kase.crime.culprit]);
-    const f = boardFields(d).find((x) => x.key === 'other');
-    expect(f?.label).toBe('Did anyone else lie? If so, who, and what clears them?');
-    expect(f?.options.at(-1)).toEqual({ value: 'nobody', label: 'Nobody else' });
     const run = playBoardOracle(d).run;
     const truth = truthReport(d, run);
-    expect(truth.other).toBe('nobody');
-    expect(truth.cleared).toBeNull();
     const right = scoreBoard(d, structuredClone(run), truth);
-    expect(right.fields.find((x) => x.key === 'other')).toMatchObject({ label: 'Did anyone else lie?', given: 'Nobody else', correct: true });
-    expect(right.fields.some((x) => x.key === 'cleared')).toBe(false);
-    expect(right.scoreLine).toMatch(/^5 out of 5: who, whether anyone else lied, when, how and why, with the proof for who\.$/);
+    expect(right.scoreLine).toBe('5 out of 5.');
     expect(right.outcome).toBe('solved');
-    const wrong = scoreBoard(d, structuredClone(run), { ...truth, other: 'rosenbaum', cleared: null });
-    expect(wrong.fields.find((x) => x.key === 'other')?.correct).toBe(false);
-    expect(wrong.plain).toContain('Nobody else lied: Rosenbaum had told the truth.');
     const curtain = curtainOfBoard(d, run, truth);
-    expect(curtain).toContain('DID ANYONE ELSE LIE?\nNobody else lied.\n  You picked: nobody else.  ✓');
-    expect(curtain).not.toContain('WHO ELSE LIED');
+    expect(curtain).not.toMatch(/WHO ELSE LIED|DID ANYONE ELSE LIE|Nobody else lied/);
+    expect(curtain.split('THE LIES\n')[1]?.split('\n\n')[0]?.split('\n').length).toBe(1);
   });
 });
 
@@ -237,9 +227,8 @@ describe('B8: the small slips', () => {
     const { d, run } = night(RAW23);
     expect(all(run)).toContain('“All right. I took her. She’s with Pardo, a man who buys things and asks nothing.');
     expect(all(run)).not.toMatch(/I took it\. It’s with/);
-    expect(whereByLabel(d)).toBe('What proves where she is');
-    expect(boardFields(d, run).find((f) => f.key === 'where')?.label).toBe('Where she is now');
-    expect(whereByLabel(dealBoard(11, 0, 'lost-item'))).toBe('What proves where it is');
+    expect(boardFields(d, run).find((f) => f.key === 'where')?.label).toBe('Where is she now?');
+    expect(boardFields(dealBoard(11, 0, 'lost-item')).find((f) => f.key === 'where')?.label).toBe('Where is it now?');
   });
 
   it('Raw 23: the neighbors’ word is only what the client couldn’t know himself', () => {

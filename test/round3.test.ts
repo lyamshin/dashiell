@@ -9,7 +9,7 @@ import { boardGrid, boardGridText } from '../src/game/board/grid.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import { proseIssues } from '../src/game/board/prose-lint.js';
-import { boardFields, breakOptions, breakOptionsShown, scoreBoard, storyOfBoard } from '../src/game/board/report.js';
+import { boardFields, scoreBoard, storyOfBoard } from '../src/game/board/report.js';
 import { spokenAccount } from '../src/game/board/tell.js';
 import { costText } from '../src/game/board/text.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -48,23 +48,8 @@ describe('round 3: the interface (docs/47 A)', () => {
     expect(second.replace(/\s+/g, ' ')).not.toContain('Everything you do takes one action unless it says free.');
     const o = playBoardOracle(d);
     const v = scoreBoard(d, o.run, o.report);
-    // (Round 6, P11: plainly, and what counts with it.)
-    expect(v.scoreLine).toMatch(/^4 out of 4: who, when, (how|where) and why, with the proof for who( and for where)?\.$/);
-  });
-
-  it('the breaks list puts the lines that touch the named person’s story first, and keeps every line', () => {
-    let touched = 0;
-    for (let s = 1; s <= 8; s++) {
-      const d = dealBoard(s, 4);
-      const run = playBoardOracle(d).run;
-      const all = breakOptions(d, run, d.kase.crime.culprit);
-      const shown = breakOptionsShown(d, run, d.kase.crime.culprit);
-      expect(shown.map((o) => o.value).sort()).toEqual(all.map((o) => o.value).sort());
-      const n = shown.filter((o) => o.touches).length;
-      expect(shown.slice(0, n).every((o) => o.touches)).toBe(true);
-      touched += n > 0 ? 1 : 0;
-    }
-    expect(touched).toBeGreaterThan(4);
+    // (docs/78: five answers, a point each, said as the score.)
+    expect(v.scoreLine).toBe('5 out of 5.');
   });
 
   it('the grid has the dead man’s row, ✓ only on two sources, and the window narrows with a sighting (Raw and Coddled; from Poached up never, docs/73)', () => {

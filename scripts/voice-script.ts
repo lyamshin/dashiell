@@ -49,7 +49,7 @@ import { TIER_NAMES, type CaseType, type TierIndex } from '../src/gen/board/type
 import { NAME_POOLS } from '../src/gen/board/names.js';
 import { clientOf, dealBoard, deadlineWords, personOf, type BoardDeal, type BoardReport, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { boardFields, scoreBoard, storyOfBoard, truthReport, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY_LABEL, OTHER_QUESTION, WHERE_BY_LABEL } from '../src/game/board/report.js';
+import { boardFields, scoreBoard, storyOfBoard, truthReport, SECOND_LABEL } from '../src/game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../src/game/board/teach.js';
 import { clockStrip } from '../src/game/board/clock.js';
 import { engineWords } from '../src/game/board/jargon.js';
@@ -241,9 +241,8 @@ const GATES: { id: string; re: RegExp }[] = [
 
 /**
  * Why a line can't go in the script, or null. `help`: the book's own help text (the rules, the
- * report form), which may say "the grid" and "the notebook" as the book's parts, and (docs/61) ask
- * what cleared somebody and offer "Nobody else", the report's own question and answer; anything
- * else is held to the reader lint's machinery words too.
+ * report form), which may say "the grid" and "the notebook" as the book's parts, and "cleared" as
+ * the tiers say it; anything else is held to the reader lint's machinery words too.
  */
 export function lineProblem(text: string, opts: { help?: boolean } = {}): string | null {
   if (/["']/.test(text)) return 'straight quote';
@@ -255,7 +254,7 @@ export function lineProblem(text: string, opts: { help?: boolean } = {}): string
   if (/\b(?!IOU\b|DA\b)[A-Z]{3,}\b/.test(text)) return 'capitals';
   if (!/^[“A-Z(]/.test(text)) return 'starts lowercase';
   if (!/[.?!…”)]$/.test(text)) return 'no end stop';
-  const jargon = engineWords(text).filter((j) => !(opts.help && (j.name === 'cleared' || (j.name === 'and nobody else' && text === `${NOBODY_LABEL}.`))));
+  const jargon = engineWords(text).filter((j) => !(opts.help && j.name === 'cleared'));
   if (jargon.length > 0) return `engine word: ${jargon[0]?.name} (“${jargon[0]?.match}”)`;
   for (const b of BANNED) if (b.re.test(text)) return `prose lint: ${b.name}`;
   const pt = plainTerms(text);
@@ -355,28 +354,22 @@ function fixedLines(nights: Night[]): Draft[] {
   }
   if (small) push(clockStrip(12, 13, deadlineWords(small.d.kase)).left);
   for (const h of HEADINGS) push(h);
-  // The report form: each kind of case's questions, read as one line, and the line questions.
+  // The report form (docs/78): each kind of case's five questions, read as one line, and the second story's answer.
   for (const n of [murder, small]) {
     if (!n) continue;
-    // (docs/61: the question about the other broken story is a sentence of its own, said below.)
-    const labels = boardFields(n.d).filter((f) => f.key !== 'other').map((f) => f.label.replace(/^\w/, (c) => c.toLowerCase()));
+    const labels = boardFields(n.d).map((f) => f.label.replace(/\?$/, '').replace(/^\w/, (c) => c.toLowerCase()));
     push(`${cap(andList(labels))}.`);
   }
-  push(`${BREAKS_LABEL}.`);
-  push(OTHER_QUESTION);
-  push(`${CLEARED_LABEL}.`);
-  push(`${NOBODY_LABEL}.`);
-  push(`${WHERE_BY_LABEL}.`);
-  push(`${HUNCH}.`);
+  push(`${SECOND_LABEL}.`);
   push('I don’t know.');
   push('Everything else.');
   push('Review my notes.');
-  // The verdict: the score, what counted half, the closing for each way a report comes out, the story.
+  // The verdict: the score, the closing for each way a report comes out, the story.
   for (const n of [murder, small]) if (n) out.push(...verdictLines(n));
   return out;
 }
 
-/** The verdict of one night as it renders for each outcome: the score said in words, the plain line, the closing, the story. */
+/** The verdict of one night as it renders for each outcome: the score said in words, the closing, the story. */
 function verdictLines(n: Night): Draft[] {
   const out: Draft[] = [];
   const truth = truthReport(n.d, n.run);
@@ -385,14 +378,11 @@ function verdictLines(n: Night): Draft[] {
   const wrongHour = fields.find((f) => f.key === 'when')?.options.map((o) => Number(o.value)).find((h) => h !== truth.when) ?? null;
   const reports: [string, BoardReport][] = [
     ['solved', truth],
-    ['lucky', { ...truth, breaks: null }],
+    ['lucky', { ...truth, caught: null }],
     ['thin', { ...truth, when: wrongHour }],
     ['wrong-man', { ...truth, who: other }],
     ['cold', { ...truth, who: null }],
   ];
-  if (truth.where !== undefined) reports.push(['where-half', { ...truth, whereBy: null }]);
-  // docs/61: the right name, and the other liar not ruled out.
-  if (truth.other !== undefined) reports.push(['other-missed', { ...truth, cleared: null }], ['other-wrong', { ...truth, other: null }]);
   const seen = new Set<string>();
   const take = (text: string, max = 2) => {
     const sents = sentencesOf(sayable(spellNumbers(text))).slice(0, max);
@@ -404,7 +394,6 @@ function verdictLines(n: Night): Draft[] {
   for (const [k, r] of reports) {
     const v = scoreBoard(n.d, n.run, r);
     if (k === 'solved') take(v.scoreLine);
-    for (const p of v.plain) take(p);
     // The closing's first paragraph, a sentence or two of it.
     const first = v.closing[0];
     if (first) take(first, wordsIn(first) <= MAX_WORDS ? 3 : 1);

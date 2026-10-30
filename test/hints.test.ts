@@ -409,7 +409,7 @@ describe('docs/67 §5: the CLI and the save', () => {
     let run = newBoardRun(d);
     for (const e of cli.save().events as { do?: string }[]) if (e.do) run = e.do === 'hint' ? hinted(d, run).run : stepBoard(d, run, e.do).run;
     expect(hintsUsed(run)).toBe(2);
-    const verdict = cli.run('close', 'who=1; proof=hunch');
+    const verdict = cli.run('close', 'who=1');
     expect(verdict.out).toMatch(/\d+ actions?, 2 hints\./);
   });
 

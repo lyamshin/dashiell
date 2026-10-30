@@ -22,10 +22,9 @@ export const DETECTIVES_REPORT = 'Detective’s report';
 export const STAMP_RIGHT = 'Case closed';
 export const STAMP_WRONG = 'Dismissed';
 
-/** The ledger's marks, as words a screen reader says (no ✓, ✗ or ½ glyphs). */
+/** The ledger's marks, as words a screen reader says (no ✓ or ✗ glyphs). */
 export const MARK_RIGHT = 'Right';
 export const MARK_WRONG = 'Wrong';
-export const MARK_HALF = 'Half';
 
 /** "12:35 AM" said as the period's "12:35 a.m.": the figures, and the lowercase small "a.m.". */
 export function clockParts(time: string): { figures: string; ampm: string } {

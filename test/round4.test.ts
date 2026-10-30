@@ -14,7 +14,7 @@ import { capThingClose, thingClose } from '../src/game/board/plan/closers.js';
 import type { Item } from '../src/game/board/plan/types.js';
 import { dealtIds, emptyProfile, recordRun, sanitizeProfile, seenOf } from '../src/game/board/profile.js';
 import { proseIssues } from '../src/game/board/prose-lint.js';
-import { breakOptionsShown, curtainOfBoard, whereByOptions } from '../src/game/board/report.js';
+import { curtainOfBoard, notebookLines } from '../src/game/board/report.js';
 import type { Page } from '../src/game/board/types.js';
 import { runPlay } from '../src/cli/play-lib.js';
 
@@ -124,21 +124,10 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
     expect(starReason(d.kase, run, 'account:pickering')).toBe('Pickering walked over from the Delmonico rooms at ten — ask Pickering who she passed on the way');
   });
 
-  it('the report doesn’t put the line that breaks the story first, alone', () => {
-    const save = { game: 'dashiell-play', version: 1, engine: 'board', seed: 14, tier: 4, type: 'lost-pet', detective: 'Dashiell', events: ['go scene', 'search scene', 'go neighbours', 'ask whitfield evening', 'go bar', 'ask barkeep list', 'go h', 'ask thorndike evening', 'go u', 'ask alfano evening', 'put alfano 10 list:barkeep@10', 'ask fairbanks evening', 'go bar', 'ask pickering evening'].map((x) => ({ do: x })), person: null, picker: null, claim: null };
-    const d = dealBoard(14, 4, 'lost-pet');
-    let run = newBoardRun(d);
-    for (const e of save.events) run = stepBoard(d, run, e.do).run;
-    const opts = breakOptionsShown(d, run, 'thorndike');
-    const touching = opts.filter((o) => o.touches);
-    expect(touching.length).toBeGreaterThan(2);
-    expect(touching[0]?.value).not.toBe('remark:account:pickering#0');
-  });
-
-  it('the report quotes what the page said', () => {
+  it('the notebook quotes what the page said', () => {
     const d = dealBoard(11, 0, 'lost-item');
     const run = night(11, 0, 'lost-item', RAW11);
-    const crack = whereByOptions(d, run).find((o) => o.value.startsWith('crack:'));
+    const crack = notebookLines(d, run).find((o) => o.value.startsWith('crack:'));
     const quote = /“([^”]*)/.exec(crack?.label ?? '')?.[1]?.slice(0, 20) ?? '\u0000';
     expect(prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ')).toContain(quote);
   });

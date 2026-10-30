@@ -77,22 +77,6 @@ describe('docs/65 §1: the passer-by passes the culprit where their walks cross'
   });
 });
 
-describe('docs/65 §2: a collision keeps the line that first broke the story', () => {
-  it('the last-liar reader, citing what the collision shows against the other liar, no longer solves the refusers’ nights', () => {
-    let n = 0;
-    let solved = 0;
-    for (const tier of [3, 4] as TierIndex[]) {
-      for (const type of typesFor(tier)) {
-        for (let seed = 1; seed <= 10; seed++) {
-          n++;
-          if (playReader(dealBoard(seed, tier, type), seed, { guess: 'last', cite: true }).ok) solved++;
-        }
-      }
-    }
-    expect(solved / n).toBeLessThan(0.15);
-  });
-});
-
 describe('docs/65 §3: at Hard-boiled the player puts the name to the face', () => {
   const route = ['go scene', 'search scene', 'search papers', 'go rooming', 'ask xwatcher list', 'ask grasso evening', 'put grasso 10 list:xwatcher@10', 'go bar', 'ask barkeep list', 'ask abramowitz evening', 'go h', 'ask renfro evening'];
 

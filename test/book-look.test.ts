@@ -112,20 +112,20 @@ describe('book-look, item 1: the report taken out by choice goes back, free, and
 
 describe('book-look, item 1: the charge, said back before the case is closed', () => {
   const run = route(RAW12, [...RAW12_ROUTE, 'file']);
-  it('names who, when, how and why, and what proves they lied, in plain words', () => {
+  it('names who, when, how, who caught them out and why, in plain words (docs/78)', () => {
     expect(chargeLines(RAW12, run, truthReport(RAW12, run))).toEqual([
       'You’re charging Minnie Hurwitz: at ten o’clock, with a revolver.',
+      'Feldman caught her out.',
       'The reason: Petrosino testified against her brother.',
-      'What proves she lied: Feldman: at ten o’clock, only Obermann and Schilling were at the Bijou.',
     ]);
   });
 
-  it('says what’s blank, whose reason it is when it isn’t theirs, and a hunch as a hunch', () => {
+  it('says what’s blank, and whose reason it is when it isn’t theirs', () => {
     const lines = chargeLines(RAW12, run, reportFrom(RAW12, { who: 'hurwitz', why: 'obermann' }));
     expect(lines[0]).toBe('You’re charging Minnie Hurwitz.');
     expect(lines).toContain('The reason you give is Obermann’s: Petrosino threw her out of a lease.');
-    expect(lines).toContain('What proves she lied: a hunch.');
-    expect(lines[lines.length - 1]).toBe('You don’t know when and how.');
+    expect(lines.join(' ')).not.toMatch(/hunch|proves/);
+    expect(lines[lines.length - 1]).toBe('You don’t know who caught her out, when and how.');
   });
 
   it('a report with every answer “I don’t know” says so, and nothing else', () => {
@@ -135,13 +135,13 @@ describe('book-look, item 1: the charge, said back before the case is closed', (
     expect(blankReport(truthReport(RAW12, run))).toBe(false);
   });
 
-  it('a lost thing says where it is now and what shows it; another liar, what clears them', () => {
+  it('a lost thing says where it is now, and who caught them out; nothing about anybody else (docs/78)', () => {
     const d = dealBoard(14, 4, 'lost-pet');
     const r = route(d, [...playBoardOracle(d).commands, 'file']);
     const lines = chargeLines(d, r, truthReport(d, r));
     expect(lines[0]).toMatch(/^You’re charging Thaddeus Thorndike: he went at ten o’clock and he’s with Benny now\.$/);
-    expect(lines.some((l) => /^What shows where he is: /.test(l))).toBe(true);
-    expect(lines.some((l) => /^Lucia Alfano lied too\. What clears her: /.test(l) || /^Alfano lied too\. What clears her: /.test(l))).toBe(true);
+    expect(lines[1]).toMatch(/^[A-Z][\w’.]*(?: [A-Z][\w’]*)? caught him out\.$/);
+    expect(lines.join(' ')).not.toMatch(/lied too|clears|shows where/);
   });
 });
 
@@ -171,7 +171,7 @@ describe('book-look, item 1: the CLI says and does the same', () => {
     const blank = say('close', '');
     expect(blank.code).toBe(1);
     expect(blank.out).toBe(`${BLANK_REPORT} To close it anyway: \`close "blank"\`.`);
-    const closed = at(RAW12_ROUTE.map((c) => ({ do: c })))('close', 'who=Hurwitz; proof=hunch; when=10; how=revolver; why=brother');
+    const closed = at(RAW12_ROUTE.map((c) => ({ do: c })))('close', 'who=Hurwitz; caught=Feldman; when=10; how=revolver; why=brother');
     expect(closed.code).toBe(0);
     expect(closed.out.split('\n')[0]).toBe('You’re charging Minnie Hurwitz: at ten o’clock, with a revolver.');
     expect(closed.out).toContain('THE VERDICT');
@@ -182,7 +182,7 @@ describe('book-look, item 1: the CLI says and does the same', () => {
 
   it('`story` tells the fastest solve after the story', () => {
     const say = at(RAW12_ROUTE.map((c) => ({ do: c })));
-    say('close', 'who=Hurwitz; proof=hunch; when=10; how=revolver; why=brother');
+    say('close', 'who=Hurwitz; caught=Feldman; when=10; how=revolver; why=brother');
     const story = say('story').out;
     expect(story).toContain('THE FASTEST SOLVE');
     expect(story).toMatch(/It took me \d+ actions?/);
