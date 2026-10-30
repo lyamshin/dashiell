@@ -686,9 +686,12 @@ function factGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visi
   out.push(`${''.padEnd(w0)}${head}${g.meansHead ?? ''}`.trimEnd());
   for (const r of g.rows) {
     const m = r.victim ? '' : r.means === '?' ? '?' : [r.meansHome, r.meansAt?.length ? andList(r.meansAt.map(hourWord)) : ''].filter(Boolean).join('; ') || '·';
-    out.push(`${r.name.padEnd(w0)}${g.hours.map((h) => pad(cellText(g, r.cells[h] as BoardCell), h)).join('')}${m}`.trimEnd());
+    const own = g.hours.map((h) => cellText(g, r.cells[h] as BoardCell));
     const under = g.hours.map((h) => heardText(g, r.cells[h] as BoardCell));
-    if (under.some(Boolean)) out.push(`${''.padEnd(w0)}${g.hours.map((h, i) => pad(under[i] || '·', h)).join('')}`.trimEnd());
+    // (Nobody's own word on the row, the dead man's or an evening not asked: what others said, on the row itself.)
+    const mine = own.some((x) => x !== '·');
+    out.push(`${r.name.padEnd(w0)}${g.hours.map((h, i) => pad(mine ? (own[i] as string) : under[i] || '·', h)).join('')}${m}`.trimEnd());
+    if (mine && under.some(Boolean)) out.push(`${''.padEnd(w0)}${g.hours.map((h, i) => pad(under[i] || '·', h)).join('')}`.trimEnd());
   }
   out.push('');
   out.push(gridKey(g).join('  ·  '));
