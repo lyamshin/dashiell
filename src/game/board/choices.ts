@@ -131,8 +131,8 @@ export function boardChoices(d: BoardDeal, run: BoardRun, legacy = false): Offer
         // docs/47 B7: the papers say what they're for, so a letter in the office doesn't make them sound searched.
         choices: finds.map((f) => {
           const ch = choice(`search ${f.id}`, cap(f.what), run.asked.includes(`search:${f.id}`));
-          // A starred search says why on its star; an unstarred one says it here.
-          return f.gives.why && !ch.lead ? { ...ch, note: 'who had what against him' } : ch;
+          // A starred search says why on its star; an unstarred one says it here (docs/80: until it's done).
+          return f.gives.why && !ch.lead && !ch.done ? { ...ch, note: 'who had what against him' } : ch;
         }),
       });
     }
@@ -146,7 +146,7 @@ export function boardChoices(d: BoardDeal, run: BoardRun, legacy = false): Offer
     const visited = run.visited.includes(p) || p === OFFICE;
     // Who the player knows of who's there tonight, or why the place is known at all.
     const there = c.people.filter((x) => x.foundAt === p && people.has(x.id) && (x.role === 'suspect' || x.role === 'company')).map((x) => x.short);
-    const note = visited ? undefined : there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been');
+    const note = visited ? undefined : there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : placeWhy(c, p, known.get(p) ?? 'not been');
     // docs/55 4: a starred walk says its reason once. Its label is the place, so a reason that names
     // the place again ("The laudanum came from the Delmonico rooms") gives way to the note, and the
     // note isn't said beside the star as well.
@@ -172,6 +172,15 @@ export function boardChoices(d: BoardDeal, run: BoardRun, legacy = false): Offer
   free.push({ command: 'file', label: 'Close the case', minutes: 0, lead: false, done: false });
   groups.push({ kind: 'free', heading: '', choices: free });
   return groups;
+}
+
+/**
+ * docs/80: why a place is known, said beside the place without its name again: "Moe’s — Dandridge had
+ * been there earlier", never "Moe’s — Dandridge had been at Moe’s earlier".
+ */
+export function placeWhy(c: BoardDeal['kase'], p: PlaceId, why: string): string {
+  const name = placeName(c, p).replace(/^the /, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return why.replace(new RegExp(`\\bat (?:the )?${name}(?![\\w’])`, 'i'), 'there');
 }
 
 /* ------------------------------------------------------------------ *
@@ -263,17 +272,28 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
  * U7) that it isn't needed for the report: what you were told counts there whether you tell them or
  * not, so confronting them is for what they say back. docs/64: in plain words. Round 6, U1 (all four
  * testers: "the report counts it", counts what?): the cost and the choice said outright, no bare "it".
+ *
+ * docs/80: the whole of it the first time a night's picker opens (nothing confronted yet), and after
+ * that only how to pick, as the hour's first step; the Confront button says the cost on every page.
  */
-export function pickerNote(d: BoardDeal, pk: Picker): string {
+export function pickerNote(d: BoardDeal, pk: Picker, run?: Pick<BoardRun, 'puts'>): string {
   const pr = pronOf(d.kase, pk.person);
+  const last = pickerLast(d, pk) ? ` ${pickerLast(d, pk)}` : '';
+  if (run && run.puts.length > 0) return `${d.kase.tier <= 1 ? pk.help : `Pick the hour that doesn’t match, then who says otherwise.`}${last}`;
   // Round 7, B7: "You don’t have to: the report takes what proves he lied either way" wasn't quite true:
   // confronting the innocent liar is how you learn who clears them. From Poached up, where an innocent
   // liar can be dealt, it says so; below, there's nobody to clear, and what they say back tells you more.
   const back = d.kase.tier >= 2 ? `${pr.he} may name somebody who can clear ${pr.him}` : `${pr.he} may tell you more`;
-  // (Round 9, item 7: on the last action, said plainly. Medium 37 confronted Sirkin with the last one, he
-  // named Bledsoe, and there was no action left to ask Bledsoe.)
-  const last = pk.last ? ` This is your last action: if ${pr.he} names somebody, asking them would take another, and you won’t have one.` : '';
   return `${pk.help} Confronting ${pr.him} takes an action and isn’t needed to prove ${pr.he} lied, but ${back}.${last}`;
+}
+
+/**
+ * Round 9, item 7: on the last action, said plainly. Medium 37 confronted Sirkin with the last one, he
+ * named Bledsoe, and there was no action left to ask Bledsoe. Empty when it isn't the last.
+ */
+export function pickerLast(d: BoardDeal, pk: Picker): string {
+  const pr = pronOf(d.kase, pk.person);
+  return pk.last ? `This is your last action: if ${pr.he} names somebody, you won’t be able to ask them.` : '';
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {

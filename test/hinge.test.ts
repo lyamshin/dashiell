@@ -611,8 +611,8 @@ describe('docs/71: clarity-5b, the slips the read of clarity-5 found (the line m
   it('hint: the fastest solve asks for an evening by the hour that matters, as the hint does', () => {
     const pr = playBoardOracle(p17).run;
     const curtain = (step: string) => (() => `THE FASTEST SOLVE: 12 actions\n3. Ask Dandridge: where were you tonight? ${step}`) as never;
-    expect(nightIssues(p17, pr, { curtainOfBoard: curtain('Bidwell saw Dandridge at Moe’s at eight: ask Dandridge where he was.') }).map((x) => x.rule)).toContain('hint');
-    expect(nightIssues(p17, pr, { curtainOfBoard: curtain('Nobody had said where Dandridge was at nine: ask Dandridge where he was.') }).map((x) => x.rule)).not.toContain('hint');
+    expect(nightIssues(p17, pr, { curtainOfBoard: curtain('Bidwell saw Dandridge at Moe’s at eight.') }).map((x) => x.rule)).toContain('hint');
+    expect(nightIssues(p17, pr, { curtainOfBoard: curtain('Nobody had said where Dandridge was at nine.') }).map((x) => x.rule)).not.toContain('hint');
     expect(nightIssues(p17, pr).filter((x) => x.rule === 'hint')).toEqual([]);
   });
 });

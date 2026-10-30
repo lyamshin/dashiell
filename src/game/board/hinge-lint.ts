@@ -1718,7 +1718,8 @@ export function nightIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
   // matter, which the hint no longer says: "Bidwell saw Dandridge at Moe’s at eight: ask Dandridge where he was".)
   const office = c.givens.window ?? c.crime.window;
   for (const step of steps) {
-    const m = /\b(?:saw|had seen|says [^:]*? was with (?:him|her)) [^:]*? at (seven|eight|nine|ten|eleven|twelve): ask \S+(?: \S+)? where (?:he|she) was\b/.exec(step);
+    // (docs/80: the step's reason no longer repeats its label's ask: "Ask Dandridge: where were you tonight? Bidwell saw Dandridge at Moe’s at eight.")
+    const m = /\bwhere were you tonight\? (?:[^?]*?\b)?(?:saw|had seen|says [^?]*? was with (?:him|her)) [^?]*? at (seven|eight|nine|ten|eleven|twelve)\.$/.exec(step);
     if (m && !office.includes(HW.indexOf(m[1] as string) as Hour)) out.push({ page: -1, rule: 'hint', detail: `fastest solve: an hour that doesn't matter: “${step.slice(0, 120)}”` });
   }
   out.push(...round9Night(d, run, env));

@@ -182,7 +182,7 @@ describe('docs/78: the CLI', () => {
       expect(r.code, r.out).toBe(0);
       expect(r.out).toContain('Who caught them out? Feeney ✓');
       expect(r.out).toContain('5 out of 5.');
-      expect(r.out).toContain('★ Gold star: a perfect report, with no hints.');
+      expect(r.out).toContain('★ A gold star.');
     }
     fresh();
     // "Rafferty" is Mrs. Rafferty, the only one by that name on the list.
@@ -203,7 +203,10 @@ describe('docs/78: the CLI', () => {
     expect(help).not.toMatch(/proof=|other=|cleared=|hunch|counts half/);
     expect(BOARD_TEACH_LINES).toContain('To close the case you answer five questions: who did it, who caught them out, when, how, and why.');
     expect(BOARD_TEACH_LINES).toHaveLength(8);
-    expect(BOARD_RULES.join(' ')).toContain('You give five answers, one point each: who did it, who caught them out, when, how, and why.');
+    // (docs/80: the help prints the teach lines and the rules, each rule once.)
+    expect(help).toContain('To close the case you answer five questions: who did it, who caught them out, when, how, and why.');
+    expect(BOARD_RULES.join(' ')).toContain('Each answer is a point.');
+    expect(BOARD_RULES.join(' ')).not.toMatch(/five answers/);
   });
 });
 

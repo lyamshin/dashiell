@@ -7,7 +7,8 @@
  *   the first liar's; the round-9 testers' saves) hash as one fixed string. A change to the curtain's
  *   words changes the hash: change it on purpose. (It was main 42463d4's, byte for byte, through the
  *   sheet's refactor; docs/78 changed it on purpose: who caught them out against whom you named, and
- *   no "who else lied".)
+ *   no "who else lied"; docs/80 on purpose again: a step's reason without the ask its label already says,
+ *   and a confrontation that missed said shorter.)
  * - The sheet: the board's rows in the CLI's order, each lie in its cell, the sections a night asks.
  * - The replay (`replay.ts`): the fastest solve's steps are the sheet's; every lie is caught out at a
  *   step of it, and the culprit's on the oracle's own night; a night's steps are its paid questions,
@@ -79,11 +80,11 @@ function spread(): [string, string][] {
 }
 
 describe('the curtain’s text', () => {
-  it('is one fixed string over the spread (docs/78’s, changed on purpose)', () => {
+  it('is one fixed string over the spread (docs/80’s, changed on purpose)', () => {
     const all = spread();
     const h = createHash('sha256');
     for (const [tag, text] of all) h.update(`${tag}\n${text}\n\0`);
-    expect(`${all.length} ${h.digest('hex').slice(0, 16)}`).toBe('246 2293a68e8ec074e0');
+    expect(`${all.length} ${h.digest('hex').slice(0, 16)}`).toBe('246 d668041b76bbc7a2');
   }, 120_000);
 });
 

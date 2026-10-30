@@ -121,7 +121,7 @@ describe('B4: a star asks who somebody passed only where a passer-by can be had,
   it('Hard-boiled 19: the fastest solve asks Grasso where she was, on Mosley’s word', () => {
     const { d, run } = night(HB19);
     const step = curtainOfBoard(d, run).split('\n').find((x) => x.startsWith('7. ')) as string;
-    expect(step).toBe('7. Ask Grasso: where were you tonight? Mosley says Grasso was with him at Grasso’s flat at nine: ask Grasso where she was.');
+    expect(step).toBe('7. Ask Grasso: where were you tonight? Mosley says Grasso was with him at Grasso’s flat at nine.');
   });
 
   it('Medium 21: Vitale walked over, and the star says so before it asks who she passed', () => {
@@ -166,7 +166,7 @@ describe('B6: a windowed murder’s means had to be had before the earliest hour
     expect(text).toContain('Whoever stabbed Mulcahy had to fetch the carving knife from Kowalski’s before nine, the earliest he could have been stabbed.');
     expect(text).not.toMatch(/Vitale didn’t come (?:to Kowalski’s )?till nine|Vitale hadn’t, though/);
     expect(meansLate(d.kase, run, 'vitale')).toBe(9);
-    expect(boardGrid(d.kase, run).rows.find((r) => r.id === 'vitale')?.meansWhy).toBe('Vitale didn’t come to Kowalski’s till nine, too late for it.');
+    expect(boardGrid(d.kase, run).rows.find((r) => r.id === 'vitale')?.meansWhy).toBe('Vitale didn’t come to Kowalski’s till nine, too late for the carving knife.');
   });
 
   it('Hard-boiled 19: the chloral, from the Delmonico rooms, and the hour the player’s', () => {

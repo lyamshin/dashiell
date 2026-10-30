@@ -633,6 +633,11 @@ input {
   font-variant-numeric: tabular-nums;
 }
 
+/* (docs/80: the newest page says no "page 9 of 9"; the empty count takes no gap.) */
+.pager-at:empty {
+  display: none;
+}
+
 .turned-note {
   margin-top: 0.8rem;
 }
