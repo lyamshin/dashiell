@@ -228,7 +228,26 @@ describe('board: the refusal shortcut and the wanderer', () => {
   // decided 2026-10-11: from Poached up "the first liar you catch did it" did no better than anybody with
   // access, plus ten points, while the report asked who else lied. docs/78 §4: with that question gone it
   // does (19% against 3% here); the red herring inside the deduction is the work that brings it back.
-  it.todo('decided 2026-10-11: from Poached up “the first liar you catch did it” does no better than anybody with access, plus ten points (needs docs/78 §4’s red herring)');
+  // docs/82: with puzzles B (behind the flag), from Soft-boiled up, the gate as B achieves it: on a
+  // night with two liars the first one caught is a coin flip between them, so naming them does no
+  // better than naming anybody with access, plus ten points; the one-liar nights are D's.
+  it('with puzzles B, from Soft-boiled up, on nights with two liars “the first liar you catch did it” does no better than anybody with access, plus ten points', () => {
+    let n = 0;
+    let first = 0;
+    let access = 0;
+    for (const tier of [3, 4, 5] as TierIndex[]) {
+      for (const type of typesFor(tier)) {
+        for (let s = 1; s <= 8; s++) {
+          const d = dealBoard(s, tier, type, { puzzles: ['B'] });
+          if (!d.kase.puzzles || d.kase.lies.length < 2) continue;
+          n++;
+          if (playReader(d, s, { guess: 'first' }).ok) first++;
+          if (playReader(d, s, { guess: 'access' }).ok) access++;
+        }
+      }
+    }
+    expect(first / n).toBeLessThanOrEqual(access / n + 0.1);
+  });
 
   it('from Poached up “the first liar you catch did it” solves no more than half the nights', () => {
     let n = 0;

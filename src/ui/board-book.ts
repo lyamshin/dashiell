@@ -37,7 +37,7 @@ import {
 import { recapClauses } from '../game/board/pages.js';
 import { nameInFull, peopleLine } from '../game/board/gloss.js';
 import { BACK_TO_CASE, blankReport, boardFields, canGoBack, chargeLines, fastestSolveLines, notebookLines, reportFrom, scoreBoard, storyOfBoard, type FieldKey, type Verdict } from '../game/board/report.js';
-import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
+import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachB, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, CLOSE_HEADING, CLOSE_NOTE, CLOSE_TAG, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
 import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
@@ -46,7 +46,7 @@ import { SITUATED } from '../game/board/plan/situated.js';
 import { TEXTURE, setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/board/types.js';
-import { typesFor } from '../gen/board/index.js';
+import { parsePuzzles, typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
 import { attachCard, hideCard, type CardSource } from './hover.js';
 import { renderVerdict, type TierNews } from './report.js';
@@ -64,6 +64,8 @@ interface BoardSaved {
   type?: CaseType;
   /** docs/48: the world the night was cast from (`?world=neighbourhood`), when it isn't the dealt cast. */
   world?: string;
+  /** docs/82: the harder-puzzle prototypes the night was dealt with (`?puzzles=B`), kept with the night. */
+  puzzles?: string[];
   detective: string;
   commands: string[];
   marks: Record<string, Record<string, CellMark>>;
@@ -93,9 +95,11 @@ function loadSaved(store: KeyValueStore): BoardSaved | null {
     const v = JSON.parse(raw) as BoardSaved;
     if (!v || v.engine !== 'board' || !Array.isArray(v.commands) || !dealable(v.seed, v.tier, v.type) || (v.world !== undefined && !isWorld(v.world))) return null;
     const seen = v.seen && Array.isArray(v.seen.recent) && Array.isArray(v.seen.last) ? { recent: v.seen.recent.filter((x) => typeof x === 'string'), last: v.seen.last.filter((x) => typeof x === 'string') } : undefined;
-    const { seen: _seen, ...rest } = v;
+    const { seen: _seen, puzzles: _pz, ...rest } = v;
     void _seen;
-    return { ...rest, ...(seen ? { seen } : {}), detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
+    // (docs/82: only the flags there are.)
+    const pz = parsePuzzles(Array.isArray(_pz) ? _pz.filter((x) => typeof x === 'string') : []);
+    return { ...rest, ...(seen ? { seen } : {}), ...(pz.length ? { puzzles: pz } : {}), detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
   } catch {
     return null;
   }
@@ -175,6 +179,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   // docs/48: `?world=neighbourhood` casts the nights opened from here from the bible.
   const w0 = params().get('world');
   let world: string | undefined = isWorld(w0) ? w0 : undefined;
+  // docs/82: `?puzzles=B` deals the nights opened from here with the harder-puzzle prototypes, off by default.
+  let puzzles: string[] = parsePuzzles(params().get('puzzles'));
   // docs/51: `?situated=0` writes the pages from here on with the old decks only, for comparison.
   SITUATED.on = params().get('situated') !== '0';
   // docs/60: `?texture=full` writes the pages with every line of texture, as before the budget.
@@ -184,7 +190,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
-    const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
+    const pz = (saved && screen.kind !== 'title' ? saved.puzzles : puzzles) ?? [];
+    const q00 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
+    const q0 = pz.length ? `${q00 ? `${q00}&` : '?'}puzzles=${pz.join(',')}` : q00;
     const q1a = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
     const q1 = TEXTURE.mode === 'full' ? `${q1a ? `${q1a}&` : '?'}texture=full` : q1a;
     const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
@@ -206,16 +214,17 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
    * profile's continuity (no culprit twice running, nobody wronged twice in ten nights), stepping on
    * to the next seed that does, and the seed it lands on is the night's (and the link's).
    */
-  function openCase(seed: number, tier: TierIndex, type: CaseType | undefined, name: string, resume: boolean, w: string | undefined = world, fresh = false): void {
+  function openCase(seed: number, tier: TierIndex, type: CaseType | undefined, name: string, resume: boolean, w: string | undefined = world, fresh = false, pz: string[] = puzzles): void {
     const avoid = fresh && w ? continuityOf(loadProfile(store)) : undefined;
-    d = dealBoard(seed, tier, type, w ? { world: w, ...(avoid ? { avoid } : {}) } : {});
+    d = dealBoard(seed, tier, type, { ...(w ? { world: w, ...(avoid ? { avoid } : {}) } : {}), ...(pz.length ? { puzzles: pz } : {}) });
     if (w) seed = d.kase.seed;
     world = w;
+    puzzles = pz;
     const prior = resume ? loadSaved(store) : null;
-    const same = prior && prior.seed === seed && prior.tier === tier && (prior.type ?? null) === (type ?? null) && (prior.world ?? null) === (w ?? null);
+    const same = prior && prior.seed === seed && prior.tier === tier && (prior.type ?? null) === (type ?? null) && (prior.world ?? null) === (w ?? null) && (prior.puzzles ?? []).join() === pz.join();
     // docs/55 6: a fresh night remembers what the last ten dealt, and keeps it with the save so a replay deals the same.
     const seen = same && prior ? prior.seen : seenOf(loadProfile(store));
-    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), ...(w ? { world: w } : {}), detective: name, commands: [], marks: {}, ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
+    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), ...(w ? { world: w } : {}), ...(pz.length ? { puzzles: pz } : {}), detective: name, commands: [], marks: {}, ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
     run = newBoardRun(d, { detectiveName: saved.detective, ...(type ? { type } : {}), ...(saved.seen ? { seen: saved.seen } : {}) });
     for (const cmd of saved.commands) run = stepBoard(d, run, cmd).run;
     run = { ...run, marks: saved.marks };
@@ -225,7 +234,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     selected = null;
     pickerOpen = false;
     pickerClaim = null;
-    screen = run.filed ? { kind: 'verdict', verdict: scoreBoard(d, run, run.filed) } : !same && teachOn(loadProfile(store), tier) ? { kind: 'teach' } : { kind: 'book' };
+    // (docs/82: a fresh night with puzzles B, from Soft-boiled up, opens on the teach page, for the line B adds.)
+    screen = run.filed ? { kind: 'verdict', verdict: scoreBoard(d, run, run.filed) } : !same && (teachOn(loadProfile(store), tier) || teachB(d.kase) !== null) ? { kind: 'teach' } : { kind: 'book' };
     writeUrl();
     render();
   }
@@ -459,7 +469,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const teach = el('div', { class: 'teach', role: 'region', 'aria-label': BOARD_TEACH_TITLE });
       teach.append(el('h2', { class: 'teach-title', text: BOARD_TEACH_TITLE }));
       const list = el('ol', { class: 'teach-list' });
-      for (const line of teachLines(d?.kase.world)) list.append(el('li', { class: 'teach-line', text: line }));
+      for (const line of teachLines(d?.kase.world, d?.kase)) list.append(el('li', { class: 'teach-line', text: line }));
       teach.append(list);
       const go = el('button', { class: 'big-button teach-go', type: 'button', text: 'Start' });
       go.addEventListener('click', () => {
@@ -1261,7 +1271,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const tonightNote = el('p', { class: 'action-note', text: `Tonight: ${tierName(tonight)}` });
     if (inProgress) {
       const back = el('button', { class: 'big-button', type: 'button', 'data-primary': 'true', text: 'Back to the case' });
-      back.addEventListener('click', () => openCase(inProgress.seed, inProgress.tier, inProgress.type, inProgress.detective, true, inProgress.world));
+      back.addEventListener('click', () => openCase(inProgress.seed, inProgress.tier, inProgress.type, inProgress.detective, true, inProgress.world, false, inProgress.puzzles ?? []));
       const fresh = el('button', { class: 'big-button big-button--second', type: 'button', text: 'Open a new case' });
       fresh.addEventListener('click', startTonight);
       actions.append(

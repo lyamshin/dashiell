@@ -1,5 +1,5 @@
 /**
- * docs/43 "Done means" and docs/46 §4, measured: `npx tsx scripts/board-measure.ts [--seeds 50] [--tiers 0,1,2,3,4,5]`
+ * docs/43 "Done means" and docs/46 §4, measured: `npx tsx scripts/board-measure.ts [--seeds 50] [--tiers 0,1,2,3,4,5] [--world neighbourhood] [--puzzles B]`
  *
  * For each tier and each case type it builds, over the seeds:
  * - the oracle's route (the designed path through the engine): solved, five out of
@@ -31,7 +31,7 @@
  * Then the same by tier, all case types together.
  */
 
-import { techniquesUpTo, typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
+import { parsePuzzles, techniquesUpTo, typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { breaksAt, innocentLie, oneLiar } from '../src/gen/board/path.js';
 import { boardChoices } from '../src/game/board/choices.js';
 import { stepBoard, newBoardRun } from '../src/game/board/engine.js';
@@ -51,6 +51,8 @@ const N = Number(val('seeds') ?? 50);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
 // docs/48 §4: `--world neighbourhood` measures nights cast from the bible.
 const world = val('world');
+// docs/82: `--puzzles B` measures nights dealt with the harder-puzzle prototypes behind the flag.
+const puzzles = parsePuzzles(val('puzzles'));
 const terms = loadPlainTerms();
 
 /** First-level choices on a page: each person, each search, each place shown, the fold, the free row. */
@@ -148,7 +150,7 @@ for (const tier of tiers) {
     let pages = 0;
     let callbacks = 0;
     for (let s = 1; s <= N; s++) {
-      const d = dealBoard(s, tier, type, world ? { world } : {});
+      const d = dealBoard(s, tier, type, { ...(world ? { world } : {}), ...(puzzles.length ? { puzzles } : {}) });
       const culprit = d.kase.crime.culprit;
       const o = playBoardOracle(d);
       const par = parCalls(d);

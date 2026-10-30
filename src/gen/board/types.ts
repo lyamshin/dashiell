@@ -166,6 +166,12 @@ export interface Remark {
   gives?: Gives;
   /** Places and people the remark names without placing anyone (gossip: "she goes on to the Palace"). */
   mentions?: { places?: PlaceId[]; people?: PersonId[]; why?: string };
+  /**
+   * docs/82 (puzzles B): somebody saw it done by this hour: the dead man on his floor, the pet's basket
+   * empty. The crime was in an hour before it. Read with the time-window technique, like a sighting of
+   * him alive somewhere else.
+   */
+  done?: Hour;
 }
 
 /** Rule 4: asked "Where were you tonight?", everyone gives the whole evening, with company. */
@@ -326,6 +332,17 @@ export interface BoardCase {
   lead?: 'innocent' | 'culprit';
   /** docs/48: the bible the night was cast from ("neighbourhood"). Absent: the dealt cast. */
   world?: string;
+  /**
+   * docs/82: the harder-puzzle prototypes the night was dealt with (`['B']`), behind a flag. Absent:
+   * none, the night as main deals it.
+   */
+  puzzles?: string[];
+  /**
+   * docs/82 (puzzles B): what tells the two broken stories apart, from Soft-boiled up: the hour (the
+   * two lies fall at different hours of the window, and only the crime hour's matters) or the means
+   * (the innocent liar couldn't have had it).
+   */
+  discriminator?: 'hour' | 'means';
 }
 
 export type QuestionKind = 'search' | 'list' | 'account' | 'confront';

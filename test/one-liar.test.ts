@@ -26,7 +26,7 @@ import {
 import { buildCase } from '../src/gen/board/generate.js';
 import { innocentLie, rate, rivalsOf } from '../src/gen/board/path.js';
 import { dealBoard, type BoardDeal } from '../src/game/board/model.js';
-import { playBoardOracle, refusalShortcutCalls } from '../src/game/board/oracle.js';
+import { playBoardOracle, playFirstLiar, refusalShortcutCalls } from '../src/game/board/oracle.js';
 import { curtainOfBoard, truthReport } from '../src/game/board/report.js';
 import { parCalls } from '../src/game/board/model.js';
 
@@ -165,7 +165,31 @@ describe('docs/69 §5: the pages assume no second liar', () => {
 
 describe('docs/69 §3: the "first liar" shortcut', () => {
   // docs/78 §4: "Nobody else" was what held it under 10% perfect from Poached up. With the report's
-  // question gone, nothing does yet; the second liar made a red herring inside the deduction is the
-  // work that should. Until then this is a target, not a gate.
-  it.todo('stays under 10% perfect from Poached up (needs docs/78 §4’s red herring)');
+  // question gone, nothing does on main; the second liar made a red herring inside the deduction is
+  // the work that should. docs/82: with puzzles B (behind the flag), from Soft-boiled up, what B
+  // achieves, as a gate: on a night with two liars the first one caught is a coin flip, and the
+  // one-liar nights (one in six) it gets every time are what's left over (D's false clash is next).
+  it('with puzzles B, from Soft-boiled up, files a perfect report on no more than three in five of nights, and three in five of nights with two liars', () => {
+    let n = 0;
+    let two = 0;
+    let perfect = 0;
+    let perfectTwo = 0;
+    for (const tier of [3, 4, 5] as TierIndex[]) {
+      for (const type of typesFor(tier)) {
+        for (let seed = 1; seed <= 8; seed++) {
+          const d = dealBoard(seed, tier, type, { puzzles: ['B'] });
+          if (!d.kase.puzzles) continue;
+          const ok = playFirstLiar(d, seed).ok;
+          n++;
+          if (ok) perfect++;
+          if (!oneLiar(d.kase)) {
+            two++;
+            if (ok) perfectTwo++;
+          }
+        }
+      }
+    }
+    expect(perfect / n).toBeLessThanOrEqual(0.6);
+    expect(perfectTwo / two).toBeLessThanOrEqual(0.6);
+  });
 });

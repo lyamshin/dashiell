@@ -221,7 +221,13 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
   // meets the natural sets first.
   // 4a.2: only what the player can be pointed to counts, so the goal reads the set's closure.
   const ordered = [...pool].sort((a, b) => (rank.get(a) ?? 99) - (rank.get(b) ?? 99));
-  const goal = (held: string[]) => solve(c, closure(c, held), { techniques: T }).done;
+  // docs/82 (puzzles B): both broken stories are on the designed path (docs/41 rule 9), so par counts
+  // meeting the red herring: the innocent's story isn't what clears them any more, the discriminator is.
+  const both = !!c.puzzles?.includes('B') && c.lies.length > 1;
+  const goal = (held: string[]) => {
+    const s = solve(c, closure(c, held), { techniques: T });
+    return s.done && (!both || c.lies.every((l) => s.status.get(key(l.person, l.hour))?.s === 'broken'));
+  };
   const sets = minimalSets(ordered, [], goal, LIMIT_PAR, true);
   if (sets.length === 0) return empty;
 

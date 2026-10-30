@@ -31,12 +31,23 @@ export const BOARD_TEACH_LINES: readonly string[] = [
 ];
 
 /**
- * The teach page's lines for a night. The same eight from every world (the neighbourhood's map line
- * went with the period voice); `world` is kept so callers needn't change.
+ * docs/82 (puzzles B, behind the flag, from Soft-boiled up): the one thing B teaches. Two stories may
+ * fall apart, and only one of the two did it: the hour, or who could have had the means, says which.
  */
-export function teachLines(world?: string): readonly string[] {
+export function teachB(c: { type: string; tier: number; puzzles?: readonly string[] } | undefined): string | null {
+  if (!c?.puzzles?.includes('B') || c.tier < 3) return null;
+  return `When two people have lied, only one of them could have done it. Find out when it happened, and who ${c.type === 'murder' ? 'could have got the weapon' : 'could have known the way in'}.`;
+}
+
+/**
+ * The teach page's lines for a night. The same eight from every world (the neighbourhood's map line
+ * went with the period voice); `world` is kept so callers needn't change. docs/82: with puzzles B, the
+ * line it teaches after the refusal's.
+ */
+export function teachLines(world?: string, c?: { type: string; tier: number; puzzles?: readonly string[] }): readonly string[] {
   void world;
-  return BOARD_TEACH_LINES;
+  const b = teachB(c);
+  return b ? [...BOARD_TEACH_LINES.slice(0, 5), b, ...BOARD_TEACH_LINES.slice(5)] : BOARD_TEACH_LINES;
 }
 
 /** The book's help, for the play CLI and the title page's "How it plays": how a night plays. */

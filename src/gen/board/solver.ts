@@ -511,11 +511,21 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
   let possible = [...(opts.forceHours ?? c.crime.window)];
   const narrowDeps = new Set<string>();
   if (!opts.forceHours && T.has('time-window')) {
+    // docs/82 (puzzles B): somebody saw it done by an hour (the dead man on his floor, the basket empty),
+    // so it happened in an hour before that one.
+    const doneBy = remarks.filter((x) => x.r.done !== undefined);
     const narrowed = possible.filter((h) => {
       const a = at.get(key(c.crime.victim, h));
       if (a && a.place !== scene) {
         note('time-window', `${n(c.crime.victim)} was at ${n(a.place)} at ${h}, so not then`, a.deps);
         for (const d of a.deps) narrowDeps.add(d);
+        return false;
+      }
+      const seen = doneBy.find((x) => (x.r.done as Hour) <= h);
+      if (seen) {
+        const d = union([seen.q], seen.extra);
+        note('time-window', `it was done by ${seen.r.done} (${seen.q}), so not at ${h}`, d);
+        for (const x of d) narrowDeps.add(x);
         return false;
       }
       return true;

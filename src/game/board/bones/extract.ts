@@ -77,6 +77,8 @@ export function remarkProps(c: BoardCase, speaker: PersonId, r: Remark, list?: W
     const fence = (c.others ?? []).find((o) => o.id === 'fence');
     return [{ k: 'HANDOVER', to: fence ? `other:${fence.id}` : 'other:somebody', place: list?.place ?? c.crime.whereNow?.place ?? '', hour: c.crime.hour + 1 }];
   }
+  // docs/82 (puzzles B): a sighting that it was done by an hour is said in the speaker's own words.
+  if (r.done !== undefined) return [];
   const f = r.facts[0];
   if (f && f.k === 'notAt') {
     // docs/65 §1: the street the remark says, where the two walks could cross (the scene's own, where they can).

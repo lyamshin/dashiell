@@ -58,6 +58,11 @@ export interface InvariantReport {
    * than the culprit's broken story: some rival is cleared by a line that breaks nothing of theirs.
    */
   rivalsChecked: string[];
+  /**
+   * docs/82 (puzzles B): two broken stories, one killer. Without what tells them apart (the hour, or the
+   * means), both liars are left standing: elimination by who was placed where doesn't settle it.
+   */
+  discriminated: string[];
 }
 
 export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
@@ -83,6 +88,7 @@ export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
   'pathMotivated',
   'twoStories',
   'rivalsChecked',
+  'discriminated',
 ];
 
 /** Where people are plausibly found with no reason but their own (4a.2). */
@@ -116,7 +122,10 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     pathMotivated: [],
     twoStories: [],
     rivalsChecked: [],
+    discriminated: [],
   };
+  /** docs/82: puzzles B, and what tells the two stories apart. */
+  const B = c.puzzles?.includes('B') ? c.discriminator : undefined;
   const hours = c.board.hours;
   const place = new Map(c.places.map((p) => [p.id, p]));
   const suspects = c.people.filter((p) => p.role === 'suspect').map((p) => p.id);
@@ -246,6 +255,16 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
       if (a.person === l.person) continue;
       if (a.claims[l.hour]?.company.includes(l.person) || a.remarks.some((x) => placesThem(x.facts))) placers.add(`account:${a.person}`);
     }
+    // docs/82 (puzzles B): alone and unwatched, so nothing places them at all, and nothing but the
+    // discriminator clears them (`discriminated`): with the hour they had the means as the culprit did;
+    // with the means they never could have had it.
+    if (B) {
+      if (placers.size > 0) r.lieMatters.push(`${[...placers].join(', ')} place ${l.person} at ${l.hour}, who was alone`);
+      if (k.response === 'admit') r.lieMatters.push(`${l.person} owns up, with nobody to name`);
+      if (B === 'hour' && !hadAccess(c, l.person)) r.lieMatters.push(`${l.person} had no access, but the hour is what tells the two apart`);
+      if (B === 'means' && hadAccess(c, l.person)) r.lieMatters.push(`${l.person} had access, so the means can’t tell the two apart`);
+      continue;
+    }
     const resolution = new Set([`confront:${k.person}@${k.hour}`, ...(k.response === 'admit' ? (k.names ?? []).map((w) => `account:${w}`) : [])]);
     const others = [...placers].filter((q) => !resolution.has(q));
     if (k.response === 'admit' && others.length > 0) r.lieMatters.push(`${others.join(', ')} place ${l.person} at ${l.hour} besides the admission`);
@@ -298,6 +317,9 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     for (const k of c.confrontations) {
       const pl = k.person === c.crime.culprit ? k.secondLie?.place : undefined;
       if (pl && la.claims[k.hour]?.place === pl) r.liarsApart.push(`${c.crime.culprit}'s second lie and ${lp} both claim ${pl} at ${k.hour}`);
+      // (docs/82, B: and the innocent's second lie.)
+      const lpl = k.person === lp ? k.secondLie?.place : undefined;
+      if (lpl && ca.claims[k.hour]?.place === lpl) r.liarsApart.push(`${lp}'s second lie and ${c.crime.culprit} both claim ${lpl} at ${k.hour}`);
     }
   }
 
@@ -434,7 +456,20 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
   // Decided 2026-10-11: two broken stories at one hour. From Poached up an innocent who lies, lies
   // about the crime hour, and the designed path breaks their story as well as the culprit's.
   const innocentLies = c.lies.filter((l) => l.person !== c.crime.culprit);
-  if (c.tier >= 2) for (const l of innocentLies) if (l.hour !== c.crime.hour) r.twoStories.push(`${l.person} lies about ${l.hour}, not the crime hour ${c.crime.hour}`);
+  // (docs/82, B with the hour: the innocent lies about the window's other hour, which is the point.)
+  const lieHourOk = (h: Hour) => h === c.crime.hour || (B === 'hour' && c.crime.window.includes(h));
+  if (c.tier >= 2) for (const l of innocentLies) if (!lieHourOk(l.hour)) r.twoStories.push(`${l.person} lies about ${l.hour}, not the crime hour ${c.crime.hour}`);
+  if (B === 'hour') for (const l of innocentLies) if (l.hour === c.crime.hour) r.twoStories.push(`${l.person} lies about the crime hour, where the hour should tell the two apart`);
+
+  // docs/82 (puzzles B): without the discriminator's technique (the sighting that narrows the hour, or
+  // who could have got the means), neither liar is cleared, however much else is held.
+  if (B && innocentLies.length > 0) {
+    const without = new Set(techniquesUpTo(c.tier));
+    without.delete(B === 'hour' ? 'time-window' : 'access');
+    const s0 = solve(c, all, { techniques: without });
+    for (const p of [c.crime.culprit, ...innocentLies.map((l) => l.person)]) if (s0.cleared.has(p)) r.discriminated.push(`${p} is cleared without the ${B} (${s0.cleared.get(p)?.how})`);
+    if (s0.who !== undefined) r.discriminated.push(`the solver names ${s0.who} without the ${B}`);
+  }
   if (a && c.tier >= 2 && innocentLies.length > 0) {
     const st = solve(
       c,

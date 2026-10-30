@@ -212,7 +212,15 @@ describe('docs/78 §4: what the other liar’s question was holding', () => {
   // hint handed it, solved under 10% from Poached up while the report asked who else lied. With the
   // question gone it solves far more often; the red herring inside the deduction is the work that
   // brings it back. Until then this is a target, not a gate.)
-  it.todo('the shortcut readers solve under 10% of nights from Poached up (needs docs/78 §4’s red herring)');
+  // docs/82: with puzzles B (behind the flag), from Soft-boiled up, as B achieves it: naming the first
+  // or the last liar caught is a coin flip on a night with two, and the one-liar nights are D's.
+  it('with puzzles B, from Soft-boiled up, the shortcut readers solve no more than a quarter of nights', () => {
+    const ds = [3, 4, 5].flatMap((tier) => typesFor(tier as TierIndex).flatMap((type) => Array.from({ length: 6 }, (_, i) => dealBoard(i + 1, tier as TierIndex, type, { puzzles: ['B'] })))).filter((d) => !!d.kase.puzzles);
+    for (const guess of ['first', 'last'] as const) {
+      const ok = ds.filter((d) => playReader(d, d.kase.seed, { guess }).ok).length;
+      expect(ok / ds.length, guess).toBeLessThanOrEqual(0.25);
+    }
+  });
   it('the reader handed a name by a hint solves no more than it did', () => {
     let n = 0;
     let star = 0;

@@ -1,7 +1,7 @@
 import { Rng } from './rng.js';
 import type { BoardCase, CaseType, TierIndex } from './types.js';
-import { buildCase, lastVeto, oneLiarDrawn, oneLiarNight, typesFor } from './generate.js';
-import { analyse, rate, ratesAt, refusalShortcut, type Analysis } from './path.js';
+import { PUZZLES, buildCase, lastVeto, oneLiarDrawn, oneLiarNight, typesFor } from './generate.js';
+import { analyse, oneLiar, rate, ratesAt, refusalShortcut, type Analysis } from './path.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
 import { PAR_TARGET, TIERS } from './tiers.js';
 import type { WorldCtx } from './world/cast.js';
@@ -14,7 +14,7 @@ export { checkInvariants, invariantFailures } from './invariants.js';
 export { solve, questionsOf } from './solver.js';
 export { closure, pointed, pointerIndex } from './pointers.js';
 export { techniquesUpTo, TIERS, LADDER, parseTier } from './tiers.js';
-export { typesFor, REFUSE_SHARE, ONE_LIAR_SHARE, oneLiarDrawn, oneLiarNight } from './generate.js';
+export { typesFor, REFUSE_SHARE, ONE_LIAR_SHARE, ONE_LIAR_SHARE_B, PUZZLES, puzzleB, oneLiarDrawn, oneLiarNight } from './generate.js';
 
 /**
  * docs/42 §1–2: generate, then accept the way Tatham does. A candidate is kept
@@ -49,7 +49,12 @@ export function reject(c: BoardCase, a: Analysis): string | null {
   if (inv.length > 0) return `invariant: ${inv[0]}`;
   if (!a.solvable) return 'unsolvable at its tier';
   if (!ratesAt(c, a.rating)) return `rates ${a.rating}`;
-  if (a.par < PAR_FLOOR[c.tier] || a.par > PAR_TARGET[1]) return `par ${a.par}`;
+  // docs/82 (puzzles B): a night with one liar may be a question shorter. The honest innocent's hour alone
+  // is the window's other hour, and the list that sees them at the crime hour is one the night needs
+  // anyway, so it's four questions (the scene, two lists, the liar's story) on most Soft-boiled nights;
+  // with the floor at five, one night in a hundred had one liar, not the designer's one in six.
+  const floor = c.puzzles?.includes('B') && oneLiar(c) ? Math.min(PAR_FLOOR[c.tier], 4) : PAR_FLOOR[c.tier];
+  if (a.par < floor || a.par > PAR_TARGET[1]) return `par ${a.par}`;
   const w = TIERS[c.tier].width;
   for (const r of a.rivals) {
     if (r.routes.length < w.min) return `rival ${r.id} has ${r.routes.length} routes`;
@@ -78,15 +83,26 @@ export function givensSignature(c: BoardCase): string {
   return s;
 }
 
+/**
+ * docs/82: the harder-puzzle flags a night is dealt with, as the tools and the book take them ("B",
+ * "b,c", `['B']`): the ones there are, upper case, in order. Anything else is dropped.
+ */
+export function parsePuzzles(raw: string | readonly string[] | null | undefined): string[] {
+  if (!raw) return [];
+  const xs = (typeof raw === 'string' ? raw.split(',') : [...raw]).map((x) => x.trim().toUpperCase());
+  return (PUZZLES as readonly string[]).filter((p) => xs.includes(p));
+}
+
 export function generateBoard(
   seed: number,
   tier: TierIndex,
-  opts: { type?: CaseType; maxAttempts?: number; onReject?: (why: string) => void; world?: WorldCtx } = {},
+  opts: { type?: CaseType; maxAttempts?: number; onReject?: (why: string) => void; world?: WorldCtx; puzzles?: readonly string[] } = {},
 ): Generated | null {
   const type = opts.type ?? pickType(seed, tier);
   const max = opts.maxAttempts ?? MAX_ATTEMPTS;
+  const puzzles = parsePuzzles(opts.puzzles);
   for (let attempt = 0; attempt < max; attempt++) {
-    const c = buildCase(seed, tier, type, attempt, opts.world);
+    const c = buildCase(seed, tier, type, attempt, opts.world, puzzles);
     if (!c) {
       opts.onReject?.(`truth: ${lastVeto}`);
       continue;
@@ -110,7 +126,7 @@ export function generateBoard(
     // Decided 2026-10-25 (docs/69 §1.1): on a one-liar draw the night is dealt without its innocent
     // liar: the night above, accepted, with the second lie dropped (`oneLiarNight`). It must pass every
     // gate again as a night with one liar, or it's dealt again; a night with two keeps the deal it had.
-    if (oneLiarDrawn(seed, tier, type, attempt)) {
+    if (oneLiarDrawn(seed, tier, type, attempt, puzzles)) {
       const o = oneLiarNight(c);
       if (o) {
         const g = accepted(o);

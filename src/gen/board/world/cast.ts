@@ -77,13 +77,20 @@ export interface CastIn {
   windowed: boolean;
   wantWork: boolean;
   wantSecond: boolean;
+  /**
+   * docs/82 (puzzles B): the window's first hour, when the crime may be at either of its hours (the
+   * means is there only before it). Absent: the hour before the crime, as without the flag.
+   */
+  w0?: Hour;
+  /** docs/82 (puzzles B, the means): the innocent liar has a flat of their own, in a building nobody watches, and says they were home. */
+  lHome?: boolean;
 }
 
 export type SmallMeansDef = (typeof K.SMALL_MEANS)[number];
 export type RoomingMeansDef = (typeof K.ROOMING_MEANS)[number];
 export type HolderDef = (typeof K.HOLDERS)[number] & { person?: string };
 
-export type Slot = 'S' | 'B' | 'X' | 'U' | 'H' | 'YH';
+export type Slot = 'S' | 'B' | 'X' | 'U' | 'H' | 'YH' | 'LH';
 
 export interface Cast {
   venue: K.VenueDef;
@@ -315,7 +322,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
   // --- The night place, and the second ---------------------------------------------------------
   const B = pick(b.places.filter((p) => VENUE_KINDS.has(p.kind) && p.watcher && evening(p)));
   if (!B) return { veto: 'no watched night place open all evening' };
-  const availMurder = i.hours.filter((h) => h < (i.windowed ? i.hc - 1 : i.hc));
+  const availMurder = i.hours.filter((h) => h < (i.w0 !== undefined ? i.w0 : i.windowed ? i.hc - 1 : i.hc));
   const lastAvail = Math.max(...availMurder);
   let X: BiblePlace | undefined;
   let work: K.WorkDef | undefined;
@@ -396,6 +403,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
   const forms = new Set<string>();
   const lodges = new Set<number>();
   let H: BiblePlace | undefined;
+  let LH: BiblePlace | undefined;
   let worker: number | undefined;
   let resident: number | undefined;
   const take = (k: number, p: BiblePerson, m: Motive) => {
@@ -432,7 +440,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
 
   // The worker (a murder's workplace): one of the suspects who aren't the outsider works there.
   if (work) {
-    const k = pick(order.filter((x) => tags[x] !== 'N')) as number;
+    const k = pick(order.filter((x) => tags[x] !== 'N' && !(i.lHome && tags[x] === 'L'))) as number;
     const c = workerCands.filter((p) => !used.has(p.id) && !shorts.has(shortName(p)) && (tags[k] !== 'C' || !avoidC.has(p.id)) && (tags[k] !== 'C' || tier < 4 || unwatchedHome(p.home)) && reasonOf(p, tags[k] as string));
     const p = pick(c);
     if (!p) return { veto: 'nobody who works there has a reason' };
@@ -485,6 +493,8 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
     };
     let cands = pool.filter((p) => ok(p) && !!reasonOf(p, t));
     if (t === 'L' && i.variant !== 'pair') cands = cands.filter((p) => secretPlace(p) !== undefined);
+    // docs/82 (B, the means): the liar says they were home, in a flat of their own nobody watches.
+    if (t === 'L' && i.lHome) cands = cands.filter((p) => unwatchedHome(p.home) && p.home !== X?.id && p.home !== S.id && p.home !== H?.id);
     // Where a role may lodge, it lodges about as often as a dealt night draws it.
     if (lodge === 'may') {
       const share = t === 'R' ? 0.6 : t === 'C' && !murder && !i.secretLiar ? 0.4 : 0.5;
@@ -504,7 +514,9 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
       secret = secretPlace(p);
       if (secret) busy.add(secret.place.id);
     }
+    if (t === 'L' && i.lHome) LH = place.get(p.home);
   }
+  if (i.lHome && !LH) return { veto: 'the liar has no flat of their own' };
   if (tier >= 4 && !H) return { veto: 'the culprit has no flat of their own' };
   if ([...lodges].some((k) => tags[k] === 'C') && [...lodges].some((k) => tags[k] === 'L') && i.variant !== 'pair') return { veto: 'the culprit and the liar both lodge at the house' };
 
@@ -542,7 +554,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
   }
   // The dead man's leverage is somewhere off tonight's map: a secret at a place in play would point
   // into the night (where the secret liar was, where the means was kept, the bar everybody was at).
-  const inPlay = new Set([S.id, B.id, X.id, ...(U ? [U.id] : []), ...(H ? [H.id] : [])]);
+  const inPlay = new Set([S.id, B.id, X.id, ...(U ? [U.id] : []), ...(H ? [H.id] : []), ...(LH ? [LH.id] : [])]);
   if (motives.some((m) => m?.id.startsWith('secret:') && inPlay.has(m.id.slice('secret:'.length)))) return { veto: 'a reason names a place in play' };
   // Somebody cast before the unwatched place was chosen mustn't work there.
   for (const p of suspects) if (p && U && p.works?.place === U.id && suspects.indexOf(p) !== worker) return { veto: `${p.id} works where the secret was` };
@@ -681,6 +693,10 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
     const c = nameOf(suspects[tags.indexOf('C')] as BiblePerson);
     placeNames.H = { name: `${c.short}’s flat ${within(H)}`, short: `${c.short}’s flat`, street: H.street, key: 'flat', world: H.id };
   }
+  if (LH) {
+    const l = nameOf(suspects[tags.indexOf('L')] as BiblePerson);
+    placeNames.LH = { name: `${l.short}’s flat ${within(LH)}`, short: `${l.short}’s flat`, street: LH.street, key: 'flat', world: LH.id };
+  }
   if (YH && y) {
     const yn = nameOf(y);
     placeNames.YH = { name: `${yn.short}’s rooms ${within(YH)}`, short: `${yn.short}’s rooms`, street: YH.street, key: 'rooms', world: YH.id };
@@ -695,7 +711,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
       ...(secondDef ? { second: secondDef } : {}),
       ...(sm ? { sm } : {}),
       ...(rm ? { rm } : {}),
-      at: { S, B, X, ...(U ? { U } : {}), ...(H ? { H } : {}), ...(YH ? { YH } : {}) },
+      at: { S, B, X, ...(U ? { U } : {}), ...(H ? { H } : {}), ...(YH ? { YH } : {}), ...(LH ? { LH } : {}) },
       ...(uHide ? { uHide } : {}),
       placeNames,
       suspects: suspects as BiblePerson[],

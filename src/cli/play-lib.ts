@@ -2,7 +2,7 @@
  * docs/43: `npm run play`, the night played blind, one choice at a time, in
  * plain text:
  *
- *   new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name Dashiell] [--no-teach] --save F
+ *   new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name Dashiell] [--no-teach] [--puzzles B] --save F
  *   look · do <n|words> · page <n> · notebook · grid · pencil "<Name> <hour> at|not|clear [place]"
  *   confront <Name> · report · close "who=…; caught=…; when=…; how=…; why=…" (a lost thing: where=… for how=…)
  *   story · curtain · help
@@ -22,7 +22,7 @@
  * the engines before the board is refused, plainly.
  */
 
-import { parseTier, typesFor, type CaseType } from '../gen/board/index.js';
+import { parsePuzzles, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
@@ -98,6 +98,8 @@ export interface BoardSave {
   type?: CaseType;
   /** docs/48: the world the night was cast from, when it isn't the dealt cast. */
   world?: string;
+  /** docs/82: the harder-puzzle prototypes the night was dealt with (`new --puzzles B`). */
+  puzzles?: string[];
   /** docs/51: false when the night was opened with the old decks only (`new --situated 0`). */
   situated?: false;
   /** docs/60: `full` when the night was opened with every line of texture (`new --texture full`). */
@@ -131,7 +133,8 @@ function deal(save: BoardSave): Night {
   // docs/51: the deck the night was opened with, every time it's replayed.
   SITUATED.on = save.situated !== false;
   setTexture(save.texture);
-  const d = dealBoard(save.seed, save.tier as 0, save.type, save.world ? { world: save.world } : {});
+  const pz = parsePuzzles(save.puzzles);
+  const d = dealBoard(save.seed, save.tier as 0, save.type, { ...(save.world ? { world: save.world } : {}), ...(pz.length ? { puzzles: pz } : {}) });
   let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}), ...(save.seen ? { seen: save.seen } : {}) });
   const pages: BoardRun[] = [run];
   for (const e of save.events) {
@@ -426,6 +429,7 @@ export function parseSave(text: string): BoardSave {
   if (!Number.isInteger(save.seed) || save.seed < 1 || !Number.isInteger(tier) || tier < 0 || tier > 5 || !Array.isArray(save.events)) fail('That save is damaged: its seed, tier or events don’t read.');
   if (save.type !== undefined && !typesFor(tier as 0).includes(save.type)) fail('That save is damaged: the board builds no such case at its tier.');
   if (save.world !== undefined && !isWorld(save.world)) fail('That save is damaged: it was cast from a world this book doesn’t have.');
+  if (save.puzzles !== undefined && (!Array.isArray(save.puzzles) || parsePuzzles(save.puzzles).length !== save.puzzles.length)) fail('That save is damaged: it names a puzzle this book doesn’t have.');
   return save;
 }
 
@@ -498,9 +502,9 @@ function cliHint(l: string): string {
   return l.replace(/\bThe Hint button\b/g, 'The `hint` command');
 }
 
-function teachText(world?: string): string {
+function teachText(world?: string, c?: Parameters<typeof teachLines>[1]): string {
   const out = [BOARD_TEACH_TITLE.toUpperCase(), ''];
-  for (const l of teachLines(world)) out.push(wrap(cliHint(l)), '');
+  for (const l of teachLines(world, c)) out.push(wrap(cliHint(l)), '');
   out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
   return out.join('\n');
 }
@@ -516,14 +520,17 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   if (type !== undefined && !typesFor(tier as 0).includes(type)) fail(`--type: the board builds ${typesFor(tier as 0).join(', ')} at this tier.`);
   const world = values.get('world');
   if (world !== undefined && !isWorld(world)) fail('--world: the one world there is is neighbourhood.');
+  // docs/82: `--puzzles B`, the harder-puzzle prototypes, off by default.
+  const puzzles = parsePuzzles(values.get('puzzles'));
+  if (values.get('puzzles') !== undefined && puzzles.length === 0) fail('--puzzles: the prototypes there are: B.');
   // docs/55 6: a profile, when given, says what the last nights dealt; this night keeps it.
   const profilePath = values.get('profile');
   const prof = profilePath ? sanitizeProfile((() => { try { return JSON.parse(io.read(profilePath) ?? 'null'); } catch { return null; } })()) : null;
   const seen = prof ? seenOf(prof) : null;
-  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), ...(values.get('texture') === 'full' ? { texture: 'full' as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null, ...(profilePath ? { profile: profilePath } : {}), ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(puzzles.length ? { puzzles } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), ...(values.get('texture') === 'full' ? { texture: 'full' as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null, ...(profilePath ? { profile: profilePath } : {}), ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
   const night = deal(save);
   store(io, path as string, save);
-  const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
+  const teach = flags.has('no-teach') ? [] : [teachText(save.world, night.d.kase), '', DOUBLE, ''];
   return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)}${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
