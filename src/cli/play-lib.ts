@@ -635,7 +635,7 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
     const pages = night.run.log.length;
     night = commit(io, path, night, [{ do: `clash ${id} ${h}` }]);
     // (The first mark that's a real clash brings the turn, a page of its own; any other says nothing.)
-    if (night.run.log.length > pages) return lookText(night, path);
+    if (night.run.log.length > pages) return `Marked: ${nameOf(c, id)} at ${hourWord(h)} doesn’t fit. It shows as ✗ on the grid.\n\n${lookText(night, path)}`;
     return `Marked: ${nameOf(c, id)} at ${hourWord(h)} doesn’t fit. It shows as ✗ on the grid.\n\n${boardGridText(c, night.run)}`;
   }
   if (act !== 'clear') {
@@ -679,17 +679,21 @@ function cmdHint(io: PlayIo, path: string): string {
   return out.join('\n');
 }
 
-function helpText(): string {
+function helpText(night?: Night): string {
   // (docs/80: the teach page's eight lines, then the rules they don't say, as the book's drawer has them.)
+  // (docs/83: a night with puzzles A says its own line and its mark; any other night's help is as it was.)
+  const facts = !!night && factsOnly(night.d.kase);
   const out = ['HOW IT PLAYS', ''];
-  for (const l of [...BOARD_TEACH_LINES, ...BOARD_RULES]) out.push(wrap(cliHint(l)), '');
+  for (const l of [...(facts ? teachLines(night?.save.world, night?.d.kase) : BOARD_TEACH_LINES), ...BOARD_RULES]) out.push(wrap(cliHint(l)), '');
   out.push(
     'COMMANDS',
     '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] [--profile P] --save F',
     '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and closing the case adds it)',
     '  look · do <n|words> · page <n> · notebook · grid',
     '  hint (unlimited at Raw, three at Coddled, one at Poached, none after)',
-    '  mark "<Name> <hour> at|not|clear [place]" (a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
+    facts
+      ? '  mark "<Name> <hour> at|not|clear|clash [place]" (a guess on the grid: mark "Feldman ten at Rafferty’s"; where a story doesn’t fit: mark "Feldman ten clash") · confront <Name>'
+      : '  mark "<Name> <hour> at|not|clear [place]" (a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
     '  report (the five questions, each with its answers numbered; `do back` puts it away, free, while you have actions left)',
     '  close "who=…; caught=…; when=…; how=…; why=…"',
     '       (each answer a number from `report` or enough of its words; a lost thing asks where=… instead of how=…)',
@@ -796,8 +800,16 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const v = scoreBoard(night.d, night.run, night.run.filed as BoardReport);
         return { out: [...storyOfBoard(night.d).map((p) => wrap(p)), 'THE FASTEST SOLVE', ...fastestSolveLines(night.d, night.run, v.outcome).map((p) => wrap(p))].join('\n\n'), code: 0 };
       }
-      case 'help':
-        return { out: helpText(), code: 0 };
+      case 'help': {
+        // (docs/83: with a save of a night with puzzles A, that night's help; without one, or any other, as before.)
+        let night: Night | undefined;
+        try {
+          night = path && io.read(path) !== null ? load(io, path) : undefined;
+        } catch {
+          night = undefined;
+        }
+        return { out: helpText(night && factsOnly(night.d.kase) ? night : undefined), code: 0 };
+      }
       default:
         return fail(`No command "${command}". Try: npm run play -- help`);
     }
